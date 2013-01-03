@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load catalogue_tags %}
+
+{% block full_title %}Edukacja medialna{% endblock %}
+
+{% block body %}
+
+{% catalogue_carousel %}
+
+<section id="main-promobox">
+<h1>Co nowego?</h1>
+
+<h2>Tytuł informacji pierwszej</h2>
+
+<p>Boks na informacje powinien pomieścić do dwóch krótkich zdań ułożonych
+w trzech, a może…</p>
+
+<h2>Tytuł informacji drugiej</h2>
+
+<p>Boks na informacje powinien pomieścić do dwóch krótkich zdań ułożonych
+w trzech wierszach?</p>
+{#% chunk "promobox" %#}
+</section>
+
+<section id="main-sections">
+<h1>Działy:</h1>
+{% catalogue_section_buttons %}
+</section>
+
+<section id="main-chosen">
+<h1>Wybrane tematy na:</h1>
+{% catalogue_chosen_topics %}
+</section>
+
+<section id="main-tools">
+
+<section class="main-tools-box">
+<h1>Aktualności</h1>
+{% latest_blog_posts "http://nowoczesnapolska.org.pl/feed" 5 %}
+</section>
+
+<section class="main-tools-box">
+<h1>Narzędzia</h1>
+</section>
+
+<div style="clear:both"></div>
+</section>
+
+
+
+{% endblock %}

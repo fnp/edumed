@@ -1,0 +1,125 @@
+@import url(http://fonts.googleapis.com/css?family=Dosis:400,700&subset=latin,latin-ext);
+a {
+  text-decoration: none;
+  color: #ed7831; }
+  a img {
+    border: 0;
+    padding: 0; }
+
+body {
+  font-family: Dosis;
+  margin: 0;
+  background: white;
+  color: #363a3e; }
+
+.clr {
+  clear: both; }
+
+#header-wrapper {
+  background-image: url(../img/header-bar.png);
+  background-repeat: repeat-x;
+  background-position: 0 100%; }
+
+header.main {
+  margin: 0 auto 1.438em;
+  width: 58.75em;
+  padding: 1.813em 0.625em 0; }
+  header.main #logo {
+    float: left;
+    margin-bottom: 1.25em; }
+    header.main #logo img {
+      vertical-align: middle; }
+  header.main #organizer {
+    float: right;
+    margin-top: 1.3em; }
+  header.main nav ul {
+    padding: 0;
+    position: absolute;
+    left: 15em; }
+  header.main nav li {
+    list-style: none;
+    display: inline-block;
+    text-transform: uppercase;
+    margin: 0 .5em;
+    text-align: center;
+    /*position:relative;*/ }
+  header.main nav a {
+    color: #ed7831;
+    display: block;
+    vertical-align: bottom;
+    font-size: .85em; }
+  header.main nav a:hover {
+    color: #363a3e; }
+  header.main nav a:before {
+    display: block;
+    margin-bottom: .8em; }
+  header.main nav .menu-lekcje:before {
+    content: url(../img/menu/lekcje.png); }
+  header.main nav .menu-kompetencje:before {
+    content: url(../img/menu/katalog.png); }
+  header.main nav .menu-wspolpraca:before {
+    content: url(../img/menu/wspolpraca.png); }
+  header.main nav .menu-szkolenia:before {
+    content: url(../img/menu/szkolenia.png); }
+  header.main nav .menu-wesprzyj:before {
+    content: url(../img/menu/wesprzyj.png); }
+  header.main nav .menu-o-nas:before {
+    content: url(../img/menu/o-nas.png); }
+  header.main nav .menu-kontakt:before {
+    content: url(../img/menu/kontakt.png); }
+  header.main nav .menu-lekcje:hover:before {
+    content: url(../img/menu/lekcje_active.png); }
+  header.main nav .menu-kompetencje:hover:before {
+    content: url(../img/menu/katalog_active.png); }
+  header.main nav .menu-wspolpraca:hover:before {
+    content: url(../img/menu/wspolpraca_active.png); }
+  header.main nav .menu-szkolenia:hover:before {
+    content: url(../img/menu/szkolenia_active.png); }
+  header.main nav .menu-wesprzyj:hover:before {
+    content: url(../img/menu/wesprzyj_active.png); }
+  header.main nav .menu-o-nas:hover:before {
+    content: url(../img/menu/o-nas_active.png); }
+  header.main nav .menu-kontakt:hover:before {
+    content: url(../img/menu/kontakt_active.png); }
+  header.main #tagline {
+    clear: both;
+    float: left;
+    background-color: white;
+    /* Extend padded background .*/
+    padding: 0 0.625em;
+    margin-left: -0.625em;
+    font-size: .9em;
+    color: #363a3e; }
+  header.main #search {
+    float: right;
+    padding: 0 0.625em;
+    background-color: white;
+    /* Extend padded background .*/
+    padding: 0 0.625em;
+    margin-right: -0.625em; }
+
+#content {
+  width: 58.75em;
+  padding: 0 0.625em;
+  margin: auto;
+  position: relative; }
+
+footer.main {
+  clear: both;
+  border-top: 1px solid #c9ccce;
+  width: 58.75em;
+  padding: 0.2em 0.625em;
+  margin: 2.5em auto 0 auto;
+  color: #9a9c9e; }
+  footer.main .footer-item {
+    float: left;
+    margin-right: 1.25em;
+    width: 13.75em; }
+    footer.main .footer-item p {
+      font-size: .75em; }
+  footer.main .footer-item-half {
+    float: left;
+    margin-right: 1.25em;
+    width: 6.25em; }
+    footer.main .footer-item-half p {
+      font-size: .75em; }

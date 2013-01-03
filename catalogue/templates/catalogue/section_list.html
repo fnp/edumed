@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load catalogue_tags %}
+
+{% block title %}Lekcje{% endblock %}
+
+{% block body %}
+    <h1>Lekcje</h1>
+
+    {% for object in object_list %}
+        <h2>{{ object }} <a name="{{ object.slug }}" class="permalink"></a></h2>
+
+        {% section_box object %}
+    {% endfor %}
+
+{% endblock %}

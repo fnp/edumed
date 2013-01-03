@@ -1,0 +1,81 @@
+$px: .0625em;
+
+#catalogue-carousel {
+    float: left;
+    position: relative;
+    width: 700*$px;
+    height: 235*$px;
+    overflow: hidden;
+    border-radius: 15*$px;
+
+    #catalogue-carousel-links {
+        width: 460*$px;
+        height: 235*$px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: url(/static/test.jpg); /* set real background image */
+
+            a {
+                display: block;
+                width: 460*$px;
+                height: 235*$px;
+                background-image: url(/static/catalogue/img/carousel-left.png);
+                background-position: 100% 0;
+                background-repeat: no-repeat;
+                background-size: auto 235*$px;
+
+                /* left part of mask as background */
+            }
+        }
+    }
+    #catalogue-carousel-switcher {
+        margin: 0;
+        padding: 50*$px 0 0 58*$px;
+        width: 240*$px - 58*$px;
+        height: 235*$px - 50*$px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        list-style: none;
+        border-radius: 0 15*$px 15*$px 0;
+        background-color: #16a487;
+        background-image: url(/static/catalogue/img/carousel-right.png);
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        background-size: auto 235*$px;
+        
+        /* right part of mask as background */
+
+        li {
+            margin-bottom: .9em;
+
+            a {
+                text-transform: uppercase;
+                color: #363a3e;
+                font-size: .9em;
+                font-weight: bold;
+            }
+            a.active {
+                color: white;
+            }
+            a:before {
+                vertical-align: top;
+                margin-right: 1.5em;
+            }
+            .knowledge:before {content: url(/static/img/icons/knowledge.png);}
+            .activity:before {content: url(/static/img/icons/activity.png);}
+            .lesson-plan:before {content: url(/static/img/icons/lesson-plan.png);}
+            .reference:before {content: url(/static/img/icons/reference.png);}
+            /* TODO: active sprites */
+        }
+    }
+
+
+}

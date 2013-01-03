@@ -1,0 +1,66 @@
+#catalogue-carousel {
+  float: left;
+  position: relative;
+  width: 43.75em;
+  height: 14.688em;
+  overflow: hidden;
+  border-radius: 0.938em; }
+  #catalogue-carousel #catalogue-carousel-links {
+    width: 28.75em;
+    height: 14.688em;
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    #catalogue-carousel #catalogue-carousel-links li {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: url(/static/test.jpg);
+      /* set real background image */ }
+      #catalogue-carousel #catalogue-carousel-links li a {
+        display: block;
+        width: 28.75em;
+        height: 14.688em;
+        background-image: url(/static/catalogue/img/carousel-left.png);
+        background-position: 100% 0;
+        background-repeat: no-repeat;
+        background-size: auto 14.688em;
+        /* left part of mask as background */ }
+  #catalogue-carousel #catalogue-carousel-switcher {
+    margin: 0;
+    padding: 3.125em 0 0 3.625em;
+    width: 11.375em;
+    height: 11.563em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    list-style: none;
+    border-radius: 0 0.938em 0.938em 0;
+    background-color: #16a487;
+    background-image: url(/static/catalogue/img/carousel-right.png);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: auto 14.688em;
+    /* right part of mask as background */ }
+    #catalogue-carousel #catalogue-carousel-switcher li {
+      margin-bottom: .9em;
+      /* TODO: active sprites */ }
+      #catalogue-carousel #catalogue-carousel-switcher li a {
+        text-transform: uppercase;
+        color: #363a3e;
+        font-size: .9em;
+        font-weight: bold; }
+      #catalogue-carousel #catalogue-carousel-switcher li a.active {
+        color: white; }
+      #catalogue-carousel #catalogue-carousel-switcher li a:before {
+        vertical-align: top;
+        margin-right: 1.5em; }
+      #catalogue-carousel #catalogue-carousel-switcher li .knowledge:before {
+        content: url(/static/img/icons/knowledge.png); }
+      #catalogue-carousel #catalogue-carousel-switcher li .activity:before {
+        content: url(/static/img/icons/activity.png); }
+      #catalogue-carousel #catalogue-carousel-switcher li .lesson-plan:before {
+        content: url(/static/img/icons/lesson-plan.png); }
+      #catalogue-carousel #catalogue-carousel-switcher li .reference:before {
+        content: url(/static/img/icons/reference.png); }

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load url from future %}
+{% load i18n static %}
+{% load fnp_common fnp_share fnp_lang macros %}
+{% load compressed static %}
+
+{% macro title %}{% block title %}{% endblock %}{% endmacro %}
+{% macro site_name %}Edukacja medialna{% endmacro %}
+
+<html prefix="og: http://ogp.me/ns#">
+    <head>
+       <title>{% block full_title %}{% usemacro title %} :: {% usemacro site_name %}{% endblock %}</title>
+       <link rel="shortcut icon" type="image/png" href="{% static "img/favicon.png" %}" />
+        {% compressed_css 'base' %}
+
+        <meta charset="UTF-8" />
+        <meta property='og:url' content='{% block "ogurl" %}{{ "/"|build_absolute_uri:request }}{% endblock %}' />
+        <meta property='og:title' content='{% block og_title %}{% usemacro title %}{% endblock %}' />
+        <meta property='og:site_name' content='{% usemacro site_name %}' />
+        <meta property='og:description' content='{% block og_description %}{% endblock %}' />
+        <meta property='og:type' content='{% block og_type %}website{% endblock %}' />
+        <meta property='og:image' content='{% block og_image %}{% endblock %}' />
+        <meta property='og:locale' content='pl_PL' />
+    </head>
+    <body id="{% block body-id %}body{% endblock %}">
+
+        <div id="header-wrapper">
+        <header class="main" style="position:relative;">
+            <!--img
+                src="{% static "tlo.png" %}"
+                style="position:absolute; opacity: 0.5; top:0; left: -83px; z-index:1000"
+                -->
+            <div id="header-top">
+            <a id="logo" href="/"><img src="{% static "img/logo.png" %}" alt="Edukacja medialna"/></a>
+            <a id="organizer" href="http://nowoczesnapolska.org.pl">
+                <img src="{% static "img/logo_fnp.png" %}" alt="Fundacja Nowoczesna Polska" /></a>
+            <nav><ul>
+                <li><a class="menu-lekcje" href="{% url "catalogue_lessons" %}">Lekcje</a></li>
+                <li><a class="menu-kompetencje" href="{% url "curriculum" %}">Katalog kompetencji</a></li>
+                <li><a class="menu-wspolpraca" href="{% url "info" "wspolpraca/" %}">Współpraca</a></li>
+                <li><a class="menu-szkolenia" href="{% url "info" "szkolenia/" %}">Szkolenia</a></li>
+                <li><a class="menu-wesprzyj" href="{% url "info" "wesprzyj/" %}">Wesprzyj nas</a></li>
+                <li><a class="menu-o-nas" href="{% url "info" "o-nas/" %}">O nas</a></li>
+                <li><a class="menu-kontakt" href="{% url "info" "kontakt/" %}">Kontakt</a></li>
+            </ul></nav>
+            </div>
+
+            <div id="tagline">Scenariusze zajęć, ćwiczenia, materiały</div>
+            <div id="search">[szukaj]</div>
+            <div class="clr"></div>
+        </header>
+        </div>
+
+        <div id="content">{% block body %}{% endblock %}</div>
+
+        <footer class="main">
+            {# chunks? #}
+            <div class="footer-item">
+                <p>
+                Fundacja Nowoczesna Polska<br/>
+                <br/>
+                ul. Marszałkowska 84/92 lok. 125<br/>
+                00-514 Warszawa<br/>
+                tel/fax: +48 22 621 30 17<br/>
+                e-mail: fundacja@nowoczesnapolska.org.pl
+                </p>
+            </div>
+            <div class="footer-item">
+                <p><br/><br/>
+                KRS: 0000070056<br/>
+                REGON: 017423865<br/>
+                Nr konta: 59 1030 0019 0109 8530 0040 5685<br/>
+                </p>
+            </div>
+            <div class="footer-item">
+                <p>
+                Webdesign Ortografika<br/>
+                <br/>
+                Jeśli nie oznaczono inaczej, wszystkie materiały na stronie są objęte wolną licencją
+                <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.pl">Creative Commons Uznanie autorstwa
+                – Na tych samych warunkach 3.0</a>.
+                </p>
+            </div>
+            <div class="footer-item-half">
+                <p>
+                Patron honorowy:<br/>
+                <br/>
+                <img src="{% static 'img/logosy/mkidn.png' %}" alt="Ministerstwo Kultury i Dziedzictwa Narodowego" />
+                </p>
+            </div>
+            <div class="footer-item-half" style="margin-right: 0">
+                <p>
+                Grantodawca:<br/>
+                <br/>
+                <img src="{% static 'img/logosy/nina.png' %}" alt="Narodowy Instytut Audiowizualny" />
+                </p>
+            </div>
+            <div class="clr"></div>
+        </footer>
+
+    {% compressed_js 'base' %}
+    {{ piwik_tag|safe }}
+    </body>
+</html>
