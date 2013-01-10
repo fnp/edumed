@@ -1,9 +1,54 @@
 {% extends "base.html" %}
 
-{% block title %}Katalog kompetencji{% endblock %}
+{% block title %}Katalog kompetencji medialnych i informacyjnych{% endblock %}
 
 {% block body %}
-<h1>Katalog kompetencji</h1>
+<h1>Katalog kompetencji medialnych i informacyjnych</h1>
 
+<form>
+<h3>Poziom edukacyjny:</h3>
+{% if errors.level %}<p class="error">{{ errors.level }}</p>{% endif %}
+<strong>edukacja formalna:</strong>
+<ul>
+{% for lev in levels %}
+    <li><label><input type="radio" name="level" value="{{ lev.slug }}"
+        {% if lev == level %}checked="checked"{% endif %} />
+        {{ lev }}</label></li>
+{% endfor %}
+</ul>
+<strong>edukacja ustawiczna:</strong>
+
+<h3>Kategorie kompetencji:</h3>
+{% if errors.competences %}<p class="error">{{ errors.competences }}</p>{% endif %}
+<ul>
+{% for section in sections %}
+    <li>
+    <label><input type="checkbox" name="s" value="{{ section.pk }}"
+        {% if section.pk in sect_ids %}checked="checked"{% endif %} /> {{ section }}</label>
+        <span class="curriculum-section-toggler" >(rozwiń)</span>
+    <ul>
+    {% for competence in section.competence_set.all %}
+        <li><label><input type="checkbox" name="c" value="{{ competence.pk }}"
+            {% if competence.pk in comp_ids %}checked="checked"{% endif %} />
+            {{ competence }}</label></li>
+    {% endfor %}
+    </ul>
+    </li>
+{% endfor %}
+</ul>
+<button>Pokaż</button>
+</form>
+
+{% if chosen_competences %}
+
+{% for section, competences in chosen_competences.items %}
+    <h3>{{ section }}</h3>
+    {% for competence in competences %}
+        <h4>{{ competence }}</h4>
+        {{ competence.for_level_.description }}
+    {% endfor %}
+{% endfor %}
+
+{% endif %}
 
 {% endblock %}

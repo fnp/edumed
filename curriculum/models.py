@@ -28,6 +28,9 @@ class Competence(models.Model):
     def __unicode__(self):
         return self.name
 
+    def for_level(self, level):
+        return self.competencelevel_set.get(level=level)
+
 class Level(models.Model):
     name = models.CharField(_('name'), max_length=255)
     slug = models.SlugField(_('slug'))
