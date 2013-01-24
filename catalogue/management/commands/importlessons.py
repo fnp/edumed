@@ -1,0 +1,81 @@
+# -*- coding: utf-8 -*-
+# This file is part of EduMed, licensed under GNU Affero GPLv3 or later.
+# Copyright © Fundacja Nowoczesna Polska. See NOTICE for more information.
+#
+import os
+import sys
+import time
+from optparse import make_option
+from django.conf import settings
+from django.core.management.base import BaseCommand
+from django.core.management.color import color_style
+from django.core.files import File
+
+from catalogue.models import Lesson
+
+#from search import Index
+
+
+class Command(BaseCommand):
+    option_list = BaseCommand.option_list + (
+        make_option('-q', '--quiet', action='store_false', dest='verbose', default=True,
+            help='Verbosity level; 0=minimal output, 1=normal output, 2=all output'),
+    )
+    help = 'Imports lessons from the specified directories.'
+    args = 'directory [directory ...]'
+
+    def import_book(self, file_path, options):
+        verbose = options.get('verbose')
+        with open(file_path) as f:
+            lesson = Lesson.publish(f)
+
+    def handle(self, *directories, **options):
+        from django.db import transaction
+
+        self.style = color_style()
+        
+        verbose = options.get('verbose')
+
+        # Start transaction management.
+        transaction.commit_unless_managed()
+        transaction.enter_transaction_management()
+        transaction.managed(True)
+
+        files_imported = 0
+        files_skipped = 0
+
+        for dir_name in directories:
+            if not os.path.isdir(dir_name):
+                print self.style.ERROR("%s: Not a directory. Skipping." % dir_name)
+            else:
+                # files queue
+                files = sorted(os.listdir(dir_name))
+                postponed = {}
+                while files:
+                    file_name = files.pop(0)
+                    file_path = os.path.join(dir_name, file_name)
+                    file_base, ext = os.path.splitext(file_path)
+
+                    # Skip files that are not XML files
+                    if not ext == '.xml':
+                        continue
+
+                    if verbose > 0:
+                        print "Parsing '%s'" % file_path
+                    else:
+                        sys.stdout.write('.')
+                        sys.stdout.flush()
+
+                    # Import book files
+                    self.import_book(file_path, options)
+                    files_imported += 1
+                    transaction.commit()
+
+        # Print results
+        print
+        print "Results: %d files imported, %d skipped, %d total." % (
+            files_imported, files_skipped, files_imported + files_skipped)
+        print
+
+        transaction.commit()
+        transaction.leave_transaction_management()

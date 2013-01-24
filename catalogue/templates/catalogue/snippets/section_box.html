@@ -1,19 +1,22 @@
-<ul class="section-levels">
 {% for level, depths in lessons.items %}
-    <li class="section-level section-level-{{ level.slug }}">
-        <ul class="section-depths">
-        {% for depth, lesson_list in depths.items %}
-            <li class="section-depth section-depth-{{ depth }}">
-                <ul class="section-lessons">
-                    {% for lesson in lesson_list %}
-                        <li class="section-lesson">
-                            <a href="{{ lesson.get_absolute_url }}">{{ lesson }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </li>
-        {% endfor %}
-        </ul>
-    </li>
+<section class="section-level section-level-{{ level.slug }}">
+    {% spaceless %}
+    {% for depth, lesson_list in depths.items %}
+        <section class="section-depth section-depth-{{ depth }}">
+            {% if depth == 0 %}
+                <h1>Lekcja syntetyczna</h1>
+            {% else %}
+                <h1>Pełny kurs</h1>
+            {% endif %}
+            <ul class="section-lessons">
+                {% for lesson in lesson_list %}
+                    <li class="section-lesson">
+                        <a href="{{ lesson.get_absolute_url }}">{{ lesson }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% endfor %}
+    {% endspaceless %}
+</section>
 {% endfor %}
-</ul>

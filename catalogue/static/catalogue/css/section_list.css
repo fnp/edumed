@@ -1,0 +1,40 @@
+.section-level {
+  width: 37.5em;
+  border-radius: 0.938em; }
+
+.section-depth {
+  display: inline-block;
+  width: 16.25em;
+  vertical-align: top;
+  padding: 1.25em; }
+  .section-depth h1 {
+    text-transform: uppercase;
+    margin: 0 0 1em 0;
+    font-size: 1em; }
+  .section-depth .section-lessons {
+    padding: 0 0 0 1em; }
+
+.section-depth-1 {
+  border-radius: 0 0.938em 0.938em 0; }
+
+.section-level-gimnazjum {
+  background: #f4ae83;
+  color: #67584f; }
+  .section-level-gimnazjum a {
+    color: #67584f; }
+  .section-level-gimnazjum .section-depth-1 {
+    background: #ed7831;
+    color: #fff; }
+    .section-level-gimnazjum .section-depth-1 a {
+      color: #fff; }
+
+.section-level-L {
+  background: #f4ae83;
+  color: #67584f; }
+  .section-level-L a {
+    color: #67584f; }
+  .section-level-L .section-depth-1 {
+    background: #ed7831;
+    color: #fff; }
+    .section-level-L .section-depth-1 a {
+      color: #fff; }

@@ -1,0 +1,61 @@
+$px: .0625em;
+$new_black: #363a3e;
+
+#sidebar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 220*$px;
+    color: $new_black;
+
+    section {
+        margin-bottom: 17*$px;
+        h1 {
+            margin: 0;
+        }
+        h1.realisation {
+            font-weight: normal;
+        }
+        h1.realisation:before {
+            content: url(/static/img/icons/time.png);
+            vertical-align: middle;
+            margin-right: 10*$px;
+        }
+    }
+
+    .box {
+        background-color: #16a487;
+        border-radius: 15*$px;
+        padding: 17*$px 12*$px 17*$px 12*$px;
+
+        .dl-button {
+            color: white;
+        }
+    }
+    .dl-button {
+        color: $new_black;
+        display: block;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: .9em;
+    }
+    .dl-button:after {
+        content: " ↓";
+    }
+    .section {
+        border-top: 1px solid #c9ccce;
+        padding-top: 17*$px;
+    }
+    .section-minor {
+        border-top: 1px solid #c9ccce;
+        padding-top: 17*$px;
+        h1 {
+            font-weight: normal;
+            font-size: 1em;
+        }
+    }
+}
+#main-bar {
+    width: 640*$px;
+}

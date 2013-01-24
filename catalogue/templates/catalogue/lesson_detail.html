@@ -3,5 +3,28 @@
 {% block title %}{{ object }}{% endblock %}
 
 {% block body %}
-    <h1>{{ object }}</h1>
+    <!--h1>{{ object }}</h1-->
+
+<aside id="sidebar">
+    <section class="box">
+        <h1 class="realisation">Realizacja i czas lekcji</h1>
+        <p>Ta lekcja jest częścią działu
+        Korzystanie z informacji.
+        Dostępna jest również
+        lekcja syntetyczna
+        dla tego działu.
+        </p>
+    </section>
+    <section>Przykładowa sekcja</section>
+    <section class="box"><a href="" class="dl-button">Pobierz całą lekcję</a></section>
+    <section><a href="" class="dl-button">Pobierz lekcję w wersji dla ucznia</a></section>
+    <section class="section">
+        <h1>Korzystanie z informacji</h1>
+    </section>
+</aside>
+
+<div id="main-bar">
+{{ object.html_file.read|safe }}
+</div>
+
 {% endblock %}

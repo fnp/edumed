@@ -1,0 +1,65 @@
+$px: 0.0625em;
+
+.section-level {
+    width: 600*$px;
+    border-radius: 15*$px;
+}
+
+.section-depth {
+    display: inline-block;
+    width: 300*$px - 2 * 20*$px;
+    vertical-align: top;
+    padding: 20*$px;
+
+    h1 {
+        text-transform: uppercase;
+        margin: 0 0 1em 0;
+        font-size: 1em;
+    }
+
+    .section-lessons {
+        padding: 0 0 0 1em;
+    }
+}
+.section-depth-1 {
+    border-radius: 0 15*$px 15*$px 0;
+}
+
+.section-level-gimnazjum {
+    background: #f4ae83;
+    color: #67584f;
+    a {
+        color: #67584f;
+    }
+
+    .section-depth-0 {
+    }
+    .section-depth-1 {
+        background: #ed7831;
+        color: #fff;
+        a {
+            color: #fff;
+        }
+    }
+}
+
+
+.section-level-L {
+    background: #f4ae83;
+    color: #67584f;
+    a {
+        color: #67584f;
+    }
+
+    .section-depth-0 {
+    }
+    .section-depth-1 {
+        background: #ed7831;
+        color: #fff;
+        a {
+            color: #fff;
+        }
+    }
+}
+
+

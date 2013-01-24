@@ -18,6 +18,9 @@ PIPELINE_CSS = {
           'css/base.scss',
           'css/main.scss',
           'catalogue/css/carousel.scss',
+          'catalogue/css/layout.scss',
+          'catalogue/css/lesson.scss',
+          'catalogue/css/section_list.scss',
         ),
         'output_filename': 'compressed/base.css',
     },
@@ -25,6 +28,8 @@ PIPELINE_CSS = {
 PIPELINE_JS = {
     'base': {
         'source_filenames': (
+            'catalogue/js/jquery-ui-1.9.2.custom.js',
+            'catalogue/js/edumed.js',
         ),
         'output_filename': 'compressed/base.js',
     },
