@@ -28,8 +28,10 @@ PIPELINE_CSS = {
 PIPELINE_JS = {
     'base': {
         'source_filenames': (
-            'catalogue/js/jquery-ui-1.9.2.custom.js',
+            'catalogue/js/jquery-ui-1.10.0.custom.js',
+            'catalogue/js/jquery.cycle.all.js',
             'catalogue/js/edumed.js',
+            'catalogue/js/carousel.js',
         ),
         'output_filename': 'compressed/base.js',
     },

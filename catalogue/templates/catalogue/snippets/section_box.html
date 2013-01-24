@@ -11,7 +11,9 @@
             <ul class="section-lessons">
                 {% for lesson in lesson_list %}
                     <li class="section-lesson">
-                        <a href="{{ lesson.get_absolute_url }}">{{ lesson }}</a>
+                        <a href="{{ lesson.get_absolute_url }}">{{ lesson }}{% if depth == 0 %}
+                            (przegląd całego działu w 45 minut)
+                        {% endif %}</a>
                     </li>
                 {% endfor %}
             </ul>

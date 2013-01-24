@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load url from future %}
 
 {% block title %}{{ object }}{% endblock %}
 
@@ -8,14 +9,23 @@
 <aside id="sidebar">
     <section class="box">
         <h1 class="realisation">Realizacja i czas lekcji</h1>
-        <p>Ta lekcja jest częścią działu
-        Korzystanie z informacji.
-        Dostępna jest również
-        lekcja syntetyczna
+        {% if object.depth == 0 %}
+        <p>To lekcja jest syntezą działu
+        {{ object.section }}.
+        Dostępny jest również
+        <a href="{% url 'catalogue_lessons' %}#{{ object.section.slug }}">szczegółowy kurs</a>
         dla tego działu.
         </p>
+        {% else %}
+        <p>Ta lekcja jest częścią działu
+        {{ object.section }}.
+        Dostępna jest również
+        <a href="">lekcja syntetyczna</a>
+        dla tego działu.
+        </p>
+        {% endif %}
+        <p>Czas trwania: 45 minut.</p>
     </section>
-    <section>Przykładowa sekcja</section>
     <section class="box"><a href="" class="dl-button">Pobierz całą lekcję</a></section>
     <section><a href="" class="dl-button">Pobierz lekcję w wersji dla ucznia</a></section>
     <section class="section">
