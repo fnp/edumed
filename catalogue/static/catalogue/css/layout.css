@@ -11,15 +11,18 @@
       margin: 0; }
     #sidebar section h1.realisation {
       font-weight: normal; }
-    #sidebar section h1.realisation:before {
-      content: url(/static/img/icons/time.png);
-      vertical-align: middle;
-      margin-right: 0.625em; }
   #sidebar .box {
-    background-color: #16a487;
+    background-color: #d4d6d8;
     border-radius: 0.938em;
     padding: 1.063em 0.75em 1.063em 0.75em; }
-    #sidebar .box .dl-button {
+    #sidebar .box h1 {
+      font-size: 1em;
+      text-transform: uppercase; }
+  #sidebar .box-button {
+    background-color: #ed7831;
+    border-radius: 0.938em;
+    padding: 1.063em 0.75em 1.063em 0.75em; }
+    #sidebar .box-button .dl-button {
       color: white; }
   #sidebar .dl-button {
     color: #363a3e;

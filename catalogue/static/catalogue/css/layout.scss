@@ -16,18 +16,21 @@ $new_black: #363a3e;
         h1.realisation {
             font-weight: normal;
         }
-        h1.realisation:before {
-            content: url(/static/img/icons/time.png);
-            vertical-align: middle;
-            margin-right: 10*$px;
-        }
     }
 
     .box {
-        background-color: #16a487;
+        background-color: #d4d6d8;
         border-radius: 15*$px;
         padding: 17*$px 12*$px 17*$px 12*$px;
-
+        h1 {
+            font-size: 1em;
+            text-transform: uppercase;
+        }
+    }
+    .box-button {
+        background-color: #ed7831;
+        border-radius: 15*$px;
+        padding: 17*$px 12*$px 17*$px 12*$px;
         .dl-button {
             color: white;
         }

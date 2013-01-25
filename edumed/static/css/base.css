@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url(http://fonts.googleapis.com/css?family=Dosis:400,700&subset=latin,latin-ext);
 a {
   text-decoration: none;
@@ -44,12 +45,12 @@ header.main {
     text-align: center;
     /*position:relative;*/ }
   header.main nav a {
-    color: #ed7831;
+    color: #363a3e;
     display: block;
     vertical-align: bottom;
     font-size: .85em; }
   header.main nav a:hover {
-    color: #363a3e; }
+    color: #ed7831; }
   header.main nav a:before {
     display: block;
     margin-bottom: .8em; }
@@ -152,3 +153,14 @@ footer.main {
     text-transform: uppercase; }
   #search input::-ms-placeholder {
     text-transform: uppercase; }
+
+.link-list {
+  list-style: none;
+  padding: 0; }
+  .link-list a:before {
+    content: "→";
+    margin-right: .5em; }
+  .link-list a {
+    color: #363a3e; }
+  .link-list a:hover {
+    color: #ed7831; }

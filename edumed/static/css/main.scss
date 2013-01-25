@@ -1,14 +1,11 @@
 $px: .0625em;
 
 #main-promobox {
-    /*position: absolute;
-    top: 0;
-    right: 10 * $px;*/
     float: right;
 
     border-radius: 15*$px;
 
-    background: #f8b323;
+    background: #16a487;
     padding: 1.5em 20*$px;
     width: 220*$px - 2 * 20*$px;
     height: 235*$px - 2 * 1.5em;
@@ -20,7 +17,7 @@ $px: .0625em;
         font-size: .9em;
     }
     h1:before {
-        content: url(/static/img/icons/announce.png);
+        content: url(/static/img/icons/announce_white.png);
         margin-right: 1.2em;
         vertical-align: top;
     }
@@ -64,16 +61,29 @@ $px: .0625em;
             width: 160*$px;
             height: 90*$px;
             border-radius: 15*$px;
-            display: table;
 
             a {
-                display: table-cell;
-                padding-left: 27*$px;
-                vertical-align: middle;
-                height: 100%;
                 color: white;
                 text-transform: uppercase;
-                font-size: .9em;
+                display: block;
+                height: 70*$px;
+                width: 140*$px;
+                display: table;
+                padding: 10*$px;
+
+                span {
+                    font-size: .9em;
+                    height: 100%;
+                    width: 100%;
+                    display: table-cell;
+                    vertical-align: middle;
+                    border: 1px solid transparent;
+                    border-radius: 10*$px;
+                    padding-left: 16*$px;
+                }
+            }
+            a:hover span {
+                border: 1px solid white;
             }
         }
         .box1 {background-color: #adaeaf;}
@@ -100,17 +110,11 @@ $px: .0625em;
 
     ul {
         margin: 17*$px 0 0 1.4em;;
-        padding: 0;
-        list-style-position:inside;
 
         li {
             font-size: .9em;
             text-transform: uppercase;
             line-height: 1.25em;
-
-            a {
-                color: #363a3e;
-            }
         }
     }
 }
@@ -131,17 +135,8 @@ $px: .0625em;
 
         ul, ol {
             margin: 1.1em 0 0 0;
-            padding: 0;
-            list-style-position:inside;
-            color: #ed7831;
             font-size: .9em;
             line-height: 1.15em;
-
-            li {
-                a {
-                    color: #ed7831;
-                }
-            }
         }
     }
 }

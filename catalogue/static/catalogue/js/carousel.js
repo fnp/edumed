@@ -21,7 +21,8 @@ $("#catalogue-carousel-links").cycle({
     easeIn: 'easeInQuad',
     easeOut: 'easeOutQuad',
     speed: 1000,
-    
+    pager: '#catalogue-carousel-switcher',
+    pagerAnchorBuilder: function(){},
 });
 
 

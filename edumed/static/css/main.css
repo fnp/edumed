@@ -1,10 +1,7 @@
 #main-promobox {
-  /*position: absolute;
-  top: 0;
-  right: 10 * $px;*/
   float: right;
   border-radius: 0.938em;
-  background: #f8b323;
+  background: #16a487;
   padding: 1.5em 1.25em;
   width: 11.25em;
   height: 11.688em; }
@@ -14,7 +11,7 @@
     text-transform: uppercase;
     font-size: .9em; }
   #main-promobox h1:before {
-    content: url(/static/img/icons/announce.png);
+    content: url(/static/img/icons/announce_white.png);
     margin-right: 1.2em;
     vertical-align: top; }
   #main-promobox h2 {
@@ -48,16 +45,26 @@
       float: left;
       width: 10em;
       height: 5.625em;
-      border-radius: 0.938em;
-      display: table; }
+      border-radius: 0.938em; }
       #main-sections ul li a {
-        display: table-cell;
-        padding-left: 1.688em;
-        vertical-align: middle;
-        height: 100%;
         color: white;
         text-transform: uppercase;
-        font-size: .9em; }
+        display: block;
+        height: 4.375em;
+        width: 8.75em;
+        display: table;
+        padding: 0.625em; }
+        #main-sections ul li a span {
+          font-size: .9em;
+          height: 100%;
+          width: 100%;
+          display: table-cell;
+          vertical-align: middle;
+          border: 1px solid transparent;
+          border-radius: 0.625em;
+          padding-left: 1em; }
+      #main-sections ul li a:hover span {
+        border: 1px solid white; }
     #main-sections ul .box1 {
       background-color: #adaeaf; }
     #main-sections ul .box2 {
@@ -84,15 +91,11 @@
     margin: 0 0 0 1.4em;
     text-transform: uppercase; }
   #main-chosen ul {
-    margin: 1.063em 0 0 1.4em;
-    padding: 0;
-    list-style-position: inside; }
+    margin: 1.063em 0 0 1.4em; }
     #main-chosen ul li {
       font-size: .9em;
       text-transform: uppercase;
       line-height: 1.25em; }
-      #main-chosen ul li a {
-        color: #363a3e; }
 
 #main-tools {
   clear: both; }
@@ -107,10 +110,5 @@
       text-transform: uppercase; }
     #main-tools .main-tools-box ul, #main-tools .main-tools-box ol {
       margin: 1.1em 0 0 0;
-      padding: 0;
-      list-style-position: inside;
-      color: #ed7831;
       font-size: .9em;
       line-height: 1.15em; }
-      #main-tools .main-tools-box ul li a, #main-tools .main-tools-box ol li a {
-        color: #ed7831; }

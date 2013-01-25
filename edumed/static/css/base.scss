@@ -66,14 +66,14 @@ header.main {
             /*position:relative;*/
         }
         a {
-            color: $oranji;
+            color: $ciemny;
             display: block;
             vertical-align: bottom;
             font-size: .85em;
             
         }
         a:hover {
-            color: $ciemny;
+            color: $oranji;
         }
         a:before {
             display: block;
@@ -192,4 +192,21 @@ footer.main {
         text-transform: uppercase;
     }
 
+}
+
+
+.link-list {
+    list-style: none;
+    padding: 0;
+
+    a:before {
+        content: "→";
+        margin-right: .5em;
+    }
+    a {
+        color: $ciemny;
+    }
+    a:hover {
+        color: $oranji;
+    }
 }

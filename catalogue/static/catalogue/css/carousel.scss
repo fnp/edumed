@@ -1,5 +1,8 @@
 $px: .0625em;
 
+$ciemny: #363a3e;
+
+
 #catalogue-carousel {
     float: left;
     position: relative;
@@ -21,21 +24,20 @@ $px: .0625em;
             top: 0;
             left: 0;
             height: 100%;
-            background-image: url(/static/test.jpg); /* set real background image */
+            /* background-image: url(/static/test.jpg);  set real background image */
             background-size: 100% 100%;
             border-top-left-radius: 15*$px 6.38%;
             border-bottom-left-radius: 15*$px 6.38%;
 
             a {
                 display: block;
+                overflow: hidden;
                 width: 460*$px;
                 height: 100%;
                 background-image: url(/static/catalogue/img/carousel-left.png);
                 background-position: 100% 0;
                 background-repeat: no-repeat;
                 background-size: 70*$px 100%;
-
-                /* left part of mask as background */
             }
         }
     }
@@ -49,7 +51,7 @@ $px: .0625em;
         top: 0;
         list-style: none;
         border-radius: 0 15*$px 15*$px 0;
-        background-color: #16a487;
+        background-color: #ed7831;
         background-image: url(/static/catalogue/img/carousel-right.png);
         background-position: 0 0;
         background-repeat: no-repeat;
@@ -62,22 +64,27 @@ $px: .0625em;
 
             a {
                 text-transform: uppercase;
-                color: #363a3e;
+                color: $ciemny;
                 font-size: .9em;
                 font-weight: bold;
-            }
-            a.active {
-                color: white;
             }
             a:before {
                 vertical-align: top;
                 margin-right: 1.5em;
             }
-            .knowledge:before {content: url(/static/img/icons/knowledge.png);}
-            .activity:before {content: url(/static/img/icons/activity.png);}
-            .lesson-plan:before {content: url(/static/img/icons/lesson-plan.png);}
-            .reference:before {content: url(/static/img/icons/reference.png);}
-            /* TODO: active sprites */
+            .knowledge:before {content: url(/static/img/icons/knowledge_dark.png);}
+            .activity:before {content: url(/static/img/icons/activity_dark.png);}
+            .lesson-plan:before {content: url(/static/img/icons/lesson-plan_dark.png);}
+            .reference:before {content: url(/static/img/icons/reference_dark.png);}
+        }
+        li.activeSlide {
+            a {
+                color: white;
+            }
+            .knowledge:before {content: url(/static/img/icons/knowledge_white.png);}
+            .activity:before {content: url(/static/img/icons/activity_white.png);}
+            .lesson-plan:before {content: url(/static/img/icons/lesson-plan_white.png);}
+            .reference:before {content: url(/static/img/icons/reference_white.png);}
         }
     }
 

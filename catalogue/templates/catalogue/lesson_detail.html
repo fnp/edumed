@@ -11,22 +11,22 @@
         <h1 class="realisation">Realizacja i czas lekcji</h1>
         {% if object.depth == 0 %}
         <p>To lekcja jest syntezą działu
-        {{ object.section }}.
+        <strong>{{ object.section }}</strong>.
         Dostępny jest również
-        <a href="{% url 'catalogue_lessons' %}#{{ object.section.slug }}">szczegółowy kurs</a>
+        <strong><a href="{% url 'catalogue_lessons' %}#{{ object.section.slug }}">szczegółowy kurs</a></strong>
         dla tego działu.
         </p>
         {% else %}
         <p>Ta lekcja jest częścią działu
-        {{ object.section }}.
+        <strong>{{ object.section }}</strong>.
         Dostępna jest również
-        <a href="">lekcja syntetyczna</a>
+        <strong><a href="">lekcja syntetyczna</a></strong>
         dla tego działu.
         </p>
         {% endif %}
         <p>Czas trwania: 45 minut.</p>
     </section>
-    <section class="box"><a href="" class="dl-button">Pobierz całą lekcję</a></section>
+    <section class="box-button"><a href="" class="dl-button">Pobierz całą lekcję</a></section>
     <section><a href="" class="dl-button">Pobierz lekcję w wersji dla ucznia</a></section>
     <section class="section">
         <h1>Korzystanie z informacji</h1>
