@@ -10,6 +10,7 @@ INSTALLED_APPS = (
     'piwik.django',
     # Disable, if not using CAS.
     'django_cas',
+    'sponsors',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',

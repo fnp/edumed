@@ -3,6 +3,7 @@
 {% load i18n static %}
 {% load fnp_common fnp_share fnp_lang macros %}
 {% load compressed static %}
+{% load sponsor_tags %}
 
 {% macro title %}{% block title %}{% endblock %}{% endmacro %}
 {% macro site_name %}Edukacja medialna{% endmacro %}
@@ -76,7 +77,7 @@
                 Nr konta: 59 1030 0019 0109 8530 0040 5685<br/>
                 </p>
             </div>
-            <div class="footer-item">
+            <div class="footer-item" style="margin-right:0;">
                 <p>
                 Webdesign Ortografika<br/>
                 <br/>
@@ -85,20 +86,7 @@
                 – Na tych samych warunkach 3.0</a>.
                 </p>
             </div>
-            <div class="footer-item-half">
-                <p>
-                Patron honorowy:<br/>
-                <br/>
-                <img src="{% static 'img/logosy/mkidn.png' %}" alt="Ministerstwo Kultury i Dziedzictwa Narodowego" />
-                </p>
-            </div>
-            <div class="footer-item-half" style="margin-right: 0">
-                <p>
-                Grantodawca:<br/>
-                <br/>
-                <img src="{% static 'img/logosy/nina.png' %}" alt="Narodowy Instytut Audiowizualny" />
-                </p>
-            </div>
+            {% sponsor_page "footer" %}
             <div class="clr"></div>
         </footer>
 

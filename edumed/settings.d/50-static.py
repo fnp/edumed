@@ -32,6 +32,7 @@ PIPELINE_JS = {
             'catalogue/js/jquery.cycle.all.js',
             'catalogue/js/edumed.js',
             'catalogue/js/carousel.js',
+            'sponsors/js/sponsors.js',
         ),
         'output_filename': 'compressed/base.js',
     },

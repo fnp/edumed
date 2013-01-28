@@ -117,11 +117,11 @@ footer.main {
     width: 13.75em; }
     footer.main .footer-item p {
       font-size: .75em; }
-  footer.main .footer-item-half {
+  footer.main .sponsors-column {
     float: left;
-    margin-right: 1.25em;
+    margin-left: 1.25em;
     width: 6.25em; }
-    footer.main .footer-item-half p {
+    footer.main .sponsors-column p {
       font-size: .75em; }
 
 #search {

@@ -31,3 +31,11 @@ if 'django_cas' in settings.INSTALLED_APPS:
         (r'^accounts/login/$', 'django_cas.views.login'),
         (r'^accounts/logout/$', 'django_cas.views.logout'),
     )
+
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+   )
