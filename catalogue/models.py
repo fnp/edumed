@@ -70,14 +70,17 @@ class Lesson(models.Model):
         lesson.section = Section.objects.all()[0]
         lesson.order = 1
         lesson.depth = 1
-
-        # Build HTML.
-        html = wldoc.as_html()
-        lesson.html_file.save("%s.html" % slug,
-            File(open(html.get_filename())), save=False)
         lesson.save()
+        lesson.build_html()
         return lesson
 
+    def build_html(self):
+        from librarian.parser import WLDocument
+        wldoc = WLDocument.from_file(self.xml_file.path)
+        html = wldoc.as_html()
+        self.html_file.save("%s.html" % self.slug,
+            File(open(html.get_filename())), save=False)
+        self.save()
 
 class Attachment(models.Model):
     lesson = models.ForeignKey(Lesson)

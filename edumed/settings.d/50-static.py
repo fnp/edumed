@@ -20,6 +20,7 @@ PIPELINE_CSS = {
           'catalogue/css/carousel.scss',
           'catalogue/css/layout.scss',
           'catalogue/css/lesson.scss',
+          'catalogue/css/exercise.scss',
           'catalogue/css/section_list.scss',
         ),
         'output_filename': 'compressed/base.css',

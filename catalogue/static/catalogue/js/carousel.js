@@ -15,14 +15,16 @@ $.fn.cycle.transitions.rgrowY = function($cont, $slides, opts) {
 	opts.cssBefore.left = 0;
 };
 
-$("#catalogue-carousel-links").cycle({
-    fx: 'rgrowY',
-    sync:false,
-    easeIn: 'easeInQuad',
-    easeOut: 'easeOutQuad',
-    speed: 1000,
-    pager: '#catalogue-carousel-switcher',
-    pagerAnchorBuilder: function(){},
+$("#catalogue-carousel-links").each(function() {
+    $(this).cycle({
+        fx: 'rgrowY',
+        sync:false,
+        easeIn: 'easeInQuad',
+        easeOut: 'easeOutQuad',
+        speed: 1000,
+        pager: '#catalogue-carousel-switcher',
+        pagerAnchorBuilder: function(){},
+    });
 });
 
 

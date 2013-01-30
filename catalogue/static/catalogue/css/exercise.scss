@@ -1,0 +1,247 @@
+$px: 0.0625em;
+
+
+@mixin bubble {
+    border-radius: 11*$px;
+    padding: 8*$px 11*$px;
+}
+@mixin bubble-drag {
+    background-color: #d4d6d8;
+    color: #363a3e;
+    cursor: pointer;
+    z-index: 2;
+}
+@mixin bubble-drag-disabled {
+    background-color: #eee;
+    color: #d4d6d8;
+}
+@mixin un-bubble-drag {
+    background-color: inherit;
+    color: inherit;
+    cursor: inherit;
+    z-index: inherit;
+}
+
+@mixin bubble-inline {
+    display: inline-block;
+    margin: 5*$px;
+    z-index: 2;
+}
+@mixin un-bubble-inline {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    z-index: inherit;
+    border-radius: 0;
+}
+@mixin list-plain {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.exercise {
+    .question-piece {
+        @include bubble;
+    }
+    .lista.punkt {
+        @include list-plain;
+    }
+    .lista {
+        li {
+            margin: 5*$px 0;
+        }
+    }
+
+    .question-piece.correct {
+        background-color: #16a487;
+        color: white;
+    }
+    .question-piece.incorrect {
+        background-color: #f00;
+        color: white;
+    }
+    
+    .placeholder.dragover {
+         background: #ed7831 !important;
+    }
+
+    .remove {
+        float: right;
+        display: inline-block;
+        border-radius: 8*$px;
+        padding: 4*$px 8*$px;
+        margin: -4*$px -8*$px -1em 8*$px;
+        background: #ed7831;
+        color: white;
+    }
+
+    .buttons {
+        background: #5e6165;
+        border-radius: 9*$px;
+        height: 30*$px;
+        line-height: 30*$px;
+        overflow: hidden;
+        color: white;
+        margin-top: 30*$px;
+
+        input {
+            height: 100%;
+            border: 0;
+            background: #8e9093;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .message {
+            float: right;
+            margin-right: 20*$px;
+        }
+
+        input.check {
+            background: #ed7831;
+            
+        }
+    }
+
+}
+
+
+.luki {
+    .question-piece {
+        @include bubble-drag;
+        @include bubble-inline;
+    }
+    .question-piece.disabled {
+        @include bubble-drag-disabled;
+    }
+
+    .placeholder {
+        @include bubble;
+        @include bubble-inline;
+
+        width: 4em;
+        background-color: #eee;
+        z-index: 1;
+    }
+    .placeholder:after {
+        content: "\0000a0";
+    }
+}
+
+
+.zastap {
+    .question-piece {
+        @include bubble-drag;
+        @include bubble-inline;
+    }
+    .question-piece.disabled {
+        @include bubble-drag-disabled;
+    }
+    .question-piece.placeholder {
+        @include un-bubble-drag;
+        @include un-bubble-inline;
+    }
+}
+
+.uporzadkuj {
+    .question-piece {
+        @include bubble-drag;
+    }
+    .question-piece.disabled {
+        @include bubble-drag-disabled;
+    }
+    .lista {
+        @include list-plain;
+    }
+}
+
+.przyporzadkuj {
+    .question-piece {
+        @include bubble-drag;
+    }
+    .question-piece.disabled {
+        @include bubble-drag-disabled;
+    }
+    .predicate {
+        @include list-plain;
+        white-space: nowrap;
+
+        > li {
+            white-space: normal;
+            @include bubble;
+            display: inline-block;
+            background-color: #5e6165;
+            color: white;
+            width: 180*$px;
+            position: relative;
+            vertical-align: top;
+
+            .subjects {
+                @include list-plain;
+                min-height: 45*$px;
+                position: relative;
+                margin: 8*$px -11*$px -8*$px -11*$px;
+                padding: 8*$px 11*$px;
+
+                .placeholder {
+                    @include bubble;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: 0;
+                    z-index: -1;
+                    text-align: right;
+                }
+                .placeholder.dragover {
+                    z-index: 1;
+                }
+                .placeholder:after {
+                    content: "upuść tutaj";
+                    text-style: italic;
+                }
+            }
+        }
+        .comment {
+            white-space: normal;
+        }
+    }
+    .subject {
+        @include list-plain;
+    }
+
+}
+
+
+.prawdafalsz .question {
+    li.question-piece {
+        position: relative;
+        padding-left: 11em;
+    }
+
+    .buttons {
+        margin-top: 0;
+        top: 0;
+        left: 0;
+        position: absolute;
+        
+        background-color: #d4d6d8;
+        color: #363a3e;
+        display: inline-block;
+
+        a {
+            color: #363a3e;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: inline-block;
+            padding: 0 11*$px;
+        }
+        a.chosen {
+            background: #ed7831;
+            color: white;
+        }
+    }
+}
