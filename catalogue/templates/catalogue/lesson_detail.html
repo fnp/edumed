@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load url from future %}
+{% load lesson_nav person_list from catalogue_tags %}
 
 {% block title %}{{ object }}{% endblock %}
 
@@ -20,17 +21,40 @@
         <p>Ta lekcja jest częścią działu
         <strong>{{ object.section }}</strong>.
         Dostępna jest również
-        <strong><a href="">lekcja syntetyczna</a></strong>
+        <strong><a href="{{ object.section.syntetic_lesson.get_absolute_url }}">lekcja syntetyczna</a></strong>
         dla tego działu.
         </p>
         {% endif %}
         <p>Czas trwania: 45 minut.</p>
     </section>
-    <section class="box-button"><a href="" class="dl-button">Pobierz całą lekcję</a></section>
-    <section><a href="" class="dl-button">Pobierz lekcję w wersji dla ucznia</a></section>
+
+    {% if object.package %}
+        <section class="box-button"><a href="{{ object.package.url }}" class="dl-button">Pobierz całą lekcję</a></section>
+    {% endif %}
+    {% if object.student_package %}
+        <section><a href="{{ object.student_package.url }}" class="dl-button">Pobierz lekcję w wersji dla ucznia</a></section>
+    {% endif %}
+
     <section class="section">
-        <h1>Korzystanie z informacji</h1>
+        {% lesson_nav object %}
     </section>
+
+    <section class="section-minor">
+        <p>Autor: {{ object.dc.authors|person_list }}</p>
+        <p>Licencja: <a href="{{ object.dc.license }}">{{ object.dc.license_description }}</a>.</p>
+    </section>
+
+    <section class="section-minor">
+        <ul class="link-list">
+            <li><a href="{{ object.xml_file.url }}">źródłowy plik XML</a></li>
+            <li><a href="">lekcja na Platformie Redakcyjnej</a></li>
+        </ul>
+    </section>
+
+    <section class="section-minor">
+        <p>{{ object.dc.description }}</p>
+    </section>
+
 </aside>
 
 <div id="main-bar">

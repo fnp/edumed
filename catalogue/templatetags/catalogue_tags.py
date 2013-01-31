@@ -1,6 +1,6 @@
 from django import template
 from django.utils.datastructures import SortedDict
-from ..models import Section
+from ..models import Lesson, Section
 
 register = template.Library()
 
@@ -33,6 +33,25 @@ def section_box(section):
     return {
         "lessons": lessons,
     }
+
+@register.inclusion_tag("catalogue/snippets/lesson_nav.html")
+def lesson_nav(lesson):
+    if lesson.depth == 1:
+        root = lesson.section
+        siblings = root.lesson_set.filter(depth=1)
+    else:
+        root = None
+        siblings = Lesson.objects.filter(depth=0)
+    return {
+        "lesson": lesson,
+        "root": root,
+        "siblings": siblings,
+    }
+
+@register.filter
+def person_list(persons):
+    from librarian.dcparser import Person
+    return u", ".join(Person.from_text(p).readable() for p in persons)
 
 
 # FIXME: Move to fnpdjango

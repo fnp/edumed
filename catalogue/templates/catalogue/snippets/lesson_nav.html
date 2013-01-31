@@ -1,0 +1,20 @@
+{% load url from future %}
+<h1>
+{% if root %}
+    <a href="{{ root.get_absolute_url }}">{{ root }}</a>
+{% else %}
+    <a href="{% url 'catalogue_lessons' %}">Wszystkie działy</a>
+{% endif %}
+</h1>
+
+<ul>
+{% for item in siblings %}
+    <li>
+    {% if item == lesson %}
+        <strong>{{ item }}</strong>
+    {% else %}
+        <a href="{{ item.get_absolute_url }}">{{ item }}</a>
+    {% endif %}
+    </li>
+{% endfor %}
+</ul>
