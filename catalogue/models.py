@@ -109,12 +109,13 @@ class Lesson(models.Model):
         import zipfile
         from django.core.files.base import ContentFile
         buff = StringIO()
-        with zipfile.ZipFile(buff, 'w', zipfile.ZIP_STORED) as zipf:
-            zipf.write(self.xml_file.path, "pliki-zrodlowe/%s.xml" % self.slug)
-            pdf = self.student_pdf if student else self.pdf
-            if pdf:
-                zipf.write(self.xml_file.path, 
-                    "%s%s.pdf" % (self.slug, "_student" if student else ""))
+        zipf = zipfile.ZipFile(buff, 'w', zipfile.ZIP_STORED)
+        zipf.write(self.xml_file.path, "pliki-zrodlowe/%s.xml" % self.slug)
+        pdf = self.student_pdf if student else self.pdf
+        if pdf:
+            zipf.write(self.xml_file.path, 
+                "%s%s.pdf" % (self.slug, "_student" if student else ""))
+        zipf.close()
         fieldname = "student_package" if student else "package"
         getattr(self, fieldname).save(
             "%s%s.zip" % (self.slug, "_student" if student else ""),
