@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load url from future %}
 {% load lesson_nav person_list from catalogue_tags %}
+{% load find_competence url_for_level from curriculum_tags %}
+
 
 {% block title %}{{ object }}{% endblock %}
 
@@ -50,6 +52,23 @@
             <li><a href="{{ object.dc.about }}">lekcja na Platformie Redakcyjnej</a></li>
         </ul>
     </section>
+
+    {% if object.dc.competences %}
+    <section class="section-minor">
+        <ul class="link-list">
+        {% for comp_text in object.dc.competences %}
+            {% with comp_text|find_competence as competence %}
+            {% if competence %}
+                <li><a href="{{ competence|url_for_level:object.level }}">
+                    {{ competence }}</a></li>
+            {% else %}
+                {{ comp_text }}
+            {% endif %}
+            {% endwith %}
+        {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
 
     <section class="section-minor">
         <p>{{ object.dc.description }}</p>

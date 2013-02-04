@@ -1,0 +1,47 @@
+$px: 0.0625em;
+
+.curriculum-form {
+    border: 1px solid #ddd;
+    padding: 1em;
+    border-radius: 11*$px;
+    background: #ADAEAF;
+    color: white;
+    
+    h2 {
+        margin: 0;
+        a {
+            display: block;
+            color: white;
+            span {display: none;}
+        }
+    }
+
+    strong {
+        display: inline-block;
+        vertical-align: top;
+        width: 12em;
+    }
+
+    .curriculum-levels {
+        display: inline-block;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 40em;
+        vertical-align: top;
+
+        li {
+            display: inline-block;
+            width: 13em;
+        }
+    }
+
+    .curriculum-section-toggler {
+        display: none;
+    }
+
+    .categories {
+        
+    }
+
+}

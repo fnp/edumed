@@ -62,8 +62,7 @@ class Lesson(models.Model):
     def publish(cls, infile):
         from librarian.parser import WLDocument
         from django.core.files.base import ContentFile
-        # infile should be IOFile, now it's a regular file
-        xml = infile.read()
+        xml = infile.get_string()
         wldoc = WLDocument.from_string(xml)
         slug = wldoc.book_info.url.slug
 
@@ -72,14 +71,20 @@ class Lesson(models.Model):
         except cls.DoesNotExist:
             lesson = cls(slug=slug)
 
+        lesson.attachment_set.all().delete()
+        for att_name, att_file in infile.attachments.items():
+            try:
+                slug, ext = att_name.rsplit('.', 1)
+            except ValueError:
+                slug, ext = att_name, ''
+            attachment = lesson.attachment_set.create(slug=slug, ext=ext)
+            attachment.file.save(att_name, ContentFile(att_file.get_string()))
+
         # Save XML file
         lesson.xml_file.save('%s.xml' % slug, ContentFile(xml), save=False)
         lesson.title = wldoc.book_info.title
-        #book.extra_info = wldoc.book_info.to_dict()
 
-        # FIXME: 
-        #lesson.level = Level.objects.get(slug=wldoc.book_info.audience)
-        lesson.level = Level.objects.get(name=wldoc.book_info.audience)
+        lesson.level = Level.objects.get(slug=wldoc.book_info.audience)
         # TODO: no xml data?
         lesson.section = Section.objects.all()[0]
         lesson.order = 1
@@ -123,8 +128,17 @@ class Lesson(models.Model):
 
 
 class Attachment(models.Model):
+    slug = models.CharField(max_length=255)
+    ext = models.CharField(max_length=15)
     lesson = models.ForeignKey(Lesson)
     file = models.FileField(upload_to="catalogue/attachment")
+
+    class Meta:
+        ordering = ['slug', 'ext']
+        unique_together = ['lesson', 'slug', 'ext']
+
+    def __unicode__(self):
+        return "%s.%s" % (self.slug, self.ext)
 
 
 class Part(models.Model):

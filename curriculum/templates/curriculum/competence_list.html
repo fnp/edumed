@@ -5,30 +5,34 @@
 {% block body %}
 <h1>Katalog kompetencji medialnych i informacyjnych</h1>
 
+<div class="curriculum-form">
+<h2><a>Przeglądaj kompetencje <span>(rozwiń)</span></a></h2>
 <form>
+
 <h3>Poziom edukacyjny:</h3>
 {% if errors.level %}<p class="error">{{ errors.level }}</p>{% endif %}
-<strong>edukacja formalna:</strong>
-<ul>
-{% for lev in levels %}
+{% for lev_group, levels in levels.items %}
+    <strong>{{ lev_group }}</strong>
+    <ul class="curriculum-levels">
+    {% for lev in levels %}
     <li><label><input type="radio" name="level" value="{{ lev.slug }}"
         {% if lev == level %}checked="checked"{% endif %} />
         {{ lev }}</label></li>
+    {% endfor %}
+    </ul>
 {% endfor %}
-</ul>
-<strong>edukacja ustawiczna:</strong>
 
 <h3>Kategorie kompetencji:</h3>
 {% if errors.competences %}<p class="error">{{ errors.competences }}</p>{% endif %}
-<ul>
+<ul class="curriculum-sections">
 {% for section in sections %}
-    <li>
-    <label><input type="checkbox" name="s" value="{{ section.pk }}"
+    <li class="curriculum-section">
+    <label><input type="checkbox" class="s" name="s" value="{{ section.pk }}"
         {% if section.pk in sect_ids %}checked="checked"{% endif %} /> {{ section }}</label>
-        <span class="curriculum-section-toggler" >(rozwiń)</span>
-    <ul>
+        <a class="curriculum-section-toggler">(rozwiń)</a>
+    <ul class="competences">
     {% for competence in section.competence_set.all %}
-        <li><label><input type="checkbox" name="c" value="{{ competence.pk }}"
+        <li class="competence"><label><input class="c" type="checkbox" name="c" value="{{ competence.pk }}"
             {% if competence.pk in comp_ids %}checked="checked"{% endif %} />
             {{ competence }}</label></li>
     {% endfor %}
@@ -38,8 +42,11 @@
 </ul>
 <button>Pokaż</button>
 </form>
+</div>
 
 {% if chosen_competences %}
+
+<h2>Wybrane kompetencje – {{ level }}</h2>
 
 {% for section, competences in chosen_competences.items %}
     <h3>{{ section }}</h3>
@@ -51,4 +58,10 @@
 
 {% endif %}
 
+
+{% if request.GET.d %}
+<script type="text/javascript">
+    var curriculum_hide_form = true;
+</script>
+{% endif %}
 {% endblock %}

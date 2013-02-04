@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -28,12 +29,21 @@ class Competence(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return "%s?c=%d" % (reverse("curriculum"), self.pk)
+
     def for_level(self, level):
         return self.competencelevel_set.get(level=level)
 
+    @classmethod
+    def from_text(cls, text):
+        name = text.rsplit(u'\u2013', 1)[-1].strip()
+        return cls.objects.get(name__iexact=name)
+
 class Level(models.Model):
+    group = models.CharField(_('group'), max_length=255)
     name = models.CharField(_('name'), max_length=255)
-    slug = models.SlugField(_('slug'))
+    slug = models.CharField(_('slug'), max_length=255)
     order = models.IntegerField(_('order'))
 
     class Meta:
@@ -55,4 +65,7 @@ class CompetenceLevel(models.Model):
         verbose_name_plural = _('competences on levels')
 
     def __unicode__(self):
-        return "%s/%s" % (self.competence, self.level)
+        return u"%s/%s" % (self.competence, self.level)
+
+    def get_absolute_url(self):
+        return "%s?c=%d&level=%s&d=1" % (reverse("curriculum"), self.competence.pk, self.level.slug)

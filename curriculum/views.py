@@ -13,7 +13,11 @@ class CompetencesView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CompetencesView, self).get_context_data(**kwargs)
-        context['levels'] = Level.objects.all()
+        
+        context['levels'] = SortedDict()
+        for level in Level.objects.all():
+            context['levels'].setdefault(level.group, []).append(level)
+
         context['sections'] = Section.objects.all()
 
         errors = {}

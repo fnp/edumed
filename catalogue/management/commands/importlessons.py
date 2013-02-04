@@ -11,6 +11,7 @@ from django.core.management.base import BaseCommand
 from django.core.management.color import color_style
 from django.core.files import File
 
+from librarian import IOFile
 from catalogue.models import Lesson
 
 #from search import Index
@@ -26,8 +27,13 @@ class Command(BaseCommand):
 
     def import_book(self, file_path, options):
         verbose = options.get('verbose')
-        with open(file_path) as f:
-            lesson = Lesson.publish(f)
+        iofile = IOFile.from_filename(file_path)
+        basename, ext = file_path.rsplit('.', 1)
+        if os.path.isdir(basename):
+            for att_name in os.listdir(basename):
+                iofile.attachments[att_name] = IOFile.from_filename(
+                    os.path.join(basename, att_name))
+        lesson = Lesson.publish(iofile)
 
     def handle(self, *directories, **options):
         from django.db import transaction
