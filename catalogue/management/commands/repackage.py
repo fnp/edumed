@@ -25,27 +25,26 @@ class Command(BaseCommand):
                 li = 1
                 li_adv = 1
                 for lesson in section.lesson_set.all():
+                    advanced = lesson.level.slug == "liceum"
+                    section_dir = "%d_%s%s" % (
+                        si + 1, section.slug,
+                        " (zaawansowane)" if advanced else "")
                     if lesson.type == 'course':
-                        if lesson.level.slug == "liceum":
+                        if advanced:
                             ind = li_adv
                             li_adv += 1
-                            postfix = " (zaawansowane)"
                         else:
                             ind = li
                             li += 1
-                            postfix = ""
-                        prefix = "%d_%s%s/%02d_%s/" % (
-                                si, section.slug, postfix,
-                                ind,
-                                lesson.slug,
+                        prefix = "%s/%02d_%s/" % (
+                                section_dir, ind, lesson.slug,
                             )
-                        li += 1
                     elif lesson.type == 'synthetic':
-                        prefix = "%d_%s%s/synteza_%s/" % (
-                                si, section.slug, postfix, lesson.slug)
+                        prefix = "%s/%s (synteza)/" % (
+                                section_dir, lesson.slug)
                     else:
-                        prefix = "%d_%s%s/%s/" % (
-                                si, section.slug, postfix, lesson.slug)
+                        prefix = "%s/%s/" % (
+                                section_dir, lesson.slug)
                     lesson.add_to_zip(zipf, student, prefix)
             zipf.close()
 
