@@ -3,9 +3,10 @@ $px: 0.0625em;
 .section-level {
     width: 640*$px;
     border-radius: 15*$px;
+    margin: 1em 0;
 }
 
-.section-depth {
+.section-type {
     display: inline-block;
     vertical-align: top;
     padding: 20*$px;
@@ -20,10 +21,10 @@ $px: 0.0625em;
         padding: 0 0 0 1em;
     }
 }
-.section-depth-0 {
+.section-type-synthetic {
     width: 300*$px - 2 * 20*$px;
 }
-.section-depth-1 {
+.section-type-course {
     border-radius: 0 15*$px 15*$px 0;
     width: 340*$px - 2 * 20*$px;
 }
@@ -35,9 +36,9 @@ $px: 0.0625em;
         color: #67584f;
     }
 
-    .section-depth-0 {
+    .section-type-synthetic {
     }
-    .section-depth-1 {
+    .section-type-course {
         background: #ed7831;
         color: #fff;
         a {
@@ -47,16 +48,16 @@ $px: 0.0625em;
 }
 
 
-.section-level-L {
+.section-level-liceum {
     background: #f4ae83;
     color: #67584f;
     a {
         color: #67584f;
     }
 
-    .section-depth-0 {
+    .section-type-synthetic {
     }
-    .section-depth-1 {
+    .section-type-course {
         background: #ed7831;
         color: #fff;
         a {
@@ -66,3 +67,10 @@ $px: 0.0625em;
 }
 
 
+.section-links {
+    float: right;
+}
+
+h2.section-header {
+    margin: 0;
+}

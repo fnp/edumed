@@ -12,22 +12,25 @@
 <aside id="sidebar">
     <section class="box">
         <h1 class="realisation">Realizacja i czas lekcji</h1>
-        {% if object.depth == 0 %}
+        {% if object.type == 'synthetic' %}
         <p>To lekcja jest syntezą działu
         <strong>{{ object.section }}</strong>.
         Dostępny jest również
         <strong><a href="{% url 'catalogue_lessons' %}#{{ object.section.slug }}">szczegółowy kurs</a></strong>
         dla tego działu.
         </p>
-        {% else %}
+        <p>Czas trwania: 45 minut.</p>
+        {% elif object.type == 'course' %}
         <p>Ta lekcja jest częścią działu
         <strong>{{ object.section }}</strong>.
         Dostępna jest również
         <strong><a href="{{ object.section.syntetic_lesson.get_absolute_url }}">lekcja syntetyczna</a></strong>
         dla tego działu.
         </p>
-        {% endif %}
         <p>Czas trwania: 45 minut.</p>
+        {% else %}
+        <p>?</p>
+        {% endif %}
     </section>
 
     {% if object.package %}

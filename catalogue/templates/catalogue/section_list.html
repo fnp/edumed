@@ -27,8 +27,18 @@
 </aside>
 
 <div id="main-bar">
+    <a name="top"></a><h2>Tematy</h2>
+    <ul class="link-list">
     {% for object in object_list %}
-        <h2>{{ object }} <a name="{{ object.slug }}" class="permalink"></a></h2>
+        <li><a href="#{{ object.slug }}">{{ object }}</a></li>
+    {% endfor %}
+    </ul>
+    
+    {% for object in object_list %}
+        <div class="section-links">
+            <a href="#top">wróć do spisu treści</a>
+        </div>
+        <h2 class="section-header">{{ object }} <a name="{{ object.slug }}" class="permalink"></a></h2>
 
         {% section_box object %}
     {% endfor %}

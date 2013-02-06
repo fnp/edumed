@@ -1,9 +1,14 @@
-{% for level, depths in lessons.items %}
+{% for level, types in lessons.items %}
+{% if level.slug == "liceum" %}
+    <p>Poziom zaawansowany
+        <span class="section-links"><a href="#top">wróć do spisu treści</a></span>
+    </p>
+{% endif %}
 <section class="section-level section-level-{{ level.slug }}">
     {% spaceless %}
-    {% for depth, lesson_list in depths.items %}
-        <section class="section-depth section-depth-{{ depth }}">
-            {% if depth == 0 %}
+    {% for lesson_type, lesson_list in types.items %}
+        <section class="section-type section-type-{{ lesson_type }}">
+            {% if lesson_type == 'synthetic' %}
                 <h1>Lekcja syntetyczna</h1>
             {% else %}
                 <h1>Pełny kurs</h1>
@@ -11,7 +16,7 @@
             <ul class="section-lessons">
                 {% for lesson in lesson_list %}
                     <li class="section-lesson">
-                        <a href="{{ lesson.get_absolute_url }}">{{ lesson }}{% if depth == 0 %}
+                        <a href="{{ lesson.get_absolute_url }}">{{ lesson }}{% if depth == 'synthetic' %}
                             (przegląd całego działu w 45 minut)
                         {% endif %}</a>
                     </li>

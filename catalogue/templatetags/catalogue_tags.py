@@ -26,22 +26,26 @@ def section_box(section):
     lessons = SortedDict()
     for lesson in section.lesson_set.all():
         if lesson.level not in lessons:
-            lessons[lesson.level] = SortedDict()
-        if lesson.depth not in lessons[lesson.level]:
-            lessons[lesson.level][lesson.depth] = []
-        lessons[lesson.level][lesson.depth].append(lesson)
+            newdict = SortedDict()
+            newdict['synthetic'] = []
+            newdict['course'] = []
+            lessons[lesson.level] = newdict
+        if lesson.type not in lessons[lesson.level]:
+            lessons[lesson.level][lesson.type] = []
+        lessons[lesson.level][lesson.type].append(lesson)
+    print lessons
     return {
         "lessons": lessons,
     }
 
 @register.inclusion_tag("catalogue/snippets/lesson_nav.html")
 def lesson_nav(lesson):
-    if lesson.depth == 1:
+    if lesson.type == 'course':
         root = lesson.section
-        siblings = root.lesson_set.filter(depth=1)
+        siblings = root.lesson_set.filter(type='course')
     else:
         root = None
-        siblings = Lesson.objects.filter(depth=0)
+        siblings = Lesson.objects.filter(type=lesson.type)
     return {
         "lesson": lesson,
         "root": root,

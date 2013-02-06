@@ -12,7 +12,7 @@ from django.core.management.color import color_style
 from django.core.files import File
 
 from librarian import IOFile
-from catalogue.models import Lesson
+from catalogue.models import Lesson, Section
 
 #from search import Index
 
@@ -73,9 +73,23 @@ class Command(BaseCommand):
                         sys.stdout.flush()
 
                     # Import book files
-                    self.import_book(file_path, options)
-                    files_imported += 1
-                    transaction.commit()
+                    try:
+                        self.import_book(file_path, options)
+                        files_imported += 1
+                        transaction.commit()
+                    except Section.IncompleteError:
+                        if file_name not in postponed or postponed[file_name] < files_imported:
+                            # Push it back into the queue, maybe the missing lessons will show up.
+                            if verbose > 0:
+                                print self.style.NOTICE('Waiting for missing lessons.')
+                            files.append(file_name)
+                            postponed[file_name] = files_imported
+                        else:
+                            # We're in a loop, nothing's being imported - some lesson is really missing.
+                            raise e
+                    except BaseException, e:
+                        print e
+                        files_skipped += 1
 
         # Print results
         print

@@ -9,9 +9,14 @@ class Section(models.Model):
     title = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(unique=True)
     order = models.IntegerField()
+    xml_file = models.FileField(upload_to="catalogue/section/xml",
+        null=True, blank=True)
 
     class Meta:
         ordering = ['order']
+
+    class IncompleteError(BaseException):
+        pass
 
     def __unicode__(self):
         return self.title
@@ -19,20 +24,53 @@ class Section(models.Model):
     def get_absolute_url(self):
         return "%s#%s" % (reverse("catalogue_lessons"), self.slug)
 
+    @classmethod
+    def publish(cls, infile):
+        from librarian.parser import WLDocument
+        from django.core.files.base import ContentFile
+        xml = infile.get_string()
+        wldoc = WLDocument.from_string(xml)
+
+        try:
+            lessons = [Lesson.objects.get(slug=part.slug)
+                        for part in wldoc.book_info.parts]
+        except Lesson.DoesNotExist, e:
+            raise cls.IncompleteError(e)
+
+        slug = wldoc.book_info.url.slug
+        try:
+            section = cls.objects.get(slug=slug)
+        except cls.DoesNotExist:
+            section = cls(slug=slug, order=0)
+
+        # Save XML file
+        section.xml_file.save('%s.xml' % slug, ContentFile(xml), save=False)
+        section.title = wldoc.book_info.title
+        section.save()
+
+        section.lesson_set.all().update(section=None)
+        for i, lesson in enumerate(lessons):
+            lesson.section = section
+            lesson.order = i
+            lesson.save()
+
+        return section
+
+
     def syntetic_lesson(self):
         try:
-            return self.lesson_set.filter(depth=0)[0]
+            return self.lesson_set.filter(type='synthetic')[0]
         except IndexError:
             return None
 
 
 class Lesson(models.Model):
-    section = models.ForeignKey(Section)
+    section = models.ForeignKey(Section, null=True, blank=True)
     level = models.ForeignKey(Level)
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
-    depth = models.IntegerField()
-    order = models.IntegerField()
+    type = models.CharField(max_length=15, db_index=True)
+    order = models.IntegerField(db_index=True)
     dc = JSONField(default='{}')
 
     xml_file = models.FileField(upload_to="catalogue/lesson/xml",
@@ -49,7 +87,7 @@ class Lesson(models.Model):
         null=True, blank=True)
 
     class Meta:
-        ordering = ['section', 'level', 'depth', 'order']
+        ordering = ['section', 'level', 'order']
 
     def __unicode__(self):
         return self.title
@@ -64,8 +102,12 @@ class Lesson(models.Model):
         from django.core.files.base import ContentFile
         xml = infile.get_string()
         wldoc = WLDocument.from_string(xml)
-        slug = wldoc.book_info.url.slug
 
+        # Check if not section metadata block.
+        if wldoc.book_info.parts:
+            return Section.publish(infile)
+        
+        slug = wldoc.book_info.url.slug
         try:
             lesson = cls.objects.get(slug=slug)
         except cls.DoesNotExist:
@@ -85,11 +127,9 @@ class Lesson(models.Model):
         lesson.title = wldoc.book_info.title
 
         lesson.level = Level.objects.get(slug=wldoc.book_info.audience)
-        # TODO: no xml data?
-        lesson.section = Section.objects.all()[0]
-        lesson.order = 1
-        lesson.depth = 1
+        lesson.order = 0
         lesson.populate_dc()
+        lesson.type = lesson.dc["type"]
         lesson.save()
         lesson.build_html()
         lesson.build_package()

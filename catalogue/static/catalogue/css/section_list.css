@@ -1,22 +1,23 @@
 .section-level {
   width: 40em;
-  border-radius: 0.938em; }
+  border-radius: 0.938em;
+  margin: 1em 0; }
 
-.section-depth {
+.section-type {
   display: inline-block;
   vertical-align: top;
   padding: 1.25em; }
-  .section-depth h1 {
+  .section-type h1 {
     text-transform: uppercase;
     margin: 0 0 1em 0;
     font-size: 1em; }
-  .section-depth .section-lessons {
+  .section-type .section-lessons {
     padding: 0 0 0 1em; }
 
-.section-depth-0 {
+.section-type-synthetic {
   width: 16.25em; }
 
-.section-depth-1 {
+.section-type-course {
   border-radius: 0 0.938em 0.938em 0;
   width: 18.75em; }
 
@@ -25,19 +26,25 @@
   color: #67584f; }
   .section-level-gimnazjum a {
     color: #67584f; }
-  .section-level-gimnazjum .section-depth-1 {
+  .section-level-gimnazjum .section-type-course {
     background: #ed7831;
     color: #fff; }
-    .section-level-gimnazjum .section-depth-1 a {
+    .section-level-gimnazjum .section-type-course a {
       color: #fff; }
 
-.section-level-L {
+.section-level-liceum {
   background: #f4ae83;
   color: #67584f; }
-  .section-level-L a {
+  .section-level-liceum a {
     color: #67584f; }
-  .section-level-L .section-depth-1 {
+  .section-level-liceum .section-type-course {
     background: #ed7831;
     color: #fff; }
-    .section-level-L .section-depth-1 a {
+    .section-level-liceum .section-type-course a {
       color: #fff; }
+
+.section-links {
+  float: right; }
+
+h2.section-header {
+  margin: 0; }
