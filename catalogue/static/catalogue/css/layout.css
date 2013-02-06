@@ -42,6 +42,16 @@
     #sidebar .section-minor h1 {
       font-weight: normal;
       font-size: 1em; }
+  #sidebar .section-micro {
+    font-size: .8em;
+    color: #888;
+    border-top: 1px solid #c9ccce;
+    padding-top: 1.063em; }
+    #sidebar .section-micro h1 {
+      font-weight: normal;
+      font-size: 1em; }
+    #sidebar .section-micro .link-list a {
+      color: #888; }
 
 #main-bar {
   width: 40em; }

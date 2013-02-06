@@ -13,15 +13,19 @@
             {% else %}
                 <h1>Pełny kurs</h1>
             {% endif %}
-            <ul class="section-lessons">
+            {% if lesson_list %}
+            <ul class="section-lessons link-list">
                 {% for lesson in lesson_list %}
                     <li class="section-lesson">
-                        <a href="{{ lesson.get_absolute_url }}">{{ lesson }}{% if depth == 'synthetic' %}
-                            (przegląd całego działu w 45 minut)
+                        <a href="{{ lesson.get_absolute_url }}">{{ lesson }}{% if lesson_type == 'synthetic' %}
+                            <br/>(przegląd całego działu w 45 minut)
                         {% endif %}</a>
                     </li>
                 {% endfor %}
             </ul>
+            {% else %}
+                <p>(W przygotowaniu)</p>
+            {% endif %}
         </section>
     {% endfor %}
     {% endspaceless %}

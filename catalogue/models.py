@@ -56,10 +56,9 @@ class Section(models.Model):
 
         return section
 
-
-    def syntetic_lesson(self):
+    def syntetic_lesson(self, level):
         try:
-            return self.lesson_set.filter(type='synthetic')[0]
+            return self.lesson_set.filter(type='synthetic', level=level)[0]
         except IndexError:
             return None
 
@@ -165,6 +164,9 @@ class Lesson(models.Model):
         getattr(self, fieldname).save(
             "%s%s.zip" % (self.slug, "_student" if student else ""),
             ContentFile(buff.getvalue()))
+
+    def get_syntetic(self):
+        return self.section.syntetic_lesson(self.level)
 
 
 class Attachment(models.Model):

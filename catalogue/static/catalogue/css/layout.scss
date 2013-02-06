@@ -58,6 +58,19 @@ $new_black: #363a3e;
             font-size: 1em;
         }
     }
+    .section-micro {
+        font-size: .8em;
+        color: #888;
+        border-top: 1px solid #c9ccce;
+        padding-top: 17*$px;
+        h1 {
+            font-weight: normal;
+            font-size: 1em;
+        }
+        .link-list a {
+            color: #888;
+        }
+    }
 }
 #main-bar {
     width: 640*$px;

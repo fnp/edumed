@@ -14,7 +14,9 @@
         <h1 class="realisation">Realizacja i czas lekcji</h1>
         {% if object.type == 'synthetic' %}
         <p>To lekcja jest syntezą działu
-        <strong>{{ object.section }}</strong>.
+        <strong>{{ object.section }}</strong></a>{% if object.level.slug = "liceum" %}
+            (na poziomie zaawansowanym)
+        {% endif %}.
         Dostępny jest również
         <strong><a href="{% url 'catalogue_lessons' %}#{{ object.section.slug }}">szczegółowy kurs</a></strong>
         dla tego działu.
@@ -22,10 +24,16 @@
         <p>Czas trwania: 45 minut.</p>
         {% elif object.type == 'course' %}
         <p>Ta lekcja jest częścią działu
-        <strong>{{ object.section }}</strong>.
+        <a href="{{ object.section.get_absolute_url }}"><strong>{{ object.section }}</strong></a>{% if object.level.slug = "liceum" %}
+            (na poziomie zaawansowanym)
+        {% endif %}.
+        {% with object.get_syntetic as synth %}
+        {% if synth %}
         Dostępna jest również
-        <strong><a href="{{ object.section.syntetic_lesson.get_absolute_url }}">lekcja syntetyczna</a></strong>
+        <strong><a href="{{ object.get_syntetic.get_absolute_url }}">lekcja syntetyczna</a></strong>
         dla tego działu.
+        {% endif %}
+        {% endwith %}
         </p>
         <p>Czas trwania: 45 minut.</p>
         {% else %}
@@ -44,20 +52,9 @@
         {% lesson_nav object %}
     </section>
 
-    <section class="section-minor">
-        <p>Autor: {{ object.dc.authors|person_list }}</p>
-        <p>Licencja: <a href="{{ object.dc.license }}">{{ object.dc.license_description }}</a>.</p>
-    </section>
-
-    <section class="section-minor">
-        <ul class="link-list">
-            <li><a href="{{ object.xml_file.url }}">źródłowy plik XML</a></li>
-            <li><a href="{{ object.dc.about }}">lekcja na Platformie Redakcyjnej</a></li>
-        </ul>
-    </section>
-
     {% if object.dc.competences %}
     <section class="section-minor">
+        <h1>Kompetencje:</h1>
         <ul class="link-list">
         {% for comp_text in object.dc.competences %}
             {% with comp_text|find_competence as competence %}
@@ -73,7 +70,30 @@
     </section>
     {% endif %}
 
-    <section class="section-minor">
+    <section class="section-micro">
+        <h1>Informacje:</h1>
+        <p>
+        {% if object.dc.authors_textbook %}
+        Autor podręcznika: {{ object.dc.authors_textbook|person_list }}<br/>
+        {% endif %}
+        {% if object.dc.authors_scenario %}
+        Autor scenariusza: {{ object.dc.authors_scenario|person_list }}<br/>
+        {% endif %}
+        {% if object.dc.authors_expert %}
+        Ekspert: {{ object.dc.authors_expert|person_list }}<br/>
+        {% endif %}
+        Licencja: <a href="{{ object.dc.license }}">{{ object.dc.license_description }}</a>.</p>
+    </section>
+
+    <section class="section-micro">
+        <h1>Narzędzia:</h1>
+        <ul class="link-list">
+            <li><a href="{{ object.xml_file.url }}">źródłowy plik XML</a></li>
+            <!--li><a href="{{ object.dc.about }}">lekcja na Platformie Redakcyjnej</a></li-->
+        </ul>
+    </section>
+
+    <section class="section-micro">
         <p>{{ object.dc.description }}</p>
     </section>
 

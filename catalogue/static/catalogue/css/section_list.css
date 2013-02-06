@@ -2,6 +2,8 @@
   width: 40em;
   border-radius: 0.938em;
   margin: 1em 0; }
+  .section-level a:hover {
+    text-decoration: underline; }
 
 .section-type {
   display: inline-block;
@@ -24,7 +26,7 @@
 .section-level-gimnazjum {
   background: #f4ae83;
   color: #67584f; }
-  .section-level-gimnazjum a {
+  .section-level-gimnazjum a, .section-level-gimnazjum a:hover {
     color: #67584f; }
   .section-level-gimnazjum .section-type-course {
     background: #ed7831;
@@ -33,12 +35,12 @@
       color: #fff; }
 
 .section-level-liceum {
-  background: #f4ae83;
-  color: #67584f; }
-  .section-level-liceum a {
-    color: #67584f; }
+  background: #44b69f;
+  color: #363a3e; }
+  .section-level-liceum a, .section-level-liceum a:hover {
+    color: #363a3e; }
   .section-level-liceum .section-type-course {
-    background: #ed7831;
+    background: #16a487;
     color: #fff; }
     .section-level-liceum .section-type-course a {
       color: #fff; }

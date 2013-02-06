@@ -4,6 +4,9 @@ $px: 0.0625em;
     width: 640*$px;
     border-radius: 15*$px;
     margin: 1em 0;
+    a:hover {
+        text-decoration: underline;
+    }
 }
 
 .section-type {
@@ -32,7 +35,7 @@ $px: 0.0625em;
 .section-level-gimnazjum {
     background: #f4ae83;
     color: #67584f;
-    a {
+    a, a:hover {
         color: #67584f;
     }
 
@@ -49,16 +52,16 @@ $px: 0.0625em;
 
 
 .section-level-liceum {
-    background: #f4ae83;
-    color: #67584f;
-    a {
-        color: #67584f;
+    background: #44b69f;
+    color: #363a3e;
+    a, a:hover {
+        color: #363a3e;
     }
 
     .section-type-synthetic {
     }
     .section-type-course {
-        background: #ed7831;
+        background: #16a487;
         color: #fff;
         a {
             color: #fff;

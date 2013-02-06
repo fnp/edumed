@@ -88,7 +88,8 @@ class Command(BaseCommand):
                             # We're in a loop, nothing's being imported - some lesson is really missing.
                             raise e
                     except BaseException, e:
-                        print e
+                        import trackback
+                        trackback.print_exc()
                         files_skipped += 1
 
         # Print results
