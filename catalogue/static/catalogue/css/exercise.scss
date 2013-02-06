@@ -72,7 +72,7 @@ $px: 0.0625em;
         display: inline-block;
         border-radius: 8*$px;
         padding: 4*$px 8*$px;
-        margin: -4*$px -8*$px -1em 8*$px;
+        margin: -4*$px -8*$px -.25em 8*$px;
         background: #ed7831;
         color: white;
     }
@@ -166,15 +166,13 @@ $px: 0.0625em;
     }
     .predicate {
         @include list-plain;
-        white-space: nowrap;
 
         > li {
-            white-space: normal;
             @include bubble;
             display: inline-block;
             background-color: #5e6165;
             color: white;
-            width: 180*$px;
+            width: 188*$px;
             position: relative;
             vertical-align: top;
 
@@ -206,7 +204,6 @@ $px: 0.0625em;
             }
         }
         .comment {
-            white-space: normal;
         }
     }
     .subject {

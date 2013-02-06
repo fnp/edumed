@@ -152,7 +152,7 @@
       if (!$placeholder.hasClass('multiple')) {
         $placeholder.hide();
       }
-      $added.append('<span class="remove">x</span>');
+      $added.append('<span class="remove">x</span><div class="clr">');
       return $('.remove', $added).click(function(ev) {
         $added.prev(".placeholder:not(.multiple)").show();
         if (!ismultiple) {

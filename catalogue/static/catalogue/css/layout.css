@@ -20,10 +20,10 @@
       text-transform: uppercase; }
   #sidebar .box-button {
     background-color: #ed7831;
-    border-radius: 0.938em;
-    padding: 1.063em 0.75em 1.063em 0.75em; }
+    border-radius: 0.938em; }
     #sidebar .box-button .dl-button {
-      color: white; }
+      color: white;
+      padding: 1.063em 0.75em 1.063em 0.75em; }
   #sidebar .dl-button {
     color: #363a3e;
     display: block;

@@ -21,7 +21,7 @@
   display: inline-block;
   border-radius: 0.5em;
   padding: 0.25em 0.5em;
-  margin: -0.25em -0.5em -1em 0.5em;
+  margin: -0.25em -0.5em -0.25em 0.5em;
   background: #ed7831;
   color: white; }
 .exercise .buttons {
@@ -114,16 +114,14 @@
 .przyporzadkuj .predicate {
   list-style: none;
   margin: 0;
-  padding: 0;
-  white-space: nowrap; }
+  padding: 0; }
   .przyporzadkuj .predicate > li {
-    white-space: normal;
     border-radius: 0.688em;
     padding: 0.5em 0.688em;
     display: inline-block;
     background-color: #5e6165;
     color: white;
-    width: 11.25em;
+    width: 11.75em;
     position: relative;
     vertical-align: top; }
     .przyporzadkuj .predicate > li .subjects {
@@ -150,8 +148,6 @@
       .przyporzadkuj .predicate > li .subjects .placeholder:after {
         content: "upuść tutaj";
         text-style: italic; }
-  .przyporzadkuj .predicate .comment {
-    white-space: normal; }
 .przyporzadkuj .subject {
   list-style: none;
   margin: 0;

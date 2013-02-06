@@ -148,17 +148,22 @@ class Lesson(models.Model):
         self.html_file.save("%s.html" % self.slug,
             File(open(html.get_filename())))
 
+    def add_to_zip(self, zipf, student=False, prefix=''):
+        zipf.write(self.xml_file.path,
+            "%spliki-zrodlowe/%s.xml" % (prefix, self.slug))
+        pdf = self.student_pdf if student else self.pdf
+        if pdf:
+            zipf.write(self.xml_file.path, 
+                "%s%s%s.pdf" % (prefix, self.slug, "_student" if student else ""))
+        
+
     def build_package(self, student=False):
         from StringIO import StringIO
         import zipfile
         from django.core.files.base import ContentFile
         buff = StringIO()
         zipf = zipfile.ZipFile(buff, 'w', zipfile.ZIP_STORED)
-        zipf.write(self.xml_file.path, "pliki-zrodlowe/%s.xml" % self.slug)
-        pdf = self.student_pdf if student else self.pdf
-        if pdf:
-            zipf.write(self.xml_file.path, 
-                "%s%s.pdf" % (self.slug, "_student" if student else ""))
+        self.add_to_zip(zipf, student)
         zipf.close()
         fieldname = "student_package" if student else "package"
         getattr(self, fieldname).save(
