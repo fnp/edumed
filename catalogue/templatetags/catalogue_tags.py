@@ -33,7 +33,6 @@ def section_box(section):
         if lesson.type not in lessons[lesson.level]:
             lessons[lesson.level][lesson.type] = []
         lessons[lesson.level][lesson.type].append(lesson)
-    print lessons
     return {
         "lessons": lessons,
     }
