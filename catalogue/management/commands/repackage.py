@@ -23,19 +23,29 @@ class Command(BaseCommand):
             
             for si, section in enumerate(Section.objects.all()):
                 li = 1
+                li_adv = 1
                 for lesson in section.lesson_set.all():
                     if lesson.type == 'course':
-                        prefix = "%d_%s/%02d_%s/" % (
-                                si, section.slug,
-                                li, lesson.slug,
+                        if lesson.level.slug == "liceum":
+                            ind = li_adv
+                            li_adv += 1
+                            postfix = " (zaawansowane)"
+                        else:
+                            ind = li
+                            li += 1
+                            postfix = ""
+                        prefix = "%d_%s%s/%02d_%s/" % (
+                                si, section.slug, postfix,
+                                ind,
+                                lesson.slug,
                             )
                         li += 1
                     elif lesson.type == 'synthetic':
-                        prefix = "%d_%s/synteza_%s/" % (
-                                si, section.slug, lesson.slug)
+                        prefix = "%d_%s%s/synteza_%s/" % (
+                                si, section.slug, postfix, lesson.slug)
                     else:
-                        prefix = "%d_%s/%s/" % (
-                                si, section.slug, lesson.slug)
+                        prefix = "%d_%s%s/%s/" % (
+                                si, section.slug, postfix, lesson.slug)
                     lesson.add_to_zip(zipf, student, prefix)
             zipf.close()
 
