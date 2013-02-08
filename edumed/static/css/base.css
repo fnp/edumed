@@ -55,36 +55,55 @@ header.main {
   header.main nav a:hover {
     color: #ed7831; }
   header.main nav a:before {
+    content: " ";
     display: block;
-    margin-bottom: .8em; }
+    margin-bottom: .8em;
+    width: 2.75em;
+    height: 2.125em;
+    text-align: center;
+    margin: auto; }
   header.main nav .menu-lekcje:before {
-    content: url(../img/menu/lekcje.png); }
+    background: url(../img/menu/lekcje.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main nav .menu-kompetencje:before {
-    content: url(../img/menu/katalog.png); }
+    background: url(../img/menu/katalog.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main nav .menu-wspolpraca:before {
-    content: url(../img/menu/wspolpraca.png); }
+    background: url(../img/menu/wspolpraca.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main nav .menu-szkolenia:before {
-    content: url(../img/menu/szkolenia.png); }
+    background: url(../img/menu/szkolenia.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main nav .menu-wesprzyj:before {
-    content: url(../img/menu/wesprzyj.png); }
+    background: url(../img/menu/wesprzyj.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main nav .menu-o-nas:before {
-    content: url(../img/menu/o-nas.png); }
+    background: url(../img/menu/o-nas.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main nav .menu-kontakt:before {
-    content: url(../img/menu/kontakt.png); }
+    background: url(../img/menu/kontakt.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main nav .menu-lekcje:hover:before {
-    content: url(../img/menu/lekcje_active.png); }
+    background: url(../img/menu/lekcje_active.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main nav .menu-kompetencje:hover:before {
-    content: url(../img/menu/katalog_active.png); }
+    background: url(../img/menu/katalog_active.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main nav .menu-wspolpraca:hover:before {
-    content: url(../img/menu/wspolpraca_active.png); }
+    background: url(../img/menu/wspolpraca_active.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main nav .menu-szkolenia:hover:before {
-    content: url(../img/menu/szkolenia_active.png); }
+    background: url(../img/menu/szkolenia_active.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main nav .menu-wesprzyj:hover:before {
-    content: url(../img/menu/wesprzyj_active.png); }
+    background: url(../img/menu/wesprzyj_active.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main nav .menu-o-nas:hover:before {
-    content: url(../img/menu/o-nas_active.png); }
+    background: url(../img/menu/o-nas_active.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main nav .menu-kontakt:hover:before {
-    content: url(../img/menu/kontakt_active.png); }
+    background: url(../img/menu/kontakt_active.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main #tagline {
     clear: both;
     float: left;
