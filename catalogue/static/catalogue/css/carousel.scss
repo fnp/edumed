@@ -33,10 +33,34 @@ $ciemny: #363a3e;
                 overflow: hidden;
                 width: 460*$px;
                 height: 100%;
-                background-image: url(/static/catalogue/img/carousel-left.png);
-                background-position: 100% 0;
-                background-repeat: no-repeat;
+                background: url(/static/catalogue/img/carousel-left.png) 100% 0 no-repeat;
                 background-size: 70*$px 100%;
+                
+                .catalogue-carousel-note {
+                    height: 100%;
+                    margin-left: 50%;
+                    background-color: black;
+                    color: white;
+                    opacity: 0.6;
+                    background-image: url(/static/catalogue/img/carousel-left.png);
+                    background-position: 100% 0;
+                    background-repeat: no-repeat;
+                    background-size: 70*$px 100%;
+
+                    p {
+                        padding: 6em 2em 0 1.6em;
+                        margin: 0;
+                        em {
+                            display: block;
+                            font-style: normal;
+                            font-size: 1.5em;
+                        }
+                        strong {
+                            font-size: 2em;
+                        }
+                        
+                    }
+                }
             }
         }
     }

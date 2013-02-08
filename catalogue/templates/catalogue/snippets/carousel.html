@@ -1,18 +1,20 @@
 {% load url from future %}
 
+{% url "info" "jak-korzystac/" as jak %}
 <section id="catalogue-carousel">
     <ul id="catalogue-carousel-links">
         <li style="background-image: url(/static/carousel/img1.jpg); z-index: 100;">
-            <a href="{% url 'catalogue_lesson' 'jak-planowac-prace-z-informacja' %}" class="catalogue-carousel-link">
+            <a href="{{ jak }}" class="catalogue-carousel-link">
                 <div class="catalogue-carousel-note">
+                    <p><strong>75</strong> <em>kompletnych lekcji</em> - zobacz jak wykorzystać</p>
                 </div>
             </a>
         </li>
     </ul>
     <ul id="catalogue-carousel-switcher">
-        <li><a href="{% url 'catalogue_lesson' 'jak-planowac-prace-z-informacja' %}" class="knowledge">wiedza w pigułce</a></li>
-        <li><a href="{% url 'catalogue_lesson' 'jak-planowac-prace-z-informacja' %}" class="activity">ćwiczenia</a></li>
-        <li><a href="{% url 'catalogue_lesson' 'jak-planowac-prace-z-informacja' %}" class="lesson-plan">scenariusze</a></li>
-        <li><a href="{% url 'catalogue_lesson' 'jak-planowac-prace-z-informacja' %}" class="reference">słowniczek</a></li>
+        <li><a href="{{ jak }}#wiedza-w-pigulce" class="knowledge">wiedza w pigułce</a></li>
+        <li><a href="{{ jak }}#cwiczenia" class="activity">zadania</a></li>
+        <li><a href="{{ jak }}#scenariusze" class="lesson-plan">scenariusze</a></li>
+        <li><a href="{{ jak }}#slowniczek" class="reference">słowniczek</a></li>
     </ul>
 </section>

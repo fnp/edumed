@@ -32,7 +32,10 @@ header.main {
       vertical-align: middle; }
   header.main #organizer {
     float: right;
-    margin-top: 1.3em; }
+    font-size: .75em;
+    color: #777; }
+    header.main #organizer img {
+      margin-top: .5em; }
   header.main nav ul {
     padding: 0;
     position: absolute;
@@ -157,6 +160,8 @@ footer.main {
 .link-list {
   list-style: none;
   padding: 0; }
+  .link-list li {
+    margin-bottom: .5em; }
   .link-list a:before {
     content: "→";
     margin-right: .5em; }

@@ -46,7 +46,12 @@ header.main {
     }
     #organizer {
         float: right;
-        margin-top: 1.3em;
+        font-size: .75em;
+        color: #777;
+        
+        img {
+            margin-top: .5em;
+        }
     }
 
 
@@ -198,6 +203,10 @@ footer.main {
 .link-list {
     list-style: none;
     padding: 0;
+
+    li {
+        margin-bottom: .5em;
+    }
 
     a:before {
         content: "→";

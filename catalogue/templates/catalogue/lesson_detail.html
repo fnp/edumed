@@ -13,17 +13,17 @@
     <section class="box">
         <h1 class="realisation">Realizacja i czas lekcji</h1>
         {% if object.type == 'synthetic' %}
-        <p>To lekcja jest syntezą działu
+        <p>To lekcja jest syntezą tematu
         <strong>{{ object.section }}</strong></a>{% if object.level.slug = "liceum" %}
             (na poziomie zaawansowanym)
         {% endif %}.
         Dostępny jest również
-        <strong><a href="{% url 'catalogue_lessons' %}#{{ object.section.slug }}">szczegółowy kurs</a></strong>
-        dla tego działu.
+        <strong><a href="{% url 'catalogue_lessons' %}#{{ object.section.slug }}">pełny kurs</a></strong>
+        tego tematu.
         </p>
         <p>Czas trwania: 45 minut.</p>
         {% elif object.type == 'course' %}
-        <p>Ta lekcja jest częścią działu
+        <p>Ta lekcja jest częścią tematu
         <a href="{{ object.section.get_absolute_url }}"><strong>{{ object.section }}</strong></a>{% if object.level.slug = "liceum" %}
             (na poziomie zaawansowanym)
         {% endif %}.
@@ -31,7 +31,7 @@
         {% if synth %}
         Dostępna jest również
         <strong><a href="{{ object.get_syntetic.get_absolute_url }}">lekcja syntetyczna</a></strong>
-        dla tego działu.
+        dla tego tematu.
         {% endif %}
         {% endwith %}
         </p>
@@ -74,13 +74,13 @@
         <h1>Informacje:</h1>
         <p>
         {% if object.dc.authors_textbook %}
-        Autor podręcznika: {{ object.dc.authors_textbook|person_list }}<br/>
+        Tekst: {{ object.dc.authors_textbook|person_list }}<br/>
         {% endif %}
         {% if object.dc.authors_scenario %}
-        Autor scenariusza: {{ object.dc.authors_scenario|person_list }}<br/>
+        Scenariusz: {{ object.dc.authors_scenario|person_list }}<br/>
         {% endif %}
         {% if object.dc.authors_expert %}
-        Ekspert: {{ object.dc.authors_expert|person_list }}<br/>
+        Konsultacja merytoryczna: {{ object.dc.authors_expert|person_list }}<br/>
         {% endif %}
         Licencja: <a href="{{ object.dc.license }}">{{ object.dc.license_description }}</a>.</p>
     </section>

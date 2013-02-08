@@ -18,7 +18,7 @@
                 {% for lesson in lesson_list %}
                     <li class="section-lesson">
                         <a href="{{ lesson.get_absolute_url }}">{{ lesson }}{% if lesson_type == 'synthetic' %}
-                            <br/>(przegląd całego działu w 45 minut)
+                            <br/>(przegląd całego tematu w 45 minut)
                         {% endif %}</a>
                     </li>
                 {% endfor %}

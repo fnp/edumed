@@ -33,8 +33,12 @@
                 -->
             <div id="header-top">
             <a id="logo" href="/"><img src="{% static "img/logo.png" %}" alt="Edukacja medialna"/></a>
-            <a id="organizer" href="http://nowoczesnapolska.org.pl">
-                <img src="{% static "img/logo_fnp.png" %}" alt="Fundacja Nowoczesna Polska" /></a>
+            <div id="organizer">
+                Projekt prowadzi:<br/>
+                <a href="http://nowoczesnapolska.org.pl">
+                    <img src="{% static "img/logo_fnp.png" %}" alt="Fundacja Nowoczesna Polska" />
+                </a>
+            </div>
             <nav><ul>
                 <li><a class="menu-lekcje" href="{% url "catalogue_lessons" %}">Lekcje</a></li>
                 <li><a class="menu-kompetencje" href="{% url "curriculum" %}">Kompetencje</a></li>
