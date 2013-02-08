@@ -173,3 +173,9 @@
   .prawdafalsz .question .buttons a.chosen {
     background: #ed7831;
     color: white; }
+
+.wybor .question .lista {
+  list-style: none;
+  padding: 0; }
+  .wybor .question .lista li {
+    margin: 0; }
