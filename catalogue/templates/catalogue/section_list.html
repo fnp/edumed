@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load catalogue_tags %}
+{% load course_boxes course_boxes_toc from curriculum_tags %}
 
 {% block title %}Lekcje{% endblock %}
 
@@ -27,12 +28,20 @@
 </aside>
 
 <div id="main-bar">
-    <a name="top"></a><h2>Tematy</h2>
+    <div class="section-list-toc">
+    <h2>Tematy<a name="top"></a></h2>
     <ul class="link-list">
     {% for object in object_list %}
         <li><a href="#{{ object.slug }}">{{ object }}</a></li>
     {% endfor %}
     </ul>
+    </div>
+    <div class="section-list-toc">
+    <h2>Przedmioty</h2>
+    <ul class="link-list">
+        {% course_boxes_toc %}
+    </ul>
+    </div>
     
     {% for object in object_list %}
         <div class="section-links">
@@ -42,6 +51,12 @@
 
         {% section_box object %}
     {% endfor %}
+
+    <div class="course-boxes">
+    <h2>Lekcje wybrane na poszczególne przedmioty:</h2>
+    {% course_boxes %}
+    </div>
+
 </div>
 
 

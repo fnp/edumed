@@ -87,11 +87,13 @@ class CurriculumLevel(models.Model):
 
 class CurriculumCourse(models.Model):
     title = models.CharField(max_length=255)
+    accusative = models.CharField(max_length=255)
     slug = models.CharField(max_length=255, db_index=True)
 
     class Meta:
         verbose_name = _("curriculum course")
         verbose_name_plural = _("curriculum courses")
+        ordering = ['slug']
 
     def __unicode__(self):
         return self.title
@@ -122,9 +124,13 @@ class Curriculum(models.Model):
         assert m is not None, "Curriculum identifier doesn't match template."
         level, created = CurriculumLevel.objects.get_or_create(
                                        title=m.group('level'))
+        def_title = m.group('course').title()
         course, created = CurriculumCourse.objects.get_or_create(
-                                        slug=m.group('course'),
-                                        defaults={'title': m.group('course').title()})
+                                        slug=m.group('course').lower(),
+                                        defaults={
+                                            'title': def_title,
+                                            'accusative': def_title,
+                                        })
         type_ = m.group('type')
         if m.group('roz'):
             title += " (zakres rozszerzony)"

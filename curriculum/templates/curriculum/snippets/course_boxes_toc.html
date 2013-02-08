@@ -1,0 +1,12 @@
+{% load url from future %}
+
+{% url "catalogue_lessons" as lessons_url %}
+{% for course in object_list %}
+<li><a href="{{ lessons_url }}#{{ course.slug }}">
+    {% if accusative %}
+        {{ course.accusative }}
+    {% else %}
+        {{ course }}
+    {% endif %}
+</a></li>
+{% endfor %}

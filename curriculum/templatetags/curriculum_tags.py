@@ -1,6 +1,6 @@
 from django import template
 from django.utils.datastructures import SortedDict
-from ..models import Competence, Curriculum
+from ..models import Competence, Curriculum, CurriculumCourse
 
 register = template.Library()
 
@@ -45,3 +45,30 @@ def url_for_level(comp, level):
     except:
         return comp.get_absolute_url()
 
+
+@register.inclusion_tag("curriculum/snippets/course_box.html")
+def course_box(course):
+    lessons = SortedDict()
+    for lesson in course.lesson_set.all():
+        if lesson.level not in lessons:
+            newdict = SortedDict()
+            newdict['synthetic'] = []
+            newdict['course'] = []
+            lessons[lesson.level] = newdict
+        if lesson.type not in lessons[lesson.level]:
+            lessons[lesson.level][lesson.type] = []
+        lessons[lesson.level][lesson.type].append(lesson)
+    return {
+        "lessons": lessons,
+    }
+
+@register.inclusion_tag("curriculum/snippets/course_boxes.html")
+def course_boxes():
+    return {'object_list': CurriculumCourse.objects.all()}
+
+@register.inclusion_tag("curriculum/snippets/course_boxes_toc.html")
+def course_boxes_toc(accusative=False):
+    return {
+        'object_list': CurriculumCourse.objects.all(),
+        'accusative': accusative,
+    }

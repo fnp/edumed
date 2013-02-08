@@ -2,7 +2,7 @@ from django.core.files import File
 from django.core.urlresolvers import reverse
 from django.db import models
 from jsonfield import JSONField
-from curriculum.models import Level
+from curriculum.models import Level, Curriculum, CurriculumCourse
 
 
 class Section(models.Model):
@@ -71,6 +71,7 @@ class Lesson(models.Model):
     type = models.CharField(max_length=15, db_index=True)
     order = models.IntegerField(db_index=True)
     dc = JSONField(default='{}')
+    curriculum_courses = models.ManyToManyField(CurriculumCourse)
 
     xml_file = models.FileField(upload_to="catalogue/lesson/xml",
         null=True, blank=True) # FIXME: slug in paths
@@ -128,8 +129,6 @@ class Lesson(models.Model):
         lesson.level = Level.objects.get(slug=wldoc.book_info.audience)
         lesson.order = 0
         lesson.populate_dc()
-        lesson.type = lesson.dc["type"]
-        lesson.save()
         lesson.build_html()
         lesson.build_package()
         lesson.build_package(student=True)
@@ -139,7 +138,18 @@ class Lesson(models.Model):
         from librarian.parser import WLDocument
         wldoc = WLDocument.from_file(self.xml_file.path)
         self.dc = wldoc.book_info.to_dict()
+        self.type = self.dc["type"]
         self.save()
+
+        courses = set()
+        for identifier in wldoc.book_info.curriculum:
+            try:
+                curr = Curriculum.objects.get(identifier=identifier)
+            except Curriculum.DoesNotExist:
+                pass
+            else:
+                courses.add(curr.course)
+        self.curriculum_courses = courses
 
     def build_html(self):
         from librarian.parser import WLDocument

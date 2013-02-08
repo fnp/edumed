@@ -66,10 +66,35 @@ $px: 0.0625em;
 }
 
 
+.course-boxes {
+    h1 {
+        color: #363a3e;
+    }
+    .section-level {
+        background: white;
+        border: 1px solid #777;
+        a, a:hover {
+            color: #363a3e;
+        }
+        .section-type-course {
+            background: white;
+            bborder-left: 1px solid #363a3e;
+        }
+    }
+}
+
+
 .section-links {
     float: right;
 }
 
 h2.section-header {
     margin: 0;
+}
+
+
+.section-list-toc {
+    display: inline-block;
+    vertical-align: top;
+    width: 300*$px;
 }

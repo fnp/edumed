@@ -17,11 +17,6 @@ def catalogue_section_buttons():
         "object_list": Section.objects.all()
     }
 
-@register.inclusion_tag("catalogue/snippets/chosen_topics.html")
-def catalogue_chosen_topics():
-    return {
-    }
-
 @register.inclusion_tag("catalogue/snippets/section_box.html")
 def section_box(section):
     lessons = SortedDict()

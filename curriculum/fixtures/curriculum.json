@@ -17,7 +17,8 @@
         "pk": 1,
         "model": "curriculum.curriculumcourse",
         "fields": {
-            "slug": "POLSKI",
+            "accusative": "j\u0119zyk polski",
+            "slug": "polski",
             "title": "J\u0119zyk polski"
         }
     },
@@ -25,7 +26,8 @@
         "pk": 2,
         "model": "curriculum.curriculumcourse",
         "fields": {
-            "slug": "PLASTYKA",
+            "accusative": "plastyk\u0119",
+            "slug": "plastyka",
             "title": "Plastyka"
         }
     },
@@ -33,7 +35,8 @@
         "pk": 3,
         "model": "curriculum.curriculumcourse",
         "fields": {
-            "slug": "WOS",
+            "accusative": "wiedz\u0119 o spo\u0142ecze\u0144stwie",
+            "slug": "wos",
             "title": "Wiedza o spo\u0142ecze\u0144stwie"
         }
     },
@@ -41,7 +44,8 @@
         "pk": 4,
         "model": "curriculum.curriculumcourse",
         "fields": {
-            "slug": "INFORMATYKA",
+            "accusative": "informatyk\u0119",
+            "slug": "informatyka",
             "title": "Informatyka"
         }
     },
@@ -49,7 +53,8 @@
         "pk": 5,
         "model": "curriculum.curriculumcourse",
         "fields": {
-            "slug": "ETYKA",
+            "accusative": "etyk\u0119",
+            "slug": "etyka",
             "title": "Etyka"
         }
     },

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load catalogue_tags %}
+{% load course_boxes_toc from curriculum_tags %}
 
 {% block full_title %}Edukacja medialna{% endblock %}
 
@@ -29,7 +30,9 @@ w trzech wierszach?</p>
 
 <section id="main-chosen">
 <h1>Wybrane tematy na:</h1>
-{% catalogue_chosen_topics %}
+<ul class="link-list">
+{% course_boxes_toc 1 %}
+</ul>
 </section>
 
 <section id="main-tools">
