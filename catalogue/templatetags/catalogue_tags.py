@@ -1,6 +1,7 @@
 from django import template
 from django.utils.datastructures import SortedDict
 from ..models import Lesson, Section
+from librarian.dcparser import WLURI, Person
 
 register = template.Library()
 
@@ -51,9 +52,12 @@ def lesson_nav(lesson):
         "siblings": siblings,
     }
 
+@register.inclusion_tag("catalogue/snippets/lesson_link.html")
+def lesson_link(uri):
+    return {'lesson': Lesson.objects.get(slug=WLURI(uri).slug)}
+
 @register.filter
 def person_list(persons):
-    from librarian.dcparser import Person
     return u", ".join(Person.from_text(p).readable() for p in persons)
 
 

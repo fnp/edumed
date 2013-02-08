@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load url from future %}
-{% load lesson_nav person_list from catalogue_tags %}
+{% load lesson_link lesson_nav person_list from catalogue_tags %}
 {% load competence curriculum url_for_level from curriculum_tags %}
 
 
@@ -51,6 +51,17 @@
     <section class="section">
         {% lesson_nav object %}
     </section>
+
+    {% if object.dc.relations %}
+    <section class="section-minor">
+        <h1>Powiązane lekcje</h1>
+        {% for uri in object.dc.relations %}
+        <ul class="link-list">
+            <li>{% lesson_link uri %}</li>
+        </ul>
+        {% endfor %}
+    </section>
+    {% endif %}
 
     {% if object.dc.competences %}
     <section class="section-minor">
