@@ -173,6 +173,24 @@ class Lesson(models.Model):
     def get_syntetic(self):
         return self.section.syntetic_lesson(self.level)
 
+    def get_previous(self):
+        if self.section is None: return None
+        try:
+            return self.section.lesson_set.filter(
+                type=self.type, level=self.level,
+                order__lt=self.order).order_by('-order')[0]
+        except IndexError:
+            return None
+
+    def get_next(self):
+        if self.section is None: return None
+        try:
+            return self.section.lesson_set.filter(
+                type=self.type, level=self.level,
+                order__gt=self.order).order_by('order')[0]
+        except IndexError:
+            return None
+
 
 class Attachment(models.Model):
     slug = models.CharField(max_length=255)

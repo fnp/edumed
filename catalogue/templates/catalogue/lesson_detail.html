@@ -112,6 +112,33 @@
 
 <div id="main-bar">
 {{ object.html_file.read|safe }}
+
+
+<a class="top-link" href="#">wróć na górę</a>
+<footer class="lesson-footer">
+
+{% if object.section %}
+
+<p class="section-info"><a href="{{ object.section.get_absolute_url }}">Temat: {{ object.section }}</a>
+<br/>(<a href="{% url 'catalogue_lessons' %}">spis wszystkich lekcji</a>)</p>
+
+<p>
+{% with object.get_previous as previous %}
+    {% if previous %}
+        <a class="previous-lesson" href="{{ previous.get_absolute_url }}">&larr; {{ previous }}</a>
+    {% endif %}
+{% endwith %}
+
+{% with object.get_next as next %}
+    {% if next %}
+        <a class="next-lesson" href="{{ next.get_absolute_url }}">{{ next }} &rarr;</a>
+    {% endif %}
+{% endwith %}
+</p>
+{% endif %}
+
+<div class="clr"></div>
+</footer>
 </div>
 
 {% endblock %}
