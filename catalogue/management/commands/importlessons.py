@@ -77,7 +77,7 @@ class Command(BaseCommand):
                         self.import_book(file_path, options)
                         files_imported += 1
                         transaction.commit()
-                    except Section.IncompleteError:
+                    except Section.IncompleteError, e:
                         if file_name not in postponed or postponed[file_name] < files_imported:
                             # Push it back into the queue, maybe the missing lessons will show up.
                             if verbose > 0:
@@ -88,8 +88,8 @@ class Command(BaseCommand):
                             # We're in a loop, nothing's being imported - some lesson is really missing.
                             raise e
                     except BaseException, e:
-                        import trackback
-                        trackback.print_exc()
+                        import traceback
+                        traceback.print_exc()
                         files_skipped += 1
 
         # Print results

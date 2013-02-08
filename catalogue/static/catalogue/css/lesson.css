@@ -188,27 +188,44 @@ em.person {
 @media print {
   #menu {
     display: none; } }
+.activity {
+  clear: both; }
+
 .activity .text {
-  max-width: 350px;
+  width: 27.5em;
   margin-right: 20px;
   float: left; }
 
 .activity .description p:first-child {
   margin-top: 0; }
 
-.activity .info {
-  margin: 1.5em 0 0;
-  max-width: 130px;
-  float: right; }
-
-.activity .info p {
-  margin-bottom: 1em; }
-
 .activity {
-  clear: both; }
-
-.activity .info {
-  font-size: 10pt; }
+  margin-top: 2em; }
+  .activity .act_counter {
+    float: left;
+    margin-right: .5em;
+    font-size: 2em; }
+  .activity .info {
+    float: right;
+    width: 8.438em; }
+    .activity .info .infobox {
+      padding: 1em 0;
+      border-top: 1px solid #c9ccce; }
+      .activity .info .infobox h1 {
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: 0 0 0.5em -2.188em;
+        padding-left: 2.188em;
+        line-height: 24px;
+        font-size: 1em; }
+      .activity .info .infobox p {
+        margin: 0; }
+    .activity .info .time h1 {
+      background: url(/static/img/icons/activity-time.png) 0 0 no-repeat; }
+    .activity .info .kind h1 {
+      background: url(/static/img/icons/activity-kind.png) 0 0 no-repeat; }
+    .activity .info .materials h1 {
+      background: url(/static/img/icons/activity-tools.png) 0 0 no-repeat; }
 
 .clearboth {
   clear: both; }

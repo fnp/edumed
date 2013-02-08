@@ -1,3 +1,5 @@
+$px: .0625em;
+
 /* =================================================== */
 /* = Common elements: headings, paragraphs and lines = */
 /* =================================================== */
@@ -225,34 +227,65 @@ em.person {
     #menu {display: none;}
 }
 
-.activity .text {
- max-width:350px;
- margin-right:20px;
- float: left;
-}
-
-.activity .description p:first-child {
-  margin-top: 0;
-}
-
-.activity .info {
- margin: 1.5em 0 0;
- max-width: 130px;
- float:right;
-}
-
-.activity .info  p {
- margin-bottom: 1em;
-}
 
 
 .activity {
  clear:both;
 }
 
-.activity .info {
- font-size: 10pt;
+.activity .text {
+    width: 440*$px;
+    margin-right: 20px;
+    float: left;
 }
+
+.activity .description p:first-child {
+  margin-top: 0;
+}
+
+
+
+.activity {
+    margin-top: 2em;
+
+    .act_counter {
+        float: left;
+        margin-right: .5em;
+        font-size: 2em;
+    }
+
+    .info {
+        float: right;
+        width: 135*$px;
+
+        .infobox {
+            padding: 1em 0;
+            border-top: 1px solid #c9ccce;
+            h1 {
+                text-transform: uppercase;
+                font-weight: bold;
+                margin: 0 0 .5em -35*$px;
+                padding-left: 35*$px;
+                line-height: 24px;
+                font-size: 1em;
+            }
+            p {
+                margin: 0;
+            }
+
+        }
+        .time h1 {
+            background: url(/static/img/icons/activity-time.png) 0 0 no-repeat;
+        }
+        .kind h1 {
+            background: url(/static/img/icons/activity-kind.png) 0 0 no-repeat;
+        }
+        .materials h1 {
+            background: url(/static/img/icons/activity-tools.png) 0 0 no-repeat;
+        }
+    }
+}
+
 
 .clearboth {
  clear: both;

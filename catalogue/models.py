@@ -35,7 +35,7 @@ class Section(models.Model):
             lessons = [Lesson.objects.get(slug=part.slug)
                         for part in wldoc.book_info.parts]
         except Lesson.DoesNotExist, e:
-            raise cls.IncompleteError(e)
+            raise cls.IncompleteError(part.slug)
 
         slug = wldoc.book_info.url.slug
         try:
