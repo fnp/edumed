@@ -1,15 +1,42 @@
 from django import template
-from ..models import Competence
+from django.utils.datastructures import SortedDict
+from ..models import Competence, Curriculum
 
 register = template.Library()
 
 
-@register.filter
-def find_competence(text):
+@register.inclusion_tag("curriculum/snippets/competence.html")
+def competence(texts):
     try:
-        return Competence.from_text(text)
+        comps = [Competence.from_text(text) for text in texts]
     except:
-        return None
+        return {'texts': texts}
+    return {
+        'comps': comps,
+    }
+
+@register.inclusion_tag("curriculum/snippets/curriculum.html")
+def curriculum(identifiers):
+    try:
+        currs = [Curriculum.objects.get(identifier=identifier)
+                    for identifier in identifiers]
+    except Curriculum.DoesNotExist:
+        return {'identifiers': identifiers}
+
+    currset = SortedDict()
+    for curr in currs:
+        k = curr.course, curr.level
+        if k not in currset:
+            currset[k] = SortedDict()
+        typename = Curriculum.TYPES[curr.type]
+        if typename not in currset[k]:
+            currset[k][typename] = []
+        currset[k][typename].append(curr)
+
+    return {
+        'currset': currset,
+    }
+    
 
 @register.filter
 def url_for_level(comp, level):

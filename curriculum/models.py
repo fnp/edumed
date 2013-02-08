@@ -1,3 +1,5 @@
+# -*- coding: utf-8
+import re
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -69,3 +71,72 @@ class CompetenceLevel(models.Model):
 
     def get_absolute_url(self):
         return "%s?c=%d&level=%s&d=1" % (reverse("curriculum"), self.competence.pk, self.level.slug)
+
+
+
+class CurriculumLevel(models.Model):
+    title = models.CharField(max_length=16, db_index=True)
+
+    class Meta:
+        verbose_name = _("curriculum level")
+        verbose_name_plural = _("curriculum levels")
+
+    def __unicode__(self):
+        return self.title
+
+
+class CurriculumCourse(models.Model):
+    title = models.CharField(max_length=255)
+    slug = models.CharField(max_length=255, db_index=True)
+
+    class Meta:
+        verbose_name = _("curriculum course")
+        verbose_name_plural = _("curriculum courses")
+
+    def __unicode__(self):
+        return self.title
+
+
+class Curriculum(models.Model):
+    """Official curriculum."""
+    TYPES = {'c': u'Cele kształcenia', 't': u'Treści nauczania'}
+
+    identifier = models.CharField(max_length=255, db_index=True)
+    title = models.CharField(max_length=255)
+    course = models.ForeignKey(CurriculumCourse)
+    level = models.ForeignKey(CurriculumLevel)
+    type = models.CharField(max_length=16, choices=TYPES.items())
+
+    class Meta:
+        verbose_name = _("curriculum item")
+        verbose_name_plural = _("curriculum items")
+
+    def __unicode__(self):
+        return self.identifier
+
+    @classmethod
+    def from_text(cls, identifier, title):
+        m = re.match(r"^\d+/(?P<level>[^/]+)/(?P<course>[^/]+)/"
+                     "(?P<type>(?:%s))[^/]+(?P<roz>/roz)?" %
+                        "|".join(cls.TYPES), identifier)
+        assert m is not None, "Curriculum identifier doesn't match template."
+        level, created = CurriculumLevel.objects.get_or_create(
+                                       title=m.group('level'))
+        course, created = CurriculumCourse.objects.get_or_create(
+                                        slug=m.group('course'),
+                                        defaults={'title': m.group('course').title()})
+        type_ = m.group('type')
+        if m.group('roz'):
+            title += " (zakres rozszerzony)"
+
+        try:
+            curr = cls.objects.get(identifier=identifier)
+        except cls.DoesNotExist:
+            curr = cls(identifier=identifier)
+        curr.title = title
+        curr.course = course
+        curr.level = level
+        curr.type = type_
+        curr.save()
+        return curr
+

@@ -169,3 +169,10 @@ footer.main {
     color: #363a3e; }
   .link-list a:hover {
     color: #ed7831; }
+
+.plain {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+  .plain li {
+    margin: 1em 0; }

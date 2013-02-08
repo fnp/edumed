@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Competence, CompetenceLevel, Level, Section
+from .models import (Competence, CompetenceLevel, Level, Section,
+    CurriculumCourse, CurriculumLevel, Curriculum)
 
 class CompetenceLevelInline(admin.TabularInline):
     model = CompetenceLevel
@@ -21,3 +22,7 @@ class SectionAdmin(admin.ModelAdmin):
 admin.site.register(Level, LevelAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(Competence, CompetenceAdmin)
+
+admin.site.register(CurriculumCourse)
+admin.site.register(CurriculumLevel)
+admin.site.register(Curriculum)

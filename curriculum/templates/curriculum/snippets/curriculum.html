@@ -1,0 +1,17 @@
+{% if currset %}
+    {% for what, types in currset.items %}
+        <li>
+            {{ what.0 }}, {{ what.1 }} poziom edukacyjny<br/>
+            {% for type, currs in types.items %}
+                {{ type }}:<br>
+                {% for curr in currs %}
+                    {{ curr.title }}<br>
+                {% endfor %}
+            {% endfor %}
+        </li>
+    {% endfor %}
+{% else %}
+    {% for identifier in identifiers %}
+        <li>{{ identifier }}</li>
+    {% endfor %}
+{% endif %}
