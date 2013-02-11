@@ -111,7 +111,7 @@ class Lesson(models.Model):
         try:
             lesson = cls.objects.get(slug=slug)
         except cls.DoesNotExist:
-            lesson = cls(slug=slug)
+            lesson = cls(slug=slug, order=0)
 
         lesson.attachment_set.all().delete()
         for att_name, att_file in infile.attachments.items():
@@ -127,7 +127,6 @@ class Lesson(models.Model):
         lesson.title = wldoc.book_info.title
 
         lesson.level = Level.objects.get(slug=wldoc.book_info.audience)
-        lesson.order = 0
         lesson.populate_dc()
         lesson.build_html()
         lesson.build_package()
