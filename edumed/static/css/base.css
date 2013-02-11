@@ -190,6 +190,9 @@ footer.main {
   .link-list a:hover {
     color: #ed7831; }
 
+.link-list-colored a {
+  color: #ed7831; }
+
 .plain {
   margin: 0;
   padding: 0;

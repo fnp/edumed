@@ -2,8 +2,10 @@
 <h1>
 {% if root %}
     <a href="{{ root.get_absolute_url }}">{{ root }}</a>
+{% elif lesson.type == 'synthetic' %}
+    <a href="{% url 'catalogue_lessons' %}">Lekcje syntetyczne ze wszystkich tematów</a>
 {% else %}
-    <a href="{% url 'catalogue_lessons' %}">Wszystkie działy</a>
+    <a href="{% url 'catalogue_lessons' %}">Inne</a>
 {% endif %}
 </h1>
 
@@ -12,8 +14,11 @@
     <li>
     {% if item == lesson %}
         <strong>{{ item }}</strong>
+        {% if mark_level and item.level.slug == 'liceum' %} (poziom zaawansowany){% endif %}
     {% else %}
-        <a href="{{ item.get_absolute_url }}">{{ item }}</a>
+        <a href="{{ item.get_absolute_url }}">{{ item }}
+            {% if mark_level and item.level.slug == 'liceum' %} (poziom zaawansowany){% endif %}
+        </a>
     {% endif %}
     </li>
 {% endfor %}

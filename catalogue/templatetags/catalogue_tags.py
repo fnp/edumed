@@ -37,19 +37,25 @@ def section_box(section):
 def lesson_nav(lesson):
     if lesson.type == 'course':
         root = lesson.section
-        siblings = root.lesson_set.filter(type='course')
+        siblings = root.lesson_set.filter(type='course', level=lesson.level)
+        mark_level = False
     else:
         root = None
         siblings = Lesson.objects.filter(type=lesson.type)
+        mark_level = True
     return {
         "lesson": lesson,
         "root": root,
         "siblings": siblings,
+        "mark_level": mark_level
     }
 
 @register.inclusion_tag("catalogue/snippets/lesson_link.html")
 def lesson_link(uri):
-    return {'lesson': Lesson.objects.get(slug=WLURI(uri).slug)}
+    try:
+        return {'lesson': Lesson.objects.get(slug=WLURI(uri).slug)}
+    except Lesson.DoesNotExist:
+        return {}
 
 @register.filter
 def person_list(persons):

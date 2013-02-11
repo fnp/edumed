@@ -1,1 +1,1 @@
-<a href="{{ lesson.get_absolute_url }}">{{ lesson }}</a>
+{% if lesson %}<a href="{{ lesson.get_absolute_url }}">{{ lesson }}</a>{% endif %}

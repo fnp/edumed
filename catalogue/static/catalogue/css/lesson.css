@@ -227,6 +227,11 @@ em.person {
     .activity .info .materials h1 {
       background: url(/static/img/icons/activity-tools.png) 0 0 no-repeat; }
 
+.lista .paragraph {
+  margin: .3em 0; }
+.lista li {
+  margin: .75em 0; }
+
 .clearboth {
   clear: both; }
 

@@ -55,11 +55,11 @@
     {% if object.dc.relations %}
     <section class="section-minor">
         <h1>Powiązane lekcje</h1>
+        <ul class="link-list link-list-colored">
         {% for uri in object.dc.relations %}
-        <ul class="link-list">
             <li>{% lesson_link uri %}</li>
-        </ul>
         {% endfor %}
+        </ul>
     </section>
     {% endif %}
 
