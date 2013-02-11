@@ -110,17 +110,9 @@ class Lesson(models.Model):
         slug = wldoc.book_info.url.slug
         try:
             lesson = cls.objects.get(slug=slug)
+            lesson.attachment_set.all().delete()
         except cls.DoesNotExist:
             lesson = cls(slug=slug, order=0)
-
-        lesson.attachment_set.all().delete()
-        for att_name, att_file in infile.attachments.items():
-            try:
-                slug, ext = att_name.rsplit('.', 1)
-            except ValueError:
-                slug, ext = att_name, ''
-            attachment = lesson.attachment_set.create(slug=slug, ext=ext)
-            attachment.file.save(att_name, ContentFile(att_file.get_string()))
 
         # Save XML file
         lesson.xml_file.save('%s.xml' % slug, ContentFile(xml), save=False)
@@ -128,7 +120,7 @@ class Lesson(models.Model):
 
         lesson.level = Level.objects.get(slug=wldoc.book_info.audience)
         lesson.populate_dc()
-        lesson.build_html()
+        lesson.build_html(infile=infile)
         lesson.build_package()
         lesson.build_package(student=True)
         return lesson
@@ -150,10 +142,15 @@ class Lesson(models.Model):
                 courses.add(curr.course)
         self.curriculum_courses = courses
 
-    def build_html(self):
+    def build_html(self, infile=None):
         from librarian.parser import WLDocument
-        wldoc = WLDocument.from_file(self.xml_file.path)
-        html = wldoc.as_html()
+        from .publish import HtmlFormat
+
+        if infile is None:
+            wldoc = WLDocument.from_file(self.xml_file.path)
+        else:
+            wldoc = WLDocument(infile)
+        html = HtmlFormat(wldoc).build()
         self.html_file.save("%s.html" % self.slug,
             File(open(html.get_filename())))
 

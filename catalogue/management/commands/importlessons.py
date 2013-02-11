@@ -21,19 +21,35 @@ class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('-q', '--quiet', action='store_false', dest='verbose', default=True,
             help='Verbosity level; 0=minimal output, 1=normal output, 2=all output'),
+        make_option('-a', '--attachments', dest='attachments', metavar="PATH", default='materialy',
+            help='Attachments dir path.'),
     )
     help = 'Imports lessons from the specified directories.'
     args = 'directory [directory ...]'
 
-    def import_book(self, file_path, options):
+    def import_book(self, file_path, options, attachments):
         verbose = options.get('verbose')
         iofile = IOFile.from_filename(file_path)
-        basename, ext = file_path.rsplit('.', 1)
-        if os.path.isdir(basename):
-            for att_name in os.listdir(basename):
-                iofile.attachments[att_name] = IOFile.from_filename(
-                    os.path.join(basename, att_name))
+        iofile.attachments = attachments
         lesson = Lesson.publish(iofile)
+
+    @staticmethod
+    def all_attachments(path):
+        files = {}
+
+        def read_dir(path):
+            for name in os.listdir(path):
+                fullname = os.path.join(path, name)
+                if os.path.isdir(fullname):
+                    read_dir(fullname)
+                else:
+                    f = IOFile.from_filename(fullname)
+                    files[name] = f
+                    files.setdefault(name.replace(" ", ""), f)
+
+        read_dir(path)
+        return files
+
 
     def handle(self, *directories, **options):
         from django.db import transaction
@@ -54,6 +70,9 @@ class Command(BaseCommand):
             if not os.path.isdir(dir_name):
                 print self.style.ERROR("%s: Not a directory. Skipping." % dir_name)
             else:
+                att_dir = os.path.join(dir_name, options['attachments'])
+                attachments = self.all_attachments(att_dir)
+
                 # files queue
                 files = sorted(os.listdir(dir_name))
                 postponed = {}
@@ -74,7 +93,7 @@ class Command(BaseCommand):
 
                     # Import book files
                     try:
-                        self.import_book(file_path, options)
+                        self.import_book(file_path, options, attachments)
                         files_imported += 1
                         transaction.commit()
                     except Section.IncompleteError, e:
