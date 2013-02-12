@@ -1,0 +1,1 @@
+{{ object.html_file.read|striptags }}

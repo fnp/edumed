@@ -11,6 +11,8 @@ INSTALLED_APPS = (
     # Disable, if not using CAS.
     'django_cas',
     'sponsors',
+    'haystack',
+
 
     'django.contrib.auth',
     'django.contrib.contenttypes',

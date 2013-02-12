@@ -12,6 +12,7 @@ urlpatterns = patterns('',
 #    url(r'^i/', include('django.contrib.flatpages.urls')),
     url(r'^i/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage',
         name="info"),
+    url(r'^szukaj/', include('haystack.urls')),
 )
 
 

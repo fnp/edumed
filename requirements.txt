@@ -21,3 +21,6 @@ lxml
 # sponsors
 pillow
 django-sponsors
+
+-e git+https://github.com/toastdriven/django-haystack.git@61b377d97efd5390c60c5a37acd009b8e69eb2f3#egg=django-haystack
+pysolr>=2,<3

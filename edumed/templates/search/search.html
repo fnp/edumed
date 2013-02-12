@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <h1>Wyszukiwanie</h1>
+
+    {% if query %}
+        {% for result in page.object_list %}
+            <p>
+                <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
+            </p>
+        {% empty %}
+            <p>Brak wyników.</p>
+        {% endfor %}
+
+        {% if page.has_previous or page.has_next %}
+            <div>
+                {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Poprzednie{% if page.has_previous %}</a>{% endif %}
+                |
+                {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Następne &raquo;{% if page.has_next %}</a>{% endif %}
+            </div>
+        {% endif %}
+    {% else %}
+        <p>Brak wyników.</p>
+    {% endif %}
+{% endblock %}
