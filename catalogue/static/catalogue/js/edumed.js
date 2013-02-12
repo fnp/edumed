@@ -152,12 +152,18 @@
       if (!$placeholder.hasClass('multiple')) {
         $placeholder.hide();
       }
-      $added.append('<span class="remove">x</span><div class="clr">');
+      if ($added.is(".add-li")) {
+        $added.wrap("<li/>");
+      }
+      $added.append('<span class="remove">x</span><div class="clr"></div>');
       return $('.remove', $added).click(function(ev) {
-        $added.prev(".placeholder:not(.multiple)").show();
         if (!ismultiple) {
           $($added.data('original')).removeClass('disabled').draggable('enable');
         }
+        if ($added.is(".add-li")) {
+          $added = $added.closest('li');
+        }
+        $added.prev(".placeholder:not(.multiple)").show();
         return $added.remove();
       });
     };
@@ -263,7 +269,7 @@
           should_be_checked = solution.indexOf(piece_no) >= 0;
         }
         console.log("check " + $("input[type=checkbox]", qpiece).attr("id") + " -> " + should_be_checked);
-        return $("input[type=checkbox]", qpiece).prop('checked', should_be_checked);
+        return $("input[type=checkbox],input[type=radio]", qpiece).prop('checked', should_be_checked);
       });
     };
 
@@ -598,12 +604,12 @@
 
     PrawdaFalsz.prototype.show_solutions = function() {
       var qp, _i, _len, _ref, _results;
-      reset();
+      this.reset();
       _ref = $(".question-piece", this.element);
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         qp = _ref[_i];
-        if ($(qp).data('solution') === 'true') {
+        if ($(qp).data('solution') === true) {
           _results.push($(".true", qp).click());
         } else {
           _results.push($(".false", qp).click());

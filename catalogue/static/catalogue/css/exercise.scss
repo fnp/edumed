@@ -162,6 +162,11 @@ $px: 0.0625em;
         @include bubble-drag;
         width: 618*$px;
     }
+    span.question-piece {
+        display: inline-block;
+        margin: .1em;
+        width: auto;
+    }
     .question-piece.disabled {
         @include bubble-drag-disabled;
     }
