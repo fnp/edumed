@@ -107,7 +107,8 @@
   background-color: #d4d6d8;
   color: #363a3e;
   cursor: pointer;
-  z-index: 2; }
+  z-index: 2;
+  width: 38.625em; }
 .przyporzadkuj .question-piece.disabled {
   background-color: #eee;
   color: #d4d6d8; }
@@ -132,6 +133,8 @@
       position: relative;
       margin: 0.5em -0.688em -0.5em -0.688em;
       padding: 0.5em 0.688em; }
+      .przyporzadkuj .predicate > li .subjects li {
+        width: auto; }
       .przyporzadkuj .predicate > li .subjects .placeholder {
         border-radius: 0.688em;
         padding: 0.5em 0.688em;
