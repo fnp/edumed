@@ -154,6 +154,27 @@ $px: 0.0625em;
     }
     .lista {
         @include list-plain;
+        counter-reset: answer;
+        li {
+            counter-increment: answer;
+            padding-right: 3em;
+            background-image: url(/static/img/ornaments/draggable.png);
+            background-repeat: no-repeat;
+            background-position: 100% 50%;
+        }
+        li:before {
+            @include bubble;
+            @include bubble-drag;
+            content: counter(answer);
+            float: left;
+            margin: -.5em 0 0 -3em;
+        }
+        li.ui-sortable-placeholder {
+            counter-increment: answer 0;
+        }
+        li.ui-sortable-helper:before {
+            content: none;
+        }
     }
 }
 

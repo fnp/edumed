@@ -101,7 +101,28 @@
 .uporzadkuj .lista {
   list-style: none;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  counter-reset: answer; }
+  .uporzadkuj .lista li {
+    counter-increment: answer;
+    padding-right: 3em;
+    background-image: url(/static/img/ornaments/draggable.png);
+    background-repeat: no-repeat;
+    background-position: 100% 50%; }
+  .uporzadkuj .lista li:before {
+    border-radius: 0.688em;
+    padding: 0.5em 0.688em;
+    background-color: #d4d6d8;
+    color: #363a3e;
+    cursor: pointer;
+    z-index: 2;
+    content: counter(answer);
+    float: left;
+    margin: -0.5em 0 0 -3em; }
+  .uporzadkuj .lista li.ui-sortable-placeholder {
+    counter-increment: answer 0; }
+  .uporzadkuj .lista li.ui-sortable-helper:before {
+    content: none; }
 
 .przyporzadkuj .question-piece {
   background-color: #d4d6d8;
