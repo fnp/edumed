@@ -6,13 +6,8 @@ from .models import Lesson, Attachment
 
 
 class HtmlFormat(EduModuleFormat):
-    def url_for_material(self, slug, fmt=None):
+    def url_for_material(self, slug, fmt):
         lesson_slug = self.wldoc.book_info.url.slug
-        if fmt is None:
-            # We could try and find the file by slug here, but we won't.
-            # User should supply the format explicitly anyway.
-            fmt = self.DEFAULT_MATERIAL_FORMAT
-
         try:
             # If already saved, use it.
             att = Attachment.objects.get(lesson__slug=lesson_slug,
