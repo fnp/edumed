@@ -144,12 +144,12 @@ class Lesson(models.Model):
 
     def build_html(self, infile=None):
         from librarian.parser import WLDocument
-        from .publish import HtmlFormat
+        from .publish import HtmlFormat, OrmDocProvider
 
         if infile is None:
-            wldoc = WLDocument.from_file(self.xml_file.path)
+            wldoc = WLDocument.from_file(self.xml_file.path, provider=OrmDocProvider)
         else:
-            wldoc = WLDocument(infile)
+            wldoc = WLDocument(infile, provider=OrmDocProvider())
         html = HtmlFormat(wldoc).build()
         self.html_file.save("%s.html" % self.slug,
             File(open(html.get_filename())))

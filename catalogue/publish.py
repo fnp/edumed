@@ -1,5 +1,6 @@
 # -*- coding: utf-8
 from django.core.files import File
+from librarian import DocProvider, IOFile
 from librarian.pyhtml import EduModuleFormat
 from .models import Lesson, Attachment
 
@@ -29,7 +30,11 @@ class HtmlFormat(EduModuleFormat):
                 att = lesson.attachment_set.create(slug=slug, ext=fmt)
                 att.file.save(att_name, File(att_file.get_file()))
                 return att.file.url
-
-
         else:
             return att.file.url
+
+
+class OrmDocProvider(DocProvider):
+    def by_slug(self, slug):
+        """Should return a file-like object with a WL document XML."""
+        return IOFile.from_filename(Lesson.objects.get(slug=slug).xml_file.path)
