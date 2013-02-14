@@ -238,3 +238,6 @@ em.person {
 /* utils */
 .clr {
   clear: both; }
+
+#book-text .top-link {
+  margin-top: 1em; }
