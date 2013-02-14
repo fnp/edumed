@@ -15,6 +15,7 @@ PIPELINE_JS_COMPRESSOR = None
 PIPELINE_CSS = {
     'base': {
         'source_filenames': (
+          'jquery/colorbox/colorbox.css',
           'css/base.scss',
           'css/main.scss',
           'catalogue/css/carousel.scss',
@@ -32,7 +33,10 @@ PIPELINE_JS = {
         'source_filenames': (
             'catalogue/js/jquery-ui-1.10.0.custom.js',
             'catalogue/js/jquery.cycle.all.js',
+            'jquery/colorbox/jquery.colorbox-min.js',
+            'jquery/colorbox/jquery.colorbox-pl.js',
             'catalogue/js/edumed.js',
+            'catalogue/js/lesson.js',
             'catalogue/js/carousel.js',
             'sponsors/js/sponsors.js',
             'curriculum/curriculum.js',

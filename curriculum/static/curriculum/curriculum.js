@@ -1,5 +1,5 @@
 $(function() {
-    if (curriculum_hide_form) {
+    if (typeof(curriculum_hide_form) != "undefined") {
         $('.curriculum-form form').hide();
         $('.curriculum-form h2 a span').show();
     }
