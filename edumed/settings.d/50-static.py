@@ -15,7 +15,6 @@ PIPELINE_JS_COMPRESSOR = None
 PIPELINE_CSS = {
     'base': {
         'source_filenames': (
-          'jquery/colorbox/colorbox.css',
           'css/base.scss',
           'css/main.scss',
           'catalogue/css/carousel.scss',
@@ -24,6 +23,7 @@ PIPELINE_CSS = {
           'catalogue/css/exercise.scss',
           'catalogue/css/section_list.scss',
           'curriculum/curriculum.scss',
+          'jquery/colorbox/colorbox.css',
         ),
         'output_filename': 'compressed/base.css',
     },
