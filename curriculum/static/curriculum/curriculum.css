@@ -4,6 +4,16 @@
   border-radius: 0.688em;
   background: #ADAEAF;
   color: white; }
+  .curriculum-form a {
+    cursor: pointer; }
+  .curriculum-form a:hover {
+    text-decoration: underline; }
+  .curriculum-form .error {
+    padding-left: 1em;
+    border-radius: .5em;
+    background: #ed7831;
+    color: white;
+    font-weight: bold; }
   .curriculum-form h2 {
     margin: 0; }
     .curriculum-form h2 a {
@@ -26,4 +36,5 @@
       display: inline-block;
       width: 13em; }
   .curriculum-form .curriculum-section-toggler {
-    display: none; }
+    display: none;
+    color: white; }

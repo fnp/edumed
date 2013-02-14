@@ -1,4 +1,7 @@
 $px: 0.0625em;
+$oranji: #ed7831;
+$ciemny: #363a3e;
+$zielony: #16a487;
 
 .curriculum-form {
     border: 1px solid #ddd;
@@ -6,7 +9,23 @@ $px: 0.0625em;
     border-radius: 11*$px;
     background: #ADAEAF;
     color: white;
-    
+
+    a {
+        cursor: pointer;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .error {
+        padding-left: 1em;
+        border-radius: .5em;
+        background: $oranji;
+        color: white;
+        font-weight: bold;
+        
+    }
+
     h2 {
         margin: 0;
         a {
@@ -38,6 +57,7 @@ $px: 0.0625em;
 
     .curriculum-section-toggler {
         display: none;
+        color: white;
     }
 
     .categories {
