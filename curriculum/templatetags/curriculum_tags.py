@@ -6,13 +6,14 @@ register = template.Library()
 
 
 @register.inclusion_tag("curriculum/snippets/competence.html")
-def competence(texts):
+def competence(texts, level):
     try:
         comps = [Competence.from_text(text) for text in texts]
     except:
         return {'texts': texts}
     return {
         'comps': comps,
+        'level': level,
     }
 
 @register.inclusion_tag("curriculum/snippets/curriculum.html")

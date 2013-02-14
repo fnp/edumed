@@ -1,7 +1,7 @@
 {% load url_for_level from curriculum_tags %}
 {% if comps %}
-    {% for comp in comps %}
-        <li><a href="{{ competence|url_for_level:object.level }}">
+    {% for competence in comps %}
+        <li><a href="{{ competence|url_for_level:level }}">
             {{ competence }}</a></li>
     {% endfor %}
 {% else %}
