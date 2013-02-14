@@ -42,6 +42,10 @@ $px: 0.0625em;
 
 
 .exercise {
+    img {
+        vertical-align: top;
+    }
+
     .question-piece {
         @include bubble;
     }

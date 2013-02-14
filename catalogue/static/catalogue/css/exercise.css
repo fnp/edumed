@@ -1,4 +1,6 @@
 @charset "UTF-8";
+.exercise img {
+  vertical-align: top; }
 .exercise .question-piece {
   border-radius: 0.688em;
   padding: 0.5em 0.688em; }
