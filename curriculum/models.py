@@ -24,7 +24,7 @@ class Competence(models.Model):
     order = models.IntegerField(_('order'))
 
     class Meta:
-        ordering = ['order']
+        ordering = ['section', 'order']
         verbose_name = _('competence')
         verbose_name_plural = _('competences')
 

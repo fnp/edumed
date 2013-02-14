@@ -7,7 +7,7 @@
 
 {% for cl in object.competencelevel_set.all %}
     <h2>{{ cl }}</h2>
-    {{ cl.description }}
+    {{ cl.description|linebreaksbr }}
 {% endfor %}
 
 {% endblock %}

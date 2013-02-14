@@ -52,7 +52,7 @@
     <h3>{{ section }}</h3>
     {% for competence in competences %}
         <h4>{{ competence }}</h4>
-        {{ competence.for_level_.description }}
+        {{ competence.for_level_.description|linebreaksbr }}
     {% endfor %}
 {% endfor %}
 
