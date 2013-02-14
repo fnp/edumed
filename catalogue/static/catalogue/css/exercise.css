@@ -41,7 +41,9 @@
     font-weight: bold; }
   .exercise .buttons .message {
     float: right;
-    margin-right: 1.25em; }
+    padding: 0 1.25em; }
+  .exercise .buttons .maxscore {
+    background: #16a487; }
   .exercise .buttons input.check {
     background: #ed7831; }
 
@@ -52,7 +54,8 @@
   z-index: 2;
   display: inline-block;
   margin: 0.313em;
-  z-index: 2; }
+  z-index: 2;
+  max-width: 38em; }
 .luki .question-piece.disabled {
   background-color: #eee;
   color: #d4d6d8; }

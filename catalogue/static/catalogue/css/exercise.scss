@@ -96,7 +96,10 @@ $px: 0.0625em;
         }
         .message {
             float: right;
-            margin-right: 20*$px;
+            padding: 0 20*$px;
+        }
+        .maxscore {
+            background: #16a487;
         }
 
         input.check {
@@ -112,6 +115,7 @@ $px: 0.0625em;
     .question-piece {
         @include bubble-drag;
         @include bubble-inline;
+        max-width: 608*$px;
     }
     .question-piece.disabled {
         @include bubble-drag-disabled;
