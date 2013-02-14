@@ -177,7 +177,7 @@ class Lesson(models.Model):
             "%spliki-zrodlowe/%s.xml" % (prefix, self.slug))
         pdf = self.student_pdf if student else self.pdf
         if pdf:
-            zipf.write(self.xml_file.path, 
+            zipf.write(pdf.path, 
                 "%s%s%s.pdf" % (prefix, self.slug, "_student" if student else ""))
         
 
