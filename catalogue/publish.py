@@ -3,6 +3,7 @@ from django.core.files.base import ContentFile
 from django.core.files import File
 from librarian import DocProvider, IOFile
 from librarian.pyhtml import EduModuleFormat
+from librarian.pypdf import EduModulePDFFormat
 from .models import Lesson, Attachment
 
 
@@ -59,6 +60,9 @@ class HtmlFormat(EduModuleFormat):
             att = lesson.attachment_set.create(slug=th_slug, ext=fmt)
             att.file.save(att_name, ContentFile(tempfile.getvalue()))
         return att.file.url
+
+class PdfFormat(EduModulePDFFormat):
+    pass
 
 
 class OrmDocProvider(DocProvider):

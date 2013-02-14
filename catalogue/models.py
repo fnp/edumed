@@ -121,6 +121,8 @@ class Lesson(models.Model):
         lesson.level = Level.objects.get(slug=wldoc.book_info.audience)
         lesson.populate_dc()
         lesson.build_html(infile=infile)
+        lesson.build_pdf(infile=infile)
+        lesson.build_pdf(student=True, infile=infile)
         lesson.build_package()
         lesson.build_package(student=True)
         return lesson
@@ -153,6 +155,22 @@ class Lesson(models.Model):
         html = HtmlFormat(wldoc).build()
         self.html_file.save("%s.html" % self.slug,
             File(open(html.get_filename())))
+
+    def build_pdf(self, student=False, infile=None):
+        from librarian.parser import WLDocument
+        from .publish import PdfFormat, OrmDocProvider
+
+        if infile is None:
+            wldoc = WLDocument.from_file(self.xml_file.path, provider=OrmDocProvider)
+        else:
+            wldoc = WLDocument(infile, provider=OrmDocProvider())
+        pdf = PdfFormat(wldoc).build()
+        if student:
+            self.student_pdf.save("%s.pdf" % self.slug,
+                File(open(pdf.get_filename())))
+        else:
+            self.pdf.save("%s.pdf" % self.slug,
+                File(open(pdf.get_filename())))
 
     def add_to_zip(self, zipf, student=False, prefix=''):
         zipf.write(self.xml_file.path,

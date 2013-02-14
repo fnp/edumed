@@ -17,6 +17,7 @@ Feedparser
 
 # Librarian
 lxml
+texml
 
 # sponsors
 pillow
