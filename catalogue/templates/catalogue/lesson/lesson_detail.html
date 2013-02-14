@@ -10,43 +10,7 @@
     <!--h1>{{ object }}</h1-->
 
 <aside id="sidebar">
-    <section class="box">
-        <h1 class="realisation">Realizacja i czas lekcji</h1>
-        {% if object.type == 'synthetic' %}
-        <p>To lekcja jest syntezą tematu
-        <strong>{{ object.section }}</strong></a>{% if object.level.slug = "liceum" %}
-            (na poziomie zaawansowanym)
-        {% endif %}.
-        Dostępny jest również
-        <strong><a href="{% url 'catalogue_lessons' %}#{{ object.section.slug }}">pełny kurs</a></strong>
-        tego tematu.
-        </p>
-        <p>Czas trwania: 45 minut.</p>
-        {% elif object.type == 'course' %}
-        <p>Ta lekcja jest częścią tematu
-        <a href="{{ object.section.get_absolute_url }}"><strong>{{ object.section }}</strong></a>{% if object.level.slug = "liceum" %}
-            (na poziomie zaawansowanym)
-        {% endif %}.
-        {% with object.get_syntetic as synth %}
-        {% if synth %}
-        Dostępna jest również
-        <strong><a href="{{ object.get_syntetic.get_absolute_url }}">lekcja syntetyczna</a></strong>
-        dla tego tematu.
-        {% endif %}
-        {% endwith %}
-        </p>
-        <p>Czas trwania: 45 minut.</p>
-        {% else %}
-        <p>?</p>
-        {% endif %}
-    </section>
-
-    {% if object.package %}
-        <section class="box-button"><a href="{{ object.package.url }}" class="dl-button">Pobierz całą lekcję</a></section>
-    {% endif %}
-    {% if object.student_package %}
-        <section><a href="{{ object.student_package.url }}" class="dl-button">Pobierz lekcję w wersji dla ucznia</a></section>
-    {% endif %}
+    {% block sidebar-top %}{% endblock %}
 
     <section class="section">
         {% lesson_nav object %}

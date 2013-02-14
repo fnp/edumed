@@ -10,6 +10,9 @@ $px: .0625em;
     width: 220*$px - 2 * 20*$px;
     height: 235*$px - 2 * 1.5em;
 
+    a {
+        display: block;
+    }
     h1 {
         color: white;
         margin: 0;

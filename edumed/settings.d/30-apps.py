@@ -12,6 +12,7 @@ INSTALLED_APPS = (
     'django_cas',
     'sponsors',
     'haystack',
+    'chunks',
 
 
     'django.contrib.auth',

@@ -5,6 +5,8 @@
   padding: 1.5em 1.25em;
   width: 11.25em;
   height: 11.688em; }
+  #main-promobox a {
+    display: block; }
   #main-promobox h1 {
     color: white;
     margin: 0;

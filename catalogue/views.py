@@ -3,6 +3,7 @@ from django.conf import settings
 from django.views.generic import DetailView, ListView
 from .models import Lesson, Section
 
+
 class SectionView(ListView):
     model = Section
 
@@ -12,3 +13,14 @@ class SectionView(ListView):
         context['package_url'] = os.path.join(settings.MEDIA_URL, settings.CATALOGUE_PACKAGE)
         context['package_student_url'] = os.path.join(settings.MEDIA_URL, settings.CATALOGUE_PACKAGE_STUDENT)
         return context
+
+
+class LessonView(DetailView):
+    model = Lesson
+
+    def get_template_names(self):
+        return [
+            'catalogue/lesson/%s/lesson_detail.html' % self.object.type,
+            'catalogue/lesson/lesson_detail.html',
+        ]
+        

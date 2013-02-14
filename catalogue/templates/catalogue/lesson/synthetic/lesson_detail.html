@@ -1,0 +1,19 @@
+{% extends "catalogue/lesson/lesson_detail.html" %}
+{% load url from future %}
+
+{% block sidebar-top %}
+
+<section class="box">
+    <h1 class="realisation">Realizacja i czas lekcji</h1>
+    <p>Ta lekcja jest syntezą tematu
+    <strong>{{ object.section }}</strong></a>{% if object.level.slug = "liceum" %}
+        (na poziomie zaawansowanym)
+    {% endif %}.
+    Dostępny jest również
+    <strong><a href="{% url 'catalogue_lessons' %}#{{ object.section.slug }}">pełny kurs</a></strong>
+    tego tematu.
+    </p>
+    <p>Czas trwania: 45 minut.</p>
+</section>
+
+{% endblock %}

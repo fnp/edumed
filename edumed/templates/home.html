@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load catalogue_tags %}
 {% load course_boxes_toc from curriculum_tags %}
+{% load chunk from chunks %}
 
 {% block full_title %}Edukacja medialna{% endblock %}
 
@@ -11,16 +12,7 @@
 <section id="main-promobox">
 <h1>Co nowego?</h1>
 
-<h2>Tytuł informacji pierwszej</h2>
-
-<p>Boks na informacje powinien pomieścić do dwóch krótkich zdań ułożonych
-w trzech, a może…</p>
-
-<h2>Tytuł informacji drugiej</h2>
-
-<p>Boks na informacje powinien pomieścić do dwóch krótkich zdań ułożonych
-w trzech wierszach?</p>
-{#% chunk "promobox" %#}
+{% chunk "promobox" %}
 </section>
 
 <section id="main-sections">
@@ -44,6 +36,10 @@ w trzech wierszach?</p>
 
 <section class="main-tools-box">
 <h1>Narzędzia</h1>
+<ul class="link-list">
+    <li><a href="{{ package_url }}">Pobierz wszystkie lekcje</a></li>
+    <li><a href="{{ package_student_url }}">Pobierz wszystkie lekcje w&nbsp;wersji dla ucznia</a></li>
+</ul>
 </section>
 
 <div style="clear:both"></div>

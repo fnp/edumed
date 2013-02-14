@@ -18,7 +18,7 @@
     <section class="box-button"><a href="{{ package_url }}" class="dl-button">Pobierz wszystkie lekcje</a></section>
     <section><a href="{{ package_student_url }}" class="dl-button">Pobierz wszystkie lekcje w&nbsp;wersji dla ucznia</a></section>
     <section class="section-minor">
-        <h1>Zebrane z wszystkich działów</h1>
+        <h1>Zebrane dla wszystkich tematów</h1>
         <ul class="link-list">
             {% for lesson in appendix %}
                 <li><a href="{{ lesson.get_absolute_url }}">{{ lesson }}</a></li>

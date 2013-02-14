@@ -1,12 +1,10 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
-from django.views.generic import TemplateView
+from .views import HomeView
 
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'edumed.views.home', name='home'),
-    url(r'^$', TemplateView.as_view(template_name="home.html"), name="home"),
+    url(r'^$', HomeView.as_view(), name="home"),
     url(r'^kompetencje/', include('curriculum.urls')),
     url(r'^lekcje/', include('catalogue.urls')),
 #    url(r'^i/', include('django.contrib.flatpages.urls')),
