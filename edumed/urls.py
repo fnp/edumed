@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^kompetencje/', include('curriculum.urls')),
     url(r'^lekcje/', include('catalogue.urls')),
 #    url(r'^i/', include('django.contrib.flatpages.urls')),
-    url(r'^i/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage',
+    url(r'^info/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage',
         name="info"),
     url(r'^szukaj/', include('haystack.urls')),
 )

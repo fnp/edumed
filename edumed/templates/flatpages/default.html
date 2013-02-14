@@ -1,7 +1,8 @@
 {% extends "base.html" %}
+{% load textile_pl from fnp_markup %}
 
 {% block title %}{{ flatpage.title }}{% endblock %}
 
 {% block body %}
-{{ flatpage.content }}
+{{ flatpage.content|textile_pl }}
 {% endblock %}
