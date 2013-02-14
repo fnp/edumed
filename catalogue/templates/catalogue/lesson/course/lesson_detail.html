@@ -20,4 +20,12 @@
     <p>Czas trwania: 45 minut.</p>
 </section>
 
+{% if object.package %}
+    <section class="box-button"><a href="{{ object.package.url }}" class="dl-button">Pobierz całą lekcję</a></section>
+{% endif %}
+{% if object.student_package %}
+    <section><a href="{{ object.student_package.url }}" class="dl-button">Pobierz lekcję w wersji dla ucznia</a></section>
+{% endif %}
+
+
 {% endblock %}
