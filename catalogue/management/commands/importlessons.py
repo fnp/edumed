@@ -29,7 +29,7 @@ class Command(BaseCommand):
 
     def import_book(self, file_path, options, attachments):
         verbose = options.get('verbose')
-        iofile = IOFile.from_filename(file_path)
+        iofile = IOFile.from_filename(os.path.join(self.curdir, file_path))
         iofile.attachments = attachments
         lesson = Lesson.publish(iofile)
 
@@ -57,6 +57,8 @@ class Command(BaseCommand):
         self.style = color_style()
         
         verbose = options.get('verbose')
+        self.curdir = os.path.abspath(os.curdir)
+
 
         # Start transaction management.
         transaction.commit_unless_managed()
@@ -67,18 +69,19 @@ class Command(BaseCommand):
         files_skipped = 0
 
         for dir_name in directories:
-            if not os.path.isdir(dir_name):
-                print self.style.ERROR("%s: Not a directory. Skipping." % dir_name)
+            abs_dir = os.path.join(self.curdir, dir_name)
+            if not os.path.isdir(abs_dir):
+                print self.style.ERROR("%s: Not a directory. Skipping." % abs_dir)
             else:
-                att_dir = os.path.join(dir_name, options['attachments'])
+                att_dir = os.path.join(abs_dir, options['attachments'])
                 attachments = self.all_attachments(att_dir)
 
                 # files queue
-                files = sorted(os.listdir(dir_name))
+                files = sorted(os.listdir(abs_dir))
                 postponed = {}
                 while files:
                     file_name = files.pop(0)
-                    file_path = os.path.join(dir_name, file_name)
+                    file_path = os.path.join(abs_dir, file_name)
                     file_base, ext = os.path.splitext(file_path)
 
                     # Skip files that are not XML files

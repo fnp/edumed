@@ -164,11 +164,12 @@ class Lesson(models.Model):
             wldoc = WLDocument.from_file(self.xml_file.path, provider=OrmDocProvider)
         else:
             wldoc = WLDocument(infile, provider=OrmDocProvider())
-        pdf = PdfFormat(wldoc).build()
         if student:
+            pdf = PdfFormat(wldoc).build()
             self.student_pdf.save("%s.pdf" % self.slug,
                 File(open(pdf.get_filename())))
         else:
+            pdf = PdfFormat(wldoc, teacher=True).build()
             self.pdf.save("%s.pdf" % self.slug,
                 File(open(pdf.get_filename())))
 
