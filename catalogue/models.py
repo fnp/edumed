@@ -180,6 +180,10 @@ class Lesson(models.Model):
         if pdf:
             zipf.write(pdf.path, 
                 "%s%s%s.pdf" % (prefix, self.slug, "_student" if student else ""))
+        for attachment in self.attachment_set.all():
+            zipf.write(attachment.file.path,
+                u"%smaterialy/%s.%s" % (prefix, attachment.slug, attachment.ext))
+            
         
 
     def build_package(self, student=False):
