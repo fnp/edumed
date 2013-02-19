@@ -300,6 +300,14 @@ em.person {
  clear: both;
 }
 
+#book-text {
+    .caption {
+        margin: 1.5em;
+        p {
+            margin: 0;
+        }
+    }
+}
 
 /* utils */
 

@@ -235,6 +235,11 @@ em.person {
 .clearboth {
   clear: both; }
 
+#book-text .caption {
+  margin: 1.5em; }
+  #book-text .caption p {
+    margin: 0; }
+
 /* utils */
 .clr {
   clear: both; }
