@@ -7,10 +7,10 @@ from curriculum.models import Level, Curriculum, CurriculumCourse
 
 class Section(models.Model):
     title = models.CharField(max_length=255, unique=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(max_length=255, unique=True)
     order = models.IntegerField()
     xml_file = models.FileField(upload_to="catalogue/section/xml",
-        null=True, blank=True)
+        null=True, blank=True, max_length=255)
 
     class Meta:
         ordering = ['order']
@@ -67,24 +67,24 @@ class Lesson(models.Model):
     section = models.ForeignKey(Section, null=True, blank=True)
     level = models.ForeignKey(Level)
     title = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(max_length=255, unique=True)
     type = models.CharField(max_length=15, db_index=True)
     order = models.IntegerField(db_index=True)
     dc = JSONField(default='{}')
     curriculum_courses = models.ManyToManyField(CurriculumCourse)
 
     xml_file = models.FileField(upload_to="catalogue/lesson/xml",
-        null=True, blank=True) # FIXME: slug in paths
+        null=True, blank=True, max_length=255)
     html_file = models.FileField(upload_to="catalogue/lesson/html",
-        null=True, blank=True)
+        null=True, blank=True, max_length=255)
     package = models.FileField(upload_to="catalogue/lesson/pack",
-        null=True, blank=True)
+        null=True, blank=True, max_length=255)
     student_package = models.FileField(upload_to="catalogue/lesson/student_pack",
-        null=True, blank=True)
+        null=True, blank=True, max_length=255)
     pdf = models.FileField(upload_to="catalogue/lesson/pdf",
-        null=True, blank=True)
+        null=True, blank=True, max_length=255)
     student_pdf = models.FileField(upload_to="catalogue/lesson/student_pdf",
-        null=True, blank=True)
+        null=True, blank=True, max_length=255)
 
     class Meta:
         ordering = ['section', 'level', 'order']
