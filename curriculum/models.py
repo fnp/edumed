@@ -17,6 +17,13 @@ class Section(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return "%s?s=%d" % (reverse("curriculum"), self.pk)
+
+    def url_for_level(self, level):
+        return "%s?s=%d&level=%s&d=1" % (reverse("curriculum"), self.pk, level.slug)
+        
+
 class Competence(models.Model):
     section = models.ForeignKey(Section)
     name = models.CharField(_('name'), max_length=255)
@@ -37,10 +44,17 @@ class Competence(models.Model):
     def for_level(self, level):
         return self.competencelevel_set.get(level=level)
 
+    def url_for_level(self, level):
+        return self.for_level(level).get_absolute_url()
+
     @classmethod
     def from_text(cls, text):
-        name = text.rsplit(u'\u2013', 1)[-1].strip()
-        return cls.objects.get(name__iexact=name)
+        """Tries to return a Competence or a Section."""
+        parts = text.rsplit(u'\u2013', 1)
+        if len(parts) == 1:
+            return Section.objects.get(name__iexact=text.strip())
+        else:
+            return cls.objects.get(name__iexact=parts[1])
 
 class Level(models.Model):
     group = models.CharField(_('group'), max_length=255)

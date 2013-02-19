@@ -42,7 +42,7 @@ def curriculum(identifiers):
 @register.filter
 def url_for_level(comp, level):
     try:
-        return comp.for_level(level).get_absolute_url()
+        return comp.url_for_level(level)
     except:
         return comp.get_absolute_url()
 
