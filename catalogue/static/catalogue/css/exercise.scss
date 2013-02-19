@@ -1,4 +1,7 @@
 $px: 0.0625em;
+$oranji: #ed7831;
+$ciemny: #363a3e;
+$zielony: #16a487;
 
 
 @mixin bubble {
@@ -113,6 +116,15 @@ $px: 0.0625em;
         }
     }
 
+    .instruction {
+        display: block;
+        margin: .3em;
+        color: green;
+        font-size: .9em;
+    }
+    .instruction:before {
+        content: "☞ ";
+    }
 }
 
 

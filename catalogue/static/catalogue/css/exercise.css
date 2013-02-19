@@ -49,6 +49,13 @@
     background: #16a487; }
   .exercise .buttons input.check {
     background: #ed7831; }
+.exercise .instruction {
+  display: block;
+  margin: .3em;
+  color: green;
+  font-size: .9em; }
+.exercise .instruction:before {
+  content: "☞ "; }
 
 .luki .question-piece {
   background-color: #d4d6d8;
