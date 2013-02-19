@@ -43,7 +43,8 @@
     font-weight: bold; }
   .exercise .buttons .message {
     float: right;
-    padding: 0 1.25em; }
+    padding: 0 1.25em;
+    background: red; }
   .exercise .buttons .maxscore {
     background: #16a487; }
   .exercise .buttons input.check {

@@ -50,6 +50,8 @@
             #catalogue-carousel #catalogue-carousel-links li a .catalogue-carousel-note p strong {
               margin-left: .5em;
               font-size: 2em; }
+      #catalogue-carousel #catalogue-carousel-links li a:active {
+        outline: none; }
   #catalogue-carousel #catalogue-carousel-switcher {
     margin: 0;
     padding: 3.125em 0 0 3.625em;
