@@ -28,23 +28,27 @@
         background: url(/static/catalogue/img/carousel-left.png) 100% 0 no-repeat;
         background-size: 4.375em 100%; }
         #catalogue-carousel #catalogue-carousel-links li a .catalogue-carousel-note {
+          position: relative;
           height: 100%;
-          margin-left: 50%;
-          background-color: black;
           color: white;
-          opacity: 0.6;
-          background-image: url(/static/catalogue/img/carousel-left.png);
-          background-position: 100% 0;
-          background-repeat: no-repeat;
-          background-size: 4.375em 100%; }
+          margin-top: 12em; }
+          #catalogue-carousel #catalogue-carousel-links li a .catalogue-carousel-note p:before {
+            content: " ";
+            display: block;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            background-color: black;
+            opacity: 0.6; }
           #catalogue-carousel #catalogue-carousel-links li a .catalogue-carousel-note p {
-            padding: 6em 2em 0 1.6em;
             margin: 0; }
             #catalogue-carousel #catalogue-carousel-links li a .catalogue-carousel-note p em {
-              display: block;
+              margin: 0 .2em 0 .5em;
               font-style: normal;
               font-size: 1.5em; }
             #catalogue-carousel #catalogue-carousel-links li a .catalogue-carousel-note p strong {
+              margin-left: .5em;
               font-size: 2em; }
   #catalogue-carousel #catalogue-carousel-switcher {
     margin: 0;
