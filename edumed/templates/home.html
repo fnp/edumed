@@ -30,7 +30,7 @@
 <section id="main-tools">
 
 <section class="main-tools-box">
-<h1>Aktualności</h1>
+<h1>Aktualności na stronie Fundacji</h1>
 {% latest_blog_posts "http://nowoczesnapolska.org.pl/feed" 5 %}
 </section>
 
@@ -46,5 +46,9 @@
 </section>
 
 
+{% endblock %}
 
+
+{% block footer_extra %}
+    <p>Wykorzystano zdjęcie <a href="http://www.flickr.com/photos/ahorcado/5758888635/">„Europejski Tydzień Młodzieży Katowice 2011”</a>, Krzysztof Duda, CC BY-SA</p>
 {% endblock %}

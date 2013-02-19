@@ -134,12 +134,12 @@ footer.main {
   padding: 0.2em 0.625em;
   margin: 2.5em auto 0 auto;
   color: #9a9c9e; }
+  footer.main p {
+    font-size: .75em; }
   footer.main .footer-item {
     float: left;
     margin-right: 1.25em;
     width: 13.75em; }
-    footer.main .footer-item p {
-      font-size: .75em; }
   footer.main .sponsors-column {
     float: left;
     margin-left: 1.25em;
