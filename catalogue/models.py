@@ -144,26 +144,28 @@ class Lesson(models.Model):
                 courses.add(curr.course)
         self.curriculum_courses = courses
 
-    def build_html(self, infile=None):
+    def wldocument(self, infile=None):
+        from librarian import IOFile
         from librarian.parser import WLDocument
-        from .publish import HtmlFormat, OrmDocProvider
+        from .publish import OrmDocProvider
 
         if infile is None:
-            wldoc = WLDocument.from_file(self.xml_file.path, provider=OrmDocProvider)
-        else:
-            wldoc = WLDocument(infile, provider=OrmDocProvider())
+            infile = IOFile.from_filename(self.xml_file.path)
+            for att in self.attachment_set.all():
+                infile.attachments["%s.%s" % (att.slug, att.ext)] = \
+                    IOFile.from_filename(att.file.path)
+        return WLDocument(infile, provider=OrmDocProvider())
+
+    def build_html(self, infile=None):
+        from .publish import HtmlFormat
+        wldoc = self.wldocument(infile)
         html = HtmlFormat(wldoc).build()
         self.html_file.save("%s.html" % self.slug,
             File(open(html.get_filename())))
 
     def build_pdf(self, student=False, infile=None):
-        from librarian.parser import WLDocument
-        from .publish import PdfFormat, OrmDocProvider
-
-        if infile is None:
-            wldoc = WLDocument.from_file(self.xml_file.path, provider=OrmDocProvider)
-        else:
-            wldoc = WLDocument(infile, provider=OrmDocProvider())
+        from .publish import PdfFormat
+        wldoc = self.wldocument(infile)
         if student:
             pdf = PdfFormat(wldoc).build()
             self.student_pdf.save("%s.pdf" % self.slug,
