@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load url from future %}
 {% load catalogue_tags %}
 {% load course_boxes_toc from curriculum_tags %}
 {% load chunk from chunks %}
@@ -39,6 +40,8 @@
 <ul class="link-list">
     <li><a href="{{ package_url }}">Pobierz wszystkie lekcje</a></li>
     <li><a href="{{ package_student_url }}">Pobierz wszystkie lekcje w&nbsp;wersji dla ucznia</a></li>
+    <li><a href="{% url 'catalogue_lesson' 'slowniczek' %}">Słowniczek</a></li>
+    <li><a href="{% url 'catalogue_lesson' 'metody' %}">Metody edukacyjne</a></li>
 </ul>
 </section>
 

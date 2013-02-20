@@ -29,7 +29,7 @@
 
 <div id="main-bar">
     <div class="section-list-toc">
-    <h2>Tematy<a name="top"></a></h2>
+    <h2 id='top'>Tematy</h2>
     <ul class="link-list">
     {% for object in object_list %}
         <li><a href="#{{ object.slug }}">{{ object }}</a></li>
@@ -47,7 +47,7 @@
         <div class="section-links">
             <a href="#top">wróć do spisu treści</a>
         </div>
-        <h2 class="section-header">{{ object }} <a name="{{ object.slug }}" class="permalink"></a></h2>
+        <h2 id='{{ object.slug }}' class="section-header">{{ object }}</h2>
 
         {% section_box object %}
     {% endfor %}
