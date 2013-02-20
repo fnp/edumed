@@ -38,6 +38,8 @@
 <section class="main-tools-box">
 <h1>Narzędzia</h1>
 <ul class="link-list">
+    <li><a href="{% url 'contact_form' 'sugestie' %}">Zgłoś błąd lub sugestię</a></li>
+    <li><a href="{% url 'info' 'jak-korzystac/' %}">Jak korzystać?</a></li>
     <li><a href="{{ package_url }}">Pobierz wszystkie lekcje</a></li>
     <li><a href="{{ package_student_url }}">Pobierz wszystkie lekcje w&nbsp;wersji dla ucznia</a></li>
     <li><a href="{% url 'catalogue_lesson' 'slowniczek' %}">Słowniczek</a></li>

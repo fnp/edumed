@@ -1,9 +1,12 @@
 {% extends "base.html" %}
+{% load chunks %}
 
 {% block title %}Katalog kompetencji medialnych i informacyjnych{% endblock %}
 
 {% block body %}
 <h1>Katalog kompetencji medialnych i informacyjnych</h1>
+
+{% chunk 'katalog_kompetencji' %}
 
 <div class="curriculum-form">
 <h2><a>Przeglądaj kompetencje <span>(rozwiń)</span></a></h2>
