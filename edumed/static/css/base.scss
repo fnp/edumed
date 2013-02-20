@@ -140,7 +140,7 @@ footer.main {
     border-top: 1px solid #c9ccce;
     width: 940 * $px;
     padding: .2em 10 * $px;
-    margin: 40*$px auto 0 auto;
+    margin: 40*$px auto 1em auto;
     color: #9a9c9e;
 
     p {
@@ -158,6 +158,9 @@ footer.main {
         p {
             font-size: .75em;
         }
+    }
+    .footer-extra p {
+        margin-top: 0;
     }
 }
 
@@ -237,5 +240,12 @@ footer.main {
     list-style: none;
     li {
         margin: 1em 0;
+    }
+}
+
+.flatpage {
+    img {
+        border: 5*$px solid #eee;
+        margin: 1.3em;
     }
 }

@@ -132,7 +132,7 @@ footer.main {
   border-top: 1px solid #c9ccce;
   width: 58.75em;
   padding: 0.2em 0.625em;
-  margin: 2.5em auto 0 auto;
+  margin: 2.5em auto 1em auto;
   color: #9a9c9e; }
   footer.main p {
     font-size: .75em; }
@@ -146,6 +146,8 @@ footer.main {
     width: 6.25em; }
     footer.main .sponsors-column p {
       font-size: .75em; }
+  footer.main .footer-extra p {
+    margin-top: 0; }
 
 #search {
   font-size: .8em; }
@@ -199,3 +201,7 @@ footer.main {
   list-style: none; }
   .plain li {
     margin: 1em 0; }
+
+.flatpage img {
+  border: 0.313em solid #eeeeee;
+  margin: 1.3em; }

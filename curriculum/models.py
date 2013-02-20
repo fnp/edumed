@@ -50,11 +50,11 @@ class Competence(models.Model):
     @classmethod
     def from_text(cls, text):
         """Tries to return a Competence or a Section."""
-        parts = text.rsplit(u'\u2013', 1)
+        parts = re.split(ur'[-\u2013]', text, 1)
         if len(parts) == 1:
             return Section.objects.get(name__iexact=text.strip())
         else:
-            return cls.objects.get(name__iexact=parts[1])
+            return cls.objects.get(name__iexact=parts[1].strip())
 
 class Level(models.Model):
     group = models.CharField(_('group'), max_length=255)
