@@ -34,7 +34,8 @@ class ContestForm(ContactForm):
     nieprzydatne = forms.CharField(label=u'Co w materiałach okazało się nieprzydatne w przygotowaniu i prowadzeniu lekcji?', 
             widget=forms.Textarea, max_length=2000)
     poprawic = forms.CharField(label=u'Jak możemy poprawić serwis edukacjamedialna.edu.pl?', 
-            widget=forms.Textarea, max_length=2000)
+            widget=forms.Textarea, max_length=2000,
+            required=False)
     inne = forms.CharField(label=u'Inne uwagi i komentarze', 
             widget=forms.Textarea, max_length=2000,
             required=False)
