@@ -1,4 +1,5 @@
 MIDDLEWARE_CLASSES = tuple(x for x in (
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware'
             if "django.contrib.sessions" in INSTALLED_APPS else None,
     #'django.middleware.locale.LocaleMiddleware',
@@ -19,5 +20,6 @@ MIDDLEWARE_CLASSES = tuple(x for x in (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'pagination.middleware.PaginationMiddleware'
             if "pagination" in INSTALLED_APPS else None,
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'fnpdjango.middleware.SetRemoteAddrFromXRealIP'
 ) if x is not None)
