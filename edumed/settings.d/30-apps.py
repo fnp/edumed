@@ -9,11 +9,12 @@ INSTALLED_APPS = (
     # Disable, if not using Piwik.
     'piwik.django',
     # Disable, if not using CAS.
+    'honeypot',
     'django_cas',
     'sponsors',
     'haystack',
     'chunks',
-
+    'contact',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',

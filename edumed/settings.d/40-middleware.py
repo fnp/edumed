@@ -6,6 +6,7 @@ MIDDLEWARE_CLASSES = tuple(x for x in (
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'honeypot.middleware.HoneypotMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware'
             if "django.contrib.auth" in INSTALLED_APPS else None,
     'django_cas.middleware.CASMiddleware'

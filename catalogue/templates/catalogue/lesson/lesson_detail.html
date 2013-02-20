@@ -102,6 +102,15 @@
 {% endif %}
 
 <div class="clr"></div>
+
+<p class="section-info">
+    {% block suggest-link %}
+    <a href="{% url 'contact_form' 'sugestie' %}?temat={{ 'Lekcja: '|add:object.title|urlencode }}">
+        Zgłoś swoją uwagę na temat tej lekcji.
+    </a>
+    {% endblock %}
+</p>
+
 </footer>
 </div>
 

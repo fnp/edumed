@@ -17,6 +17,7 @@ PIPELINE_CSS = {
         'source_filenames': (
           'css/base.scss',
           'css/main.scss',
+          'css/form.scss',
           'catalogue/css/carousel.scss',
           'catalogue/css/layout.scss',
           'catalogue/css/lesson.scss',

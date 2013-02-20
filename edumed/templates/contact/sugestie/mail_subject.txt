@@ -1,0 +1,1 @@
+Zgłoszenie na stronie {{ site_name }} zostało zarejestrowane.

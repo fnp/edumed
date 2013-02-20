@@ -1,0 +1,10 @@
+Dziękujemy,
+
+Zgłoszenie na stronie {{ site_name }}
+zostało przekazane koordynatorce projektu.
+
+W razie jakichkolwiek dodatkowych wątpliwości prosimy o kontakt:
+http://edukacjamedialna.edu.pl/info/kontakt/
+
+-- 
+Wiadomość wysłana automatycznie. Prosimy na nią nie odpowiadać.

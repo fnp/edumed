@@ -17,3 +17,9 @@
 </section>
 
 {% endblock %}
+
+{% block suggest-link %}
+<a href="{% url 'contact_form' 'sugestie' %}?temat={{ object.title|urlencode }}">
+    Zgłoś swoją uwagę na temat tej strony.
+</a>
+{% endblock %}

@@ -1,0 +1,20 @@
+.submit-form {
+    th, td {
+        padding: .3em;
+        vertical-align: top;
+        text-align: left;
+    }
+    th {
+        max-width: 16em;
+        font-weight: normal;
+    }
+    .required label:before {
+        content: "* ";
+        color: red;
+    }
+    .errorlist {
+        padding: 0 0 0 1em;
+        margin: 0;
+        color: red;
+    }
+}
