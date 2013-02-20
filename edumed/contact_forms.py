@@ -14,6 +14,16 @@ class RegistrationForm(ContactForm):
     tresc = forms.CharField(label=u'Treść', widget=forms.Textarea, max_length=1800)
 
 
+class CooperateForm(ContactForm):
+    form_tag = 'wspolpraca'
+    form_title = u"Bądź z nami w kontakcie"
+    admin_list = ['podpis', 'contact']
+
+    contact = forms.EmailField(label=u'E-mail', max_length=128)
+    podpis = forms.CharField(label=u'Podpis', max_length=128)
+    uwagi = forms.CharField(label=u'Uwagi', widget=forms.Textarea, max_length=1800, required=False)
+
+
 class ContestForm(ContactForm):
     form_tag = 'konkurs'
     form_title = u"Zgłoś się do konkursu"
