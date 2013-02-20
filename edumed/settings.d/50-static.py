@@ -38,7 +38,6 @@ PIPELINE_JS = {
             'jquery/colorbox/jquery.colorbox-pl.js',
             'catalogue/js/edumed.js',
             'catalogue/js/lesson.js',
-            'catalogue/js/carousel.js',
             'sponsors/js/sponsors.js',
             'curriculum/curriculum.js',
         ),
