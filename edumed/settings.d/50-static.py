@@ -25,6 +25,8 @@ PIPELINE_CSS = {
           'catalogue/css/section_list.scss',
           'curriculum/curriculum.scss',
           'jquery/colorbox/colorbox.css',
+
+          'css/annoy.css',
         ),
         'output_filename': 'compressed/base.css',
     },
@@ -40,6 +42,8 @@ PIPELINE_JS = {
             'catalogue/js/lesson.js',
             'sponsors/js/sponsors.js',
             'curriculum/curriculum.js',
+
+            'js/annoy.js',
         ),
         'output_filename': 'compressed/base.js',
     },
