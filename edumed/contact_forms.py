@@ -57,3 +57,16 @@ class ContestForm(ContactForm):
         label=u'Wyrażam zgodę na otrzymywanie informacji od Fundacji Nowoczesna Polska związanych z edukacją medialną.',
         required=False
     )
+
+
+class UdzialForm(ContactForm):
+    form_tag = 'udzial'
+    form_title = u"Udział"
+    admin_list = ['nazwisko', 'miejscowosc', 'instytucja']
+
+    nazwisko = forms.CharField(label=u'Imię i nazwisko', max_length=128)
+    miejscowosc = forms.CharField(label=u'Miejscowość', max_length=128)
+    instytucja = forms.CharField(label=u'Nazwa organizacji/instytucji', max_length=128)
+    contact = forms.EmailField(label=u'Adres e-mail', max_length=128)
+    telefon = forms.CharField(label=u'Telefon', max_length=32)
+    uczestnicy = forms.IntegerField(label=u'Przewidywana liczba uczestników zajęć')
