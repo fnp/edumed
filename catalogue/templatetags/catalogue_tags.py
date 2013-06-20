@@ -8,8 +8,12 @@ register = template.Library()
 
 @register.inclusion_tag("catalogue/snippets/carousel.html")
 def catalogue_carousel():
-    return {
-    }
+    lessons_count = Lesson.objects.filter(type__in=('course', 'synthetic')).count()
+    if 1 < lessons_count % 10 < 5 and lessons_count / 10 % 10 != 1:
+        lessons_desc = u'kompletne lekcje'
+    else:
+        lessons_desc = u'kompletnych lekcji'
+    return locals()
 
 @register.inclusion_tag("catalogue/snippets/section_buttons.html")
 def catalogue_section_buttons():
