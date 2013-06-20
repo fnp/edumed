@@ -30,6 +30,7 @@ def section_box(section):
             lessons[lesson.level][lesson.type] = []
         lessons[lesson.level][lesson.type].append(lesson)
     return {
+        "section": section,
         "lessons": lessons,
     }
 

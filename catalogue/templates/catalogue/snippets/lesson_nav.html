@@ -23,3 +23,11 @@
     </li>
 {% endfor %}
 </ul>
+
+{% with other=lesson.get_other_level %}
+    {% if other %}
+        <p>Ten temat jest dostępny również na 
+        <a href="{% url 'catalogue_lessons' %}#{{ lesson.section.slug }}_{{ other.slug }}">poziomie
+        {% if other.slug == 'liceum' %}zaawansowanym{% else %}podstawowym{% endif %}</a>.</p>
+    {% endif %}
+{% endwith %}

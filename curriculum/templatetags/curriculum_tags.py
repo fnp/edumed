@@ -60,6 +60,7 @@ def course_box(course):
             lessons[lesson.level][lesson.type] = []
         lessons[lesson.level][lesson.type].append(lesson)
     return {
+        "course": course,
         "lessons": lessons,
     }
 

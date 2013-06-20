@@ -19,9 +19,20 @@ class CooperateForm(ContactForm):
     form_title = u"Bądź z nami w kontakcie"
     admin_list = ['podpis', 'contact']
 
+    podpis = forms.CharField(label=u'Imię i nazwisko', max_length=128)
     contact = forms.EmailField(label=u'E-mail', max_length=128)
-    podpis = forms.CharField(label=u'Podpis', max_length=128)
+    instytucja = forms.CharField(label=u'Instytucja (nazwa, adres)', 
+            widget=forms.Textarea, max_length=1000, required=False)
     uwagi = forms.CharField(label=u'Uwagi', widget=forms.Textarea, max_length=1800, required=False)
+        
+    zajecia_przedszkole = forms.BooleanField(label=u'Prowadzę zajęcia z dziećmi w wieku przedszkolnym', required=False)
+    zajecia_sp13 = forms.BooleanField(label=u'Prowadzę zajęcia z dziećmi z SP kl. 1-3', required=False)
+    zajecia_sp46 = forms.BooleanField(label=u'Prowadzę zajęcia z dziećmi z SP kl. 4-6', required=False)
+    zajecia_gimnazjum = forms.BooleanField(label=u'Prowadzę zajęcia z młodzieżą w wieku gimnazjalnym', required=False)
+    zajecia_ponadgimnazjalne = forms.BooleanField(label=u'Prowadzę zajęcia z młodzieżą ze szkół ponadgimnazjalnych', required=False)
+    zajecia_wyzsze = forms.BooleanField(label=u'Prowadzę zajęcia w szkole wyższej', required=False)
+    zajecia_dorosli = forms.BooleanField(label=u'Prowadzę zajęcia dla dorosłych', required=False)
+    zajecia_seniorzy = forms.BooleanField(label=u'Prowadzę zajęcia dla seniorów', required=False)
 
 
 class ContestForm(ContactForm):

@@ -1,10 +1,10 @@
 {% for level, types in lessons.items %}
 {% if level.slug == "liceum" %}
-    <p>Poziom zaawansowany
+    <p><strong>{{section.title}}</strong>: poziom zaawansowany
         <span class="section-links"><a href="#top">wróć do spisu treści</a></span>
     </p>
 {% endif %}
-<section class="section-level section-level-{{ level.slug }}">
+<section id="{{ section.slug }}_{{ level.slug }}" class="section-level section-level-{{ level.slug }}">
     {% spaceless %}
     {% for lesson_type, lesson_list in types.items %}
         <section class="section-type section-type-{{ lesson_type }}">

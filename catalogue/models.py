@@ -202,7 +202,14 @@ class Lesson(models.Model):
             ContentFile(buff.getvalue()))
 
     def get_syntetic(self):
+        if self.section is None: return None
         return self.section.syntetic_lesson(self.level)
+
+    def get_other_level(self):
+        if self.section is None: return None
+        other_levels = self.section.lesson_set.exclude(level=self.level)
+        if other_levels.exists():
+            return other_levels[0].level
 
     def get_previous(self):
         if self.section is None: return None
