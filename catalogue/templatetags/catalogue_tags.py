@@ -38,7 +38,7 @@ def section_box(section):
 def lesson_nav(lesson):
     if lesson.type == 'course':
         root = lesson.section
-        siblings = root.lesson_set.filter(type='course', level=lesson.level)
+        siblings = Lesson.objects.filter(type='course', level=lesson.level, section=root)
         mark_level = False
     else:
         root = None
