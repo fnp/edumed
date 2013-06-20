@@ -27,7 +27,7 @@ class CooperateForm(ContactForm):
 class ContestForm(ContactForm):
     form_tag = 'konkurs'
     form_title = u"Zgłoś się do konkursu"
-    admin_list = ['name', 'organization', 'title']
+    admin_list = ['nazwisko', 'instytucja', 'tytul']
 
     nazwisko = forms.CharField(label=u'Imię i nazwisko', max_length=128)
     contact = forms.EmailField(label=u'Adres e-mail', max_length=128)
