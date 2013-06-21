@@ -250,3 +250,17 @@ class Part(models.Model):
         null=True, blank=True)
     student_pdf = models.FileField(upload_to="catalogue/part/student_pdf",
         null=True, blank=True)
+
+
+class LessonStub(models.Model):
+    section = models.ForeignKey(Section, null=True, blank=True)
+    level = models.ForeignKey(Level)
+    title = models.CharField(max_length=255)
+    type = models.CharField(max_length=15, db_index=True)
+    order = models.IntegerField(db_index=True)
+
+    class Meta:
+        ordering = ['section', 'level', 'order']
+
+    def __unicode__(self):
+        return self.title

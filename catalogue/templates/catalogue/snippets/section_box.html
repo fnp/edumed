@@ -17,9 +17,13 @@
             <ul class="section-lessons link-list">
                 {% for lesson in lesson_list %}
                     <li class="section-lesson">
-                        <a href="{{ lesson.get_absolute_url }}">{{ lesson }}{% if lesson_type == 'synthetic' %}
-                            <br/>(przegląd całego tematu w 45 minut)
-                        {% endif %}</a>
+                        {% if lesson.slug %}
+                            <a href="{{ lesson.get_absolute_url }}">{{ lesson }}{% if lesson_type == 'synthetic' %}
+                                <br/>(przegląd całego tematu w 45 minut)
+                            {% endif %}</a>
+                        {% else %}
+                            {{ lesson }} <em>(w przygotowaniu)</em>
+                        {% endif %}
                     </li>
                 {% endfor %}
             </ul>

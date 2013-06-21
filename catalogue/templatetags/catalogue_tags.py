@@ -24,7 +24,16 @@ def catalogue_section_buttons():
 @register.inclusion_tag("catalogue/snippets/section_box.html")
 def section_box(section):
     lessons = SortedDict()
-    for lesson in section.lesson_set.all():
+    lesson_lists = [alist for alist in [
+        list(section.lesson_set.all()),
+        list(section.lessonstub_set.all())
+    ] if alist]
+    while lesson_lists:
+        min_index, min_list = min(enumerate(lesson_lists), key=lambda x: x[1][0].order)
+        lesson = min_list.pop(0)
+        if not min_list:
+            lesson_lists.pop(min_index)
+
         if lesson.level not in lessons:
             newdict = SortedDict()
             newdict['synthetic'] = []
