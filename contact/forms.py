@@ -10,7 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 
 contact_forms = {}
 admin_list_width = 0
-class ContactFormMeta(forms.Form.__metaclass__):
+class ContactFormMeta(forms.Form.__class__):
     def __new__(cls, *args, **kwargs):
         global admin_list_width
         model = super(ContactFormMeta, cls).__new__(cls, *args, **kwargs)
