@@ -7,6 +7,7 @@ class AttachmentInline(admin.TabularInline):
 class LessonAdmin(admin.ModelAdmin):
     inlines = [AttachmentInline]
     list_display = ['title', 'section', 'type']
+    list_filter = ['level', 'type']
 
 admin.site.register(Section)
 admin.site.register(Lesson, LessonAdmin)

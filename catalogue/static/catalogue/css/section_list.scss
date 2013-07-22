@@ -4,6 +4,8 @@ $px: 0.0625em;
     width: 640*$px;
     border-radius: 15*$px;
     margin: 1em 0;
+    overflow: hidden;
+
     a:hover {
         text-decoration: underline;
     }
@@ -24,8 +26,10 @@ $px: 0.0625em;
     width: 300*$px - 2 * 20*$px;
 }
 .section-type-course {
-    border-radius: 0 15*$px 15*$px 0;
     width: 340*$px - 2 * 20*$px;
+}
+.section-type-project {
+    width: 640*$px - 2 * 20*$px;
 }
 
 .section-level-gimnazjum {
@@ -43,6 +47,9 @@ $px: 0.0625em;
         a {
             color: #fff;
         }
+    }
+    .section-type-project {
+        background-color: lighten(#f4ae83, 10);
     }
 }
 
@@ -63,6 +70,9 @@ $px: 0.0625em;
             color: #fff;
         }
     }
+    .section-type-project {
+        background-color: lighten(#44b69f, 25);
+    }
 }
 
 
@@ -76,9 +86,8 @@ $px: 0.0625em;
         a, a:hover {
             color: #363a3e;
         }
-        .section-type-course {
+        .section-type {
             background: white;
-            bborder-left: 1px solid #363a3e;
         }
     }
 }

@@ -71,7 +71,7 @@ class Lesson(models.Model):
     type = models.CharField(max_length=15, db_index=True)
     order = models.IntegerField(db_index=True)
     dc = JSONField(default='{}')
-    curriculum_courses = models.ManyToManyField(CurriculumCourse)
+    curriculum_courses = models.ManyToManyField(CurriculumCourse, blank=True)
 
     xml_file = models.FileField(upload_to="catalogue/lesson/xml",
         null=True, blank=True, max_length=255)

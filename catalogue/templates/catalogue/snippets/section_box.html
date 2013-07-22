@@ -10,6 +10,8 @@
         <section class="section-type section-type-{{ lesson_type }}">
             {% if lesson_type == 'synthetic' %}
                 <h1>Lekcja syntetyczna</h1>
+            {% elif lesson_type == 'project' %}
+                <h1>Projekt</h1>
             {% else %}
                 <h1>Pełny kurs</h1>
             {% endif %}
