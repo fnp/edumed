@@ -1,0 +1,21 @@
+{% extends "catalogue/lesson/lesson_detail.html" %}
+
+{% block sidebar-top %}
+
+<section class="box">
+    <h1 class="realisation">Projekt</h1>
+    <p>To jest projekt w ramach tematu
+    <strong>{{ object.section }}</strong></a>{% if object.level.slug = "liceum" %}
+        (na poziomie zaawansowanym)
+    {% endif %}.
+    Dostępny jest również
+    <strong><a href="{% url 'catalogue_lessons' %}#{{ object.section.slug }}">pełny kurs</a></strong>
+    tego tematu.
+    </p>
+</section>
+
+{% if object.package %}
+    <section class="box-button"><a href="{{ object.package.url }}" class="dl-button">Pobierz całą lekcję</a></section>
+{% endif %}
+
+{% endblock %}
