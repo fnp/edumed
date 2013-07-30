@@ -42,6 +42,9 @@ class Command(BaseCommand):
                     elif lesson.type == 'synthetic':
                         prefix = "%s/%s (synteza)/" % (
                                 section_dir, lesson.slug)
+                    elif lesson.type == 'project':
+                        prefix = "%s/%s (projekt)/" % (
+                                section_dir, lesson.slug)
                     else:
                         prefix = "%s/%s/" % (
                                 section_dir, lesson.slug)
