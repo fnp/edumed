@@ -11,6 +11,8 @@ class Section(models.Model):
     order = models.IntegerField()
     xml_file = models.FileField(upload_to="catalogue/section/xml",
         null=True, blank=True, max_length=255)
+    image = models.ImageField(upload_to="catalogue/section/image",
+        null=True, blank=True)
 
     class Meta:
         ordering = ['order']

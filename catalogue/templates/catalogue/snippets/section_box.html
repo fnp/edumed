@@ -1,3 +1,4 @@
+{% load thumbnail %}
 {% for level, types in lessons.items %}
 {% if level.slug == "liceum" %}
     <p><strong>{{section.title}}</strong>: poziom zaawansowany
@@ -6,9 +7,20 @@
 {% endif %}
 <section id="{{ section.slug }}_{{ level.slug }}" class="section-level section-level-{{ level.slug }}">
     {% spaceless %}
+    <div class='sections-row'>
     {% for lesson_type, lesson_list in types.items %}
+        {% if lesson_type == 'project' %}
+            </div><div class='sections-row'>
+        {% endif %}
         <section class="section-type section-type-{{ lesson_type }}">
             {% if lesson_type == 'synthetic' %}
+                {% if section.image %}
+                    {% thumbnail section.image "120x160" as im %}
+                        <a class="image" href="{{ section.image.url }}">
+                            <img src="{{ im.url }}" />
+                        </a>
+                    {% endthumbnail %}
+                {% endif %}
                 <h1>Lekcja syntetyczna</h1>
             {% elif lesson_type == 'project' %}
                 <h1>Projekt</h1>
@@ -34,6 +46,7 @@
             {% endif %}
         </section>
     {% endfor %}
+    </div>
     {% endspaceless %}
 </section>
 {% endfor %}
