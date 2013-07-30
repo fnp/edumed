@@ -12,6 +12,7 @@ urlpatterns = patterns('',
         name="info"),
     url(r'^szukaj/', include('haystack.urls')),
     url(r'^zglos/', include('contact.urls')),
+    url(r'^forum/', include('pybb.urls', namespace='pybb')),
 )
 
 

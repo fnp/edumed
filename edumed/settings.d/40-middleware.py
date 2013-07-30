@@ -21,5 +21,6 @@ MIDDLEWARE_CLASSES = tuple(x for x in (
     'pagination.middleware.PaginationMiddleware'
             if "pagination" in INSTALLED_APPS else None,
     'django.middleware.cache.FetchFromCacheMiddleware',
-    'fnpdjango.middleware.SetRemoteAddrFromXRealIP'
+    'fnpdjango.middleware.SetRemoteAddrFromXRealIP',
+    'pybb.middleware.PybbMiddleware',
 ) if x is not None)

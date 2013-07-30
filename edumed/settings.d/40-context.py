@@ -8,5 +8,6 @@ TEMPLATE_CONTEXT_PROCESSORS = tuple(x for x in (
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages"
             if 'django.contrib.messages' in INSTALLED_APPS else None,
-    "django.core.context_processors.request"
+    "django.core.context_processors.request",
+    'pybb.context_processors.processor',
 ) if x is not None)
