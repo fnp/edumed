@@ -15,6 +15,7 @@ INSTALLED_APPS = (
     'haystack',
     'chunks',
     'contact',
+    'sorl.thumbnail',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
