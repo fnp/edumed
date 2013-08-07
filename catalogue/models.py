@@ -124,9 +124,10 @@ class Lesson(models.Model):
         lesson.populate_dc()
         lesson.build_html(infile=infile)
         lesson.build_pdf(infile=infile)
-        lesson.build_pdf(student=True, infile=infile)
         lesson.build_package()
-        lesson.build_package(student=True)
+        if lesson.type != 'project':
+            lesson.build_pdf(student=True, infile=infile)
+            lesson.build_package(student=True)
         return lesson
 
     def populate_dc(self):
@@ -178,17 +179,15 @@ class Lesson(models.Model):
                 File(open(pdf.get_filename())))
 
     def add_to_zip(self, zipf, student=False, prefix=''):
-        zipf.write(self.xml_file.path,
-            "%spliki-zrodlowe/%s.xml" % (prefix, self.slug))
         pdf = self.student_pdf if student else self.pdf
         if pdf:
             zipf.write(pdf.path, 
                 "%s%s%s.pdf" % (prefix, self.slug, "_student" if student else ""))
-        for attachment in self.attachment_set.all():
-            zipf.write(attachment.file.path,
-                u"%smaterialy/%s.%s" % (prefix, attachment.slug, attachment.ext))
-            
-        
+            for attachment in self.attachment_set.all():
+                zipf.write(attachment.file.path,
+                    u"%smaterialy/%s.%s" % (prefix, attachment.slug, attachment.ext))
+            zipf.write(self.xml_file.path,
+                "%spliki-zrodlowe/%s.xml" % (prefix, self.slug))
 
     def build_package(self, student=False):
         from StringIO import StringIO
