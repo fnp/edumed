@@ -19,7 +19,7 @@ Feedparser
 django-honeypot
 
 # Librarian
-lxml
+lxml>=3.0
 texml
 
 # sponsors
