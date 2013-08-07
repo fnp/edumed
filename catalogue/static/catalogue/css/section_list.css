@@ -20,7 +20,8 @@
   .section-type img {
     float: left;
     margin-right: 1em;
-    margin-bottom: 1em; }
+    margin-bottom: 1em;
+    border: 0.375em solid white; }
 
 .section-type-synthetic {
   width: 18.75em; }
