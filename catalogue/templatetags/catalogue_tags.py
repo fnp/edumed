@@ -49,14 +49,15 @@ def section_box(section):
 
 @register.inclusion_tag("catalogue/snippets/lesson_nav.html")
 def lesson_nav(lesson):
-    if lesson.type in ('course', 'project'):
+    if lesson.type == 'course':
         root = lesson.section
         siblings = Lesson.objects.filter(type='course', level=lesson.level, section=root)
         mark_level = False
+        link_other_level = True
     else:
         root = None
         siblings = Lesson.objects.filter(type=lesson.type)
-        mark_level = True
+        mark_level = link_other_level = lesson.type == 'course'
     return {
         "lesson": lesson,
         "root": root,

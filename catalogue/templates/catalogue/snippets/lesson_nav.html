@@ -3,6 +3,8 @@
     <a href="{{ root.get_absolute_url }}">{{ root }}</a>
 {% elif lesson.type == 'synthetic' %}
     <a href="{% url 'catalogue_lessons' %}">Lekcje syntetyczne ze wszystkich tematów</a>
+{% elif lesson.type == 'project' %}
+    <a href="{% url 'catalogue_lessons' %}">Projekty ze wszystkich tematów</a>
 {% else %}
     <a href="{% url 'catalogue_lessons' %}">Inne</a>
 {% endif %}
@@ -23,6 +25,7 @@
 {% endfor %}
 </ul>
 
+{% if link_other_level %}
 {% with other=lesson.get_other_level %}
     {% if other %}
         <p>Ten temat jest dostępny również na 
@@ -30,3 +33,4 @@
         {% if other.slug == 'liceum' %}zaawansowanym{% else %}podstawowym{% endif %}</a>.</p>
     {% endif %}
 {% endwith %}
+{% endif %}
