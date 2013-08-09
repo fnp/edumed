@@ -28,3 +28,10 @@ USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
+
+CONTRIB_LOCALE_APPS = (
+    'pybb',
+)
+LOCALE_PATHS = (
+    path.join(PROJECT_DIR, 'edumed/locale-contrib'),
+)

@@ -59,7 +59,7 @@
         </header>
         </div>
 
-        <div id="content">{% block body %}{% block content %}{% endblock %}{% endblock %}</div>
+        <div id="content">{% block body %}{% endblock %}</div>
 
         <footer class="main">
             {# chunks? #}
@@ -96,6 +96,7 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     {% compressed_js 'base' %}
+    {% block extra_script %}{% endblock %}
     {{ piwik_tag|safe }}
     </body>
 </html>

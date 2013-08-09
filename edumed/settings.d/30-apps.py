@@ -16,6 +16,7 @@ INSTALLED_APPS = (
     'chunks',
     'contact',
     'pybb',
+    'django_libravatar',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -31,3 +31,4 @@ pysolr>=3,<4
 
 pybbm>=0.14,<0.15
 sorl-thumbnail>=11,<12
+django-libravatar
