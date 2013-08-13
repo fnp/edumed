@@ -17,6 +17,7 @@ INSTALLED_APPS = (
     'contact',
     'pybb',
     'django_libravatar',
+    'sorl.thumbnail',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',

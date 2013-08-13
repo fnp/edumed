@@ -19,7 +19,7 @@ Feedparser
 django-honeypot
 
 # Librarian
-lxml
+lxml>=3.0
 texml
 
 # sponsors
@@ -30,5 +30,7 @@ django-haystack>=2.0,<2.1
 pysolr>=3,<4
 
 pybbm>=0.14,<0.15
-sorl-thumbnail>=11,<12
 django-libravatar
+
+sorl-thumbnail>=11,<12
+

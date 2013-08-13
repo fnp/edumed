@@ -6,20 +6,28 @@
   .section-level a:hover {
     text-decoration: underline; }
 
+.sections-row {
+  display: table; }
+
 .section-type {
-  display: inline-block;
+  display: table-cell;
   vertical-align: top;
   padding: 1.25em; }
   .section-type h1 {
     text-transform: uppercase;
     margin: 0 0 1em 0;
     font-size: 1em; }
+  .section-type img {
+    float: left;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    border: 0.375em solid white; }
 
 .section-type-synthetic {
-  width: 16.25em; }
+  width: 18.75em; }
 
 .section-type-course {
-  width: 18.75em; }
+  width: 16.25em; }
 
 .section-type-project {
   width: 37.5em; }
@@ -59,6 +67,10 @@
     color: #363a3e; }
   .course-boxes .section-level .section-type {
     background: white; }
+.course-boxes .section-type-synthetic {
+  width: 16.25em; }
+.course-boxes .section-type-course {
+  width: 18.75em; }
 
 .section-links {
   float: right; }
