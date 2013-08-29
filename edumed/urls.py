@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^szukaj/', include('haystack.urls')),
     url(r'^zglos/', include('contact.urls')),
     url(r'^forum/profile/edit/$', AvatarlessProfileEditView.as_view(), name='edit_profile'),
+    url(r'^forum/', include('forum.urls')),
     url(r'^forum/', include('pybb.urls', namespace='pybb')),
 )
 

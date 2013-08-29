@@ -15,6 +15,7 @@ INSTALLED_APPS = (
     'haystack',
     'chunks',
     'contact',
+    'forum',
     'pybb',
     'django_libravatar',
     'sorl.thumbnail',
