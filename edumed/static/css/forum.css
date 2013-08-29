@@ -38,6 +38,8 @@ ul.breadcrumb {
     text-align: center; }
   .forum-body .first-unread-post-link, .forum-body .first-unread-post-link:hover {
     text-decoration: none; }
+  .forum-body .post:nth-child(4n+4) {
+    background-color: #eaeaea; }
   .forum-body .post-header {
     padding: 3px 0 3px 20px; }
     .forum-body .post-header th {
