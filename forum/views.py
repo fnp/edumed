@@ -1,5 +1,8 @@
+from django.core.exceptions import ObjectDoesNotExist
 import pybb.views
 import pybb.forms
+
+from catalogue.models import Lesson
 
 from .forms import PostForm
 from .models import Topic
@@ -48,5 +51,9 @@ class EditPostView(PostEditMixin, pybb.views.EditPostView):
 
     def get_form_kwargs(self):
         kwargs = super(EditPostView, self).get_form_kwargs()
-        kwargs['initial']['lesson'] = self.object.topic.edumed_topic.lesson
+        try:
+            lesson = self.object.topic.edumed_topic.lesson
+        except ObjectDoesNotExist:
+            lesson = None
+        kwargs['initial']['lesson'] = lesson
         return kwargs

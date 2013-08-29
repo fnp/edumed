@@ -6,5 +6,5 @@ from catalogue.models import Lesson
 
 
 class PostForm(pybb.forms.PostForm):
-    lesson = forms.ModelChoiceField(label = _('Related lesson'), queryset = Lesson.objects.all())
+    lesson = forms.ModelChoiceField(label = _('Related lesson'), queryset = Lesson.objects.all(), required = False)
     
