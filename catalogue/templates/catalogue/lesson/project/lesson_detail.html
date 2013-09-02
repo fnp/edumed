@@ -4,7 +4,7 @@
 
 <section class="box">
     <h1 class="realisation">Projekt</h1>
-    <p>To jest projekt w ramach tematu
+    <p>To jest <a href="{% url 'info' 'metoda-projektowa' %}">projekt</a> w ramach tematu
     <strong>{{ object.section }}</strong></a>{% if object.level.slug = "liceum" %}
         (na poziomie zaawansowanym)
     {% endif %}.
