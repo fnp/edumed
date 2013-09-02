@@ -77,3 +77,8 @@ ul.breadcrumb {
     background: #ffcccc; }
   .forum-body .mini-pagination {
     padding: 3px 0 3px 10px; }
+  .forum-body .post-form input, .forum-body .post-form textarea {
+    font-family: Dosis;
+    background: white;
+    color: #363a3e;
+    font-size: 1.6em; }

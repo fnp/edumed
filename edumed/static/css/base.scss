@@ -1,9 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Dosis:400,700&subset=latin,latin-ext);
 
-$px: .0625em;
-$oranji: #ed7831;
-$ciemny: #363a3e;
-$zielony: #16a487;
+@import "vars";
+@import "mixins";
 
 
 a {
@@ -16,10 +14,8 @@ a {
 }
 
 body {
-    font-family: Dosis;
+    @include base-font;
     margin: 0;
-    background: white;
-    color: $ciemny;
 }
 .clr {
     clear: both;

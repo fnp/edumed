@@ -1,0 +1,7 @@
+@import "vars";
+
+@mixin base-font {
+    font-family: Dosis;
+    background: white;
+    color: $ciemny;
+}
