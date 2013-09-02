@@ -324,23 +324,23 @@ msgstr ""
 
 #: pybb/templates/pybb/_markitup.html:15
 msgid "Bold"
-msgstr ""
+msgstr "Pogrubienie"
 
 #: pybb/templates/pybb/_markitup.html:16
 msgid "Italic"
-msgstr ""
+msgstr "Kursywa"
 
 #: pybb/templates/pybb/_markitup.html:17
 msgid "Underline"
-msgstr ""
+msgstr "Podkreślenie"
 
 #: pybb/templates/pybb/_markitup.html:18
 msgid "Stroke"
-msgstr ""
+msgstr "Przekreślenie"
 
 #: pybb/templates/pybb/_markitup.html:20
 msgid "Picture"
-msgstr ""
+msgstr "Obrazek"
 
 #: pybb/templates/pybb/_markitup.html:21
 msgid "Link"
@@ -348,23 +348,23 @@ msgstr ""
 
 #: pybb/templates/pybb/_markitup.html:23
 msgid "Bulleted list"
-msgstr ""
+msgstr "Lista wypunktowana"
 
 #: pybb/templates/pybb/_markitup.html:24
 msgid "Numeric list"
-msgstr ""
+msgstr "Lista numerowana"
 
 #: pybb/templates/pybb/_markitup.html:25
 msgid "List item"
-msgstr ""
+msgstr "Element listy"
 
 #: pybb/templates/pybb/_markitup.html:27
 msgid "Quotes"
-msgstr ""
+msgstr "Cytat"
 
 #: pybb/templates/pybb/_markitup.html:28
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: pybb/templates/pybb/_markitup.html:30
 msgid "Clean"
@@ -372,7 +372,7 @@ msgstr ""
 
 #: pybb/templates/pybb/_markitup.html:31
 msgid "Preview"
-msgstr ""
+msgstr "Podgląd"
 
 #: pybb/templates/pybb/_need_to_login_message.html:3
 msgid "Register"
@@ -456,7 +456,7 @@ msgstr ""
 #: pybb/templates/pybb/index.html:25 pybb/templates/pybb/latest_topics.html:7
 #: pybb/templates/pybb/latest_topics.html:17
 msgid "Last updates in topics"
-msgstr ""
+msgstr "Ostatnio modyfikowane tematy"
 
 #: pybb/templates/pybb/index.html:28
 msgid "Mark all forums as read"
@@ -468,7 +468,7 @@ msgstr ""
 
 #: pybb/templates/pybb/latest_topics.html:33
 msgid "Mark all topics as read"
-msgstr ""
+msgstr "Oznacz wszystkie tematy jako przeczytane"
 
 #: pybb/templates/pybb/pagination.html:7
 msgid "previous page"
@@ -484,7 +484,7 @@ msgstr ""
 
 #: pybb/templates/pybb/poll.html:37
 msgid "'Cancel my poll vote'"
-msgstr ""
+msgstr "Anuluj mój głos w ankiecie"
 
 #: pybb/templates/pybb/poll_edit_form.html:7
 msgid "Poll answers"
@@ -533,7 +533,7 @@ msgstr ""
 #: pybb/templates/pybb/topic.html:24 pybb/templates/pybb/topic.html:44
 #: pybb/templates/pybb/user_posts.html:8
 msgid "'Posts'"
-msgstr ""
+msgstr "'Posty'"
 
 #: pybb/templates/pybb/topic.html:52
 msgid "Unstick topic"
@@ -553,7 +553,7 @@ msgstr ""
 
 #: pybb/templates/pybb/topic.html:66
 msgid "Merge topics"
-msgstr ""
+msgstr "Połącz wątki"
 
 #: pybb/templates/pybb/topic.html:71
 msgid "Unsubscribe"
@@ -601,15 +601,15 @@ msgstr ""
 
 #: pybb/templates/pybb/user.html:36
 msgid "Block and delete all messages"
-msgstr ""
+msgstr "Zablokuj i usuń wszystkie posty"
 
 #: pybb/templates/pybb/user_posts.html:13
 msgid "All posts created by"
-msgstr ""
+msgstr "Wszystkie posty utworzone przez"
 
 #: pybb/templates/pybb/user_topics.html:8
 msgid "'Topics'"
-msgstr ""
+msgstr "'Tematy'"
 
 #: pybb/templates/pybb/user_topics.html:11
 #: pybb/templates/pybb/user_topics.html:15
@@ -626,7 +626,7 @@ msgstr ""
 
 #: pybb/templates/pybb/users.html:24
 msgid "'Users'"
-msgstr ""
+msgstr "'Użytkownicy'"
 
 #: pybb/templates/pybb/mail_templates/subscription_email_body.html:3
 msgid "replied in topic to which you are subscribed."
