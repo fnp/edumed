@@ -82,3 +82,5 @@ ul.breadcrumb {
     background: white;
     color: #363a3e;
     font-size: 1.6em; }
+  .forum-body .post-form #id_name {
+    width: 698px; }
