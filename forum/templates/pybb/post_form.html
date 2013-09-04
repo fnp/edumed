@@ -27,7 +27,7 @@
       {% endfor %}
     </div>
 
-    {% if form.poll_type %}
+    {% if form.poll_type and request.user.is_superuser %}
       {% include "pybb/poll_edit_form.html" %}
     {% endif %}
     {% include "pybb/attachments_formset.html" %}
