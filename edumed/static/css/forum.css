@@ -6,9 +6,12 @@ ul.breadcrumb {
     display: inline; }
 
 .forum-body {
+  position: relative;
   /* --- Unread --- */
   /* --- Moderation --- */
   /* --- Mini pagination --- */ }
+  .forum-body .search-result em {
+    background-color: yellow; }
   .forum-body .pagination ul {
     margin: 0;
     padding: 0;

@@ -1,8 +1,10 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block body %}
 <div class="forum-body">
     {% block breadcrumb %}{% endblock %}
+    <a href="{% url 'forum_search' %}" style="position: absolute; top: 0; right: 5px;">{% trans 'Forum search' %}</a>
     {% block content %}{% endblock %}
 </div>
 {% endblock %}

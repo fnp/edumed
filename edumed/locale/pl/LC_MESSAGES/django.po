@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-19 15:57+0100\n"
+"POT-Creation-Date: 2013-09-04 13:32+0200\n"
 "PO-Revision-Date: 2012-11-19 15:58+0100\n"
 "Last-Translator: Radek Czajka <radoslaw.czajka@nowoczesnapolska.org.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,4 +25,8 @@ msgstr "Strona nie znaleziona"
 #: templates/404.html:11
 msgid "The page you were looking for doesn't exist."
 msgstr "Strona której szukasz nie została znaleziona."
+
+#: templates/base_forum.html:7
+msgid "Forum search"
+msgstr "Szukaj na forum"
 

@@ -13,6 +13,15 @@ ul.breadcrumb {
 
 
 .forum-body {
+
+    position: relative;
+
+    .search-result {
+        em {
+            background-color: yellow;
+        }
+    }
+
     .pagination {
         ul {
             margin: 0;
