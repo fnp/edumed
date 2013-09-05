@@ -30,6 +30,9 @@
                 src="{% static "tlo.png" %}"
                 style="position:absolute; opacity: 0.5; top:0; left: -83px; z-index:1000"
                 -->
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}" style="position: absolute; top:5px; right: 10px; font-size: 12px;">Wyloguj</a>
+            {% endif %}
             <div id="header-top">
             <a id="logo" href="/"><img src="{% static "img/logo.png" %}" alt="Edukacja medialna"/></a>
             <div id="organizer">
