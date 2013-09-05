@@ -23,4 +23,5 @@ MIDDLEWARE_CLASSES = tuple(x for x in (
     'django.middleware.cache.FetchFromCacheMiddleware',
     'fnpdjango.middleware.SetRemoteAddrFromXRealIP',
     'pybb.middleware.PybbMiddleware',
+    'forum.middleware.ForumMiddleware'
 ) if x is not None)
