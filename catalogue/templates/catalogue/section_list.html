@@ -23,6 +23,7 @@
             {% for lesson in appendix %}
                 <li><a href="{{ lesson.get_absolute_url }}">{{ lesson }}</a></li>
             {% endfor %}
+            <li><a href="{% url 'info' 'infografiki' %}">Infografiki</a></li>
         </ul>
     </section>
 </aside>
