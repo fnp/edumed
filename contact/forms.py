@@ -33,12 +33,22 @@ class ContactForm(forms.Form):
     required_css_class = 'required'
     contact = forms.CharField(max_length=128)
 
-    def save(self, request):
+    def save(self, request, formsets=None):
         from .models import Attachment, Contact
         body = {}
         for name, value in self.cleaned_data.items():
             if not isinstance(value, UploadedFile) and name != 'contact':
-                    body[name] = value
+                body[name] = value
+
+        for formset in formsets or []:
+            for f in formset.forms:
+                sub_body = {}
+                for name, value in f.cleaned_data.items():
+                    if not isinstance(value, UploadedFile):
+                        sub_body[name] = value
+                if sub_body:
+                    body.setdefault(f.form_tag, []).append(sub_body)
+                
         contact = Contact.objects.create(body=body,
                     ip=request.META['REMOTE_ADDR'],
                     contact=self.cleaned_data['contact'],

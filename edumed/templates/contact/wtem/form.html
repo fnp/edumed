@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load chunks %}
+
+{% block title %}{{ form.form_title }}{% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+    <h1>{% block contact_form_title %}{{ form.form_title }}{% endblock %}</h1>
+
+    <div class="form-info">
+    {% block contact_form_description %}
+        {% chunk "contact_form__"|add:form.form_tag %}
+    {% endblock %}
+    </div>
+
+    <form method="POST" action="." enctype="multipart/form-data" class="submit-form">
+    {% csrf_token %}
+    <h3>Dane Opiekuna/Opiekunki i instytucji zgłaszającej Uczestnika:</h3>
+    <table>
+        {{ form.as_table }}
+    </table>
+
+    {% for formset in formsets %}
+
+        {{ formset.management_form }}
+
+        <ul class="errorlist">
+        {% for err in formset.non_form_errors %}
+            <li>{{ err }}</li>
+        {% endfor %}
+        </ul>
+
+        {% for form in formset.forms %}
+            <h3>Dane Uczestnika/Uczestniczki:</h3>
+
+            <table>
+                {{ form.as_table }}
+            </table>
+        {% endfor %}
+
+        <div id="formstub-{{ formset.prefix }}" style="display:none">
+            <h3>Dane Uczestnika/Uczestniczki:</h3>
+            <table>
+                {{ formset.empty_form.as_table }}
+            </table>
+        </div>
+
+        <input type="button" value="+ Dodaj kolejną osobę" class="add_more" data-selector="#formstub-{{formset.prefix}}" data-prefix="{{formset.prefix}}">
+        <script>
+
+        </script>
+
+    {% endfor %}
+
+    <p>
+    <button style="font-size:1.5em;">{% block contact_form_submit %}{{ form.submit_label }}{% endblock %}</button>
+    </p>
+    </form>
+
+
+{% endblock %}

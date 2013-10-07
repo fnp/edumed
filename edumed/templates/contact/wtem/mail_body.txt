@@ -1,0 +1,18 @@
+Dziękujemy za rejestrację w Wielkim Turnieju Edukacji Medialnej.
+Do udziału zostały zgłoszone następujące osoby:
+{% for student in contact.body.student %}
+* {{ student.first_name }} {{ student.last_name }}{% endfor %}
+
+Pierwszy etap Turnieju odbędzie się 21 listopada 2013 r. o godz. 15.30.
+Po zakończeniu rejestracji (4 listopada) każdy Uczestnik otrzyma maila
+z indywidualną instrukcją dotyczącą udziału w I etapie Turnieju.
+
+Wszystkie ogłoszenia związane z Turniejem będą publikowane na stronie
+http://edukacjamedialna.edu.pl/WTEM. W razie pytań lub wątpliwości
+możesz kontaktować się z nami pisząc na adres
+edukacjamedialna@nowoczesnapolska.org.pl.
+
+Z pozdrowieniami
+
+Zespół Edukacji Medialnej
+Fundacja Nowoczesna Polska

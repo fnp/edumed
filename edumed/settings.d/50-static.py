@@ -40,6 +40,7 @@ PIPELINE_JS = {
             'catalogue/js/lesson.js',
             'sponsors/js/sponsors.js',
             'curriculum/curriculum.js',
+            'js/formset.js',
         ),
         'output_filename': 'compressed/base.js',
     },
