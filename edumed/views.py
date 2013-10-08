@@ -1,6 +1,9 @@
 import os.path
 from django.conf import settings
 from django.views.generic import TemplateView
+from pybb.views import ProfileEditView
+from .forms import AvatarlessEditProfileForm
+
 
 class HomeView(TemplateView):
     template_name="home.html"
@@ -10,3 +13,6 @@ class HomeView(TemplateView):
         context['package_url'] = os.path.join(settings.MEDIA_URL, settings.CATALOGUE_PACKAGE)
         context['package_student_url'] = os.path.join(settings.MEDIA_URL, settings.CATALOGUE_PACKAGE_STUDENT)
         return context
+
+class AvatarlessProfileEditView(ProfileEditView):
+    form_class = AvatarlessEditProfileForm

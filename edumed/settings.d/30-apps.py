@@ -15,6 +15,9 @@ INSTALLED_APPS = (
     'haystack',
     'chunks',
     'contact',
+    'forum',
+    'pybb',
+    'django_libravatar',
     'sorl.thumbnail',
 
     'django.contrib.auth',
@@ -26,4 +29,5 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.flatpages',
+    'django.contrib.humanize'
 )

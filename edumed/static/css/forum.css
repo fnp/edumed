@@ -1,0 +1,89 @@
+ul.breadcrumb {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+  ul.breadcrumb li {
+    display: inline; }
+
+.forum-body {
+  position: relative;
+  /* --- Unread --- */
+  /* --- Moderation --- */
+  /* --- Mini pagination --- */ }
+  .forum-body .search-result em {
+    background-color: yellow; }
+  .forum-body .pagination ul {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+    .forum-body .pagination ul li {
+      display: inline-block; }
+      .forum-body .pagination ul li a {
+        display: block;
+        padding: .5em; }
+    .forum-body .pagination ul .disabled a {
+      color: black; }
+  .forum-body .table {
+    width: 100%;
+    margin: 1em 0; }
+  .forum-body .forum-description {
+    margin: 5px; }
+  .forum-body .forum-row, .forum-body .topic-row {
+    width: 100%; }
+  .forum-body .forum-name, .forum-body .topic-name {
+    width: 40%;
+    text-align: left; }
+  .forum-body .forum-topic-count, .forum-body .forum-post-count, .forum-body .topic-post-count, .forum-body .topic-view-count {
+    width: 10%;
+    text-align: center; }
+  .forum-body .forum-last-post, .forum-body .topic-last-post {
+    width: 32%;
+    text-align: center; }
+  .forum-body .first-unread-post-link, .forum-body .first-unread-post-link:hover {
+    text-decoration: none; }
+  .forum-body .post:nth-child(4n+4) {
+    background-color: #eaeaea; }
+  .forum-body .post-header {
+    padding: 3px 0 3px 20px; }
+    .forum-body .post-header th {
+      text-align: left; }
+  .forum-body .post-info {
+    width: 200px;
+    padding: 10px; }
+    .forum-body .post-info .post-author {
+      padding: 5px 0; }
+  .forum-body .post-content {
+    vertical-align: top;
+    padding: 10px; }
+  .forum-body .post-signature {
+    color: #CCC;
+    margin-top: 15px;
+    border-top: 1px dotted #cccccc;
+    display: block; }
+  .forum-body .post-related {
+    margin-top: 20px; }
+  .forum-body .forum-headline {
+    margin-top: 10px; }
+  .forum-body .attachments-form {
+    padding-bottom: 15px; }
+  .forum-body .attachment-link {
+    border-bottom: 1px dotted; }
+  .forum-body .state-indicator {
+    display: block;
+    float: left;
+    height: 10px;
+    width: 10px;
+    margin: 3px 5px; }
+  .forum-body .topic-unread a, .forum-body .forum-unread a {
+    font-weight: bold; }
+  .forum-body .on-moderation {
+    background: #ffcccc; }
+  .forum-body .mini-pagination {
+    padding: 3px 0 3px 10px; }
+  .forum-body .post-form input, .forum-body .post-form textarea {
+    font-family: Dosis;
+    background: white;
+    color: #363a3e;
+    font-size: 1.6em; }
+  .forum-body .post-form #id_name {
+    width: 698px; }

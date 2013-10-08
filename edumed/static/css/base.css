@@ -9,9 +9,9 @@ a {
 
 body {
   font-family: Dosis;
-  margin: 0;
   background: white;
-  color: #363a3e; }
+  color: #363a3e;
+  margin: 0; }
 
 .clr {
   clear: both; }
@@ -22,9 +22,9 @@ body {
   background-position: 0 100%; }
 
 header.main {
-  margin: 0 auto 1.438em;
+  margin: 0 auto 1.4375em;
   width: 58.75em;
-  padding: 1.813em 0.625em 0; }
+  padding: 1.8125em 0.625em 0; }
   header.main #logo {
     float: left;
     margin-bottom: 1.25em; }
@@ -44,7 +44,7 @@ header.main {
     list-style: none;
     display: inline-block;
     text-transform: uppercase;
-    margin: 0 .5em;
+    margin: 0 0.5em;
     text-align: center;
     /*position:relative;*/ }
   header.main nav a {
@@ -203,5 +203,5 @@ footer.main {
     margin: 1em 0; }
 
 .flatpage img {
-  border: 0.313em solid #eeeeee;
+  border: 0.3125em solid #eeeeee;
   margin: 1.3em; }

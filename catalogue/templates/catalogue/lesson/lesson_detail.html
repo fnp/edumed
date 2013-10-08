@@ -111,6 +111,17 @@
 </p>
 
 </footer>
+
+
+{% if request.user.is_authenticated and object.forum_topics.all.count %}
+    <h2>Na forum</h2>
+    <ul>
+    {% for forum_topic in object.forum_topics.all %}
+        <li><a href="{{forum_topic.pybb_topic.get_absolute_url}}">{{forum_topic.pybb_topic.name}}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
 </div>
 
 {% endblock %}
