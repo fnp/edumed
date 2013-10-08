@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import yaml
 from django.core.files.storage import FileSystemStorage
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -12,6 +13,16 @@ class Contact(models.Model):
     contact = models.CharField(_('contact'), max_length=128)
     form_tag = models.CharField(_('form'), max_length=32, db_index=True)
     body = JSONField(_('body'))
+
+    @staticmethod
+    def pretty_print(value, for_html=False):
+        if type(value) in (tuple, list, dict):
+            value = yaml.safe_dump(value, 
+                allow_unicode=True,
+                default_flow_style=False)
+            if for_html:
+                value = value.replace(" ", unichr(160))
+        return value
 
     class Meta:
         ordering = ('-created_at',)

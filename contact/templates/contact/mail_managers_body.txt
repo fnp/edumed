@@ -1,10 +1,10 @@
-Wypełniono formularz {{ form_tag }} na stronie {{ site_name }}.
+{% load pretty_print from contact_tags %}Wypełniono formularz {{ form_tag }} na stronie {{ site_name }}.
 
 http://{{ site_domain }}{% url 'admin:contact_contact_change' contact.pk %}
 
 {% for k, v in contact.body.items %}
 {{ k }}:
-{{ v }}
+{{ v|pretty_print }}
 {% endfor %}
 {% for attachment in contact.attachment_set.all %}
 {{ attachment.tag }}:

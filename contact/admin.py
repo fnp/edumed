@@ -29,7 +29,7 @@ class ContactAdmin(admin.ModelAdmin):
         except BaseException, e:
             return ''
         else:
-            return obj.body.get(field_name, '')
+            return Contact.pretty_print(obj.body.get(field_name, ''), for_html=True)
 
     def __getattr__(self, name):
         if name.startswith('admin_list_'):
@@ -75,7 +75,7 @@ class ContactAdmin(admin.ModelAdmin):
 
                 # Create field getters for fields and attachments.
                 for k, v in instance.body.items():
-                    f = (lambda v: lambda self: v)(v)
+                    f = (lambda v: lambda self: v)(Contact.pretty_print(v, for_html=True))
                     f.short_description = orig_fields[k].label if k in orig_fields else _(k)
                     setattr(self, "body__%s" % k, f)
 
