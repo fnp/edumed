@@ -23,6 +23,11 @@ TEMPLATE_LOADERS = (
 
 ROOT_URLCONF = 'edumed.urls'
 
+SUBDOMAIN_URLCONFS = {
+    None: 'edumed.urls',
+    'katalog': 'mil.urls',
+}
+
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'edumed.wsgi.application'
 

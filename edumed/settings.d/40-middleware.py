@@ -3,6 +3,7 @@ MIDDLEWARE_CLASSES = tuple(x for x in (
     'django.contrib.sessions.middleware.SessionMiddleware'
             if "django.contrib.sessions" in INSTALLED_APPS else None,
     #'django.middleware.locale.LocaleMiddleware',
+    'subdomains.middleware.SubdomainURLRoutingMiddleware',
     'fnpdjango.middleware.URLLocaleMiddleware',
 
     'django.middleware.common.CommonMiddleware',
