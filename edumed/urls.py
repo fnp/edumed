@@ -6,7 +6,6 @@ from .views import HomeView, AvatarlessProfileEditView
 
 urlpatterns = patterns('',
     url(r'^$', HomeView.as_view(), name="home"),
-    url(r'^kompetencje/', include('curriculum.urls')),
     url(r'^lekcje/', include('catalogue.urls')),
     url(r'^info/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage',
         name="info"),

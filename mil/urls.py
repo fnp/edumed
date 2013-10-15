@@ -4,4 +4,5 @@ from .views import root
 
 urlpatterns = patterns('',
     url(r'^$', root, name="root"),
+    url(r'^kompetencje/', include('curriculum.urls')),
 )
