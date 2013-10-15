@@ -17,7 +17,7 @@ class HomeView(TemplateView):
 
 
 class MILHomeView(TemplateView):
-    template_name = 'base_mil.html'
+    template_name = 'home_mil.html'
 
 def mil_404_view(request):
     return page_not_found(request, '404_mil.html')
