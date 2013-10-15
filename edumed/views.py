@@ -1,6 +1,7 @@
 import os.path
 from django.conf import settings
 from django.views.generic import TemplateView
+from django.views.defaults import page_not_found
 from pybb.views import ProfileEditView
 from .forms import AvatarlessEditProfileForm
 
@@ -18,6 +19,8 @@ class HomeView(TemplateView):
 class MILHomeView(TemplateView):
     template_name = 'base_mil.html'
 
+def mil_404_view(request):
+    return page_not_found(request, '404_mil.html')
 
 class AvatarlessProfileEditView(ProfileEditView):
     form_class = AvatarlessEditProfileForm

@@ -7,5 +7,6 @@ urlpatterns = patterns('',
     url(r'^kompetencje/', include('curriculum.urls')),
 )
 
+handler404 = 'edumed.views.mil_404_view'
 
 
