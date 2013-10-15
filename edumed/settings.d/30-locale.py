@@ -2,7 +2,7 @@
 
 LANGUAGES = (
     ('pl', u'polski'),
-#    ('en', u'English'),
+    ('en', u'English'),
 )
 
 # Local time zone for this installation. Choices can be found here:

@@ -1,10 +1,16 @@
 {% extends "base_super.html" %}
 {% load subdomainurls %}
+{% load fnp_lang %}
+
+{% load i18n %}
 
 {% block top_navigation %}
-    <li><a class="menu-wspolpraca" href="{% url "mil_home" %}">Konsultacje</a></li>
-        <li><a class="menu-kompetencje" href="{% url "curriculum" %}">Kompetencje</a></li>
-        <li><a class="menu-wspolpraca" href="wez-udzial">Weź udział</a></li>
-        <li><a class="menu-lekcje" href="{% url 'home' subdomain=None %}">Materiały edukacyjne</a></li>
-        <li><a class="menu-kontakt" href="{% url 'info' url='kontakt/' subdomain=None %}">Kontakt</a></li>
+    <li><a class="menu-wspolpraca" href="{% url "mil_home" %}">{% trans 'Consultations' %}</a></li>
+        <li><a class="menu-kompetencje" href="{% url "curriculum" %}">{% trans 'Competencies' %}</a></li>
+        <li><a class="menu-wspolpraca" href="/wez-udzial">{% trans 'Take Part' %}</a></li>
+        {% if request.LANGUAGE_CODE == 'pl' %}
+            <li><a class="menu-lekcje" href="{% url 'home' subdomain=None %}">Materiały edukacyjne</a></li>
+        {% endif %}
+        <li><a class="menu-kontakt" href="{% url 'info' url='kontakt/' subdomain=None %}">{% trans 'Contact' %}</a></li>
+        <li>{% lang_switcher %}</li>
 {% endblock %}
