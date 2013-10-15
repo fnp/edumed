@@ -1,5 +1,6 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def root(request):
-    return HttpResponse('mil')
+    return render(request, 'mil/base.html')

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% load i18n static %}
+{% load fnp_common fnp_share fnp_lang macros %}
+{% load compressed static %}
+{% load sponsor_tags %}
+
+{% macro title %}{% block title %}{% endblock %}{% endmacro %}
+{% macro site_name %}Edukacja medialna{% endmacro %}
+
+<html prefix="og: http://ogp.me/ns#">
+    <head>
+       <title>{% block full_title %}{% usemacro title %} :: {% usemacro site_name %}{% endblock %}</title>
+       <link rel="shortcut icon" type="image/png" href="{% static "img/favicon.png" %}" />
+        {% compressed_css 'base' %}
+
+        <meta charset="UTF-8" />
+        <meta property='og:url' content='{% block "ogurl" %}{{ "/"|build_absolute_uri:request }}{% endblock %}' />
+        <meta property='og:title' content='{% block og_title %}{% usemacro title %}{% endblock %}' />
+        <meta property='og:site_name' content='{% usemacro site_name %}' />
+        <meta property='og:description' content='{% block og_description %}{% endblock %}' />
+        <meta property='og:type' content='{% block og_type %}website{% endblock %}' />
+        <meta property='og:image' content='{% block og_image %}http://edukacjamedialna.edu.pl/static/img/logo.png{% endblock %}' />
+        <meta property='og:locale' content='pl_PL' />
+        <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script></script><![endif]-->
+    </head>
+    <body id="{% block body-id %}body{% endblock %}">
+        <div id="header-wrapper">
+        <header class="main" style="position:relative;">
+            <!--img
+                src="{% static "tlo.png" %}"
+                style="position:absolute; opacity: 0.5; top:0; left: -83px; z-index:1000"
+                -->
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}" style="position: absolute; top:5px; right: 10px; font-size: 12px;">Wyloguj</a>
+            {% endif %}
+            <div id="header-top">
+            <a id="logo" href="/"><img src="{% static "img/logo.png" %}" alt="Edukacja medialna"/></a>
+            <div id="organizer">
+                Projekt prowadzi:<br/>
+                <a href="http://nowoczesnapolska.org.pl">
+                    <img src="{% static "img/logo_fnp.png" %}" alt="Fundacja Nowoczesna Polska" />
+                </a>
+            </div>
+            <nav><ul>
+                {% block top_navigation %}
+                {% endblock %}
+            </ul></nav>
+            </div>
+
+            <div id="tagline">{% block tagline %}{% endblock %}</div>
+            <div id="search">
+                <form action="">
+                    <input name="q" placeholder="szukaj" /><button><span>&rarr;</span></button>
+                </form>
+            </div>
+            <div class="clr"></div>
+        </header>
+        </div>
+
+        <div id="content">{% block body %}{% endblock %}</div>
+
+        <footer class="main">
+            {# chunks? #}
+            <div class="footer-item">
+                <p>
+                Fundacja Nowoczesna Polska<br/>
+                <br/>
+                ul. Marszałkowska 84/92 lok. 125<br/>
+                00-514 Warszawa<br/>
+                tel/fax: +48 22 621 30 17<br/>
+                e-mail: fundacja@nowoczesnapolska.org.pl
+                </p>
+            </div>
+            <div class="footer-item">
+                <p><br/><br/>
+                KRS: 0000070056<br/>
+                REGON: 017423865<br/>
+                Nr konta: 59 1030 0019 0109 8530 0040 5685<br/>
+                </p>
+            </div>
+            <div class="footer-item" style="margin-right:0;">
+                <p>
+                Webdesign Ortografika<br/>
+                <br/>
+                Jeśli nie oznaczono inaczej, wszystkie materiały na stronie są objęte wolną licencją
+                <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.pl">Creative Commons Uznanie autorstwa
+                – Na tych samych warunkach 3.0</a>.
+                </p>
+            </div>
+            {% sponsor_page "footer" %}
+            <div class="clr"></div>
+            <div class="footer-extra">{% block footer_extra %}{% endblock %}</div>
+        </footer>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    {% compressed_js 'base' %}
+    {% block extra_script %}{% endblock %}
+    {{ piwik_tag|safe }}
+    </body>
+</html>
