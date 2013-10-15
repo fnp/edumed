@@ -14,5 +14,10 @@ class HomeView(TemplateView):
         context['package_student_url'] = os.path.join(settings.MEDIA_URL, settings.CATALOGUE_PACKAGE_STUDENT)
         return context
 
+
+class MILHomeView(TemplateView):
+    template_name = 'base_mil.html'
+
+
 class AvatarlessProfileEditView(ProfileEditView):
     form_class = AvatarlessEditProfileForm

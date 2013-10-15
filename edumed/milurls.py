@@ -1,8 +1,11 @@
 from django.conf.urls import patterns, include, url
-from .views import root
+from .views import MILHomeView
 
 
 urlpatterns = patterns('',
-    url(r'^$', root, name="root"),
+    url(r'^$', MILHomeView.as_view(), name="mil_home"),
     url(r'^kompetencje/', include('curriculum.urls')),
 )
+
+
+

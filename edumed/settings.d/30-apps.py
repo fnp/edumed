@@ -2,7 +2,6 @@ INSTALLED_APPS = (
     'edumed',
     'curriculum',
     'catalogue',
-    'mil',
 
     'fnpdjango',
     'south',

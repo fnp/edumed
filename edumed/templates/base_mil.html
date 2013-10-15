@@ -1,14 +1,10 @@
 {% extends "base_super.html" %}
 {% load subdomainurls %}
 
-    {% block top_navigation %}
-    <li><a class="menu-wspolpraca" href="">Konsultacje</a></li>
+{% block top_navigation %}
+    <li><a class="menu-wspolpraca" href="{% url "mil_home" %}">Konsultacje</a></li>
         <li><a class="menu-kompetencje" href="{% url "curriculum" %}">Kompetencje</a></li>
         <li><a class="menu-wspolpraca" href="">Weź udział</a></li>
         <li><a class="menu-lekcje" href="{% url 'home' subdomain=None %}">Materiały edukacyjne</a></li>
         <li><a class="menu-kontakt" href="">Kontakt</a></li>
-{% endblock %}
-
-{% block body %}
-mil
 {% endblock %}

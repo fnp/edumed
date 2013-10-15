@@ -25,7 +25,7 @@ ROOT_URLCONF = 'edumed.urls'
 
 SUBDOMAIN_URLCONFS = {
     None: 'edumed.urls',
-    'katalog': 'mil.urls',
+    'katalog': 'edumed.milurls',
 }
 
 # Python dotted path to the WSGI application used by Django's runserver.
