@@ -4,7 +4,7 @@
 {% block top_navigation %}
     <li><a class="menu-wspolpraca" href="{% url "mil_home" %}">Konsultacje</a></li>
         <li><a class="menu-kompetencje" href="{% url "curriculum" %}">Kompetencje</a></li>
-        <li><a class="menu-wspolpraca" href="">Weź udział</a></li>
+        <li><a class="menu-wspolpraca" href="wez-udzial">Weź udział</a></li>
         <li><a class="menu-lekcje" href="{% url 'home' subdomain=None %}">Materiały edukacyjne</a></li>
-        <li><a class="menu-kontakt" href="">Kontakt</a></li>
+        <li><a class="menu-kontakt" href="{% url 'info' url='kontakt/' subdomain=None %}">Kontakt</a></li>
 {% endblock %}
