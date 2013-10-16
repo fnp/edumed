@@ -1,0 +1,12 @@
+{% extends "base_mil.html" %}
+
+
+{% block body %}
+
+    <ol>
+    {% for document in object_list %}
+        <li><a href="{{document.get_absolute_url}}">{{document.name}}</a></li>
+    {% endfor %}
+    </ol>
+
+{% endblock %}
