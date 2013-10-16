@@ -1,11 +1,15 @@
 from django.views.generic import ListView, DetailView
 from django.conf import settings
+from django.utils.translation import get_language
 
 from .models import CommentDocument
 
 
 class CommentDocumentList(ListView):
     model = CommentDocument
+
+    def get_queryset(self, **kwargs):
+        return super(CommentDocumentList, self).get_queryset(**kwargs).filter(language_code = get_language())
 
 
 class CommentDocument(DetailView):

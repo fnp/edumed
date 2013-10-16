@@ -7,6 +7,7 @@ class CommentDocument(models.Model):
     slug = models.SlugField(max_length = 255, unique = True)
     comment_id = models.CharField(max_length = 255, unique = True)
     order = models.IntegerField()
+    language_code = models.CharField(max_length = 2, default = 'pl')
 
     class Meta:
         ordering = ['order']
