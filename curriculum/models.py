@@ -3,9 +3,9 @@ import re
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from fnpdjango.utils.models.translation import add_translatable
 
 class Section(models.Model):
-    name = models.CharField(_('name'), max_length=255)
     slug = models.SlugField(_('slug'))
     order = models.IntegerField(_('order'))
 
@@ -23,10 +23,13 @@ class Section(models.Model):
     def url_for_level(self, level):
         return "%s?s=%d&level=%s&d=1" % (reverse("curriculum"), self.pk, level.slug)
         
+add_translatable(Section, {
+    'name': models.CharField(_('name'), max_length=255, default = '')
+})
+
 
 class Competence(models.Model):
     section = models.ForeignKey(Section)
-    name = models.CharField(_('name'), max_length=255)
     slug = models.SlugField(_('slug'))
     order = models.IntegerField(_('order'))
 
@@ -56,9 +59,12 @@ class Competence(models.Model):
         else:
             return cls.objects.get(name__iexact=parts[1].strip())
 
+add_translatable(Competence, {
+    'name': models.CharField(_('name'), max_length=255, default = '')
+})
+
+
 class Level(models.Model):
-    group = models.CharField(_('group'), max_length=255)
-    name = models.CharField(_('name'), max_length=255)
     slug = models.CharField(_('slug'), max_length=255)
     order = models.IntegerField(_('order'))
 
@@ -70,10 +76,15 @@ class Level(models.Model):
     def __unicode__(self):
         return self.name
 
+add_translatable(Level, {
+    'name': models.CharField(_('name'), max_length=255, default = ''),
+    'group': models.CharField(_('group'), max_length=255, default = '')
+})
+
+
 class CompetenceLevel(models.Model):
     competence = models.ForeignKey(Competence)
     level = models.ForeignKey(Level)
-    description = models.TextField(_('description'))
 
     class Meta:
         ordering = ['competence', 'level']
@@ -86,6 +97,9 @@ class CompetenceLevel(models.Model):
     def get_absolute_url(self):
         return "%s?c=%d&level=%s&d=1" % (reverse("curriculum"), self.competence.pk, self.level.slug)
 
+add_translatable(CompetenceLevel, {
+    'description': models.TextField(_('description'), default = '')
+})
 
 
 class CurriculumLevel(models.Model):
