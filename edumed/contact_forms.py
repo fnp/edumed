@@ -142,23 +142,27 @@ class MILForm(ContactForm):
     question_stages = forms.CharField(
         label = _('What do you think about the proposed educational stages classification?'),
         widget = forms.Textarea,
-        max_length = 255
+        max_length = 255,
+        required = False
     )
 
     question_fields = forms.CharField(
         label = _('What do you think about the proposed thematic fields?'),
         widget = forms.Textarea,
-        max_length = 255
+        max_length = 255,
+        required = False
     )
 
     question_left_out = forms.CharField(
         label = _('What important areas of media and information literacy have been left out?'),
         widget = forms.Textarea,
-        max_length = 255
+        max_length = 255,
+        required = False
     )
 
     other = forms.CharField(
         label = _('Other suggestions and comments'),
         widget = forms.Textarea,
-        max_length = 255
+        max_length = 255,
+        required = False
     )
