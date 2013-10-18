@@ -51,8 +51,10 @@ msgstr "Jakie ważne obszary edukacji medialnej i informacyjnej zostały Twoim z
 msgid "Other suggestions and comments"
 msgstr "Inne uwagi i sugestie"
 
-#: templates/404.html:4
-#: templates/404.html.py:8
+#: forms.py:11
+msgid "Signature"
+msgstr ""
+
 #: templates/404.html:4 templates/404.html.py:8 templates/404_mil.html:4
 #: templates/404_mil.html.py:8
 msgid "Page not found"
@@ -68,7 +70,7 @@ msgstr "Szukaj na forum"
 
 #: templates/base_mil.html:8
 msgid "Consultations"
-msgstr "Konsultaje"
+msgstr "Konsultacje"
 
 #: templates/base_mil.html:9
 msgid "Competencies"
@@ -82,3 +84,14 @@ msgstr "Weź udział"
 msgid "Contact"
 msgstr "Kontakt"
 
+#: templates/pybb/_need_to_login_message.html:2
+msgid "Login"
+msgstr ""
+
+#: templates/pybb/_need_to_login_message.html:2
+msgid "register"
+msgstr ""
+
+#: templates/pybb/_need_to_login_message.html:2
+msgid "to create to post a reply"
+msgstr ""
