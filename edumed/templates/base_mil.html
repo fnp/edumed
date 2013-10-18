@@ -7,7 +7,7 @@
 {% block top_navigation %}
     <li><a class="menu-wspolpraca" href="{% url "mil_home" %}">{% trans 'Consultations' %}</a></li>
         <li><a class="menu-kompetencje" href="{% url "curriculum" %}">{% trans 'Competencies' %}</a></li>
-        <li><a class="menu-wspolpraca" href="/wez-udzial">{% trans 'Take Part' %}</a></li>
+        <li><a class="menu-wspolpraca" href="{% url "comment_document_index" %}">{% trans 'Take Part' %}</a></li>
         {% if request.LANGUAGE_CODE == 'pl' %}
             <li><a class="menu-lekcje" href="{% url 'home' subdomain=None %}">Materiały edukacyjne</a></li>
         {% endif %}
