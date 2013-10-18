@@ -7,7 +7,8 @@ from .views import mil_home_view
 urlpatterns = i18n_patterns('',
     url(r'^$', mil_home_view, name="mil_home"),
     url(r'^kompetencje/', include('curriculum.urls')),
-    url(r'^wez-udzial/', include('comment.urls'))
+    url(r'^wez-udzial/', include('comment.urls')),
+    url(r'^zglos/', include('contact.urls')),
 )
 
 handler404 = 'edumed.views.mil_404_view'

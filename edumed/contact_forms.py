@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from contact.forms import ContactForm
+from django.utils.translation import ugettext as _
 
 
 class RegistrationForm(ContactForm):
@@ -127,3 +128,37 @@ class WTEMForm(ContactForm):
         required=False
     )
 
+class MILForm(ContactForm):
+    form_tag = 'mil'
+    from_title = 'Mil'
+    submit_label = _('Submit')
+    base_template = 'base_mil.html'
+
+    name = forms.CharField(label = _('Name and Surname'), max_length = 255)
+    contact = forms.EmailField(label = _('E-mail'), max_length = 255)
+
+    institution = forms.CharField(label =_('Institution'), widget = forms.Textarea, max_length = 8192)
+
+    question_stages = forms.CharField(
+        label = _('What do you think about the proposed educational stages classification?'),
+        widget = forms.Textarea,
+        max_length = 255
+    )
+
+    question_fields = forms.CharField(
+        label = _('What do you think about the proposed thematic fields?'),
+        widget = forms.Textarea,
+        max_length = 255
+    )
+
+    question_left_out = forms.CharField(
+        label = _('What important areas of media and information literacy have been left out?'),
+        widget = forms.Textarea,
+        max_length = 255
+    )
+
+    other = forms.CharField(
+        label = _('Other suggestions and comments'),
+        widget = forms.Textarea,
+        max_length = 255
+    )

@@ -1,7 +1,12 @@
 {% extends "base_mil.html" %}
+{% load i18n %}
 
 
 {% block body %}
+
+    <p>{% blocktrans with href=form_href %}
+    Take part in consultations by filling out <a href="{{form_href}}">this form</a> or comment on specific competencies in different thematic fields
+    {% endblocktrans %}:</p>
 
     <ol>
     {% for document in object_list %}
