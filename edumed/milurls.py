@@ -13,4 +13,10 @@ urlpatterns = i18n_patterns('',
 
 handler404 = 'edumed.views.mil_404_view'
 
-
+from django.conf import settings
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+   )
