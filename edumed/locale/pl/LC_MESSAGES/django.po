@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-18 12:02+0200\n"
+"POT-Creation-Date: 2013-10-18 15:07+0200\n"
 "PO-Revision-Date: 2012-11-19 15:58+0100\n"
 "Last-Translator: Radek Czajka <radoslaw.czajka@nowoczesnapolska.org.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,35 +19,44 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2)\n"
 
 #: contact_forms.py:133
+msgid ""
+"Share your thoughts on the \"Media and information literacy competencies "
+"catalogue\""
+msgstr ""
+" Podziel się uwagami na temat Katalogu Kompetencji "
+
+#: contact_forms.py:134
 msgid "Submit"
 msgstr "Zgłoś"
 
-#: contact_forms.py:135
+#: contact_forms.py:138
 msgid "Name and Surname"
 msgstr "Imię i nazwisko"
 
-#: contact_forms.py:136
+#: contact_forms.py:139
 msgid "E-mail"
 msgstr "Adres e-mail"
 
-#: contact_forms.py:138
+#: contact_forms.py:141
 msgid "Institution"
 msgstr "Instytucja"
 
-#: contact_forms.py:141
+#: contact_forms.py:144
 msgid "What do you think about the proposed educational stages classification?"
 msgstr "Co sądzisz o zaproponowanym podziale na etapy edukacyjne?"
 
-#: contact_forms.py:147
+#: contact_forms.py:151
 msgid "What do you think about the proposed thematic fields?"
 msgstr "Co sądzisz o zaproponowanym podziale na obszary tematyczne?"
 
-#: contact_forms.py:153
+#: contact_forms.py:158
 msgid ""
 "What important areas of media and information literacy have been left out?"
-msgstr "Jakie ważne obszary edukacji medialnej i informacyjnej zostały Twoim zdaniem niewystarczająco pogłębione lub pominięto je w ogóle?"
+msgstr ""
+"Jakie ważne obszary edukacji medialnej i informacyjnej zostały Twoim zdaniem "
+"niewystarczająco pogłębione lub pominięto je w ogóle?"
 
-#: contact_forms.py:159
+#: contact_forms.py:165
 msgid "Other suggestions and comments"
 msgstr "Inne uwagi i sugestie"
 

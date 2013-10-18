@@ -130,7 +130,7 @@ class WTEMForm(ContactForm):
 
 class MILForm(ContactForm):
     form_tag = 'mil'
-    from_title = 'Mil'
+    form_title = _('Share your thoughts on the "Media and information literacy competencies catalogue"')
     submit_label = _('Submit')
     base_template = 'base_mil.html'
     site_name = site_domain = 'katalog.nowoczesnapolska.org.pl'
