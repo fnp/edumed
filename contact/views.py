@@ -36,11 +36,14 @@ def form(request, form_tag):
 
 
 def thanks(request, form_tag):
-    if form_tag not in contact_forms:
+    try:
+        form_class = contact_forms[form_tag]
+    except KeyError:
         raise Http404
 
     return render(request,
-                ['contact/%s/thanks.html' % form_tag, 'contact/thanks.html']
+                ['contact/%s/thanks.html' % form_tag, 'contact/thanks.html'],
+                dict(base_template = getattr(form_class, 'base_template', None))
             )
 
 

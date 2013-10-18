@@ -133,6 +133,7 @@ class MILForm(ContactForm):
     from_title = 'Mil'
     submit_label = _('Submit')
     base_template = 'base_mil.html'
+    site_name = site_domain = 'katalog.nowoczesnapolska.org.pl'
 
     name = forms.CharField(label = _('Name and Surname'), max_length = 255)
     contact = forms.EmailField(label = _('E-mail'), max_length = 255)
