@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-08 13:11+0100\n"
+"POT-Creation-Date: 2013-10-18 14:01+0200\n"
 "PO-Revision-Date: 2013-02-08 13:16+0100\n"
 "Last-Translator: Radek Czajka <radoslaw.czajka@nowoczesnapolska.org.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,23 +15,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2)\n"
 
-#: models.py:8
-#: models.py:22
-#: models.py:47
-msgid "name"
-msgstr "nazwa"
-
-#: models.py:9
-#: models.py:23
-#: models.py:48
+#: models.py:9 models.py:33 models.py:68
 msgid "slug"
 msgstr ""
 
-#: models.py:10
-#: models.py:24
-#: models.py:49
+#: models.py:10 models.py:34 models.py:69
 msgid "order"
 msgstr "kolejność"
 
@@ -43,59 +34,98 @@ msgstr "dział"
 msgid "sections"
 msgstr "działy"
 
-#: models.py:28
+#: models.py:27 models.py:63 models.py:80
+msgid "name"
+msgstr "nazwa"
+
+#: models.py:38
 msgid "competence"
 msgstr "kompetencja"
 
-#: models.py:29
+#: models.py:39
 msgid "competences"
 msgstr "kompetencje"
 
-#: models.py:46
-msgid "group"
-msgstr "grupa"
-
-#: models.py:53
+#: models.py:73
 msgid "educational level"
 msgstr "poziom edukacyjny"
 
-#: models.py:54
+#: models.py:74
 msgid "educational levels"
 msgstr "poziomy edukacyjne"
 
-#: models.py:62
-msgid "description"
-msgstr "opis"
+#: models.py:81
+msgid "group"
+msgstr "grupa"
 
-#: models.py:66
+#: models.py:91
 msgid "competence on level"
 msgstr "kompetencja na poziomie"
 
-#: models.py:67
+#: models.py:92
 msgid "competences on levels"
 msgstr "kompetencje na poziomach"
 
-#: models.py:81
+#: models.py:101
+msgid "description"
+msgstr "opis"
+
+#: models.py:109
 msgid "curriculum level"
 msgstr "poziom w podstawie programowej"
 
-#: models.py:82
+#: models.py:110
 msgid "curriculum levels"
 msgstr "poziomy w podstawie programowej"
 
-#: models.py:93
+#: models.py:122
 msgid "curriculum course"
 msgstr "przedmiot w podstawie programowej"
 
-#: models.py:94
+#: models.py:123
 msgid "curriculum courses"
 msgstr "przedmioty w podstawie programowej"
 
-#: models.py:111
+#: models.py:141
 msgid "curriculum item"
 msgstr "pozycja w podstawie programowej"
 
-#: models.py:112
+#: models.py:142
 msgid "curriculum items"
 msgstr "podstawa programowa"
 
+#: views.py:51
+msgid "You must select at least one competency from the list."
+msgstr "Proszę wybrać kompetencje z listy."
+
+#: views.py:53
+msgid "You must select at least one education level."
+msgstr "Proszę wybrać poziom edukacyjny."
+
+#: templates/curriculum/competence_list.html:8
+msgid "Media and information literacy competencies catalogue"
+msgstr "Katalog kompetencji medialnych i informacyjnych"
+
+#: templates/curriculum/competence_list.html:15
+msgid "Browse competencies"
+msgstr "Przeglądaj kompetencje"
+
+#: templates/curriculum/competence_list.html:15
+msgid "expand"
+msgstr "rozwiń"
+
+#: templates/curriculum/competence_list.html:18
+msgid "Education level"
+msgstr "Poziom edukacyjny"
+
+#: templates/curriculum/competence_list.html:31
+msgid "Competency categories"
+msgstr "Kategories kompetencji"
+
+#: templates/curriculum/competence_list.html:49
+msgid "Show"
+msgstr "Pokaż"
+
+#: templates/curriculum/competence_list.html:55
+msgid "Selected competencies"
+msgstr "Wybrane kompetencje"

@@ -1,18 +1,21 @@
 {% extends "base_mil.html" %}
 {% load chunks %}
+{% load i18n %}
 
-{% block title %}Katalog kompetencji medialnych i informacyjnych{% endblock %}
+{% block title %}{% trans 'Media and information literacy competencies catalogue' %}{% endblock %}
 
 {% block body %}
-<h1>Katalog kompetencji medialnych i informacyjnych</h1>
+<h1>{% trans 'Media and information literacy competencies catalogue' %}</h1>
 
-{% chunk 'katalog_kompetencji' %}
+{% if request.LANGUAGE_CODE == 'pl' %}
+    {% chunk 'katalog_kompetencji' %}
+{% endif %}
 
 <div class="curriculum-form">
-<h2><a>Przeglądaj kompetencje <span>(rozwiń)</span></a></h2>
+<h2><a>{% trans 'Browse competencies' %} <span>({% trans 'expand' %})</span></a></h2>
 <form>
 
-<h3>Poziom edukacyjny:</h3>
+<h3>{% trans 'Education level' %}:</h3>
 {% if errors.level %}<p class="error">{{ errors.level }}</p>{% endif %}
 {% for lev_group, levels in levels.items %}
     <strong>{{ lev_group }}</strong>
@@ -25,14 +28,14 @@
     </ul>
 {% endfor %}
 
-<h3>Kategorie kompetencji:</h3>
+<h3>{% trans 'Competency categories' %}:</h3>
 {% if errors.competences %}<p class="error">{{ errors.competences }}</p>{% endif %}
 <ul class="curriculum-sections">
 {% for section in sections %}
     <li class="curriculum-section">
     <label><input type="checkbox" class="s" name="s" value="{{ section.pk }}"
         {% if section.pk in sect_ids %}checked="checked"{% endif %} /> {{ section }}</label>
-        <a class="curriculum-section-toggler">(rozwiń)</a>
+        <a class="curriculum-section-toggler">({% trans 'expand' %})</a>
     <ul class="competences">
     {% for competence in section.competence_set.all %}
         <li class="competence"><label><input class="c" type="checkbox" name="c" value="{{ competence.pk }}"
@@ -43,13 +46,13 @@
     </li>
 {% endfor %}
 </ul>
-<button>Pokaż</button>
+<button>{% trans 'Show' %}</button>
 </form>
 </div>
 
 {% if chosen_competences %}
 
-<h2>Wybrane kompetencje – {{ level }}</h2>
+<h2>{% trans 'Selected competencies' %} – {{ level }}</h2>
 
 {% for section, competences in chosen_competences.items %}
     <h3>{{ section }}</h3>
