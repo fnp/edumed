@@ -1,6 +1,7 @@
 {% extends "base_super.html" %}
 {% load subdomainurls %}
 {% load fnp_lang %}
+{% load sponsor_tags %}
 
 {% load i18n %}
 
@@ -13,4 +14,8 @@
         {% endif %}
         <li><a class="menu-kontakt" href="{% if request.LANGUAGE_CODE == 'pl' %}{% url 'info' url='kontakt/' subdomain=None %}{% else %}{% url 'info' url='contact/' subdomain=None %}{% endif %}">{% trans 'Contact' %}</a></li>
         <li>{% lang_switcher %}</li>
+{% endblock %}
+
+{% block sponsors %}
+    {% sponsor_page "footer_mil" %}
 {% endblock %}

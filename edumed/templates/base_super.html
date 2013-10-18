@@ -2,7 +2,6 @@
 {% load i18n static %}
 {% load fnp_common fnp_share fnp_lang macros %}
 {% load compressed static %}
-{% load sponsor_tags %}
 {% load subdomainurls %}
 
 {% macro title %}{% block title %}{% endblock %}{% endmacro %}
@@ -88,7 +87,8 @@
                 – Na tych samych warunkach 3.0</a>.
                 </p>
             </div>
-            {% sponsor_page "footer" %}
+            {% block sponsors %}
+            {% endblock %}
             <div class="clr"></div>
             <div class="footer-extra">{% block footer_extra %}{% endblock %}</div>
         </footer>
