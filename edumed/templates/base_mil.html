@@ -11,6 +11,6 @@
         {% if request.LANGUAGE_CODE == 'pl' %}
             <li><a class="menu-lekcje" href="{% url 'home' subdomain=None %}">Materiały edukacyjne</a></li>
         {% endif %}
-        <li><a class="menu-kontakt" href="{% url 'info' url='kontakt/' subdomain=None %}">{% trans 'Contact' %}</a></li>
+        <li><a class="menu-kontakt" href="{% if request.LANGUAGE_CODE == 'pl' %}{% url 'info' url='kontakt/' subdomain=None %}{% else %}{% url 'info' url='contact/' subdomain=None %}{% endif %}">{% trans 'Contact' %}</a></li>
         <li>{% lang_switcher %}</li>
 {% endblock %}
