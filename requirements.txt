@@ -35,3 +35,4 @@ django-libravatar
 sorl-thumbnail>=11,<12
 pyyaml
 
+django-subdomains>=2.0.4,<2.1

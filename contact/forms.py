@@ -62,8 +62,8 @@ class ContactForm(forms.Form):
         site = Site.objects.get_current()
         dictionary = {
             'form_tag': self.form_tag,
-            'site_name': site.name,
-            'site_domain': site.domain,
+            'site_name': getattr(self, 'site_name', site.name),
+            'site_domain': getattr(self, 'site_domain', site.domain),
             'contact': contact,
         }
         context = RequestContext(request)

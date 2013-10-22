@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from contact.forms import ContactForm
+from django.utils.translation import ugettext_lazy as _
 
 
 class RegistrationForm(ContactForm):
@@ -127,3 +128,42 @@ class WTEMForm(ContactForm):
         required=False
     )
 
+class MILForm(ContactForm):
+    form_tag = 'mil'
+    form_title = _('Share your thoughts on the "Media and information literacy competencies catalogue"')
+    submit_label = _('Submit')
+    base_template = 'base_mil.html'
+    site_name = site_domain = 'katalog.nowoczesnapolska.org.pl'
+
+    name = forms.CharField(label = _('Name and Surname'), max_length = 255)
+    contact = forms.EmailField(label = _('E-mail'), max_length = 255)
+
+    institution = forms.CharField(label =_('Institution'), widget = forms.Textarea, max_length = 8192)
+
+    question_stages = forms.CharField(
+        label = _('What do you think about the proposed educational stages classification?'),
+        widget = forms.Textarea,
+        max_length = 255,
+        required = False
+    )
+
+    question_fields = forms.CharField(
+        label = _('What do you think about the proposed thematic fields?'),
+        widget = forms.Textarea,
+        max_length = 255,
+        required = False
+    )
+
+    question_left_out = forms.CharField(
+        label = _('What important areas of media and information literacy have been left out?'),
+        widget = forms.Textarea,
+        max_length = 255,
+        required = False
+    )
+
+    other = forms.CharField(
+        label = _('Other suggestions and comments'),
+        widget = forms.Textarea,
+        max_length = 255,
+        required = False
+    )

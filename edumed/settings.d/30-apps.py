@@ -2,6 +2,7 @@ INSTALLED_APPS = (
     'edumed',
     'curriculum',
     'catalogue',
+    'comment',
 
     'fnpdjango',
     'south',
@@ -19,6 +20,7 @@ INSTALLED_APPS = (
     'pybb',
     'django_libravatar',
     'sorl.thumbnail',
+    'subdomains',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',

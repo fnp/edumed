@@ -2,6 +2,8 @@
 from django.db import models
 from django.views.generic import DetailView, ListView
 from django.utils.datastructures import SortedDict
+from django.utils.translation import ugettext as _
+
 from .models import Competence, Section, Level, CompetenceLevel
 
 
@@ -46,9 +48,9 @@ class CompetencesView(ListView):
 
         if not (comp_ids or sect_ids):
             if level:
-                errors["competences"] = u"Proszę wybrać kompetencje z listy."
+                errors["competences"] = _('You must select at least one competency from the list.')
         elif level is None:
-            errors["level"] = u"Proszę wybrać poziom edukacyjny."
+            errors["level"] = _('You must select at least one education level.')
         else:
             chosen_competences = SortedDict()
             for competence in Competence.objects.filter(

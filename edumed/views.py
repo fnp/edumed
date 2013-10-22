@@ -1,6 +1,8 @@
 import os.path
 from django.conf import settings
 from django.views.generic import TemplateView
+from django.views.defaults import page_not_found
+from django.contrib.flatpages.views import flatpage
 from pybb.views import ProfileEditView
 from .forms import AvatarlessEditProfileForm
 
@@ -13,6 +15,16 @@ class HomeView(TemplateView):
         context['package_url'] = os.path.join(settings.MEDIA_URL, settings.CATALOGUE_PACKAGE)
         context['package_student_url'] = os.path.join(settings.MEDIA_URL, settings.CATALOGUE_PACKAGE_STUDENT)
         return context
+
+
+def mil_home_view(request):
+    return flatpage(request, url = '/' if request.LANGUAGE_CODE == 'pl' else '/en/')
+
+def mil_404_view(request):
+    return page_not_found(request, '404_mil.html')
+
+def mil_contact_view(request):
+    return flatpage(request, url = '/kontakt_mil/' if request.LANGUAGE_CODE == 'pl' else '/contact_mil/')
 
 class AvatarlessProfileEditView(ProfileEditView):
     form_class = AvatarlessEditProfileForm
