@@ -23,5 +23,8 @@ def mil_home_view(request):
 def mil_404_view(request):
     return page_not_found(request, '404_mil.html')
 
+def mil_contact_view(request):
+    return flatpage(request, url = '/kontakt_mil/' if request.LANGUAGE_CODE == 'pl' else '/contact_mil/')
+
 class AvatarlessProfileEditView(ProfileEditView):
     form_class = AvatarlessEditProfileForm
