@@ -1,0 +1,22 @@
+<div class="exercise wybor" data-type="wybor">
+
+    <h3>Zadanie {{no}}</h3>
+
+    <div class="description">
+        <p class="paragraph">
+            {{exercise.description}}
+        </p>
+    </div>
+
+    <div class="question" data-no="1">
+        <ol class="lista num">
+            {% for option in exercise.options %}
+                <li class="question-piece" data-name="{{option.id}}">
+                    <input type="{% if exercise.answer|length == 1 %}radio{% else %}checkbox{% endif %}" name="{% if exercise.answer|length == 1 %}e{{no}}{% else %}q1_{{option.id}}{% endif %}" id="q1_{{option.id}}">
+                    <label for="{% if exercise.answer|length == 1 %}e{{no}}{% else %}q1_{{option.id}}{% endif %}">{{option.text}}</label>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+
+</div>

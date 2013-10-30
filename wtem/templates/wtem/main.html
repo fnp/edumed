@@ -4,3 +4,19 @@
 {% block extra_script %}
     {% compressed_js 'wtem' %}
 {% endblock %}
+
+
+
+{% block body %}
+
+{% for exercise in exercises %}
+    {% with 'wtem/exercises/'|add:exercise.type|add:'.html' as template_name %}
+    {% include  template_name with exercise=exercise no=forloop.counter %}
+    {% endwith %}
+{% endfor %}
+
+
+<hr/>
+<button style="display: block; margin: auto;" id="submit_answers">Wyślij moje odpowiedzi</button>
+
+{% endblock %}

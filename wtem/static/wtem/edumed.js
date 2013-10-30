@@ -95,6 +95,16 @@
       });
     };
 
+    Exercise.prototype.get_answers = function() {
+      var answers,
+        _this = this;
+      answers = [];
+      $('.question', this.element).each(function(i, question) {
+        return answers.push(_this.get_answer(question));
+      });
+      return answers;
+    };
+
     Exercise.prototype.get_value_list = function(elem, data_key, numbers) {
       var vl;
       vl = $(elem).attr("data-" + data_key).split(/[ ,]+/).map($.trim);
@@ -284,6 +294,20 @@
         console.log("check " + $("input[type=checkbox]", qpiece).attr("id") + " -> " + should_be_checked);
         return $("input[type=checkbox],input[type=radio]", qpiece).prop('checked', should_be_checked);
       });
+    };
+
+    Wybor.prototype.get_answer = function(question) {
+      var answer,
+        _this = this;
+      answer = [];
+      $('.question-piece', question).each(function(i, qpiece) {
+        var $qpiece;
+        $qpiece = $(qpiece);
+        if ($("input[type=checkbox],input[type=radio]", qpiece).is(':checked')) {
+          return answer.push($qpiece.attr('data-name'));
+        }
+      });
+      return answer;
     };
 
     return Wybor;

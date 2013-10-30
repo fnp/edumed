@@ -67,6 +67,12 @@ class Exercise extends Binding
     $(".question", @element).each (i, question) =>
       @solve_question question
 
+  get_answers: ->
+    answers = []
+    $('.question', @element).each (i, question) =>
+      answers.push(@get_answer question)
+    return answers
+
   # Parses a list of values, separated by space or comma.
   # The list is read from data attribute of elem using data_key
   # Returns a list with elements
@@ -243,6 +249,13 @@ class Wybor extends Exercise
       console.log("check " + $("input[type=checkbox]", qpiece).attr("id") + " -> " + should_be_checked)
       $("input[type=checkbox],input[type=radio]", qpiece).prop 'checked', should_be_checked
 
+  get_answer: (question) ->
+    answer = []
+    $('.question-piece', question).each (i, qpiece) =>
+      $qpiece = $(qpiece)
+      if $("input[type=checkbox],input[type=radio]", qpiece).is(':checked')
+        answer.push($qpiece.attr('data-name'))
+    return answer
 
 
 class Uporzadkuj extends Exercise

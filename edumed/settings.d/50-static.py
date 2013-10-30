@@ -51,6 +51,7 @@ PIPELINE_JS = {
     'wtem': {
         'source_filenames': (
             'wtem/edumed.js',
+            'wtem/wtem.js',
         ),
         'output_filename': 'compressed/wtem.js'
     },
