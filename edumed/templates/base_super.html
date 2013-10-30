@@ -49,7 +49,7 @@
 
             <div id="tagline">{% block tagline %}{% endblock %}</div>
             <div id="search">
-                <form action="">
+                <form action="{% url 'haystack_search' None %}">
                     <input name="q" placeholder="szukaj" /><button><span>&rarr;</span></button>
                 </form>
             </div>
