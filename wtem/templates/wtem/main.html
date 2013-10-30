@@ -1,1 +1,6 @@
 {% extends 'base_super.html' %}
+{% load compressed %}
+
+{% block extra_script %}
+    {% compressed_js 'wtem' %}
+{% endblock %}

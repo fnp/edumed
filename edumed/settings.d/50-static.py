@@ -48,6 +48,12 @@ PIPELINE_JS = {
         ),
         'output_filename': 'compressed/base.js',
     },
+    'wtem': {
+        'source_filenames': (
+            'wtem/edumed.js',
+        ),
+        'output_filename': 'compressed/wtem.js'
+    },
 }
 
 PIPELINE_COMPILERS = (
