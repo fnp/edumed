@@ -3,6 +3,7 @@ INSTALLED_APPS = (
     'curriculum',
     'catalogue',
     'comment',
+    'wtem',
 
     'fnpdjango',
     'south',
