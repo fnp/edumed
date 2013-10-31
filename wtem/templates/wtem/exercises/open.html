@@ -1,0 +1,17 @@
+<div>
+
+    <h3>Zadanie {{no}}</h3>
+        
+    <div class="description">
+        {% autoescape off %}
+        {% for para in exercise.description %}
+            <p class="paragraph">
+                {{para}}
+            </p>
+        {% endfor %}
+        {% endautoescape %}
+    </div>
+
+    <textarea style="width: 100%; margin-top:10px;" rows="10"></textarea>
+
+</div>
