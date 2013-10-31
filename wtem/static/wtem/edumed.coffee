@@ -297,6 +297,12 @@ class Uporzadkuj extends Exercise
     for p in pkts
       parent.prepend(p)
 
+  get_answer: (question) ->
+    answer = []
+    $(".question-piece", @element).each (i, qpiece) =>
+      answer.push($(qpiece).attr('data-pos'))
+    return answer
+
 
 # XXX propozycje="1/0"
 class Luki extends Exercise

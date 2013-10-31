@@ -372,6 +372,16 @@
       return _results;
     };
 
+    Uporzadkuj.prototype.get_answer = function(question) {
+      var answer,
+        _this = this;
+      answer = [];
+      $(".question-piece", this.element).each(function(i, qpiece) {
+        return answer.push($(qpiece).attr('data-pos'));
+      });
+      return answer;
+    };
+
     return Uporzadkuj;
 
   })(Exercise);

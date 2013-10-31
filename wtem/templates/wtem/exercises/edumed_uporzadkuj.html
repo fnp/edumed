@@ -1,0 +1,22 @@
+<div class="exercise uporzadkuj" data-type="uporzadkuj">
+
+    <h3>Zadanie {{no}}</h3>
+
+    <div class="question" data-no="1">
+        <div class="description">
+        {% for para in exercise.description %}
+            <p class="paragraph">
+                {{para}}
+            </p>
+        {% endfor %}
+        </div>
+
+        <ol class="lista num ui-sortable">
+            {% for item in exercise.items %}
+                <li class="question-piece" data-pos="{{item.id}}">{{item.text}}</li>
+            {% endfor %}
+        </ol>
+
+    </div>
+</div>
+
