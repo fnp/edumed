@@ -1,0 +1,44 @@
+<div class="exercise przyporzadkuj" data-type="przyporzadkuj">
+
+    <h3>Zadanie {{no}}</h3>
+    
+    <div class="question" data-no="1">
+
+        <div class="description">
+            <p class="paragraph">
+                {{exercise.description}}
+                <span class="instruction">Przeciągnij odpowiedzi i upuść w wybranym polu.</span>
+            </p>
+        </div>
+
+        <p class="paragraph">{{exercise.buckets_name|default:"kategorie"|capfirst}}:</p>
+
+        <ul class="lista punkt predicate" data-name="kategorie">
+            {% for bucket in exercise.buckets %}
+                <li data-predicate="{{bucket.id}}">
+                    {{bucket.title}}
+                    <ul class="subjects">
+                        <li class="placeholder multiple ui-droppable accepting"></li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+        <br class="clr">
+
+        <div class="description">
+            <p class="paragraph">{{exercise.items_name|capfirst}}:</p>
+        </div>
+         
+        <ul class="lista punkt subject" data-target="kategorie">
+            {% for item in exercise.items %}
+                <!-- data-solution set to single bogus value only to indicate that this piece has no multiple solutions, not used otherwise (see: is_multiple in edumed.coffee). -->
+                <li data-solution="1" data-no="{{forloop.counter}}" data-id="{{item.id}}" class="question-piece draggable ui-draggable">{{item.text}}</li>
+            {% endfor %}
+        </ul>
+
+        <br class="clr">
+
+    </div>
+
+</div>
+

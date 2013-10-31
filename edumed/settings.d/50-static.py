@@ -50,6 +50,7 @@ PIPELINE_JS = {
     },
     'wtem': {
         'source_filenames': (
+            'catalogue/js/jquery-ui-1.10.0.custom.js',
             'wtem/edumed.js',
             'wtem/wtem.js',
         ),

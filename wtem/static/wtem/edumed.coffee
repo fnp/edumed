@@ -459,6 +459,15 @@ class Przyporzadkuj extends Exercise
         $ph = $pr.find ".placeholder:visible"
         @draggable_move $(qp), $ph.eq(0), @multiple
 
+  get_answer: (question) ->
+    answer = {}
+    $(".predicate [data-predicate]", question).each (i, subjects) =>
+      predicate = $(subjects).attr('data-predicate')
+      answer[predicate] = []
+      $('.question-piece', subjects).each (i, qpiece) =>
+        $qpiece = $(qpiece)
+        answer[predicate].push($qpiece.attr('data-id'))
+    return answer
 
 
 class PrawdaFalsz extends Exercise

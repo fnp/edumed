@@ -600,6 +600,23 @@
       return _results;
     };
 
+    Przyporzadkuj.prototype.get_answer = function(question) {
+      var answer,
+        _this = this;
+      answer = {};
+      $(".predicate [data-predicate]", question).each(function(i, subjects) {
+        var predicate;
+        predicate = $(subjects).attr('data-predicate');
+        answer[predicate] = [];
+        return $('.question-piece', subjects).each(function(i, qpiece) {
+          var $qpiece;
+          $qpiece = $(qpiece);
+          return answer[predicate].push($qpiece.attr('data-id'));
+        });
+      });
+      return answer;
+    };
+
     return Przyporzadkuj;
 
   })(Exercise);
