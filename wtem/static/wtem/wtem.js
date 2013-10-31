@@ -1,6 +1,7 @@
 $(function() {
 
-    $('#submit_answers').click(function() {
+    $('#submit_answers').click(function(e) {
+        e.preventDefault();
         var to_submit = [];
         $('.exercise').each(function() {
             var exercise = $(this).data('exercise');

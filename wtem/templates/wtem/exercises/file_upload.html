@@ -1,0 +1,15 @@
+<div>
+
+    <h3>Zadanie {{no}}</h3>
+        
+    <div class="description">
+        {% for para in exercise.description %}
+            <p class="paragraph">
+                {{para}}
+            </p>
+        {% endfor %}
+    </div>
+
+    <input type="file"/>
+
+</div>
