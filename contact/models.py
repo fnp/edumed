@@ -2,6 +2,7 @@
 import yaml
 from django.core.files.storage import FileSystemStorage
 from django.db import models
+from django.utils.encoding import smart_unicode
 from django.utils.translation import ugettext_lazy as _
 from jsonfield import JSONField
 from . import app_settings
@@ -21,7 +22,7 @@ class Contact(models.Model):
                 allow_unicode=True,
                 default_flow_style=False)
             if for_html:
-                value = value.replace(" ", unichr(160))
+                value = smart_unicode(value).replace(u" ", unichr(160))
         return value
 
     class Meta:
