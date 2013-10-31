@@ -511,6 +511,11 @@ class PrawdaFalsz extends Exercise
       else
         $(".false", qp).click()
 
+  get_answer: (question) ->
+    answer = []
+    $(".question-piece", @element).each (i, qpiece) =>
+      answer.push($(qpiece).data('value') || '-')
+    return answer
 
 ##########
 

@@ -682,6 +682,16 @@
       return _results;
     };
 
+    PrawdaFalsz.prototype.get_answer = function(question) {
+      var answer,
+        _this = this;
+      answer = [];
+      $(".question-piece", this.element).each(function(i, qpiece) {
+        return answer.push($(qpiece).data('value') || '-');
+      });
+      return answer;
+    };
+
     return PrawdaFalsz;
 
   })(Exercise);
