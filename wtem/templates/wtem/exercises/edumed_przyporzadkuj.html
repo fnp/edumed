@@ -5,10 +5,11 @@
     <div class="question" data-no="1">
 
         <div class="description">
+        {% for para in exercise.description %}
             <p class="paragraph">
-                {{exercise.description}}
-                <span class="instruction">Przeciągnij odpowiedzi i upuść w wybranym polu.</span>
+                {{para}}
             </p>
+        {% endfor %}
         </div>
 
         <p class="paragraph">{{exercise.buckets_name|default:"kategorie"|capfirst}}:</p>

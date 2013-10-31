@@ -3,9 +3,11 @@
     <h3>Zadanie {{no}}</h3>
 
     <div class="description">
-        <p class="paragraph">
-            {{exercise.description}}
-        </p>
+        {% for para in exercise.description %}
+            <p class="paragraph">
+                {{para}}
+            </p>
+        {% endfor %}
     </div>
 
     <div class="question" data-no="1">
