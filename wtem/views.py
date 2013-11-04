@@ -17,7 +17,7 @@ def form(request, key):
         submission = Submission.objects.get(key = key)
     except Submission.DoesNotExist:
         if settings.DEBUG and key == '12345':
-            submission = Submission.create(first_name = 'Debug', last_name = 'Debug', email = 'debug@debug.com', key = '12345')[0]
+            submission = Submission.create(first_name = 'Debug', last_name = 'Debug', email = 'debug@debug.com', key = '12345')
         else:
             raise Http404
 

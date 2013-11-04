@@ -22,28 +22,17 @@ class Submission(models.Model):
         return key
 
     @classmethod
-    def create(cls, first_name, last_name, email, contact = None, key = None):
-        submissions = []
+    def create(cls, first_name, last_name, email, key = None, contact = None):
+        submission = cls(
+            contact = contact,
+            key = key if key else Submission.generate_key(),
+            first_name = first_name,
+            last_name = last_name,
+            email = email
+        )
 
-        if contact:
-            students = contact['students']
-        else:
-            students = [dict(first_name = first_name, last_name = last_name, email = email)]
-        
-        if key is None:
-            key = Submission.generate_key()
-
-        for student in students:
-            submission = cls(
-                contact = contact,
-                key = key,
-                first_name = student['first_name'],
-                last_name = student['last_name'],
-                email = student['email']
-            )
-            submission.save()
-            submissions.append(submission)
-        return submissions
+        submission.save()
+        return submission
 
 
 class Attachment(models.Model):
