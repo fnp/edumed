@@ -9,7 +9,8 @@
 
 {% block body %}
 
-<form>
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
 
 {% for exercise in exercises %}
     {% with 'wtem/exercises/'|add:exercise.type|add:'.html' as template_name %}
@@ -19,7 +20,7 @@
 
 
 <hr/>
-<input type="hidden" name="wtem_answers" value=""/>
+<input type="hidden" name="answers" value=""/>
 <button style="display: block; margin: auto;" id="submit_answers">Wyślij moje odpowiedzi</button>
 
 </form>

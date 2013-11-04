@@ -3,7 +3,7 @@ $(function() {
     var to_submit;
 
     $('#submit_answers').click(function(e) {
-        e.preventDefault();
+        //e.preventDefault();
         to_submit = [];
 
         $('.exercise-wtem').each(function() {
@@ -18,7 +18,7 @@ $(function() {
             }
         });
         console.log(JSON.stringify(to_submit));
-        $('input[name=wtem_answers]').val(JSON.stringify(to_submit));
+        $('input[name=answers]').val(JSON.stringify(to_submit));
     });
 
     var handlers = {
