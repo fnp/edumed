@@ -19,7 +19,7 @@ class Submission(models.Model):
     @classmethod
     def generate_key(cls):
         key = ''
-        while not key and key in [record['key'] for record in cls.objects.values('key')]:
+        while not key or key in [record['key'] for record in cls.objects.values('key')]:
             key = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for i in range(30))
         return key
 
