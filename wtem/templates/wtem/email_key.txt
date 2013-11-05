@@ -1,0 +1,3 @@
+Poniżej znajduje się wygenerowany specjalnie dla Ciebie link, pod którym będziesz mógł/mogła rozwiązać zadania pierwszego etapu Wielkiego Turnieju Edukacji Medialnej:
+
+http://edukacjamedialna.edu.pl{% url 'wtem_form' key=submission.key %}

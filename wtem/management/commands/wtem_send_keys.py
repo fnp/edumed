@@ -1,7 +1,12 @@
+# -*- coding: utf-8 -*-
+
+import sys
 from optparse import make_option
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 from wtem.models import Submission, DEBUG_KEY
 
@@ -44,9 +49,9 @@ class Command(BaseCommand):
 
             try:
                 self.send_key(submission)
-            except:
+            except Exception as e:
                 failed += 1
-                self.stdout.write('failed sending to: ' + submission.email)
+                self.stdout.write('failed sending to: ' + submission.email + ' - ' + str(e))
             else:
                 submission.key_sent = True
                 submission.save()
@@ -57,3 +62,10 @@ class Command(BaseCommand):
 
     def send_key(self, submission):
         self.stdout.write('>>> sending to ' + submission.email)
+        send_mail(
+            "WTEM - Twój link do zadań",
+            render_to_string('wtem/email_key.txt', dict(submission = submission)),
+            getattr(settings, 'WTEM_CONTACT_EMAIL', 'no-reply@edukacjamedialna.edu.pl'),
+            [submission.email],
+            fail_silently=False
+            )
