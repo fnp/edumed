@@ -24,6 +24,11 @@ def form_after(request, key):
     return render(request, 'wtem/main_after.html')
 
 def form_during(request, key):
+
+    if WTEM_CONTEST_STAGE != 'during':
+        if request.META['REMOTE_ADDR'] != getattr(settings, 'WTEM_CONTEST_IP_ALLOW', 'xxx'):
+            raise Http404
+
     try:
         submission = Submission.objects.get(key = key)
     except Submission.DoesNotExist:
