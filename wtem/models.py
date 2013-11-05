@@ -6,6 +6,8 @@ from django.db import models
 from contact.models import Contact
 
 
+DEBUG_KEY = '12345'
+
 class Submission(models.Model):
     contact = models.ForeignKey(Contact, null = True)
     key = models.CharField(max_length = 30, unique = True)

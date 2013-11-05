@@ -5,7 +5,7 @@ from django.utils import simplejson
 from django.conf import settings
 from django.http import Http404
 
-from .models import Submission
+from .models import Submission, DEBUG_KEY
 from .forms import WTEMForm
 
 WTEM_CONTEST_STAGE = getattr(settings, 'WTEM_CONTEST_STAGE', 'before')
@@ -32,8 +32,8 @@ def form_during(request, key):
     try:
         submission = Submission.objects.get(key = key)
     except Submission.DoesNotExist:
-        if settings.DEBUG and key == '12345':
-            submission = Submission.create(first_name = 'Debug', last_name = 'Debug', email = 'debug@debug.com', key = '12345')
+        if settings.DEBUG and key == DEBUG_KEY:
+            submission = Submission.create(first_name = 'Debug', last_name = 'Debug', email = 'debug@debug.com', key = DEBUG_KEY)
         else:
             raise Http404
 
