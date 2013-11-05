@@ -15,6 +15,7 @@ class Submission(models.Model):
     last_name = models.CharField(max_length = 100)
     email = models.EmailField(max_length = 100, unique = True)
     answers = models.CharField(max_length = 65536, null = True, blank = True)
+    key_sent = models.BooleanField(default = False)
 
     @classmethod
     def generate_key(cls):
