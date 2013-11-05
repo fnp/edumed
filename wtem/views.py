@@ -8,11 +8,22 @@ from django.http import Http404
 from .models import Submission
 from .forms import WTEMForm
 
+WTEM_CONTEST_STAGE = getattr(settings, 'WTEM_CONTEST_STAGE', 'before')
+
 
 def main(request):
     pass
 
 def form(request, key):
+    return globals()['form_' + WTEM_CONTEST_STAGE](request, key)
+    
+def form_before(request, key):
+    return render(request, 'wtem/main_before.html')
+
+def form_after(request, key):
+    return render(request, 'wtem/main_after.html')
+
+def form_during(request, key):
     try:
         submission = Submission.objects.get(key = key)
     except Submission.DoesNotExist:
