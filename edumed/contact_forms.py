@@ -128,6 +128,37 @@ class WTEMForm(ContactForm):
         required=False
     )
 
+    extract_types = (dict(slug='extended', label=_('extended')),)
+
+    @staticmethod
+    def get_extract_fields(contact, extract_type_slug):
+        fields = contact.body.keys()
+        fields.pop(fields.index('student'))
+        fields.extend(['contact', 'student_first_name', 'student_last_name', 'student_email'])
+        return fields
+
+    @staticmethod
+    def get_extract_records(keys, contact, extract_type_slug):
+        toret = [dict()]
+        for field_name in keys:
+            if field_name.startswith('student_'):
+                continue
+            if field_name == 'contact':
+                val = contact.contact
+            else:
+                val = contact.body[field_name]
+            toret[0][field_name] = val
+        
+        current = toret[0]
+        for student in contact.body['student']:
+            for attr in ('first_name', 'last_name', 'email'):
+                current['student_' + attr] = student[attr]
+            if not current in toret:
+                toret.append(current)
+            current = dict()
+        return toret
+
+
 class MILForm(ContactForm):
     form_tag = 'mil'
     form_title = _('Share your thoughts on the "Media and information literacy competencies catalogue"')

@@ -5,6 +5,10 @@ from django.utils.translation import ugettext as _
 from .forms import contact_forms, admin_list_width
 from django.template import Template
 from django.utils.safestring import mark_safe
+from django.conf.urls import patterns, url
+from django.http import HttpResponse
+
+from .utils import csv_prepare
 
 
 class ContactAdminMeta(admin.ModelAdmin.__class__):
@@ -90,5 +94,65 @@ class ContactAdmin(admin.ModelAdmin):
         return super(ContactAdmin, self).change_view(request, object_id,
             extra_context=extra_context)
 
+    def changelist_view(self, request, extra_context=None):
+        context = dict()
+        if 'form_tag' in request.GET:
+            form = contact_forms[request.GET['form_tag']]
+            context['extract_types'] = [dict(slug = 'all', label = _('all'))] + [dict(slug = 'contacts', label = _('contacts'))]
+            context['extract_types'] += [type for type in getattr(form, 'extract_types', [])]
+        return super(ContactAdmin, self).changelist_view(request, extra_context = context)
+
+    def get_urls(self):
+        urls = super(ContactAdmin, self).get_urls()
+        return patterns('',
+            url(r'^extract/(?P<form_tag>[\w-]+)/(?P<extract_type_slug>[\w-]+)/$', self.admin_site.admin_view(extract_view), name='contact_extract')
+        ) + super(ContactAdmin, self).get_urls()
+
+
+def extract_view(request, form_tag, extract_type_slug):
+    toret = u''
+    contacts_by_spec = dict()
+    form = contact_forms[form_tag]
+
+    q = Contact.objects.filter(form_tag = form_tag)
+    at_year = request.GET.get('created_at__year')
+    at_month = request.GET.get('created_at__month')
+    if at_year:
+        q = q.filter(created_at__year = at_year)
+        if at_month:
+            q = q.filter(created_at__month = at_month)
+
+    # Segregate contacts by body key sets
+    for contact in q.all():
+        if extract_type_slug == 'contacts':
+            keys = ['contact']
+        elif extract_type_slug == 'all':
+            keys = contact.body.keys() + ['contact']
+        else:
+            keys = form.get_extract_fields(contact, extract_type_slug)
+        contacts_by_spec.setdefault(tuple(keys), []).append(contact)
+    
+    # Generate list for each body key set
+    for keys, contacts in contacts_by_spec.items():
+        toret += u','.join(keys) + '\n'
+        for contact in contacts:
+            if extract_type_slug == 'contacts':
+                records = [dict(contact=contact.contact)]
+            elif extract_type_slug == 'all':
+                records = [dict(contact = contact.contact, **contact.body)]
+            else:
+                records = form.get_extract_records(keys, contact, extract_type_slug)
+
+            for record in records:
+                for key in keys:
+                    if key not in record:
+                        record[key] = ''
+                    record[key] = csv_prepare(record[key])
+                toret += u','.join([record[key] for key in keys]) + '\n'
+        toret += '\n\n'
+
+    response = HttpResponse(toret, content_type = 'text/csv')
+    response['Content-Disposition'] = 'attachment; filename="kontakt.csv"'
+    return response
 
 admin.site.register(Contact, ContactAdmin)

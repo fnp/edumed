@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-18 15:07+0200\n"
+"POT-Creation-Date: 2013-11-05 10:12+0100\n"
 "PO-Revision-Date: 2012-11-19 15:58+0100\n"
 "Last-Translator: Radek Czajka <radoslaw.czajka@nowoczesnapolska.org.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,45 +18,48 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2)\n"
 
-#: contact_forms.py:133
+#: contact_forms.py:131
+msgid "extended"
+msgstr "rozszerzony"
+
+#: contact_forms.py:160
 msgid ""
 "Share your thoughts on the \"Media and information literacy competencies "
 "catalogue\""
-msgstr ""
-" Podziel się uwagami na temat Katalogu Kompetencji "
+msgstr " Podziel się uwagami na temat Katalogu Kompetencji "
 
-#: contact_forms.py:134
+#: contact_forms.py:161
 msgid "Submit"
 msgstr "Zgłoś"
 
-#: contact_forms.py:138
+#: contact_forms.py:165
 msgid "Name and Surname"
 msgstr "Imię i nazwisko"
 
-#: contact_forms.py:139
+#: contact_forms.py:166
 msgid "E-mail"
 msgstr "Adres e-mail"
 
-#: contact_forms.py:141
+#: contact_forms.py:168
 msgid "Institution"
 msgstr "Instytucja"
 
-#: contact_forms.py:144
+#: contact_forms.py:171
 msgid "What do you think about the proposed educational stages classification?"
 msgstr "Co sądzisz o zaproponowanym podziale na etapy edukacyjne?"
 
-#: contact_forms.py:151
+#: contact_forms.py:178
 msgid "What do you think about the proposed thematic fields?"
 msgstr "Co sądzisz o zaproponowanym podziale na obszary tematyczne?"
 
-#: contact_forms.py:158
+#: contact_forms.py:185
 msgid ""
 "What important areas of media and information literacy have been left out?"
 msgstr ""
 "Jakie ważne obszary edukacji medialnej i informacyjnej zostały Twoim zdaniem "
 "niewystarczająco pogłębione lub pominięto je w ogóle?"
 
-#: contact_forms.py:165
+#: contact_forms.py:192
 msgid "Other suggestions and comments"
 msgstr "Inne uwagi i sugestie"
 
@@ -77,19 +80,19 @@ msgstr "Strona której szukasz nie została znaleziona."
 msgid "Forum search"
 msgstr "Szukaj na forum"
 
-#: templates/base_mil.html:8
+#: templates/base_mil.html:9
 msgid "Consultations"
 msgstr "Konsultacje"
 
-#: templates/base_mil.html:9
+#: templates/base_mil.html:10
 msgid "Competencies"
 msgstr "Kompetencje"
 
-#: templates/base_mil.html:10
+#: templates/base_mil.html:11
 msgid "Take Part"
 msgstr "Weź udział"
 
-#: templates/base_mil.html:14
+#: templates/base_mil.html:15
 msgid "Contact"
 msgstr "Kontakt"
 
