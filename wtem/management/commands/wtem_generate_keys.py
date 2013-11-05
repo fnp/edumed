@@ -21,6 +21,7 @@ class Command(BaseCommand):
                     Submission.create(**args)
                     new += 1
                 else:
+                    self.stdout.write('skipping ' + student['email'] + ': already exists.')
                     skipped += 1
 
         self.stdout.write('New: ' + str(new) + ', skipped: ' + str(skipped))
