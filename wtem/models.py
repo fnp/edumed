@@ -20,6 +20,8 @@ class Submission(models.Model):
     email = models.EmailField(max_length = 100, unique = True)
     answers = models.CharField(max_length = 65536, null = True, blank = True)
     key_sent = models.BooleanField(default = False)
+    marks = JSONField()
+
     def __unicode__(self):
         return ', '.join((self.last_name, self.first_name, self.email))
 
@@ -42,6 +44,24 @@ class Submission(models.Model):
 
         submission.save()
         return submission
+
+    def get_mark(self, user_id, exercise_id):
+        mark = None
+        user_id = str(user_id)
+        exercise_id = str(exercise_id)
+        if self.marks and user_id in self.marks:
+            mark = self.marks[user_id].get(exercise_id, None)
+        return mark
+
+    def set_mark(self, user_id, exercise_id, mark):
+        user_id = str(user_id)
+        exercise_id = str(exercise_id)
+        if not self.marks:
+            self.marks = dict()
+        
+        self.marks.setdefault(user_id, {})[exercise_id] = mark
+        if mark == 'None':
+            del self.marks[user_id][exercise_id]
 
 
 class Attachment(models.Model):
