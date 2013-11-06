@@ -8,6 +8,7 @@ from django.utils import simplejson
 from django.core.urlresolvers import reverse
 
 from .models import Submission, Assignment
+from .middleware import get_current_request
 
 
 f = file(os.path.dirname(__file__) + '/fixtures/exercises.json')
@@ -54,6 +55,7 @@ def get_form(request, submission):
 
 
 class SubmissionAdmin(admin.ModelAdmin):
+    list_display = ('__unicode__', 'todo',)
     readonly_fields = readonly_fields
 
     def get_form(self, request, obj, **kwargs):
@@ -68,6 +70,12 @@ class SubmissionAdmin(admin.ModelAdmin):
         return '-'
     submitted_by.allow_tags = True
     submitted_by.short_description = "Zgłoszony/a przez"
+
+    def todo(self, submission):
+        user = get_current_request().user
+        user_exercises = get_user_exercises(user)
+        user_marks = submission.marks.get(str(user.id), {})
+        return ','.join([str(e['id']) for e in user_exercises if str(e['id']) not in user_marks.keys()])
 
     def save_model(self, request, submission, form, change):
         for name, value in form.cleaned_data.items():
