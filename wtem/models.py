@@ -58,3 +58,6 @@ class Assignment(models.Model):
         for exercise in self.exercises:
             if not isinstance(exercise, int) or exercise < 1:
                 raise ValidationError(_('Invalid exercise id: %s' % exercise))
+
+    def __unicode__(self):
+        return self.user.username + ': ' + ','.join(map(str,self.exercises))
