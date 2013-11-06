@@ -2,6 +2,10 @@ import random
 import string
 
 from django.db import models
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext as _
+from jsonfield import JSONField
 
 from contact.models import Contact
 
@@ -42,3 +46,15 @@ class Attachment(models.Model):
     submission = models.ForeignKey(Submission)
     name = models.CharField(max_length=100)
     file = models.FileField(upload_to = 'wtem/attachment')
+
+
+class Assignment(models.Model):
+    user = models.ForeignKey(User)
+    exercises = JSONField()
+
+    def clean(self):
+        if not isinstance(self.exercises, list):
+            raise ValidationError(_('Assigned exercises must be declared in a list format'))
+        for exercise in self.exercises:
+            if not isinstance(exercise, int) or exercise < 1:
+                raise ValidationError(_('Invalid exercise id: %s' % exercise))
