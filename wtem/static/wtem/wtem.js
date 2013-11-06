@@ -4,7 +4,7 @@ $(function() {
 
     $('#submit_answers').click(function(e) {
         //e.preventDefault();
-        to_submit = [];
+        to_submit = {};
 
         $('.exercise-wtem').each(function() {
             var el = $(this);
@@ -21,16 +21,20 @@ $(function() {
         $('input[name=answers]').val(JSON.stringify(to_submit));
     });
 
+    var push_answer = function(el, answer) {
+        to_submit[el.attr('data-id')] = answer
+    };
+
     var handlers = {
         edumed: function(el) {
             var exercise = el.data('exercise');
             if(exercise.get_answers) {
-                to_submit.push(exercise.get_answers()[0]);
+                push_answer(el, exercise.get_answers()[0]);
             }
         },
 
         open: function(el) {
-            to_submit.push(el.find('textarea').val());
+            push_answer(el, el.find('textarea').val());
         }
     }
 
