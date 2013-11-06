@@ -49,7 +49,7 @@ class Attachment(models.Model):
 
 
 class Assignment(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, unique = True)
     exercises = JSONField()
 
     def clean(self):
