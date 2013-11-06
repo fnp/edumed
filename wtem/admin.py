@@ -5,6 +5,7 @@ import os
 from django.contrib import admin
 from django import forms
 from django.utils import simplejson
+from django.core.urlresolvers import reverse
 
 from .models import Submission, Assignment
 
@@ -18,13 +19,13 @@ def get_user_exercises(user):
     return [e for e in exercises if e['id'] in assignment.exercises]
 
 
-readonly_fields = ('contact', 'first_name', 'last_name', 'email', 'key', 'key_sent')
+readonly_fields = ('submitted_by', 'first_name', 'last_name', 'email', 'key', 'key_sent')
 
 
 class SubmissionFormBase(forms.ModelForm):
     class Meta:
         model = Submission
-        exclude = ('answers', 'marks') + readonly_fields
+        exclude = ('answers', 'marks', 'contact') + readonly_fields
 
 
 def get_form(request, submission):
@@ -58,6 +59,16 @@ class SubmissionAdmin(admin.ModelAdmin):
     def get_form(self, request, obj, **kwargs):
         return get_form(request, obj)
     
+    def submitted_by(self, instance):
+        if instance.contact:
+            return '<a href="%s">%s</a>' % (
+                reverse('admin:contact_contact_change', args = [instance.contact.id]),
+                instance.contact.contact
+            )
+        return '-'
+    submitted_by.allow_tags = True
+    submitted_by.short_description = "Zgłoszony/a przez"
+
     def save_model(self, request, submission, form, change):
         for name, value in form.cleaned_data.items():
             if name.startswith('markof_'):
