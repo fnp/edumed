@@ -45,6 +45,8 @@ def get_open_answer(answers, exercise):
         for selected in answer['closed_part']:
             option = get_option(exercise['options'], selected)
             toret += '%s: %s\n' % (selected, option['text'])
+        else:
+            toret += u'<nie wybrano odpowiedzi>\n'
         toret += u'\nCzesc otwarta (%s):\n\n' % ' '.join(exercise['open_part'])
         toret += answer['open_part']
 
