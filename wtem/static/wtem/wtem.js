@@ -42,7 +42,18 @@ $(function() {
         },
 
         open: function(el) {
-            push_answer(el, el.find('textarea').val());
+            var textareas = el.find('textarea'),
+                to_push;
+            if(textareas.length === 1) {
+                to_push = el.find('textarea').val();
+            } else {
+                to_push = [];
+                textareas.each(function() {
+                    var textarea = $(this);
+                    to_push.push({'id': textarea.attr('data-field-id'), 'text': textarea.val()});
+                });
+            }
+            push_answer(el, to_push);
         }
     }
 

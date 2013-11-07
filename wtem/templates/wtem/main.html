@@ -8,7 +8,14 @@
 
 
 {% block body %}
-
+<style>
+    .wtem-open-field {
+        margin: 10px 0;
+    }
+    .wtem-open-field textarea {
+        margin-top:0;
+    }
+</style>
 <form method="post" enctype="multipart/form-data">
 {% csrf_token %}
 

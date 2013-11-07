@@ -12,6 +12,27 @@
         {% endautoescape %}
     </div>
 
-    <textarea style="width: 100%; margin-top:10px;" rows="10"></textarea>
+    {% if exercise.fields %}
+        {% for field in exercise.fields %}
+            <div class="wtem-open-field">
+                <label class="wtem-caption">{{field.caption}}</label>
+                <textarea style="width: 100%;" rows="10" data-field-id="{{field.id}}"></textarea>
+            </div>
+        {% endfor %}
+    {% else %}
+        <textarea style="width: 100%; margin-top:10px;" rows="10"></textarea>
+    {% endif %}
+
+    {% if exercise.description_after %}
+        <div class="description">
+            {% autoescape off %}
+            {% for para in exercise.description_after %}
+                <p class="paragraph">
+                    {{para}}
+                </p>
+            {% endfor %}
+            {% endautoescape %}
+        </div>
+    {% endif%}
 
 </div>

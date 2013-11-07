@@ -38,7 +38,13 @@ def get_open_answer(answers, exercise):
     exercise_id = str(exercise['id'])
     answer = answers[exercise_id]
     if exercise['type'] == 'open':
-        toret = answer
+        if isinstance(answer, list):
+            toret = ''
+            for part in answer:
+                field = get_option(exercise['fields'], part['id'])
+                toret += '- %s:\n\n%s\n\n' % (field['caption'], part['text'])
+        else:
+            toret = answer
     if exercise['type'] == 'edumed_wybor':
         ok = set(map(str, exercise['answer'])) == set(map(str,answer['closed_part']))
         toret = u'Czesc testowa [%s]:\n' % ('poprawna' if ok else 'niepoprawna')
