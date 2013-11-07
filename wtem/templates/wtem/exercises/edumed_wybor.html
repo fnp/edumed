@@ -2,6 +2,7 @@
 
     <h3>Zadanie {{no}}</h3>
 
+    {% autoescape off %}
     <div class="description">
         {% for para in exercise.description %}
             <p class="paragraph">
@@ -9,6 +10,7 @@
             </p>
         {% endfor %}
     </div>
+    {% endautoescape %}
 
     <div class="question" data-no="1">
         <ol class="lista num">
