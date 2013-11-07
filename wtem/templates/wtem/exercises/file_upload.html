@@ -10,6 +10,16 @@
         {% endfor %}
     </div>
 
-    <input type="file" name="attachment_{{exercise.name}}"/>
+    <div style="margin: 15px auto; width:300px;">
+        <input style="float: left;" type="file" name="attachment_{{exercise.name}}"/>
+        <div style="clear:both;"></div>
+    </div>
+    
+
+    <cite>
+    {% for para in exercise.description_after %}
+        <p>{{para}}</p>
+    {% endfor %}
+    </cite>
 
 </div>
