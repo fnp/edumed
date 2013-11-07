@@ -29,6 +29,28 @@ class SubmissionFormBase(forms.ModelForm):
         exclude = ('answers', 'marks', 'contact') + readonly_fields
 
 
+def get_open_answer(answers, exercise):
+    def get_option(options, id):
+        for option in options:
+            if option['id'] == int(id):
+                return option
+
+    exercise_id = str(exercise['id'])
+    answer = answers[exercise_id]
+    if exercise['type'] == 'open':
+        toret = answer
+    if exercise['type'] == 'edumed_wybor':
+        ok = set(map(str, exercise['answer'])) == set(map(str,answer['closed_part']))
+        toret = u'Czesc testowa [%s]:\n' % ('poprawna' if ok else 'niepoprawna')
+        for selected in answer['closed_part']:
+            option = get_option(exercise['options'], selected)
+            toret += '%s: %s\n' % (selected, option['text'])
+        toret += u'\nCzesc otwarta (%s):\n\n' % ' '.join(exercise['open_part'])
+        toret += answer['open_part']
+
+    return toret
+
+
 def get_form(request, submission):
     fields = dict()
     if submission.answers:
@@ -37,12 +59,12 @@ def get_form(request, submission):
         for exercise in exercises:
             if exercise not in user_exercises:
                 continue
-            if exercise['type'] == 'open':
+            if exercise['type'] == 'open' or exercise.get('open_part', None):
                 answer_field_name = 'exercise_%s' % exercise['id']
                 mark_field_name = 'markof_%s_by_%s' % (exercise['id'], request.user.id)
                 fields[answer_field_name] = forms.CharField(
                     widget = forms.Textarea(attrs={'readonly':True}),
-                    initial = answers[str(exercise['id'])],
+                    initial = get_open_answer(answers, exercise),
                     label = 'Rozwiązanie zadania %s' % exercise['id']
                 )
 

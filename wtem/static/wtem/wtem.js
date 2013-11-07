@@ -27,10 +27,18 @@ $(function() {
 
     var handlers = {
         edumed: function(el) {
-            var exercise = el.data('exercise');
+            var exercise = el.data('exercise'),
+                to_push = {},
+                open_part;
             if(exercise.get_answers) {
-                push_answer(el, exercise.get_answers()[0]);
+                to_push.closed_part = exercise.get_answers()[0];
             }
+            open_part = el.find('.open_part')
+            if(open_part.length) {
+                to_push.open_part = open_part.find('textarea').val();
+            }
+
+            push_answer(el, to_push);
         },
 
         open: function(el) {

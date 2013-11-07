@@ -21,4 +21,17 @@
         </ol>
     </div>
 
+    {% if exercise.open_part %}
+    <div class="open_part">
+        <div class="description">
+            {% for para in exercise.open_part %}
+                <p class="paragraph">
+                    {{para}}
+                </p>
+            {% endfor %}
+        </div>
+        <textarea style="width: 100%; margin-top:10px;" rows="10"></textarea>
+    </div>
+    {% endif %}
+
 </div>
