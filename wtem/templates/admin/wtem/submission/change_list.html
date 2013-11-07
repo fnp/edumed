@@ -1,0 +1,15 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+{% load admin_urls %}
+
+
+{% block result_list %}
+    {% if examiners %}
+        <p>
+        {% for examiner in examiners %}
+            {{examiner.name}}: {{examiner.todo}} {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    {% endif %}
+    {{block.super}}
+{% endblock %}

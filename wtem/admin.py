@@ -132,6 +132,18 @@ class SubmissionAdmin(admin.ModelAdmin):
                 submission.set_mark(user_id = user_id, exercise_id = exercise_id, mark = value)
         submission.save()
 
+    def changelist_view(self, request, extra_context=None):
+        context = dict(examiners = [])
+        if request.user.is_superuser:
+            submissions = Submission.objects.all()
+            for assignment in Assignment.objects.all():
+                examiner = dict(name = assignment.user.username, todo = 0)
+                for submission in submissions:
+                    for exercise_id in assignment.exercises:
+                        if submission.get_mark(user_id = assignment.user.id, exercise_id = exercise_id) is None:
+                            examiner['todo'] += 1
+                context['examiners'].append(examiner)
+        return super(SubmissionAdmin, self).changelist_view(request, extra_context = context)
 
 admin.site.register(Submission, SubmissionAdmin)
 admin.site.register(Assignment)
