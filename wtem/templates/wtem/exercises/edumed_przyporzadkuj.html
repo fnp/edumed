@@ -28,14 +28,23 @@
         </ul>
         <br class="clr">
 
-        <div class="description">
+        <div class="description" style="margin-bottom:10px;">
             <p class="paragraph">{{exercise.items_name|capfirst}}:</p>
         </div>
          
         <ul class="lista punkt subject" data-target="kategorie">
             {% for item in exercise.items %}
                 <!-- data-solution set to single bogus value only to indicate that this piece has no multiple solutions, not used otherwise (see: is_multiple in edumed.coffee). -->
-                <li data-solution="1" data-no="{{forloop.counter}}" data-id="{{item.id}}" class="question-piece draggable ui-draggable">{{item.text}}</li>
+                
+                {% if item.href %}
+                    <li style="magin-bottom:5px;">
+                        <span data-solution="1" data-no="{{forloop.counter}}" data-id="{{item.id}}" class="question-piece draggable ui-draggable">{{item.text}}</span>
+                        <img src="/static/wtem/img/{{item.href}}"/>
+                    </li>
+                {% else %}
+                    <li data-solution="1" data-no="{{forloop.counter}}" data-id="{{item.id}}" class="question-piece draggable ui-draggable">{{item.text}}</li>
+                {% endif %}
+            
             {% endfor %}
         </ul>
 
