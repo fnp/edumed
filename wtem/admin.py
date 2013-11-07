@@ -5,9 +5,10 @@ import os
 from django.contrib import admin
 from django import forms
 from django.utils import simplejson
+from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
 
-from .models import Submission, Assignment
+from .models import Submission, Assignment, Attachment
 from .middleware import get_current_request
 
 
@@ -22,6 +23,9 @@ def get_user_exercises(user):
 
 readonly_fields = ('submitted_by', 'first_name', 'last_name', 'email', 'key', 'key_sent')
 
+class AttachmentWidget(forms.Widget):
+    def render(self, name, value, *args, **kwargs):
+        return mark_safe('<a href="%s">%s</a>' % (value, value))
 
 class SubmissionFormBase(forms.ModelForm):
     class Meta:
@@ -67,13 +71,25 @@ def get_form(request, submission):
         for exercise in exercises:
             if exercise not in user_exercises:
                 continue
-            if exercise['type'] == 'open' or exercise.get('open_part', None):
-                answer_field_name = 'exercise_%s' % exercise['id']
-                mark_field_name = 'markof_%s_by_%s' % (exercise['id'], request.user.id)
+            
+            answer_field_name = 'exercise_%s' % exercise['id']
+            mark_field_name = 'markof_%s_by_%s' % (exercise['id'], request.user.id)
+            if exercise['type'] in ('open', 'file_upload') or exercise.get('open_part', None):
+                if exercise['type'] == 'file_upload':
+                    try:
+                        attachment = Attachment.objects.get(submission = submission, exercise_id = exercise['id'])
+                    except Attachment.DoesNotExist:
+                        attachment = None
+                    widget = AttachmentWidget
+                    initial = attachment.file.url if attachment else None
+                else:
+                    widget = forms.Textarea(attrs={'readonly':True})
+                    initial = get_open_answer(answers, exercise)
+
                 fields[answer_field_name] = forms.CharField(
-                    widget = forms.Textarea(attrs={'readonly':True}),
-                    initial = get_open_answer(answers, exercise),
-                    label = 'Rozwiązanie zadania %s' % exercise['id']
+                        widget = widget,
+                        initial = initial,
+                        label = 'Rozwiązanie zadania %s' % exercise['id']
                 )
 
                 fields[mark_field_name] = forms.ChoiceField(

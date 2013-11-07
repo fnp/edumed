@@ -66,7 +66,7 @@ class Submission(models.Model):
 
 class Attachment(models.Model):
     submission = models.ForeignKey(Submission)
-    name = models.CharField(max_length=100)
+    exercise_id = models.IntegerField()
     file = models.FileField(upload_to = 'wtem/attachment')
 
 

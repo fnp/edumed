@@ -22,7 +22,7 @@ class WTEMForm(forms.ModelForm):
         for exercise in exercises:
             if exercise['type'] != 'file_upload':
                 continue
-            self.fields['attachment_' + exercise['name']] = forms.FileField(required = False)
+            self.fields['attachment_for_' + str(exercise['id'])] = forms.FileField(required = False)
 
     def save(self):
         submission = super(WTEMForm, self).save()
