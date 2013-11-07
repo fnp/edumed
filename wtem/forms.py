@@ -26,7 +26,12 @@ class WTEMForm(forms.ModelForm):
 
     def save(self):
         submission = super(WTEMForm, self).save()
-        for file in self.files.values():
-            attachment = Attachment(file = file, submission = submission)
+        for name, file in self.files.items():
+            exercise_id = int(name.split('_')[-1])
+            try:
+                attachment = Attachment.objects.get(submission = submission, exercise_id = exercise_id)
+            except Attachment.DoesNotExist:
+                attachment = Attachment(fsubmission = submission, exercise_id = exercise_id)
+            attachment.file = file
             attachment.save()
 
