@@ -13,8 +13,11 @@ from .middleware import get_current_request
 
 
 def get_user_exercises(user):
-    assignment = Assignment.objects.get(user = user)
-    return [e for e in exercises if e['id'] in assignment.exercises]
+    try:
+        assignment = Assignment.objects.get(user = user)
+        return [e for e in exercises if e['id'] in assignment.exercises]
+    except Assignment.DoesNotExist:
+        return []
 
 
 readonly_fields = ('submitted_by', 'first_name', 'last_name', 'email', 'key', 'key_sent')
