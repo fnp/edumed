@@ -38,10 +38,17 @@
                 data-solution set to single bogus value only to indicate that this piece has no multiple solutions, not used otherwise (see: is_multiple in edumed.coffee). 
                 {% endcomment %}
                 
-                {% if item.href %}
+                {% if item.img %}
                     <li style="magin-bottom:5px;">
                         <span data-solution="1" data-no="{{forloop.counter}}" data-id="{{item.id}}" class="question-piece draggable ui-draggable">{{item.text}}</span>
-                        <img src="/static/wtem/img/{{item.href}}"/>
+                        
+                        {% if item.href %}
+                            <a href="/static/wtem/img/{{item.href}}">
+                        {% endif %}
+                        
+                        <img src="/static/wtem/img/{{item.img}}"/>
+                        
+                        {% if item.href %}</a>{% endif %}
                     </li>
                 {% else %}
                     <li data-solution="1" data-no="{{forloop.counter}}" data-id="{{item.id}}" class="question-piece draggable ui-draggable">{{item.text}}</li>
