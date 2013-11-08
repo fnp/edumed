@@ -34,7 +34,9 @@
          
         <ul class="lista punkt subject" data-target="kategorie">
             {% for item in exercise.items %}
-                {% comment data-solution set to single bogus value only to indicate that this piece has no multiple solutions, not used otherwise (see: is_multiple in edumed.coffee). %}
+                {% comment %}
+                data-solution set to single bogus value only to indicate that this piece has no multiple solutions, not used otherwise (see: is_multiple in edumed.coffee). 
+                {% endcomment %}
                 
                 {% if item.href %}
                     <li style="magin-bottom:5px;">
