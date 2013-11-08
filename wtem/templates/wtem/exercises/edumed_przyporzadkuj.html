@@ -48,7 +48,7 @@
                         <span data-solution="1" data-no="{{forloop.counter}}" data-id="{{item.id}}" class="question-piece draggable ui-draggable">{{item.text}}</span>
                         
                         {% if item.href %}
-                            <a href="/static/wtem/img/{{item.href}}">
+                            <a href="{% if not item.href_absolute %}/static/wtem/img/{% endif %}{{item.href}}">
                         {% endif %}
                         
                         <img src="/static/wtem/img/{{item.img}}"/>
@@ -63,6 +63,16 @@
         </ul>
 
         <br class="clr">
+
+        {% if exercise.description_after %}
+            {% autoescape off %}
+            {% for para in exercise.description_after %}
+                <p class="paragraph">
+                    {{para}}
+                </p>
+            {% endfor %}
+            {% endautoescape %}
+        {% endif %}
 
     </div>
 
