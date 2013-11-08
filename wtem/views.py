@@ -11,9 +11,6 @@ from .forms import WTEMForm
 WTEM_CONTEST_STAGE = getattr(settings, 'WTEM_CONTEST_STAGE', 'before')
 
 
-def main(request):
-    pass
-
 def form(request, key):
     return globals()['form_' + WTEM_CONTEST_STAGE](request, key)
     
