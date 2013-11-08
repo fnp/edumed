@@ -39,7 +39,7 @@
                 </p>
             {% endfor %}
         </div>
-        <textarea style="width: 100%; margin-top:10px;" rows="10"></textarea>
+        <textarea style="width: 100%; margin-top:10px;" rows="{{exercise.open_part_rows|default:10}}"></textarea>
     </div>
     {% endif %}
 
