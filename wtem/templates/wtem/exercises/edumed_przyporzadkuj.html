@@ -11,7 +11,9 @@
             </p>
 
         {% endfor %}
-            <span class="instruction">Przeciągnij odpowiedzi i upuść w wybranym polu.</span>
+            {% if not exercise.hide_default_instruction %}
+                <span class="instruction">Przeciągnij odpowiedzi i upuść w wybranym polu.</span>
+            {% endif %}
         </div>
 
         <p class="paragraph">{{exercise.buckets_name|default:"kategorie"|capfirst}}:</p>
@@ -30,6 +32,9 @@
 
         <div class="description" style="margin-bottom:10px;">
             <p class="paragraph">{{exercise.items_name|capfirst}}:</p>
+            {% if exercise.items_instruction %}
+                <span class="instruction">{{exercise.items_instruction}}</span>
+            {% endif %}
         </div>
          
         <ul class="lista punkt subject {% if exercise.items_inline %}wtem-items-inline{% endif %}" data-target="kategorie">
