@@ -3,7 +3,7 @@ import os
 from django.shortcuts import render
 from django.utils import simplejson
 from django.conf import settings
-from django.http import Http404
+from django.http import Http404, HttpResponseForbidden
 
 from .models import Submission, DEBUG_KEY
 from .forms import WTEMForm
@@ -24,7 +24,7 @@ def form_during(request, key):
 
     if WTEM_CONTEST_STAGE != 'during':
         if request.META['REMOTE_ADDR'] != getattr(settings, 'WTEM_CONTEST_IP_ALLOW', 'xxx'):
-            raise Http404
+            return HttpResponseForbidden('Not allowed')
 
     try:
         submission = Submission.objects.get(key = key)
