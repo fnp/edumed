@@ -5,7 +5,7 @@ from django.utils import simplejson
 from django.conf import settings
 from django.http import Http404, HttpResponseForbidden
 
-from .models import Submission, DEBUG_KEY
+from .models import Submission, DEBUG_KEY, exercises
 from .forms import WTEMForm
 
 WTEM_CONTEST_STAGE = getattr(settings, 'WTEM_CONTEST_STAGE', 'before')
@@ -33,12 +33,6 @@ def form_during(request, key):
             submission = Submission.create(first_name = 'Debug', last_name = 'Debug', email = 'debug@debug.com', key = DEBUG_KEY)
         else:
             raise Http404
-
-    ## @@ move this out of the view
-    f = file(os.path.dirname(__file__) + '/fixtures/exercises.json')
-    exercises = simplejson.loads(f.read())
-    f.close()
-
     if request.method == 'GET':
         return render(request, 'wtem/main.html', dict(exercises = exercises))
     elif request.method == 'POST':

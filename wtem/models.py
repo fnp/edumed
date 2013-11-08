@@ -1,14 +1,19 @@
 import random
 import string
+import os
 
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.utils import simplejson
 from django.utils.translation import ugettext as _
 from jsonfield import JSONField
 
 from contact.models import Contact
 
+f = file(os.path.dirname(__file__) + '/fixtures/exercises.json')
+exercises = simplejson.loads(f.read())
+f.close()
 
 DEBUG_KEY = '12345'
 

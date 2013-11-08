@@ -3,7 +3,7 @@ import os
 from django import forms
 from django.utils import simplejson
 
-from .models import Submission, Attachment
+from .models import Submission, Attachment, exercises
 
 
 class WTEMForm(forms.ModelForm):
@@ -13,12 +13,6 @@ class WTEMForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(WTEMForm, self).__init__(*args, **kwargs)
-
-        ## @@ move this one level up
-        f = file(os.path.dirname(__file__) + '/fixtures/exercises.json')
-        exercises = simplejson.loads(f.read())
-        f.close()
-
         for exercise in exercises:
             if exercise['type'] != 'file_upload':
                 continue

@@ -8,13 +8,9 @@ from django.utils import simplejson
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
 
-from .models import Submission, Assignment, Attachment
+from .models import Submission, Assignment, Attachment, exercises
 from .middleware import get_current_request
 
-
-f = file(os.path.dirname(__file__) + '/fixtures/exercises.json')
-exercises = simplejson.loads(f.read())
-f.close()
 
 def get_user_exercises(user):
     assignment = Assignment.objects.get(user = user)
