@@ -25,7 +25,7 @@ class WTEMForm(forms.ModelForm):
             try:
                 attachment = Attachment.objects.get(submission = submission, exercise_id = exercise_id)
             except Attachment.DoesNotExist:
-                attachment = Attachment(fsubmission = submission, exercise_id = exercise_id)
+                attachment = Attachment(submission = submission, exercise_id = exercise_id)
             attachment.file = file
             attachment.save()
 
