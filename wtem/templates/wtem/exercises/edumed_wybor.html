@@ -9,6 +9,13 @@
                 {{para}}
             </p>
         {% endfor %}
+        <span class="instruction">
+            {% if exercise.answer|length == 1 %}
+                Tylko jedna odpowiedź jest prawidłowa.
+            {% else %}
+                Zaznacz wszystkie prawidłowe odpowiedzi.
+            {% endif %}
+        </span>
     </div>
     {% endautoescape %}
 
