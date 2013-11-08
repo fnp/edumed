@@ -32,7 +32,7 @@
             <p class="paragraph">{{exercise.items_name|capfirst}}:</p>
         </div>
          
-        <ul class="lista punkt subject" data-target="kategorie">
+        <ul class="lista punkt subject {% if exercise.items_inline %}wtem-items-inline{% endif %}" data-target="kategorie">
             {% for item in exercise.items %}
                 {% comment %}
                 data-solution set to single bogus value only to indicate that this piece has no multiple solutions, not used otherwise (see: is_multiple in edumed.coffee). 
