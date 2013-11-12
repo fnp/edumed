@@ -148,15 +148,16 @@ class SubmissionAdmin(admin.ModelAdmin):
 
     def changelist_view(self, request, extra_context=None):
         context = dict(examiners = [])
-        if request.user.is_superuser:
-            submissions = Submission.objects.all()
-            for assignment in Assignment.objects.all():
-                examiner = dict(name = assignment.user.username, todo = 0)
-                for submission in Submission.objects.filter(examiners = assignment.user):
-                    for exercise_id in assignment.exercises:
-                        if submission.get_mark(user_id = assignment.user.id, exercise_id = exercise_id) is None:
-                            examiner['todo'] += 1
-                context['examiners'].append(examiner)
+        assignments = Assignment.objects.all()
+        if not request.user.is_superuser:
+            assignments = assignments.filter(user = request.user)
+        for assignment in assignments:
+            examiner = dict(name = assignment.user.username, todo = 0)
+            for submission in Submission.objects.filter(examiners = assignment.user):
+                for exercise_id in assignment.exercises:
+                    if submission.get_mark(user_id = assignment.user.id, exercise_id = exercise_id) is None:
+                        examiner['todo'] += 1
+            context['examiners'].append(examiner)
         return super(SubmissionAdmin, self).changelist_view(request, extra_context = context)
 
     def queryset(self, request):
