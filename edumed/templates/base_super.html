@@ -36,10 +36,12 @@
             <div id="header-top">
             <a id="logo" href="/"><img src="{% static "img/logo.png" %}" alt="Edukacja medialna"/></a>
             <div id="organizer">
+                {% block organizer %}
                 Projekt prowadzi:<br/>
                 <a href="http://nowoczesnapolska.org.pl">
                     <img src="{% static "img/logo_fnp.png" %}" alt="Fundacja Nowoczesna Polska" />
                 </a>
+                {% endblock %}
             </div>
             <nav><ul>
                 {% block top_navigation %}

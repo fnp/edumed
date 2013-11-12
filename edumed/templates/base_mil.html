@@ -2,6 +2,7 @@
 {% load subdomainurls %}
 {% load fnp_lang %}
 {% load sponsor_tags %}
+{% load static %}
 
 {% load i18n %}
 
@@ -18,4 +19,16 @@
 
 {% block sponsors %}
     {% sponsor_page "footer_mil" %}
+{% endblock %}
+
+{% block organizer %}
+    <span style="position:relative; left:70px;">
+    Projekt prowadzi:<br/>
+    <a href="http://nowoczesnapolska.org.pl">
+        <img src="{% static "img/logo_fnp.png" %}" alt="Fundacja Nowoczesna Polska" />
+    </a>
+    <a href="http://http://www.nina.gov.pl/">
+        <img src="{% static "img/nina.jpg" %}" alt="Narodowy Instytut Audiowizualny" />
+    </a>
+    </span>
 {% endblock %}
