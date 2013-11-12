@@ -10,7 +10,7 @@ class Command(BaseCommand):
         new = 0
         skipped = 0
 
-        for wtem_contact in Contact.objects.filter(form_tag = 'wtem'):
+        for wtem_contact in Contact.objects.filter(form_tag = 'wtem').order_by('-created_at'):
             for student in wtem_contact.body['student']:
                 if not Submission.objects.filter(email = student['email']).exists():
                     args = dict()
