@@ -13,6 +13,9 @@ def form(request, form_tag):
     except KeyError:
         raise Http404
     if getattr(form_class, 'disabled', False):
+        template = getattr(form_class, 'disabled_template', None)
+        if template:
+            return render(request, template)
         raise Http404
     if request.method == 'POST':
         form = form_class(request.POST, request.FILES)

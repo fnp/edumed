@@ -102,6 +102,7 @@ class NoEmptyFormsAllowedBaseFormSet(forms.formsets.BaseFormSet):
 
 class WTEMForm(ContactForm):
     disabled = True
+    disabled_template = 'wtem/disabled_contact_form.html'
     form_tag = "wtem"
     form_title = u"WTEM - rejestracja uczestników"
     submit_label = u"Wyślij zgłoszenie"
