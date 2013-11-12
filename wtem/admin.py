@@ -132,10 +132,11 @@ class SubmissionAdmin(admin.ModelAdmin):
         user_exercises = get_user_exercises(user)
         user_marks = submission.marks.get(str(user.id), {})
         return ','.join([str(e['id']) for e in user_exercises if str(e['id']) not in user_marks.keys()])
+    todo.short_description = 'Twoje nieocenione zadania'
 
     def examiners_repr(self, submission):
         return ', '.join([u.username for u in submission.examiners.all()])
-    examiners_repr.short_description = 'Przypisani'
+    examiners_repr.short_description = 'Przypisani do zgłoszenia'
 
     def save_model(self, request, submission, form, change):
         for name, value in form.cleaned_data.items():
