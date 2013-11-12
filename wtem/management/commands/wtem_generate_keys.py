@@ -5,8 +5,7 @@ from wtem.models import Submission
 
 
 class Command(BaseCommand):
-    help = 'Sends personalized links to WTEM contestants'
-
+    
     def handle(self, *args, **options):
         new = 0
         skipped = 0
