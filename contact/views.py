@@ -12,6 +12,8 @@ def form(request, form_tag):
         form_class = contact_forms[form_tag]
     except KeyError:
         raise Http404
+    if getattr(form_class, 'disabled', False):
+        raise Http404
     if request.method == 'POST':
         form = form_class(request.POST, request.FILES)
         formsets = []

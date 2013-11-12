@@ -101,6 +101,7 @@ class NoEmptyFormsAllowedBaseFormSet(forms.formsets.BaseFormSet):
         raise forms.ValidationError(u"Proszę podać dane przynajmniej jednego ucznia.")
 
 class WTEMForm(ContactForm):
+    disabled = True
     form_tag = "wtem"
     form_title = u"WTEM - rejestracja uczestników"
     submit_label = u"Wyślij zgłoszenie"
