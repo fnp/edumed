@@ -26,6 +26,7 @@ class Submission(models.Model):
     answers = models.CharField(max_length = 65536, null = True, blank = True)
     key_sent = models.BooleanField(default = False)
     marks = JSONField()
+    examiners = models.ManyToManyField(User, null = True, blank = True)
 
     def __unicode__(self):
         return ', '.join((self.last_name, self.first_name, self.email))

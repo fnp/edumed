@@ -100,11 +100,18 @@ def get_form(request, submission):
                     initial = submission.get_mark(user_id = request.user.id, exercise_id = exercise['id']),
                     label = u'Twoja ocena zadania %s' % exercise['id']
                 )
+
+    if not request.user.is_superuser:
+        class Meta(SubmissionFormBase.Meta):
+            pass
+        Meta.exclude += ('examiners',)
+        fields['Meta'] = Meta
+
     return type('SubmissionForm', (SubmissionFormBase,), fields)
 
 
 class SubmissionAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'todo',)
+    list_display = ('__unicode__', 'todo', 'examiners_repr')
     readonly_fields = readonly_fields
 
     def get_form(self, request, obj, **kwargs):
@@ -126,6 +133,10 @@ class SubmissionAdmin(admin.ModelAdmin):
         user_marks = submission.marks.get(str(user.id), {})
         return ','.join([str(e['id']) for e in user_exercises if str(e['id']) not in user_marks.keys()])
 
+    def examiners_repr(self, submission):
+        return ', '.join([u.username for u in submission.examiners.all()])
+    examiners_repr.short_description = 'Przypisani'
+
     def save_model(self, request, submission, form, change):
         for name, value in form.cleaned_data.items():
             if name.startswith('markof_'):
@@ -141,12 +152,19 @@ class SubmissionAdmin(admin.ModelAdmin):
             submissions = Submission.objects.all()
             for assignment in Assignment.objects.all():
                 examiner = dict(name = assignment.user.username, todo = 0)
-                for submission in submissions:
+                for submission in Submission.objects.filter(examiners = assignment.user):
                     for exercise_id in assignment.exercises:
                         if submission.get_mark(user_id = assignment.user.id, exercise_id = exercise_id) is None:
                             examiner['todo'] += 1
                 context['examiners'].append(examiner)
         return super(SubmissionAdmin, self).changelist_view(request, extra_context = context)
+
+    def queryset(self, request):
+        qs = super(SubmissionAdmin, self).queryset(request)
+        if not request.user.is_superuser:
+            qs = qs.filter(examiners = request.user)
+        return qs
+
 
 admin.site.register(Submission, SubmissionAdmin)
 admin.site.register(Assignment)
