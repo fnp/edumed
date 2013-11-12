@@ -24,7 +24,11 @@ readonly_fields = ('submitted_by', 'first_name', 'last_name', 'email', 'key', 'k
 
 class AttachmentWidget(forms.Widget):
     def render(self, name, value, *args, **kwargs):
-        return mark_safe('<input type="hidden" name="%s" value="%s"/><a href="%s">%s</a>' % (name, value, value, value))
+        if value:
+            a_tag = '<a href="%s">%s</a>' % (value, value)
+        else:
+            a_tag = 'brak'
+        return mark_safe(('<input type="hidden" name="%s" value="%s"/>' + a_tag) % (name, value))
 
 class SubmissionFormBase(forms.ModelForm):
     class Meta:
