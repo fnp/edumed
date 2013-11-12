@@ -14,4 +14,25 @@
     {% endfor %}
     </ol>
 
+    {% if request.LANGUAGE_CODE == 'pl' %}
+        <p>Aby wprowadzić szczegółowe komentarze w poszczególnych obszarach tematycznych konieczna jest rejestracja.</p>
+        <p>Jak to zrobić?</p>
+        <ol>
+            <li>Kliknij w dowolny link z listy obszarów tematycznych.</li>
+            <li>Wybierz opcję "Register" (Zarejestruj się).</li>
+            <li>Wprowadź swoje dane (adres e-mail, imię, nazwisko). Kliknij zielony przycisk "Register".</li>
+            <li>Na Twoje konto e-mail zostanie wysłana wiadomość potwierdzająca rejestrację. Kliknij w podany w niej link, aby aktywować swoje konto.</li>
+            <li>Wprowadź nazwę użytkownika i hasło. Potwierdź zielonym przyciskiem.</li>
+            <li>Wejdź ponownie na stronę http://katalog.edukacjamedialna.edu.pl/wez-udzial/. Wybierz interesujący Cię obszar tematyczny, zaloguj się i podziel się swoimi uwagami.</li>
+        </ol>
+        
+        <p>Jak dodać komentarz?</p>
+        <ol>
+            <li>Zaznacz dowolny fragment tekstu.</li>
+            <li>Wciśnij żółty przycisk "comment" po lewej stronie.</li>
+            <li>W polu "subject" wpisz temat uwagi, a w polu "content" jej treść.</li>
+            <li>Zapisz swój komentarz przyciskiem "save".</li>
+        </ol>
+    {% endif %}
+
 {% endblock %}
