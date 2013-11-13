@@ -14,11 +14,12 @@ def csv_header(exercise_id, submissionSet):
 
 @register.simple_tag
 def csv_row_fragment(exercise_id, submission, submissionSet):
-    toret = '%s' % submission.final_result
-    examiners = submissionSet.examiners_by_exercise[exercise_id]
+    final_mark = submission.get_final_exercise_mark(exercise_id)
+    toret = str(final_mark) if isinstance(final_mark, int) else '-'
+    examiners = submissionSet.examiners_by_exercise.get(exercise_id, [])
     marks_by_examiner = submission.get_exercise_marks_by_examiner(exercise_id)
     for examiner in examiners:
-        mark = marks_by_examiner[examiner.id]
+        mark = marks_by_examiner.get(str(examiner.id), None)
         toret += ','
         if mark is None:
             toret += '-'
