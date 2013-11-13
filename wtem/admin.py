@@ -10,6 +10,8 @@ from django.core.urlresolvers import reverse
 from django.conf.urls import url, patterns
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 from .models import Submission, Assignment, Attachment, exercises
 from .middleware import get_current_request
 
@@ -189,12 +191,14 @@ class SubmissionsSet:
                         examiners.append(user)
 
 def report_view(request):
-    submissions = Submission.objects.all()
-    submissions = sorted(submissions, key = lambda s: -s.final_result)
-    return render(request, 'wtem/admin_report.csv', dict(
+    submissions = sorted(Submission.objects.all(), key = lambda s: -s.final_result)
+    toret = render_to_string('wtem/admin_report.csv', dict(
         submissionsSet = SubmissionsSet(submissions),
         exercise_ids = map(str, range(1,len(exercises)+1))
     ))
+    response = HttpResponse(toret, content_type = 'text/csv')
+    response['Content-Disposition'] = 'attachment; filename="wyniki.csv"'
+    return response
 
 admin.site.register(Submission, SubmissionAdmin)
 admin.site.register(Assignment)
