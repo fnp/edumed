@@ -1,4 +1,2 @@
-{% load wtem_csv %}
-{% spaceless %}
-email,nazwisko,imie,suma{% for exercise_id in exercise_ids %}{% csv_header exercise_id submissionsSet %}{% endfor %}{% for submission in submissionsSet.submissions %}
-{{submission.email}},{{submission.last_name}},{{submission.first_name}},{{submission.final_result}}{% for exercise_id in exercise_numbers %}{% csv_row_fragment exercise_id submission submissionsSet %}{% endfor %}{% endfor %}{% endspaceless %}
+{% load wtem_csv %}email,nazwisko,imie,suma{% for exercise_id in exercise_ids %}{% csv_header exercise_id submissionsSet %}{% endfor %}{% for submission in submissionsSet.submissions %}
+{{submission.email}},{{submission.last_name}},{{submission.first_name}},{{submission.final_result}}{% for exercise_id in exercise_ids %},{% csv_row_fragment exercise_id submission submissionsSet %}{% endfor %}{% endfor %}
