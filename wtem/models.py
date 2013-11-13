@@ -97,7 +97,7 @@ class Submission(models.Model):
                 toret = 0
                 for bucket_id, items in answer.items():
                     for item_id in items:
-                        if int(item_id) == exercise['answer'][bucket_id]: # @@ We assume only one item per bucker for now...
+                        if int(item_id) == exercise['answer'].get(bucket_id, None): # @@ We assume only one item per bucker for now...
                             toret += exercise['points_per_hit']
                 return toret
             if t == 'edumed_wybor':
