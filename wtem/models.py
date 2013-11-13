@@ -97,7 +97,12 @@ class Submission(models.Model):
                 toret = 0
                 for bucket_id, items in answer.items():
                     for item_id in items:
-                        if int(item_id) in exercise['answer'].get(bucket_id, []):
+                        is_corect = False
+                        if exercise.get('answer_mode', None) == 'possible_buckets_for_item':
+                            is_correct = int(bucket_id) in exercise['answer'].get(item_id)
+                        else:
+                            is_correct = int(item_id) in exercise['answer'].get(bucket_id, [])
+                        if is_correct:
                             toret += exercise['points_per_hit']
                 return toret
             if t == 'edumed_wybor':
