@@ -11,9 +11,6 @@
             </p>
 
         {% endfor %}
-            {% if not exercise.hide_default_instruction %}
-                <span class="instruction">Przeciągnij odpowiedzi i upuść w wybranym polu.</span>
-            {% endif %}
         </div>
 
         <p class="paragraph">{{exercise.buckets_name|default:"kategorie"|capfirst}}:</p>
@@ -32,6 +29,9 @@
 
         <div class="description" style="margin-bottom:10px;">
             <p class="paragraph">{{exercise.items_name|capfirst}}:</p>
+            {% if not exercise.hide_default_instruction %}
+                <span class="instruction">Przeciągnij i upuść numery odpowiedzi w wybranym polu powyżej.</span>
+            {% endif %}
             {% if exercise.items_instruction %}
                 <span class="instruction">{{exercise.items_instruction}}</span>
             {% endif %}
@@ -43,17 +43,22 @@
                 data-solution set to single bogus value only to indicate that this piece has no multiple solutions, not used otherwise (see: is_multiple in edumed.coffee). 
                 {% endcomment %}
                 
-                {% if item.img %}
+                {% if item.img or item.desc %}
                     <li style="magin-bottom:5px;">
                         <span data-solution="1" data-no="{{forloop.counter}}" data-id="{{item.id}}" class="question-piece draggable ui-draggable">{{item.text}}</span>
                         
-                        {% if item.href %}
-                            <a href="{% if not item.href_absolute %}/static/wtem/img/{% endif %}{{item.href}}" target="wtem_aside">
+                        {% if item.img %}
+                            {% if item.href %}
+                                <a href="{% if not item.href_absolute %}/static/wtem/img/{% endif %}{{item.href}}" target="wtem_aside">
+                            {% endif %}
+                            
+                            <img src="/static/wtem/img/{{item.img}}"/>
+                            
+                            {% if item.href %}</a>{% endif %}
                         {% endif %}
-                        
-                        <img src="/static/wtem/img/{{item.img}}"/>
-                        
-                        {% if item.href %}</a>{% endif %}
+                        {% if item.desc %}
+                            {{item.desc}}
+                        {% endif %}
                     </li>
                 {% else %}
                     <li data-solution="1" data-no="{{forloop.counter}}" data-id="{{item.id}}" class="question-piece draggable ui-draggable">{{item.text}}</li>
