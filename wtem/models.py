@@ -70,6 +70,35 @@ class Submission(models.Model):
             del self.marks[user_id][exercise_id]
 
 
+    def get_exercise_marks_by_examiner(self, exercise_id):
+        marks = dict()
+        for examiner_id, examiner_marks in self.marks.items():
+            mark = examiner_marks.get(exercise_id, None)
+            if mark is not None:
+                marks[examiner_id] = mark
+        return marks
+
+    def get_final_exercise_mark(self, exercise_id):
+        exercise = exercises[int(exercise_id)-1]
+        if exercise_checked_manually(exercise):
+            marks_by_examiner = self.get_exercise_marks_by_examiner(exercise_id)
+            if len(marks_by_examiner):
+                return max(marks_by_examiner.values())
+            else:
+                return None
+        else:
+            return 1 # TODO: actually calculate the result
+
+    @property
+    def final_result(self):
+        final = 0
+        for exercise_id in map(str,range(1, len(exercises) + 1)):
+            mark = self.get_final_exercise_mark(exercise_id)
+            if mark is not None:
+                final += int(mark)
+        return final
+
+
 class Attachment(models.Model):
     submission = models.ForeignKey(Submission)
     exercise_id = models.IntegerField()
@@ -89,3 +118,7 @@ class Assignment(models.Model):
 
     def __unicode__(self):
         return self.user.username + ': ' + ','.join(map(str,self.exercises))
+
+
+def exercise_checked_manually(exercise):
+    return (exercise['type'] in ('open', 'file_upload')) or 'open_part' in exercise

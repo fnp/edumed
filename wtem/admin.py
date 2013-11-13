@@ -7,7 +7,9 @@ from django import forms
 from django.utils import simplejson
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
-
+from django.conf.urls import url, patterns
+from django.shortcuts import render
+from django.contrib.auth.models import User
 from .models import Submission, Assignment, Attachment, exercises
 from .middleware import get_current_request
 
@@ -167,6 +169,32 @@ class SubmissionAdmin(admin.ModelAdmin):
             qs = qs.filter(examiners = request.user)
         return qs
 
+    def get_urls(self):
+        urls = super(SubmissionAdmin, self).get_urls()
+        return patterns('',
+            url(r'^report/$', self.admin_site.admin_view(report_view), name='wtem_admin_report')
+        ) + super(SubmissionAdmin, self).get_urls()
+
+
+class SubmissionsSet:
+    def __init__(self, submissions):
+        self.submissions = submissions
+        self.examiners_by_exercise = dict()
+        for submission in submissions:
+            for user_id, marks in submission.marks.items():
+                user = User.objects.get(pk=user_id)
+                for exercise_id in marks.keys():
+                    examiners = self.examiners_by_exercise.setdefault(exercise_id, [])
+                    if not user in examiners:
+                        examiners.append(user)
+
+def report_view(request):
+    submissions = Submission.objects.all()
+    submissions = sorted(submissions, key = lambda s: -s.final_result)
+    return render(request, 'wtem/admin_report.csv', dict(
+        submissionsSet = SubmissionsSet(submissions),
+        exercise_ids = map(str, range(1,len(exercises)+1))
+    ))
 
 admin.site.register(Submission, SubmissionAdmin)
 admin.site.register(Assignment)
