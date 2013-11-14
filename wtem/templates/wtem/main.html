@@ -48,7 +48,6 @@
 Zespół Edukacji Medialnej, Fundacja Nowoczesna Polska</p>
 
 <form method="post" enctype="multipart/form-data">
-{% csrf_token %}
 
 {% for exercise in exercises %}
     {% with 'wtem/exercises/'|add:exercise.type|add:'.html' as template_name %}

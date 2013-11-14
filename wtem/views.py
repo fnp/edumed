@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.utils import simplejson
 from django.conf import settings
 from django.http import Http404, HttpResponseForbidden
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import Submission, DEBUG_KEY, exercises
 from .forms import WTEMForm
@@ -11,6 +12,7 @@ from .forms import WTEMForm
 WTEM_CONTEST_STAGE = getattr(settings, 'WTEM_CONTEST_STAGE', 'before')
 
 
+@csrf_exempt
 def form(request, key):
     return globals()['form_' + WTEM_CONTEST_STAGE](request, key)
     
@@ -20,6 +22,7 @@ def form_before(request, key):
 def form_after(request, key):
     return render(request, 'wtem/main_after.html')
 
+@csrf_exempt
 def form_during(request, key):
 
     if WTEM_CONTEST_STAGE != 'during':
