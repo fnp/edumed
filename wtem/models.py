@@ -113,9 +113,12 @@ class Submission(models.Model):
                         return 0
                 else:
                     toret = 0
-                    for id in map(int, answer):
-                        if id in exercise['answer']:
-                            toret += exercise['points_per_hit']
+                    if exercise.get('answer_mode', None) == 'all_or_nothing':
+                        toret = exercise['points'] if map(int, answer) == exercise['answer'] else 0
+                    else:
+                        for id in map(int, answer):
+                            if id in exercise['answer']:
+                                toret += exercise['points_per_hit']
                     return toret
             if t == 'edumed_prawdafalsz':
                 toret = 0
