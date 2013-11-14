@@ -415,6 +415,9 @@ class Przyporzadkuj extends Exercise
   draggable_equal: (d1, d2) ->
     return d1.data("no") == d2.data("no")
 
+  draggable_accept: ($draggable, $droppable) ->
+    dropped = $droppable.closest("ul, ol").find(".draggable")
+    return (super $draggable, $droppable) && dropped.length == 0
 
   check_question: (question) ->
     # subjects placed in predicates

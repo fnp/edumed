@@ -543,6 +543,12 @@
       return d1.data("no") === d2.data("no");
     };
 
+    Przyporzadkuj.prototype.draggable_accept = function($draggable, $droppable) {
+      var dropped;
+      dropped = $droppable.closest("ul, ol").find(".draggable");
+      return (Przyporzadkuj.__super__.draggable_accept.call(this, $draggable, $droppable)) && dropped.length === 0;
+    };
+
     Przyporzadkuj.prototype.check_question = function(question) {
       var all, bad_count, count, mandatory, minimum, optional, pn, pred, qp, self, v, _i, _j, _len, _len1, _ref, _ref1;
       minimum = $(question).data("minimum");
