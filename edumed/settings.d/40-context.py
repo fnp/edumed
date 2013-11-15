@@ -10,4 +10,5 @@ TEMPLATE_CONTEXT_PROCESSORS = tuple(x for x in (
             if 'django.contrib.messages' in INSTALLED_APPS else None,
     "django.core.context_processors.request",
     'pybb.context_processors.processor',
+    'edumed.context_processors.base_template'
 ) if x is not None)

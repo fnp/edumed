@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^forum/profile/edit/$', AvatarlessProfileEditView.as_view(), name='edit_profile'),
     url(r'^forum/', include('forum.urls')),
     url(r'^forum/', include('pybb.urls', namespace='pybb')),
+    url(r'^kompetencje/', include('curriculum.urls')),
 )
 
 
