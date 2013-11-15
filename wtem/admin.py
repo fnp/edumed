@@ -59,9 +59,10 @@ def get_open_answer(answers, exercise):
     if exercise['type'] == 'edumed_wybor':
         ok = set(map(str, exercise['answer'])) == set(map(str,answer['closed_part']))
         toret = u'Czesc testowa [%s]:\n' % ('poprawna' if ok else 'niepoprawna')
-        for selected in answer['closed_part']:
-            option = get_option(exercise['options'], selected)
-            toret += '%s: %s\n' % (selected, option['text'])
+        if len(answer['closed_part']):
+            for selected in answer['closed_part']:
+                option = get_option(exercise['options'], selected)
+                toret += '%s: %s\n' % (selected, option['text'])
         else:
             toret += u'<nie wybrano odpowiedzi>\n'
         toret += u'\nCzesc otwarta (%s):\n\n' % ' '.join(exercise['open_part'])
