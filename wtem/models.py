@@ -27,6 +27,7 @@ class Submission(models.Model):
     key_sent = models.BooleanField(default = False)
     marks = JSONField()
     examiners = models.ManyToManyField(User, null = True, blank = True)
+    end_time = models.CharField(max_length = 5, null = True, blank = True)
 
     def __unicode__(self):
         return ', '.join((self.last_name, self.first_name, self.email))

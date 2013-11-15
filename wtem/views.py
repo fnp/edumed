@@ -37,11 +37,11 @@ def form_during(request, key):
         else:
             raise Http404
     if request.method == 'GET':
-        return render(request, 'wtem/main.html', dict(exercises = exercises))
+        return render(request, 'wtem/main.html', dict(exercises = exercises, end_time = submission.end_time))
     elif request.method == 'POST':
         form = WTEMForm(request.POST, request.FILES, instance = submission)
         if form.is_valid():
             form.save()
-            return render(request, 'wtem/thanks.html')
+            return render(request, 'wtem/thanks.html', dict(end_time = submission.end_time))
         else:
             raise Exception
