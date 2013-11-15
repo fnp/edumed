@@ -2,7 +2,7 @@ $(function() {
 
     var to_submit;
 
-    $('#submit_answers').click(function(e) {
+    $('form').submit(function(e) {
         //e.preventDefault();
         to_submit = {};
 
