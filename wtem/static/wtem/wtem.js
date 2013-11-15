@@ -17,7 +17,6 @@ $(function() {
                 }
             }
         });
-        console.log(JSON.stringify(to_submit));
         $('input[name=answers]').val(JSON.stringify(to_submit));
     });
 
