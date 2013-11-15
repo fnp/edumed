@@ -10,6 +10,9 @@
         {% endfor %}
     </div>
 
+    {% if exercise.max_file_size_string %}
+        <p style="font-weight: bold;">Plik nie powinien być większy niż {{exercise.max_file_size_string}}.</p>
+    {% endif %}
     <div style="margin: 15px auto; width:300px;">
         <input style="float: left;" type="file" name="attachment_for_{{exercise.id}}"/>
         <div style="clear:both;"></div>
