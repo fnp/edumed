@@ -2,7 +2,7 @@
 import re
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, get_language
 from fnpdjango.utils.models.translation import add_translatable
 
 class Section(models.Model):
@@ -54,10 +54,11 @@ class Competence(models.Model):
     def from_text(cls, text):
         """Tries to return a Competence or a Section."""
         parts = re.split(ur'[-\u2013]', text, 1)
+        lookup_field_name = 'name_%s__iexact' % get_language()
         if len(parts) == 1:
-            return Section.objects.get(name__iexact=text.strip())
+            return Section.objects.get(**{lookup_field_name: text.strip()})
         else:
-            return cls.objects.get(name__iexact=parts[1].strip())
+            return cls.objects.get(**{lookup_field_name: parts[1].strip()})
 
 add_translatable(Competence, {
     'name': models.CharField(_('name'), max_length=255, default = '')
