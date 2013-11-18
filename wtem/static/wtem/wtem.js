@@ -56,4 +56,17 @@ $(function() {
         }
     }
 
+    var sms_handler = function() {
+        var textarea = $(this),
+            label_suffix = textarea.parent().find('.label_suffix'),
+            left = 140 - textarea.val().length;
+            to_insert = '(pozostało: ' + left + ')';
+        if(left < 0) {
+            to_insert = '<span style="color:red">' + to_insert + '</span>';
+        }
+        label_suffix.html(to_insert);
+    };
+
+    $('#wtem_sms').change(sms_handler).keyup(sms_handler);
+
 });
