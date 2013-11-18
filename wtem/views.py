@@ -17,7 +17,12 @@ def form(request, key):
     return globals()['form_' + WTEM_CONTEST_STAGE](request, key)
     
 def form_before(request, key):
-    return render(request, 'wtem/main_before.html')
+    try:
+        submission = Submission.objects.get(key = key)
+    except:
+        return render(request, 'wtem/key_not_found_before.html')
+    else:
+        return render(request, 'wtem/main_before.html')
 
 def form_after(request, key):
     return render(request, 'wtem/main_after.html')
