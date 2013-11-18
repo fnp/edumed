@@ -16,11 +16,11 @@
         {% for field in exercise.fields %}
             <div class="wtem-open-field">
                 <label class="wtem-caption">{{field.caption}}</label>
-                <textarea style="width: 100%;" rows="10" data-field-id="{{field.id}}"></textarea>
+                <textarea style="width: 100%;" rows="{{field.rows|default:10}}" data-field-id="{{field.id}}" {% if field.max_length %}maxlength="{{field.max_length}}"{% endif %}></textarea>
             </div>
         {% endfor %}
     {% else %}
-        <textarea style="width: 100%; margin-top:10px;" rows="10"></textarea>
+        <textarea style="width: 100%; margin-top:10px;" rows="{{field.rows|default:10}}" {% if field.max_length %}maxlength="{{field.max_length}}"{% endif %}></textarea>
     {% endif %}
 
     {% if exercise.description_after %}
