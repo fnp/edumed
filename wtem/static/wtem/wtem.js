@@ -5,6 +5,7 @@ $(function() {
     $('form').submit(function(e) {
         //e.preventDefault();
         to_submit = {};
+        spinner.show();
 
         $('.exercise-wtem').each(function() {
             var el = $(this);
@@ -69,4 +70,6 @@ $(function() {
 
     $('#wtem_sms').change(sms_handler).keyup(sms_handler);
 
+    var spinner = $('.wtem_spinner');
+    spinner.hide();
 });

@@ -1,5 +1,6 @@
 {% extends 'base_super.html' %}
 {% load compressed %}
+{% load static %}
 
 {% block extra_script %}
     {% compressed_js 'wtem' %}
@@ -61,9 +62,18 @@ Zespół Edukacji Medialnej, Fundacja Nowoczesna Polska</p>
 <hr/>
 <input type="hidden" name="answers" value=""/>
 
-<p style="text-align:center; margin-top:20px;">Sprawdź jeszcze raz wszystkie swoje odpowiedzi, a następnie wyślij je do nas klikając w poniższy przycisk:</p>
+<p style="text-align:center; margin-top:20px;">Sprawdź jeszcze raz wszystkie swoje odpowiedzi, a następnie wyślij je do nas klikając w poniższy przycisk:<br/><br/>
 <input type="submit" value="Wyślij moje odpowiedzi" style="display: block; margin: auto;"/>
+<br/>
+<span class="wtem_spinner">
+    <span>Wysyłanie rozwiązań w toku...</span>
+    <img src="{% static 'wtem/spinner.gif' %}"/>
+    <span>Spróbuj jeszcze raz jeśli wysyłanie trwa dłużej niż kilka minut.</span>
+</span>
+</p>
+
 <div class="wtem-fixed-info" style="margin-top:15px;">Rozwiązania można wysyłać do godziny {{end_time|default:"17.00"}}. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
+
 </form>
 
 {% endblock %}
