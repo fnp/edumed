@@ -19,10 +19,10 @@
     </div>
     
 
-    <cite>
+    {% autoescape off %}
     {% for para in exercise.description_after %}
         <p>{{para}}</p>
     {% endfor %}
-    </cite>
+    {% endautoescape %}
 
 </div>
