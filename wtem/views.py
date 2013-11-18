@@ -35,7 +35,7 @@ def form_during(request, key):
         if settings.DEBUG and key == DEBUG_KEY:
             submission = Submission.create(first_name = 'Debug', last_name = 'Debug', email = 'debug@debug.com', key = DEBUG_KEY)
         else:
-            raise Http404
+            return render(request, 'wtem/key_not_found.html')
     if request.method == 'GET':
         return render(request, 'wtem/main.html', dict(exercises = exercises, end_time = submission.end_time))
     elif request.method == 'POST':
