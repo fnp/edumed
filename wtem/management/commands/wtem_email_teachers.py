@@ -5,7 +5,7 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
-from django.core.mail import send_mail
+from wtem.management.commands import send_mail
 from django.template.loader import render_to_string
 
 from contact.models import Contact
@@ -40,10 +40,8 @@ class Command(BaseCommand):
     def send_message(self, message, subject, email):
         self.stdout.write('>>> sending to %s' % email)
         send_mail(
-            subject,
-            message,
-            getattr(settings, 'WTEM_CONTACT_EMAIL', 'no-reply@edukacjamedialna.edu.pl'),
-            [email],
-            fail_silently=False
+            subject = subject,
+            body = message,
+            to = [email]
         )
 
