@@ -84,7 +84,7 @@ class Submission(models.Model):
         if exercise_checked_manually(exercise):
             marks_by_examiner = self.get_exercise_marks_by_examiner(exercise_id)
             if len(marks_by_examiner):
-                return max(map(int, marks_by_examiner.values()))
+                return sum(map(int, marks_by_examiner.values())) / float(len(marks_by_examiner))
             else:
                 return None
         else:
