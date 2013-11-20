@@ -37,7 +37,7 @@ class AttachmentWidget(forms.Widget):
 class SubmissionFormBase(forms.ModelForm):
     class Meta:
         model = Submission
-        exclude = ('answers', 'marks', 'contact') + readonly_fields
+        exclude = ('answers', 'marks', 'contact', 'end_time') + readonly_fields
 
 
 def get_open_answer(answers, exercise):
