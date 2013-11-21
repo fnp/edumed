@@ -16,6 +16,11 @@ class Command(BaseCommand):
             dest='attachments_only',
             default=False,
             help='Take into account only submissions with attachments'),
+        make_option('--without-attachments-only',
+            action='store_true',
+            dest='no_attachments_only',
+            default=False,
+            help='Take into account only submissions without attachments'),
         )
 
     def handle(self, *args, **options):
@@ -29,9 +34,11 @@ class Command(BaseCommand):
         submissions = submissions_query \
             .filter(examiners_count__lt=2).exclude(answers = None)
         
+        with_attachment_ids = Attachment.objects.values_list('submission_id', flat=True).all()
         if options['attachments_only']:
-            with_attachment_ids = Attachment.objects.values_list('submission_id', flat=True).all()
             submissions = submissions.filter(id__in = with_attachment_ids)
+        if options['no_attachments_only']:
+            submissions = submissions.exclude(id__in = with_attachment_ids)
 
         for submission in submissions.order_by('id')[0:how_many]:
             submission.examiners.add(*users)
