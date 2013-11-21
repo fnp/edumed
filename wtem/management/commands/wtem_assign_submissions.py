@@ -24,9 +24,10 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        how_many = int(args[0])
-        examiner_names = args[1:]
 
+        limit_from = int(args[0])
+        limit_to = int(args[1])
+        examiner_names = args[2:]
 
         users = User.objects.filter(username__in = examiner_names)
         submissions_query = Submission.objects.annotate(examiners_count = Count('examiners'))
@@ -40,7 +41,7 @@ class Command(BaseCommand):
         if options['no_attachments_only']:
             submissions = submissions.exclude(id__in = with_attachment_ids)
 
-        for submission in submissions.order_by('id')[0:how_many]:
+        for submission in submissions.order_by('id')[limit_from:limit_to]:
             submission.examiners.add(*users)
             submission.save()
             self.stdout.write('added to %s:%s' % (submission.id, submission.email))
