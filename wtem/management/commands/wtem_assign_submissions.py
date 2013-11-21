@@ -16,7 +16,7 @@ class Command(BaseCommand):
         submissions_query = Submission.objects.annotate(examiners_count = Count('examiners'))
 
         submissions = submissions_query \
-            .filter(examiners_count__lt=2)[0:how_many]
+            .filter(examiners_count__lt=2).exclude(answers = None)[0:how_many]
 
         for submission in submissions:
             submission.examiners.add(*users)
