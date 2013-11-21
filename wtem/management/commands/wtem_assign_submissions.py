@@ -33,7 +33,7 @@ class Command(BaseCommand):
             with_attachment_ids = Attachment.objects.values_list('submission_id', flat=True).all()
             submissions = submissions.filter(id__in = with_attachment_ids)
 
-        for submission in submissions[0:how_many]:
+        for submission in submissions.order_by('id')[0:how_many]:
             submission.examiners.add(*users)
             submission.save()
             self.stdout.write('added to %s:%s' % (submission.id, submission.email))
