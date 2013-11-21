@@ -32,8 +32,7 @@ class Command(BaseCommand):
         users = User.objects.filter(username__in = examiner_names)
         submissions_query = Submission.objects.annotate(examiners_count = Count('examiners'))
 
-        submissions = submissions_query \
-            .filter(examiners_count__lt=2).exclude(answers = None)
+        submissions = submissions_query.exclude(answers = None)
         
         with_attachment_ids = Attachment.objects.values_list('submission_id', flat=True).all()
         if options['attachments_only']:
