@@ -32,7 +32,7 @@ class AttachmentWidget(forms.Widget):
             a_tag = '<a href="%s">%s</a>' % (value, value)
         else:
             a_tag = 'brak'
-        return mark_safe(('<input type="hidden" name="%s" value="%s"/>' + a_tag) % (name, value))
+        return mark_safe(('<input type="hidden" name="%s" value="%s"/>' % (name, value)) + a_tag)
 
 class SubmissionFormBase(forms.ModelForm):
     class Meta:
