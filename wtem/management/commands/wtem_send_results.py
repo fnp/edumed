@@ -30,6 +30,11 @@ class Command(BaseCommand):
             dest='to_students',
             default=False,
             help='Send emails to students'),
+        make_option('--only-to',
+            action='store',
+            dest='only_to',
+            default=None,
+            help='Send emails to students'),
     )
 
     def handle(self, *args, **options):
@@ -45,6 +50,8 @@ class Command(BaseCommand):
         subject = 'Twój wynik w I etapie Wielkiego Turnieju Edukacji Medialnej'
 
         for submission in get_submissions():
+            if options['only_to'] and submission.email != options['only_to']:
+                continue
             final_result = submission.final_result
             if final_result < minimum:
                 template = 'results_student_failed.txt'
@@ -55,7 +62,7 @@ class Command(BaseCommand):
 
         self.sum_up()
 
-    def handle_to_teachers(self, *args, **kwargs):
+    def handle_to_teachers(self, *args, **options):
         self.stdout.write('>>> Sending results to teachers')
         subject = 'Wyniki Twoich uczniów w I etapie Wielkiego Turnieju Edukacji Medialnej'
         failed = sent = 0
@@ -63,6 +70,8 @@ class Command(BaseCommand):
         submissions_by_contact = dict()
 
         for submission in get_submissions():
+            if options['only_to'] and submission.contact.contact != options['only_to']:
+                continue
             submissions_by_contact.setdefault(submission.contact.id, []).append(submission)
 
         for contact_id, submissions in submissions_by_contact.items():
