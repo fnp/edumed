@@ -24,7 +24,7 @@ def csv_row_fragment(exercise_id, submission, submissionSet):
         mark = marks_by_examiner.get(str(examiner.id), None)
         toret += ','
         if mark is None:
-            toret += '-'
+            toret += '"-"'
         else:
             toret += str(mark)
     return toret
