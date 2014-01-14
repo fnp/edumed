@@ -17,7 +17,7 @@
         <li><a class="menu-kompetencje" href="{% url "curriculum" %}">{% trans 'Competencies' %}</a></li>
         <li><a class="menu-takepart" href="{% url "comment_document_index" %}">{% trans 'Take Part' %}</a></li>
         {% if request.LANGUAGE_CODE == 'pl' %}
-            <li><a class="menu-knowledgebase" href="{% url 'home' subdomain=None %}">Baza wiedzy</a></li>
+            <li><a class="menu-knowledgebase" href="{% url 'knowledge_base' url='' %}">Baza wiedzy</a></li>
         {% endif %}
         <li><a class="menu-kontakt" href="{% url 'mil_contact' %}">{% trans 'Contact' %}</a></li>
         <li>{% lang_switcher %}</li>
