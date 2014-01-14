@@ -27,6 +27,7 @@ PIPELINE_CSS = {
           'jquery/colorbox/colorbox.css',
 
           'css/forum.scss',
+          'css/mil.scss'
         ),
         'output_filename': 'compressed/base.css',
     },

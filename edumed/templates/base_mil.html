@@ -6,12 +6,18 @@
 
 {% load i18n %}
 
+{% block header_class %}header-mil{% endblock %}
+
+{% block logo %}
+<img src="{% static "img/logo-mil.png" %}" alt="Edukacja medialna"/>
+{% endblock %}
+
 {% block top_navigation %}
-    <li><a class="menu-wspolpraca" href="{% url "mil_home" %}">{% trans 'Consultations' %}</a></li>
+    <li><a class="menu-consultations" href="{% url "mil_home" %}">{% trans 'Consultations' %}</a></li>
         <li><a class="menu-kompetencje" href="{% url "curriculum" %}">{% trans 'Competencies' %}</a></li>
-        <li><a class="menu-wspolpraca" href="{% url "comment_document_index" %}">{% trans 'Take Part' %}</a></li>
+        <li><a class="menu-takepart" href="{% url "comment_document_index" %}">{% trans 'Take Part' %}</a></li>
         {% if request.LANGUAGE_CODE == 'pl' %}
-            <li><a class="menu-lekcje" href="{% url 'home' subdomain=None %}">Materiały edukacyjne</a></li>
+            <li><a class="menu-knowledgebase" href="{% url 'home' subdomain=None %}">Baza wiedzy</a></li>
         {% endif %}
         <li><a class="menu-kontakt" href="{% url 'mil_contact' %}">{% trans 'Contact' %}</a></li>
         <li>{% lang_switcher %}</li>
@@ -22,13 +28,11 @@
 {% endblock %}
 
 {% block organizer %}
-    <span style="position:relative; left:70px;">
     Projekt prowadzi:<br/>
     <a href="http://nowoczesnapolska.org.pl">
-        <img src="{% static "img/logo_fnp.png" %}" alt="Fundacja Nowoczesna Polska" />
-    </a>
+        <img src="{% static "img/logo_fnp_white.png" %}" alt="Fundacja Nowoczesna Polska" />
+    </a><br/>
     <a href="http://http://www.nina.gov.pl/">
-        <img src="{% static "img/nina.jpg" %}" alt="Narodowy Instytut Audiowizualny" />
+        <img src="{% static "img/nina-white.png" %}" alt="Narodowy Instytut Audiowizualny" />
     </a>
-    </span>
 {% endblock %}

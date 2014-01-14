@@ -1,0 +1,47 @@
+header.header-mil {
+  background-color: #f47b3b; }
+  header.header-mil #organizer {
+    color: white;
+    float: none;
+    position: absolute;
+    top: 10px;
+    right: 12px; }
+  header.header-mil nav ul {
+    margin-top: 0; }
+    header.header-mil nav ul li {
+      vertical-align: text-bottom; }
+  header.header-mil nav a, header.header-mil nav a:hover {
+    color: white; }
+  header.header-mil nav a:before {
+    content: " ";
+    display: block;
+    margin-bottom: .8em;
+    width: 5.5em;
+    height: 4.25em;
+    text-align: center;
+    margin: auto;
+    margin-bottom: .8em; }
+  header.header-mil nav .menu-consultations:before {
+    background: url(../img/menu/mil/consultations.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.header-mil nav .menu-takepart:before {
+    background: url(../img/menu/mil/takepart.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.header-mil nav .menu-knowledgebase:before {
+    background: url(../img/menu/mil/knowledgebase.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.header-mil nav .menu-kompetencje:before, header.header-mil nav .menu-kontakt:before {
+    width: 3.625em;
+    height: 2.8125em; }
+  header.header-mil nav .menu-kompetencje:before, header.header-mil nav .menu-kompetencje:hover:before {
+    background: url(../img/menu/mil/catalog.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.header-mil nav .menu-kontakt:before, header.header-mil nav .menu-kontakt:hover:before {
+    background: url(../img/menu/mil/contact.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.header-mil nav .lang-switcher-en:before {
+    background: url(../img/menu/mil/lang_en.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.header-mil nav .lang-switcher-pl:before {
+    background: url(../img/menu/mil/lang_pl.png) no-repeat 0 0;
+    background-size: 100%; }
