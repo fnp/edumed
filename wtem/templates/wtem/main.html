@@ -1,0 +1,79 @@
+{% extends 'base_super.html' %}
+{% load compressed %}
+{% load static %}
+
+{% block extra_script %}
+    {% compressed_js 'wtem' %}
+{% endblock %}
+
+
+
+{% block body %}
+<style>
+    .wtem-open-field {
+        margin: 10px 0;
+    }
+    .wtem-open-field textarea {
+        margin-top:0;
+    }
+    .wtem-fixed-info {
+        top: 20px;
+        left: 20px;
+        border: 1px solid black;
+        background: #16a487;
+        border-radius: 0.938em;
+        padding: 5px 2px;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
+    .wtem-items-inline li {
+        display: inline-block;
+    }
+    .instruction {
+        font-weight: bold;
+    }
+    .wtem-disclaimer {
+        font-style: italic;
+        font-size: .9em;
+    }
+
+</style>
+
+<h1>Wielki Turniej Edukacji Medialnej</h1>
+<div class="wtem-fixed-info">Rozwiązania można wysyłać do godziny {{end_time|default:"17.00"}}. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
+
+<p>Witamy w I etapie Wielkiego Turnieju Edukacji Medialnej. Na rozwiązanie zadań masz czas do godz. {{end_time|default:"17.00"}}. Test składa się z 22 pytań. Dwa ostatnie mają charakter otwarty - pamiętaj, żeby zostawić sobie odpowiednią ilość czasu na ich rozwiązanie.</p>
+
+<p>Wszelkie aktualności dotyczące Turnieju możesz znaleźć na <a href="http://edukacjamedialna.edu.pl/wtem" target="_info">edukacjamedialna.edu.pl/wtem</a>.</p>
+
+<p>Powodzenia!
+Zespół Edukacji Medialnej, Fundacja Nowoczesna Polska</p>
+
+<form method="post" enctype="multipart/form-data">
+
+{% for exercise in exercises %}
+    {% with 'wtem/exercises/'|add:exercise.type|add:'.html' as template_name %}
+    {% include  template_name with exercise=exercise no=forloop.counter %}
+    {% endwith %}
+{% endfor %}
+
+
+<hr/>
+<input type="hidden" name="answers" value=""/>
+
+<p style="text-align:center; margin-top:20px;">Sprawdź jeszcze raz wszystkie swoje odpowiedzi, a następnie wyślij je do nas klikając w poniższy przycisk:<br/><br/>
+<input type="submit" value="Wyślij moje odpowiedzi" style="display: block; margin: auto;"/>
+<br/>
+<span class="wtem_spinner">
+    <span>Wysyłanie rozwiązań w toku...</span>
+    <img src="{% static 'wtem/spinner.gif' %}"/>
+    <span>Spróbuj jeszcze raz jeśli wysyłanie trwa dłużej niż kilka minut.</span>
+</span>
+</p>
+
+<div class="wtem-fixed-info" style="margin-top:15px;">Rozwiązania można wysyłać do godziny {{end_time|default:"17.00"}}. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
+
+</form>
+
+{% endblock %}

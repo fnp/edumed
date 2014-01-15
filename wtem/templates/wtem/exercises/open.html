@@ -1,0 +1,38 @@
+<div class="exercise-wtem" data-type="open" data-id="{{exercise.id}}">
+
+    <h3>Zadanie {{no}}</h3>
+        
+    <div class="description">
+        {% autoescape off %}
+        {% for para in exercise.description %}
+            <p class="paragraph">
+                {{para}}
+            </p>
+        {% endfor %}
+        {% endautoescape %}
+    </div>
+
+    {% if exercise.fields %}
+        {% for field in exercise.fields %}
+            <div class="wtem-open-field">
+                <label class="wtem-caption">{{field.caption}} <span class="label_suffix"></span></label>
+                <textarea style="width: 100%;" rows="{{field.rows|default:10}}" data-field-id="{{field.id}}" {% if field.max_length %}maxlength="{{field.max_length}}"{% endif %} {% if field.input_id %}id="{{field.input_id}}"{% endif %}></textarea>
+            </div>
+        {% endfor %}
+    {% else %}
+        <textarea style="width: 100%; margin-top:10px;" rows="{{field.rows|default:10}}" {% if field.max_length %}maxlength="{{field.max_length}}"{% endif %} {% if field.input_id %}id="#{{field.input_id}}"{% endif %}></textarea>
+    {% endif %}
+
+    {% if exercise.description_after %}
+        <div class="description">
+            {% autoescape off %}
+            {% for para in exercise.description_after %}
+                <p class="paragraph">
+                    {{para}}
+                </p>
+            {% endfor %}
+            {% endautoescape %}
+        </div>
+    {% endif%}
+
+</div>

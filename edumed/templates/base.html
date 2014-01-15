@@ -1,5 +1,6 @@
 {% extends "base_super.html" %}
 {% load sponsor_tags %}
+{% load compressed %}
 
 
 {% block tagline %}Scenariusze zajęć, ćwiczenia, materiały{% endblock %}
@@ -16,4 +17,8 @@
 
 {% block sponsors %}
     {% sponsor_page "footer" %}
+{% endblock %}
+
+{% block extra_script %}
+    {% compressed_js 'base' %}
 {% endblock %}
