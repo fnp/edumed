@@ -1,8 +1,11 @@
+# -*- coding: utf-8
 from django.core.files import File
 from django.core.urlresolvers import reverse
 from django.db import models
 from jsonfield import JSONField
 from curriculum.models import Level, Curriculum, CurriculumCourse
+import logging
+
 
 
 class Section(models.Model):
@@ -14,6 +17,12 @@ class Section(models.Model):
     image = models.ImageField(upload_to="catalogue/section/image",
         null=True, blank=True)
 
+    pic = models.ImageField(upload_to="catalogue/section/pic", null=True, blank=True)
+    pic_attribution = models.CharField(max_length=255, null=True, blank=True)
+    pic_src = models.URLField(null=True, blank=True)
+    
+    summary = models.TextField(blank=True, null=True)
+
     class Meta:
         ordering = ['order']
 
@@ -24,20 +33,22 @@ class Section(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return "%s#%s" % (reverse("catalogue_lessons"), self.slug)
+        return "%s#gimnazjum_%s" % (reverse("catalogue_lessons"), self.slug)
 
     @classmethod
-    def publish(cls, infile):
+    def publish(cls, infile, ignore_incomplete=False):
         from librarian.parser import WLDocument
         from django.core.files.base import ContentFile
         xml = infile.get_string()
         wldoc = WLDocument.from_string(xml)
 
-        try:
-            lessons = [Lesson.objects.get(slug=part.slug)
-                        for part in wldoc.book_info.parts]
-        except Lesson.DoesNotExist, e:
-            raise cls.IncompleteError(part.slug)
+        lessons = []
+        for part in wldoc.book_info.parts:
+            try:
+                lessons.append(Lesson.objects.get(slug=part.slug))
+            except Lesson.DoesNotExist, e:
+                if not ignore_incomplete:
+                    raise cls.IncompleteError(part.slug)
 
         slug = wldoc.book_info.url.slug
         try:
@@ -74,6 +85,7 @@ class Lesson(models.Model):
     order = models.IntegerField(db_index=True)
     dc = JSONField(default='{}')
     curriculum_courses = models.ManyToManyField(CurriculumCourse, blank=True)
+    description = models.TextField(null=True, blank=True)
 
     xml_file = models.FileField(upload_to="catalogue/lesson/xml",
         null=True, blank=True, max_length=255)
@@ -99,7 +111,7 @@ class Lesson(models.Model):
         return ('catalogue_lesson', [self.slug])
 
     @classmethod
-    def publish(cls, infile):
+    def publish(cls, infile, ignore_incomplete=False):
         from librarian.parser import WLDocument
         from django.core.files.base import ContentFile
         xml = infile.get_string()
@@ -107,8 +119,8 @@ class Lesson(models.Model):
 
         # Check if not section metadata block.
         if wldoc.book_info.parts:
-            return Section.publish(infile)
-        
+            return Section.publish(infile, ignore_incomplete=ignore_incomplete)
+
         slug = wldoc.book_info.url.slug
         try:
             lesson = cls.objects.get(slug=slug)
@@ -120,13 +132,14 @@ class Lesson(models.Model):
         lesson.xml_file.save('%s.xml' % slug, ContentFile(xml), save=False)
         lesson.title = wldoc.book_info.title
 
-        lesson.level = Level.objects.get(slug=wldoc.book_info.audience)
+        lesson.level = Level.objects.get(meta_name=wldoc.book_info.audience)
         lesson.populate_dc()
+        lesson.populate_description(wldoc=wldoc)
         lesson.build_html(infile=infile)
-        lesson.build_pdf(infile=infile)
+        lesson.build_pdf()
         lesson.build_package()
         if lesson.type != 'project':
-            lesson.build_pdf(student=True, infile=infile)
+            lesson.build_pdf(student=True)
             lesson.build_package(student=True)
         return lesson
 
@@ -135,17 +148,33 @@ class Lesson(models.Model):
         wldoc = WLDocument.from_file(self.xml_file.path)
         self.dc = wldoc.book_info.to_dict()
         self.type = self.dc["type"]
+        assert self.type in ('appendix', 'course', 'synthetic', 'project'), \
+            u"Unknown lesson type: %s" % self.type
         self.save()
 
         courses = set()
         for identifier in wldoc.book_info.curriculum:
+            identifier = (identifier or "").replace(' ', '')
+            if not identifier: continue
             try:
-                curr = Curriculum.objects.get(identifier=identifier)
+                curr = Curriculum.objects.get(identifier__iexact=identifier)
             except Curriculum.DoesNotExist:
+                logging.warn('Unknown curriculum course %s in lesson %s' % (identifier, self.slug))
                 pass
             else:
                 courses.add(curr.course)
         self.curriculum_courses = courses
+
+    def populate_description(self, wldoc=None, infile=None):
+        if wldoc is None:
+            wldoc = self.wldocument(infile)
+        for nagl in wldoc.edoc.findall('.//naglowek_rozdzial'):
+            if (nagl.text or '').strip() == u'Pomysł na lekcję':
+                from lxml import etree
+                self.description = etree.tostring(nagl.getnext(),
+                        method='text', encoding='unicode').strip()
+                self.save()
+                return
 
     def wldocument(self, infile=None):
         from librarian import IOFile
@@ -166,9 +195,11 @@ class Lesson(models.Model):
         self.html_file.save("%s.html" % self.slug,
             File(open(html.get_filename())))
 
-    def build_pdf(self, student=False, infile=None):
+    def build_pdf(self, student=False):
         from .publish import PdfFormat
-        wldoc = self.wldocument(infile)
+        # PDF uses document with attachments already saved as media,
+        # otherwise sorl.thumbnail complains about SuspiciousOperations.
+        wldoc = self.wldocument()
         if student:
             pdf = PdfFormat(wldoc).build()
             self.student_pdf.save("%s.pdf" % self.slug,
@@ -230,6 +261,9 @@ class Lesson(models.Model):
         except IndexError:
             return None
 
+    def requires_internet(self):
+        return 'internet' in self.dc.get('requires', [])
+
 
 class Attachment(models.Model):
     slug = models.CharField(max_length=255)
@@ -265,3 +299,10 @@ class LessonStub(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    @property
+    def slug(self):
+        return ''
+
+    def add_to_zip(self, *args, **kwargs):
+        pass

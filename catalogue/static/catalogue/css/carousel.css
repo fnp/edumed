@@ -2,12 +2,12 @@
   float: left;
   position: relative;
   width: 43.75em;
-  height: 14.688em;
+  height: 14.6875em;
   overflow: hidden;
-  border-radius: 0.938em; }
+  border-radius: 0.9375em; }
   #catalogue-carousel #catalogue-carousel-links {
     width: 28.75em;
-    height: 14.688em;
+    height: 14.6875em;
     list-style: none;
     margin: 0;
     padding: 0; }
@@ -18,21 +18,23 @@
       left: 0;
       height: 100%;
       background-size: 100% 100%;
-      border-top-left-radius: 0.938em 6.38%;
-      border-bottom-left-radius: 0.938em 6.38%; }
-      #catalogue-carousel #catalogue-carousel-links li a {
+      border-top-left-radius: 0.9375em 6.38%;
+      border-bottom-left-radius: 0.9375em 6.38%;
+      z-index: 100;
+      background-color: #888; }
+      #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link {
         display: block;
         overflow: hidden;
         width: 28.75em;
         height: 100%;
         background: url(/static/catalogue/img/carousel-left.png) 100% 0 no-repeat;
         background-size: 4.375em 100%; }
-        #catalogue-carousel #catalogue-carousel-links li a .catalogue-carousel-note {
+        #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link .catalogue-carousel-note {
           position: relative;
           height: 100%;
           color: white;
-          margin-top: 12em; }
-          #catalogue-carousel #catalogue-carousel-links li a .catalogue-carousel-note p:before {
+          margin-top: 8.5em; }
+          #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link .catalogue-carousel-note div:before {
             content: " ";
             display: block;
             position: absolute;
@@ -41,40 +43,49 @@
             z-index: -1;
             background-color: black;
             opacity: 0.6; }
-          #catalogue-carousel #catalogue-carousel-links li a .catalogue-carousel-note p {
-            margin: 0; }
-            #catalogue-carousel #catalogue-carousel-links li a .catalogue-carousel-note p em {
-              margin: 0 .2em 0 .5em;
-              font-style: normal;
-              font-size: 1.5em; }
-            #catalogue-carousel #catalogue-carousel-links li a .catalogue-carousel-note p strong {
-              margin-left: .5em;
-              font-size: 2em; }
-      #catalogue-carousel #catalogue-carousel-links li a:active {
+          #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link .catalogue-carousel-note div p {
+            padding: .4em 3em 0 .5em; }
+            #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link .catalogue-carousel-note div p strong {
+              font-size: 1.2em;
+              display: block; }
+            #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link .catalogue-carousel-note div p .more {
+              position: absolute;
+              right: 4em;
+              top: 4.5em; }
+      #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link:active {
         outline: none; }
+      #catalogue-carousel #catalogue-carousel-links li .attribution {
+        text-align: right;
+        font-size: .75em;
+        position: absolute;
+        right: 5em;
+        top: .1em;
+        color: white;
+        font-weight: bold;
+        text-shadow: 0 0 5px #000; }
   #catalogue-carousel #catalogue-carousel-switcher {
     margin: 0;
-    padding: 3.125em 0 0 3.625em;
+    padding: 1.25em 0 0 3.625em;
     width: 11.375em;
-    height: 11.563em;
+    height: 13.4375em;
     position: absolute;
     right: 0;
     top: 0;
     list-style: none;
-    border-radius: 0 0.938em 0.938em 0;
+    border-radius: 0 0.9375em 0.9375em 0;
     background-color: #ed7831;
     background-image: url(/static/catalogue/img/carousel-right.png);
     background-position: 0 0;
     background-repeat: no-repeat;
-    background-size: auto 14.688em;
+    background-size: auto 14.6875em;
     /* right part of mask as background */ }
     #catalogue-carousel #catalogue-carousel-switcher li {
-      margin-bottom: .9em; }
+      margin-bottom: .5em;
+      font-size: .85em;
+      line-height: 1em; }
       #catalogue-carousel #catalogue-carousel-switcher li a {
         text-transform: uppercase;
-        color: #363a3e;
-        font-size: .9em;
-        font-weight: bold; }
+        color: #363a3e; }
       #catalogue-carousel #catalogue-carousel-switcher li a:before {
         vertical-align: top;
         margin-right: 1.5em; }

@@ -1,84 +1,54 @@
-.section-level {
-  width: 40em;
-  border-radius: 0.9375em;
-  margin: 1em 0;
-  overflow: hidden; }
-  .section-level a:hover {
-    text-decoration: underline; }
-
-.sections-row {
-  display: table; }
-
-.section-type {
-  display: table-cell;
-  vertical-align: top;
-  padding: 1.25em; }
-  .section-type h1 {
+#level-chooser-place {
+  min-height: 4em;
+  margin-top: 2em; }
+  #level-chooser-place ul#level-chooser {
+    margin: 0;
+    padding: 1em 0 1em 8.75em;
+    background-color: white;
+    width: 31.25em;
+    z-index: 300;
+    position: relative;
     text-transform: uppercase;
-    margin: 0 0 1em 0;
-    font-size: 1em; }
-  .section-type img {
-    float: left;
-    margin-right: 1em;
-    margin-bottom: 1em;
-    border: 0.375em solid white; }
+    text-align: right; }
+    #level-chooser-place ul#level-chooser .home {
+      display: none;
+      position: absolute;
+      top: .5em;
+      left: 0; }
+      #level-chooser-place ul#level-chooser .home a {
+        background: none;
+        padding: 0; }
+        #level-chooser-place ul#level-chooser .home a img {
+          width: 6.25em; }
+    #level-chooser-place ul#level-chooser.fixed {
+      position: fixed;
+      top: 0;
+      border-bottom: 1px solid #c9ccce; }
+      #level-chooser-place ul#level-chooser.fixed .home {
+        display: block; }
+    #level-chooser-place ul#level-chooser li {
+      display: inline-block;
+      list-style: none; }
+      #level-chooser-place ul#level-chooser li a {
+        padding: .5em 1em;
+        border-radius: 0.3125em;
+        background: #eee; }
+        #level-chooser-place ul#level-chooser li a.active {
+          color: white;
+          background: #ED7831; }
 
-.section-type-synthetic {
-  width: 18.75em; }
-
-.section-type-course {
-  width: 16.25em; }
-
-.section-type-project {
-  width: 37.5em; }
-
-.section-level-gimnazjum {
-  background: #f4ae83;
-  color: #67584f; }
-  .section-level-gimnazjum a, .section-level-gimnazjum a:hover {
-    color: #67584f; }
-  .section-level-gimnazjum .section-type-course {
-    background: #ed7831;
-    color: #fff; }
-    .section-level-gimnazjum .section-type-course a {
-      color: #fff; }
-  .section-level-gimnazjum .section-type-project {
-    background-color: #f8cdb2; }
-
-.section-level-liceum {
-  background: #44b69f;
-  color: #363a3e; }
-  .section-level-liceum a, .section-level-liceum a:hover {
-    color: #363a3e; }
-  .section-level-liceum .section-type-course {
-    background: #16a487;
-    color: #fff; }
-    .section-level-liceum .section-type-course a {
-      color: #fff; }
-  .section-level-liceum .section-type-project {
-    background-color: #9fdbcf; }
-
-.course-boxes h1 {
-  color: #363a3e; }
-.course-boxes .section-level {
-  background: white;
-  border: 1px solid #777777; }
-  .course-boxes .section-level a, .course-boxes .section-level a:hover {
-    color: #363a3e; }
-  .course-boxes .section-level .section-type {
-    background: white; }
-.course-boxes .section-type-synthetic {
-  width: 16.25em; }
-.course-boxes .section-type-course {
-  width: 18.75em; }
-
-.section-links {
-  float: right; }
-
-h2.section-header {
-  margin: 0; }
-
-.section-list-toc {
-  display: inline-block;
-  vertical-align: top;
-  width: 18.75em; }
+.level .link-list {
+  margin-left: 1em; }
+.level .level-toc {
+  overflow: hidden;
+  /* Because we're changing bg color lower. */ }
+  .level .level-toc.fixed {
+    position: fixed; }
+  .level .level-toc .link-list {
+    margin-left: 1em; }
+    .level .level-toc .link-list li {
+      margin-bottom: 0; }
+      .level .level-toc .link-list li.curriculumcourses {
+        margin: 10px -17px -17px;
+        padding: 10px 16px 16px;
+        background-color: #eee; }

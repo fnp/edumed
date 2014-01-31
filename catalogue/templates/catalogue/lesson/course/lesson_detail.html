@@ -1,23 +1,24 @@
 {% extends "catalogue/lesson/lesson_detail.html" %}
+{% load static from staticfiles %}
+
+{% block lesson-info %}
+<section class="box">
+    <div class="box-icon"><img src="/static/img/icons/activity-time.png"><br>45m</div>
+
+    {% include "catalogue/lesson/box-icons.html" %}
+
+    <p>Ta lekcja jest częścią tematu
+    <a href="{{ object.section.get_absolute_url }}"><strong>{{ object.section }}</strong></a>
+    na poziomie {{ object.level|lower }}.
+    </p>
+    <div style="clear: right"></div>
+</section>
+
+{% endblock %}
+
 
 {% block sidebar-top %}
-
-<section class="box">
-    <h1 class="realisation">Realizacja i czas lekcji</h1>
-    <p>Ta lekcja jest częścią tematu
-    <a href="{{ object.section.get_absolute_url }}"><strong>{{ object.section }}</strong></a>{% if object.level.slug = "liceum" %}
-        (na poziomie zaawansowanym)
-    {% endif %}.
-    {% with object.get_syntetic as synth %}
-    {% if synth %}
-    Dostępna jest również
-    <strong><a href="{{ object.get_syntetic.get_absolute_url }}">lekcja syntetyczna</a></strong>
-    dla tego tematu.
-    {% endif %}
-    {% endwith %}
-    </p>
-    <p>Czas trwania: 45 minut.</p>
-</section>
+<div class="buttons" style="padding-bottom: 1em; border-bottom: 1px solid red;">
 
 {% if object.package %}
     <section class="box-button"><a href="{{ object.package.url }}" class="dl-button">Pobierz całą lekcję</a></section>
@@ -26,5 +27,5 @@
     <section><a href="{{ object.student_package.url }}" class="dl-button">Pobierz lekcję w wersji dla ucznia</a></section>
 {% endif %}
 
-
+</div>
 {% endblock %}

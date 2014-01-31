@@ -27,8 +27,10 @@ $ciemny: #363a3e;
             background-size: 100% 100%;
             border-top-left-radius: 15*$px 6.38%;
             border-bottom-left-radius: 15*$px 6.38%;
+            z-index: 100;
+            background-color: #888;
 
-            a {
+            a.catalogue-carousel-link {
                 display: block;
                 overflow: hidden;
                 width: 460*$px;
@@ -40,44 +42,58 @@ $ciemny: #363a3e;
                     position: relative;
                     height: 100%;
                     color: white;
-                    margin-top: 12em;
+                    margin-top: 8.5em;
 
-                    p:before {
-                        content: " ";
-                        display: block;
-                        position: absolute;
-                        height: 100%;
-                        width: 100%;
-                        z-index: -1;
-                        background-color: black;
-                        opacity: 0.6;
-                    }
+                    div {
+                        &:before {
+                            content: " ";
+                            display: block;
+                            position: absolute;
+                            height: 100%;
+                            width: 100%;
+                            z-index: -1;
+                            background-color: black;
+                            opacity: 0.6;
+                        }
 
-                    p {
-                        margin: 0;
-                        em {
-                            margin: 0 .2em 0 .5em;
-                            font-style: normal;
-                            font-size: 1.5em;
+                        p {
+                            padding: .4em 3em 0 .5em;
+
+                            strong {
+                                font-size: 1.2em;
+                                display: block;
+                            }
+
+                            .more {
+                                position: absolute;
+                                right: 4em;
+                                top: 4.5em;
+                            }
                         }
-                        strong {
-                            margin-left: .5em;
-                            font-size: 2em;
-                        }
-                        
                     }
                 }
             }
-            a:active {
+            a.catalogue-carousel-link:active {
                 outline: none;
             }
+            .attribution {
+                text-align: right;
+                font-size: .75em;
+                position: absolute;
+                right: 5em;
+                top: .1em;
+                color: white;
+                font-weight: bold;
+                text-shadow: 0 0 5px #000;
+            }
+
         }
     }
     #catalogue-carousel-switcher {
         margin: 0;
-        padding: 50*$px 0 0 58*$px;
+        padding: 20*$px 0 0 58*$px;
         width: 240*$px - 58*$px;
-        height: 235*$px - 50*$px;
+        height: 235*$px - 20*$px;
         position: absolute;
         right: 0;
         top: 0;
@@ -92,13 +108,13 @@ $ciemny: #363a3e;
         /* right part of mask as background */
 
         li {
-            margin-bottom: .9em;
+            margin-bottom: .5em;
+            font-size: .85em;
+            line-height: 1em;
 
             a {
                 text-transform: uppercase;
                 color: $ciemny;
-                font-size: .9em;
-                font-weight: bold;
             }
             a:before {
                 vertical-align: top;

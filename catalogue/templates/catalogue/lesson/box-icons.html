@@ -1,0 +1,18 @@
+{% load static from staticfiles %}
+{% if object.requires_internet %}
+<div class="box-icon"><img src="{% static 'img/icons/internet_black.png' %}"
+        title="Wymaga dostępu do Internetu"
+        alt="Wymaga dostępu do Internetu"
+    ><br>Internet</div>
+{% else %}
+<div class="box-icon"><img src="{% static 'img/icons/nointernet_black.png' %}"
+        title="Nie wymaga dostępu do Internetu"
+        alt="Nie wymaga dostępu do Internetu"
+        ><br>Bez Internetu</div>
+{% endif %}
+{% if publisher %}
+<div class="box-icon"><img src="{{ publisher.logo.url }}"
+        title="{{ publisher.name }}"
+        alt="{{ publisher.name }}"
+    ></div>
+{% endif %}

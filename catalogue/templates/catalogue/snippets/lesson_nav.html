@@ -1,10 +1,10 @@
 <h1>
 {% if root %}
-    <a href="{{ root.get_absolute_url }}">{{ root }}</a>
+    <a href="{{ root.get_absolute_url }}">{{ root }}, <br>{{ lesson.level }}</a>
 {% elif lesson.type == 'synthetic' %}
-    <a href="{% url 'catalogue_lessons' %}">Lekcje syntetyczne ze wszystkich tematów</a>
+    <a href="{% url 'catalogue_lessons' %}">Kurs skrócony, <br>{{ lesson.level }}</a>
 {% elif lesson.type == 'project' %}
-    <a href="{% url 'catalogue_lessons' %}">Projekty ze wszystkich tematów</a>
+    <a href="{% url 'catalogue_lessons' %}">Projekty, <br>{{ lesson.level }}</a>
 {% else %}
     <a href="{% url 'catalogue_lessons' %}">Inne</a>
 {% endif %}
@@ -15,22 +15,9 @@
     <li>
     {% if item == lesson %}
         <strong>{{ item }}</strong>
-        {% if mark_level and item.level.slug == 'liceum' %} (poziom zaawansowany){% endif %}
     {% else %}
-        <a href="{{ item.get_absolute_url }}">{{ item }}
-            {% if mark_level and item.level.slug == 'liceum' %} (poziom zaawansowany){% endif %}
-        </a>
+        <a href="{{ item.get_absolute_url }}">{{ item }}</a>
     {% endif %}
     </li>
 {% endfor %}
 </ul>
-
-{% if link_other_level %}
-{% with other=lesson.get_other_level %}
-    {% if other %}
-        <p>Ten temat jest dostępny również na 
-        <a href="{% url 'catalogue_lessons' %}#{{ lesson.section.slug }}_{{ other.slug }}">poziomie
-        {% if other.slug == 'liceum' %}zaawansowanym{% else %}podstawowym{% endif %}</a>.</p>
-    {% endif %}
-{% endwith %}
-{% endif %}

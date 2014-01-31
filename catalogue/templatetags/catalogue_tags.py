@@ -1,6 +1,8 @@
+from collections import defaultdict
 from django import template
 from django.utils.datastructures import SortedDict
 from ..models import Lesson, Section
+from curriculum.models import Level, CurriculumCourse
 from librarian.dcparser import WLURI, Person
 
 register = template.Library()
@@ -8,43 +10,58 @@ register = template.Library()
 
 @register.inclusion_tag("catalogue/snippets/carousel.html")
 def catalogue_carousel():
-    lessons_count = Lesson.objects.filter(type__in=('course', 'synthetic')).count()
-    if 1 < lessons_count % 10 < 5 and lessons_count / 10 % 10 != 1:
-        lessons_desc = u'kompletne lekcje'
-    else:
-        lessons_desc = u'kompletnych lekcji'
-    return locals()
-
-@register.inclusion_tag("catalogue/snippets/section_buttons.html")
-def catalogue_section_buttons():
     return {
         "object_list": Section.objects.all()
     }
 
-@register.inclusion_tag("catalogue/snippets/section_box.html")
-def section_box(section):
-    lessons = SortedDict()
+@register.inclusion_tag("catalogue/snippets/levels_main.html")
+def catalogue_levels_main():
+    object_list = Level.objects.exclude(lesson=None)
+    c = object_list.count()
+    return {
+        'object_list': object_list,
+        'section_width': (700 - 20 * (c - 1)) / c,
+    }
+
+
+@register.inclusion_tag("catalogue/snippets/level_box.html")
+def level_box(level):
+    lessons = dict(
+        synthetic = [],
+        course = SortedDict(),
+        project = [],
+    )
+    by_course = defaultdict(lambda: defaultdict(list))
+
     lesson_lists = [alist for alist in [
-        list(section.lesson_set.all()),
-        list(section.lessonstub_set.all())
+        list(level.lesson_set.exclude(type='appendix').order_by('section__order')),
+        list(level.lessonstub_set.all())
     ] if alist]
+
     while lesson_lists:
         min_index, min_list = min(enumerate(lesson_lists), key=lambda x: x[1][0].order)
         lesson = min_list.pop(0)
         if not min_list:
             lesson_lists.pop(min_index)
 
-        if lesson.level not in lessons:
-            newdict = SortedDict()
-            newdict['synthetic'] = []
-            newdict['course'] = []
-            lessons[lesson.level] = newdict
-        if lesson.type not in lessons[lesson.level]:
-            lessons[lesson.level][lesson.type] = []
-        lessons[lesson.level][lesson.type].append(lesson)
+        if lesson.type == 'course':
+            if lesson.section not in lessons['course']:
+                lessons['course'][lesson.section] = []
+            lessons['course'][lesson.section].append(lesson)
+        else:
+            lessons[lesson.type].append(lesson)
+
+        if hasattr(lesson, 'curriculum_courses'):
+            for course in lesson.curriculum_courses.all():
+                by_course[course][lesson.type].append(lesson)
+
+    courses = [(course, by_course[course]) for course in
+        CurriculumCourse.objects.filter(lesson__level=level).distinct()]
+
     return {
-        "section": section,
+        "level": level,
         "lessons": lessons,
+        "courses": courses,
     }
 
 @register.inclusion_tag("catalogue/snippets/lesson_nav.html")
@@ -52,17 +69,16 @@ def lesson_nav(lesson):
     if lesson.type == 'course':
         root = lesson.section
         siblings = Lesson.objects.filter(type='course', level=lesson.level, section=root)
-        mark_level = False
-        link_other_level = True
-    else:
+    elif lesson.type == 'appendix':
         root = None
         siblings = Lesson.objects.filter(type=lesson.type)
-        mark_level = link_other_level = lesson.type == 'course'
+    else:
+        root = None
+        siblings = Lesson.objects.filter(type=lesson.type, level=lesson.level)
     return {
         "lesson": lesson,
         "root": root,
         "siblings": siblings,
-        "mark_level": mark_level
     }
 
 @register.inclusion_tag("catalogue/snippets/lesson_link.html")

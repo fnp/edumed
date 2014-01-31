@@ -3,6 +3,7 @@
 {% load fnp_common fnp_share fnp_lang macros %}
 {% load compressed static %}
 {% load subdomainurls %}
+{% load piwik_tags %}
 
 {% macro title %}{% block title %}{% endblock %}{% endmacro %}
 {% macro site_name %}Edukacja medialna{% endmacro %}
@@ -97,6 +98,6 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     {% block extra_script %}{% endblock %}
-    {{ piwik_tag|safe }}
+    {% tracking_code %}
     </body>
 </html>

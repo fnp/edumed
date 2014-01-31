@@ -1,127 +1,86 @@
 $px: 0.0625em;
 
-.section-level {
-    width: 640*$px;
-    border-radius: 15*$px;
-    margin: 1em 0;
-    overflow: hidden;
+#level-chooser-place {
+    min-height: 4em;
+    margin-top: 2em;
 
-    a:hover {
-        text-decoration: underline;
-    }
-}
-
-.sections-row {
-    display: table;
-}
-
-.section-type {
-    display: table-cell;
-    vertical-align: top;
-    padding: 20*$px;
-
-    h1 {
+    ul#level-chooser {
+        margin: 0;
+        padding: 1em 0 1em 140*$px;
+        background-color: white;
+        width: 500*$px;
+        z-index: 300;
+        position: relative;
         text-transform: uppercase;
-        margin: 0 0 1em 0;
-        font-size: 1em;
-    }
+        text-align: right;
 
-    img {
-        float: left;
-        margin-right: 16*$px;
-        margin-bottom: 16*$px;
-        border: 6*$px solid white;
-    }
-}
-.section-type-synthetic {
-    width: 340*$px - 2 * 20*$px;
-}
-.section-type-course {
-    width: 300*$px - 2 * 20*$px;
-}
+        .home {
+            display: none;
+            position: absolute;
+            top: .5em;
+            left: 0;
 
-.section-type-project {
-    width: 640*$px - 2 * 20*$px;
-}
+            a {
+                background: none;
+                padding: 0;
+                img {
+                    width: 100*$px;
+                }
+            }
+        }
 
-.section-level-gimnazjum {
-    background: #f4ae83;
-    color: #67584f;
-    a, a:hover {
-        color: #67584f;
-    }
+        &.fixed {
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #c9ccce;
 
-    .section-type-synthetic {
-    }
-    .section-type-course {
-        background: #ed7831;
-        color: #fff;
-        a {
-            color: #fff;
+            .home {
+                display: block;
+            }
+        }
+
+        li {
+            display: inline-block;
+            list-style: none;
+
+            a {
+                padding: .5em 1em;
+                border-radius: 5*$px;
+                background: #eee;
+
+                &.active {
+                    color: white;
+                    background: #ED7831;
+                }
+            }
         }
     }
-    .section-type-project {
-        background-color: lighten(#f4ae83, 10);
-    }
 }
 
-
-.section-level-liceum {
-    background: #44b69f;
-    color: #363a3e;
-    a, a:hover {
-        color: #363a3e;
+.level {
+    .link-list {
+        margin-left: 1em;
     }
 
-    .section-type-synthetic {
-    }
-    .section-type-course {
-        background: #16a487;
-        color: #fff;
-        a {
-            color: #fff;
+    .level-toc {
+        overflow: hidden; /* Because we're changing bg color lower. */
+
+        &.fixed {
+            position: fixed;
+        }
+
+        .link-list {
+            margin-left: 1em;
+
+            li {
+                margin-bottom: 0;
+
+                &.curriculumcourses {
+                    margin: 10px -17px -17px;
+                    padding: 10px 16px 16px;
+                    background-color: #eee;
+                }
+            }
         }
     }
-    .section-type-project {
-        background-color: lighten(#44b69f, 25);
-    }
-}
-
-
-.course-boxes {
-    h1 {
-        color: #363a3e;
-    }
-    .section-level {
-        background: white;
-        border: 1px solid #777;
-        a, a:hover {
-            color: #363a3e;
-        }
-        .section-type {
-            background: white;
-        }
-    }
-    .section-type-synthetic {
-        width: 300*$px - 2 * 20*$px;
-    }
-    .section-type-course {
-        width: 340*$px - 2 * 20*$px;
-    }
-}
-
-
-.section-links {
-    float: right;
-}
-
-h2.section-header {
-    margin: 0;
-}
-
-
-.section-list-toc {
-    display: inline-block;
-    vertical-align: top;
-    width: 300*$px;
 }

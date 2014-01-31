@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load catalogue_tags %}
+{% load static from staticfiles %}
+{% load course_boxes course_boxes_toc from curriculum_tags %}
+{% load chunk from chunks %}
+
+{% block title %}Lekcje{% endblock %}
+
+{% block body %}
+    <h1>Lekcje</h1>
+
+<aside id="sidebar">
+    <section class="section-minor">
+        <h1>Zebrane dla wszystkich tematów</h1>
+        <ul class="link-list">
+            {% for lesson in appendix %}
+                <li><a href="{{ lesson.get_absolute_url }}">{{ lesson }}</a></li>
+            {% endfor %}
+            <li><a href="{% url 'info' 'infografiki' %}">Infografiki</a></li>
+        </ul>
+    </section>
+</aside>
+
+<div id="main-bar">
+    <div class="box">
+    {% chunk 'levels_disclaimer' %}
+    </div>
+
+    <div id="level-chooser-place">
+        <ul id="level-chooser">
+            <li class="home"><a href="#body"><img src="{% static 'img/logo.png' %}" /></a></li>
+            {% for object in object_list %}
+                <li><a href="#{{ object.slug }}">{{ object }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+
+    {% for level in object_list %}
+        {% level_box level %}
+    {% endfor %}
+</div>
+
+
+{% endblock %}

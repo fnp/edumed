@@ -17,15 +17,27 @@
 
 <section id="main-sections">
 <h1>Lekcje:</h1>
-{% catalogue_section_buttons %}
+{% catalogue_levels_main %}
+</section>
+
+<section id="main-howto">
+<h1>Nasze lekcje to:</h1>
+<ul class="link-list">
+    <li><a class="knowledge" href="/info/jak-korzystac/#wiedza-w-pigulce">wiedza w pigułce</a></li>
+    <li><a class="activity" href="/info/jak-korzystac/#zadania">zadania</a></li>
+    <li><a class="lesson-plan" href="/info/jak-korzystac/#scenariusze">scenariusze</a></li>
+    <li><a class="reference" href="/info/jak-korzystac/#slowniczek">słowniczek</a></li>
+</ul>
+<p>Zobacz, <a href="{% url 'info' 'dobre-praktyki' %}">jak przeprowadzili je inni.</a></p>
+
+{# <iframe width="220" height="124" src="//www.youtube.com/embed/______?controls=2&amp;rel=0&amp;showinfo=0&amp;theme=light" frameborder="0" allowfullscreen></iframe> #}
 </section>
 
 <section id="main-chosen">
-<h1>Wybrane tematy na:</h1>
-<ul class="link-list">
-{% course_boxes_toc 1 %}
-</ul>
+<h1>Według podstawy programowej:</h1>
+{% course_boxes_toc %}
 </section>
+
 
 <section id="main-tools">
 
@@ -39,8 +51,6 @@
 <ul class="link-list">
     <li><a href="{% url 'contact_form' 'sugestie' %}">Zgłoś błąd lub sugestię</a></li>
     <li><a href="{% url 'info' 'jak-korzystac/' %}">Jak korzystać?</a></li>
-    <li><a href="{{ package_url }}">Pobierz wszystkie lekcje</a></li>
-    <li><a href="{{ package_student_url }}">Pobierz wszystkie lekcje w&nbsp;wersji dla ucznia</a></li>
     <li><a href="{% url 'catalogue_lesson' 'slowniczek' %}">Słowniczek</a></li>
     <li><a href="{% url 'catalogue_lesson' 'metody' %}">Metody edukacyjne</a></li>
     {% if request.user.is_authenticated %}<li><a href="{% url 'pybb:index' %}">Forum</a></li>{% endif %}
@@ -55,7 +65,3 @@
 
 {% endblock %}
 
-
-{% block footer_extra %}
-    <p>Wykorzystano zdjęcie autorstwa Katarzyny Włodarczyk, udostępnione na wolnej licencji CC BY-SA.</p>
-{% endblock %}

@@ -1,0 +1,19 @@
+{% load i18n %}
+<style type="text/css">
+#main-sections ul li {width: {{ section_width }}px;}
+#main-sections ul li a {width: {{ section_width|add:"-10" }}px;}
+.levelth {width: {{ section_width }}px;}
+</style>
+{% url 'catalogue_lessons' as les %}
+<ul class="section-buttons">
+{% for level in object_list %}
+<li class="box{{ level.pk }}">
+    <a href="{{ les }}#{{ level.slug }}">
+    <span class="in-box">
+    <span class="name">{{ level }}</span>
+    {{ level.length_synthetic }} lub {{ level.length_course }} godzin
+    </span>
+    </a>
+</li>
+{% endfor %}
+</ul>

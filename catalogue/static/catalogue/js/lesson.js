@@ -2,7 +2,10 @@
 $(function() {
 
 
-$('a.image').colorbox();
+$('a.image').colorbox({
+    maxWidth: '100%',
+    maxHeight: '100%',
+});
 
 
 });

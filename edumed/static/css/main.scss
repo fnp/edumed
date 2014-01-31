@@ -48,7 +48,7 @@ $px: .0625em;
 
     h1 {
         font-size: .9em;
-        margin: 0 0 0 1.6em;
+        margin: 0 0 0 20*$px;
         text-transform: uppercase;
     }
 
@@ -61,7 +61,6 @@ $px: .0625em;
             margin-top: 20*$px;
             margin-left: 20*$px;
             float: left;
-            width: 160*$px;
             height: 90*$px;
             border-radius: 15*$px;
 
@@ -70,11 +69,10 @@ $px: .0625em;
                 text-transform: uppercase;
                 display: block;
                 height: 80*$px;
-                width: 150*$px;
                 display: table;
-                padding: 5*$px;
+                padding: 5px;
 
-                span {
+                .in-box {
                     font-size: .9em;
                     height: 100%;
                     width: 100%;
@@ -83,9 +81,16 @@ $px: .0625em;
                     border: 1px solid transparent;
                     border-radius: 10*$px;
                     padding-left: 16*$px;
+
+                    .name {
+                        display: block;
+                        font-size: 1.5em;
+                        line-height: 1em;
+                        margin-bottom: .2em;
+                    }
                 }
             }
-            a:hover span {
+            a:hover .in-box {
                 border: 1px solid white;
             }
         }
@@ -93,14 +98,15 @@ $px: .0625em;
         .box2 {background-color: #f8b323;}
         .box3 {background-color: #16a487;}
         .box4 {background-color: #5e6165;}
-        .box5 {background-color: #16a487;}
+        // .box5 {background-color: #16a487;}
+        .box5 {background-color: #f8b323;}
         .box6 {background-color: #363a3e;}
         .box7 {background-color: #adaeaf;}
         .box8 {background-color: #ed7831;}
     }
 }
 
-#main-chosen {
+#main-howto {
     float: right;
     margin-top: 1.2em;
     width: 220*$px;
@@ -112,13 +118,45 @@ $px: .0625em;
     }
 
     ul {
-        margin: 17*$px 0 0 1.4em;;
+        margin: 17*$px 0 17*$px 1.4em;
 
         li {
             font-size: .9em;
             text-transform: uppercase;
             line-height: 1.25em;
         }
+        a:before {
+            height: 20*$px;
+        }
+
+        .knowledge:before {content: url(/static/img/icons/knowledge_dark.png);}
+        .activity:before {content: url(/static/img/icons/activity_dark.png);}
+        .lesson-plan:before {content: url(/static/img/icons/lesson-plan_dark.png);}
+        .reference:before {content: url(/static/img/icons/reference_dark.png);}
+        .knowledge:hover:before {content: url(/static/img/icons/knowledge_orange.png);}
+        .activity:hover:before {content: url(/static/img/icons/activity_orange.png);}
+        .lesson-plan:hover:before {content: url(/static/img/icons/lesson-plan_orange.png);}
+        .reference:hover:before {content: url(/static/img/icons/reference_orange.png);}
+
+    }
+    p {
+        margin: 0 0 30*$px 1.4em;
+    }
+}
+
+#main-chosen {
+    clear: left;
+    float: left;
+    margin-top: 2em;
+
+    h1 {
+        font-size: .9em;
+        margin: 0 0 1em 20*$px;
+        text-transform: uppercase;
+    }
+
+    .levelth {
+        margin-left: 20*$px;
     }
 }
 
