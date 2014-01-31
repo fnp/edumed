@@ -1,21 +1,8 @@
 {% extends "catalogue/lesson/lesson_detail.html" %}
 
-{% block sidebar-top %}
-
-<section class="box">
-    <h1 class="realisation">Zebrane dla wszystkich tematów</h1>
-    
-    <p>To jest materiał wspólny dla wszystkich lekcji
-    edukacji medialnej{% if object.level.slug = "liceum" %}
-        (na poziomie zaawansowanym)
-    {% endif %}. 
-    Zobacz też
-    <strong><a href="{% url 'catalogue_lessons' %}">pełny kurs</a></strong>
-    z podziałem na poszczególne tematy.
-    </p>
-</section>
-
+{% block lesson-info %}
 {% endblock %}
+
 
 {% block suggest-link %}
 <a href="{% url 'contact_form' 'sugestie' %}?temat={{ object.title|urlencode }}">

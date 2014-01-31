@@ -15,8 +15,6 @@ MIDDLEWARE_CLASSES = tuple(x for x in (
             if "django_cas" in INSTALLED_APPS else None,
     'django.contrib.messages.middleware.MessageMiddleware'
             if "django.contrib.messages" in INSTALLED_APPS else None,
-    'piwik.django.middleware.PiwikMiddleware'
-            if "piwik.django" in INSTALLED_APPS else None,
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'pagination.middleware.PaginationMiddleware'

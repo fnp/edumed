@@ -1,10 +1,10 @@
 #main-promobox {
   float: right;
-  border-radius: 0.938em;
+  border-radius: 0.9375em;
   background: #16a487;
   padding: 1.5em 1.25em;
   width: 11.25em;
-  height: 11.688em; }
+  height: 11.6875em; }
   #main-promobox a {
     display: block; }
   #main-promobox h1 {
@@ -35,28 +35,26 @@
   width: 43.75em; }
   #main-sections h1 {
     font-size: .9em;
-    margin: 0 0 0 1.6em;
+    margin: 0 0 0 1.25em;
     text-transform: uppercase; }
   #main-sections ul {
-    margin: -0.188em 0 0 -1.25em;
+    margin: -0.1875em 0 0 -1.25em;
     padding: 0;
     list-style: none; }
     #main-sections ul li {
       margin-top: 1.25em;
       margin-left: 1.25em;
       float: left;
-      width: 10em;
       height: 5.625em;
-      border-radius: 0.938em; }
+      border-radius: 0.9375em; }
       #main-sections ul li a {
         color: white;
         text-transform: uppercase;
         display: block;
         height: 5em;
-        width: 9.375em;
         display: table;
-        padding: 0.313em; }
-        #main-sections ul li a span {
+        padding: 5px; }
+        #main-sections ul li a .in-box {
           font-size: .9em;
           height: 100%;
           width: 100%;
@@ -65,7 +63,12 @@
           border: 1px solid transparent;
           border-radius: 0.625em;
           padding-left: 1em; }
-      #main-sections ul li a:hover span {
+          #main-sections ul li a .in-box .name {
+            display: block;
+            font-size: 1.5em;
+            line-height: 1em;
+            margin-bottom: .2em; }
+      #main-sections ul li a:hover .in-box {
         border: 1px solid white; }
     #main-sections ul .box1 {
       background-color: #adaeaf; }
@@ -76,7 +79,7 @@
     #main-sections ul .box4 {
       background-color: #5e6165; }
     #main-sections ul .box5 {
-      background-color: #16a487; }
+      background-color: #f8b323; }
     #main-sections ul .box6 {
       background-color: #363a3e; }
     #main-sections ul .box7 {
@@ -84,20 +87,51 @@
     #main-sections ul .box8 {
       background-color: #ed7831; }
 
-#main-chosen {
+#main-howto {
   float: right;
   margin-top: 1.2em;
   width: 13.75em; }
-  #main-chosen h1 {
+  #main-howto h1 {
     font-size: .9em;
     margin: 0 0 0 1.4em;
     text-transform: uppercase; }
-  #main-chosen ul {
-    margin: 1.063em 0 0 1.4em; }
-    #main-chosen ul li {
+  #main-howto ul {
+    margin: 1.0625em 0 1.0625em 1.4em; }
+    #main-howto ul li {
       font-size: .9em;
       text-transform: uppercase;
       line-height: 1.25em; }
+    #main-howto ul a:before {
+      height: 1.25em; }
+    #main-howto ul .knowledge:before {
+      content: url(/static/img/icons/knowledge_dark.png); }
+    #main-howto ul .activity:before {
+      content: url(/static/img/icons/activity_dark.png); }
+    #main-howto ul .lesson-plan:before {
+      content: url(/static/img/icons/lesson-plan_dark.png); }
+    #main-howto ul .reference:before {
+      content: url(/static/img/icons/reference_dark.png); }
+    #main-howto ul .knowledge:hover:before {
+      content: url(/static/img/icons/knowledge_orange.png); }
+    #main-howto ul .activity:hover:before {
+      content: url(/static/img/icons/activity_orange.png); }
+    #main-howto ul .lesson-plan:hover:before {
+      content: url(/static/img/icons/lesson-plan_orange.png); }
+    #main-howto ul .reference:hover:before {
+      content: url(/static/img/icons/reference_orange.png); }
+  #main-howto p {
+    margin: 0 0 1.875em 1.4em; }
+
+#main-chosen {
+  clear: left;
+  float: left;
+  margin-top: 2em; }
+  #main-chosen h1 {
+    font-size: .9em;
+    margin: 0 0 1em 1.25em;
+    text-transform: uppercase; }
+  #main-chosen .levelth {
+    margin-left: 1.25em; }
 
 #main-tools {
   clear: both; }

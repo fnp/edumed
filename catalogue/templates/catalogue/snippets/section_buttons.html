@@ -1,6 +1,0 @@
-<ul class="section-buttons">
-{% for object in object_list %}
-    {% url "catalogue_lessons" as lessons_url %}
-    <li class="box{{ object.order }}"><a href="{{ lessons_url }}#{{  object.slug }}"><span>{{ object }}</span></a></li>
-{% endfor %}
-</ul>

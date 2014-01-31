@@ -22,7 +22,7 @@ class Section(models.Model):
 
     def url_for_level(self, level):
         return "%s?s=%d&level=%s&d=1" % (reverse("curriculum"), self.pk, level.slug)
-        
+
 add_translatable(Section, {
     'name': models.CharField(_('name'), max_length=255, default = '')
 })
@@ -66,8 +66,13 @@ add_translatable(Competence, {
 
 
 class Level(models.Model):
-    slug = models.CharField(_('slug'), max_length=255)
+    slug = models.CharField(_('slug'), max_length=255, unique=True)
+    meta_name = models.CharField(_('meta name'), max_length=255, unique=True)
     order = models.IntegerField(_('order'))
+    package = models.FileField(upload_to=lambda i, f: "curriculum/pack/edukacjamedialna_%s.zip" % i.slug,
+        null=True, blank=True, max_length=255)
+    student_package = models.FileField(upload_to=lambda i, f: "curriculum/pack/edukacjamedialna_%s_uczen.zip" % i.slug,
+        null=True, blank=True, max_length=255)
 
     class Meta:
         ordering = ['order']
@@ -76,6 +81,48 @@ class Level(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def length_course(self):
+        return self.lesson_set.filter(type='course').count()
+
+    def length_synthetic(self):
+        return self.lesson_set.filter(type='synthetic').count()
+
+    def build_package(self, student):
+        from StringIO import StringIO
+        import zipfile
+        from django.core.files.base import ContentFile
+        from catalogue.templatetags.catalogue_tags import section_box
+        from catalogue.models import Lesson
+
+        buff = StringIO()
+        zipf = zipfile.ZipFile(buff, 'w', zipfile.ZIP_STORED)
+
+        lessons = section_box(self)['lessons']
+        for i, lesson in enumerate(lessons['synthetic']):
+            prefix = 'Skrocony kurs/%d %s/' % (i, lesson.slug)
+            lesson.add_to_zip(zipf, student, prefix)
+        for c, (section, clessons) in enumerate(lessons['course'].items()):
+            for i, lesson in enumerate(clessons):
+                prefix = 'Pelny kurs/%d %s/%d %s/' % (c, section.slug, i, lesson.slug)
+                lesson.add_to_zip(zipf, student, prefix)
+        for i, lesson in enumerate(lessons['project']):
+            prefix = 'Kurs skrocony/%d %s/' % (i, lesson.slug)
+            lesson.add_to_zip(zipf, student, prefix)
+        # Add all appendix lessons, from all levels.
+        for lesson in Lesson.objects.exclude(type__in=('synthetic', 'course', 'project')):
+            prefix = '%s/' % lesson.slug
+            lesson.add_to_zip(zipf, student, prefix)
+        zipf.close()
+
+        fieldname = "student_package" if student else "package"
+        getattr(self, fieldname).save(None, ContentFile(buff.getvalue()))
+
+    def build_packages(self):
+        self.build_package(False)
+        self.build_package(True)
+
+
 
 add_translatable(Level, {
     'name': models.CharField(_('name'), max_length=255, default = ''),

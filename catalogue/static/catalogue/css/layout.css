@@ -1,4 +1,25 @@
 @charset "UTF-8";
+.box-button {
+  background-color: #ed7831;
+  border-radius: 0.9375em; }
+  .box-button .dl-button {
+    color: white;
+    padding: 1.0625em 0.75em 1.0625em 0.75em; }
+
+.dl-button {
+  color: #363a3e;
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: .9em; }
+
+.dl-button:after {
+  content: " ↓"; }
+
+#main-bar section.button {
+  margin-bottom: 1.0625em; }
+
 #sidebar {
   position: absolute;
   right: 0;
@@ -6,39 +27,17 @@
   width: 13.75em;
   color: #363a3e; }
   #sidebar section {
-    margin-bottom: 1.063em; }
+    margin-bottom: 1.0625em; }
     #sidebar section h1 {
       margin: 0; }
     #sidebar section h1.realisation {
       font-weight: normal; }
-  #sidebar .box {
-    background-color: #d4d6d8;
-    border-radius: 0.938em;
-    padding: 1.063em 0.75em 1.063em 0.75em; }
-    #sidebar .box h1 {
-      font-size: 1em;
-      text-transform: uppercase; }
-  #sidebar .box-button {
-    background-color: #ed7831;
-    border-radius: 0.938em; }
-    #sidebar .box-button .dl-button {
-      color: white;
-      padding: 1.063em 0.75em 1.063em 0.75em; }
-  #sidebar .dl-button {
-    color: #363a3e;
-    display: block;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: .9em; }
-  #sidebar .dl-button:after {
-    content: " ↓"; }
   #sidebar .section {
     border-top: 1px solid #c9ccce;
-    padding-top: 1.063em; }
+    padding-top: 1.0625em; }
   #sidebar .section-minor {
     border-top: 1px solid #c9ccce;
-    padding-top: 1.063em; }
+    padding-top: 1.0625em; }
     #sidebar .section-minor h1 {
       font-weight: normal;
       font-size: 1em; }
@@ -46,17 +45,33 @@
     font-size: .8em;
     color: #888;
     border-top: 1px solid #c9ccce;
-    padding-top: 1.063em; }
+    padding-top: 1.0625em; }
     #sidebar .section-micro h1 {
       font-weight: normal;
       font-size: 1em; }
     #sidebar .section-micro .link-list a {
       color: #888; }
+  #sidebar section:first-child {
+    border-top: 0;
+    padding-top: 0; }
 
 #main-bar {
   width: 40em; }
   #main-bar .top-link {
     float: right; }
+  #main-bar .box {
+    background-color: #d4d6d8;
+    border-radius: 0.9375em;
+    padding: 1.0625em; }
+    #main-bar .box h1 {
+      font-size: 1em;
+      text-transform: uppercase; }
+    #main-bar .box p {
+      margin: 0; }
+    #main-bar .box .box-icon {
+      margin: -.2em 0 -.2em 1em;
+      float: right;
+      text-align: center; }
 
 .lesson-footer {
   clear: both;

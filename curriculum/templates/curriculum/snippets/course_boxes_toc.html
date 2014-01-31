@@ -1,10 +1,14 @@
 {% url "catalogue_lessons" as lessons_url %}
-{% for course in object_list %}
-<li><a href="{{ lessons_url }}#{{ course.slug }}">
-    {% if accusative %}
-        {{ course.accusative }}
-    {% else %}
-        {{ course }}
-    {% endif %}
-</a></li>
+{% for level, course_list in object_list %}
+<section class="levelth" style="float: left;">{{ level }}:
+<ul class="link-list">
+        {% for course in course_list %}
+            <li><a href="{{ lessons_url }}#{{ level.slug }}_{{ course.slug }}">
+            {% if accusative %}
+                {{ course.accusative }}{% else %}
+                {{ course|lower }}{% endif %}</a>{% if not forloop.last %}, {% else %}.{% endif %}
+                </li>
+        {% endfor %}
+</ul>
+</section>
 {% endfor %}

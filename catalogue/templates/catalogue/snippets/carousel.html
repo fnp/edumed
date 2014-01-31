@@ -1,21 +1,27 @@
-{% load static %}
-
-{% url "info" "jak-korzystac/" as jak %}
+{% load thumbnail %}
+{% url 'catalogue_lessons' as lessons %}
 <section id="catalogue-carousel">
     <ul id="catalogue-carousel-links">
-        <li style="background-image: url({% static 'catalogue/img/carousel/katarzyna-wlodarczyk.jpg' %}); z-index: 100;">
-            <a href="{% url 'info' 'dobre-praktyki/' %}" class="catalogue-carousel-link">
+        {% for section in object_list %}
+        <li style="{% if section.pic %}{% thumbnail section.pic '460x235' crop='center' as th %}background-image: url('{{ th.url }}');{% endthumbnail %}{% endif %}">
+            <a href="{{ lessons }}#gimnazjum_{{ section.slug }}" class="catalogue-carousel-link">
                 <div class="catalogue-carousel-note">
-                    <p><strong>{{ lessons_count }}</strong> <em>{{ lessons_desc }}</em>
-                    - zobacz w działaniu</p>
+                    <div>
+                        <p>
+                        <strong>{{ section }}</strong>
+                        {{ section.summary }}
+                        <span class="more">zobacz &rarr;</span>
+                        </p>
+                    </div>
                 </div>
             </a>
-        </li>
+            <a class="attribution" href="{{ section.pic_src }}">fot. {{ section.pic_attribution }}</a>
+        </li>    
+        {% endfor %}
     </ul>
     <ul id="catalogue-carousel-switcher">
-        <li><a href="{{ jak }}#wiedza-w-pigulce" class="knowledge">wiedza w pigułce</a></li>
-        <li><a href="{{ jak }}#zadania" class="activity">zadania</a></li>
-        <li><a href="{{ jak }}#scenariusze" class="lesson-plan">scenariusze</a></li>
-        <li><a href="{{ jak }}#slowniczek" class="reference">słowniczek</a></li>
+        {% for section in object_list %}
+            <li><a href="{{ section.get_absolute_url }}">{{ section }}</a></li>
+        {% endfor %}
     </ul>
 </section>

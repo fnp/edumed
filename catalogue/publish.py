@@ -1,13 +1,56 @@
 # -*- coding: utf-8
 from django.core.files.base import ContentFile
 from django.core.files import File
+from django.core.urlresolvers import reverse
 from librarian import DocProvider, IOFile
 from librarian.pyhtml import EduModuleFormat
 from librarian.pypdf import EduModulePDFFormat
 from .models import Lesson, Attachment
+from fnpdjango.utils.text.slughifi import slughifi
+
+
+# TODO: Using sorl.thumbnail for now,
+# but this should be done in Librarian,
+# directly using convert or PIL as a fallback.
+def get_image(src_img_path, width=None,
+        default_width=1600, formats=('PNG', 'JPEG', 'GIF')):
+    """ Returns an object with `url` and `storage` attributes,
+        or None if using the original image is OK.
+    """
+    
+    from PIL import Image
+    from sorl.thumbnail import get_thumbnail
+    
+    # Does it need converting?
+    # Yes, if width is given explicitly.
+    convert = width is not None
+    if not convert:
+        # Looks like it doesn't need converting.
+        # But let's try opening it and checking its type.
+        try:
+            simg = Image.open(src_img_path)
+        except IOError:
+            # It doesn't look like image,
+            # but maybe it's convertable to one.
+            convert = True
+        else:
+            if simg.format not in formats:
+                # It's an image, but it's in some weird format.
+                convert = True
+                width = simg.size[0]
+
+    if convert:
+        if width is None:
+            width = default_width
+        return get_thumbnail(src_img_path, '%sx%s' % (width, 10*width))
+    else:
+        return None
 
 
 class HtmlFormat(EduModuleFormat):
+    IMAGE_FORMATS = ('PNG', 'JPEG', 'GIF')
+    DEFAULT_IMAGE_WIDTH = 1600
+
     def find_attachment(self, slug, fmt):
         lesson_slug = self.wldoc.book_info.url.slug
         try:
@@ -34,35 +77,45 @@ class HtmlFormat(EduModuleFormat):
         return self.find_attachment(slug, fmt).file.url
 
     def url_for_image(self, slug, fmt, width=None):
-        if width is None:
-            return self.url_for_material(slug, fmt)
-
-        lesson_slug = self.wldoc.book_info.url.slug
-        th_slug = "thumb/%s__th%d" % (slug, width)
         try:
-            # If already saved, use it.
-            att = Attachment.objects.get(lesson__slug=lesson_slug,
-                                         slug=th_slug, ext=fmt)
-        except Attachment.DoesNotExist, e:
-            from PIL import Image
-            from StringIO import StringIO
-            # Find full image, create thumbnail, save.
-            src_att = self.find_attachment(slug, fmt)
-            simg = Image.open(src_att.file.path)
-            size = (width, simg.size[1]*width/simg.size[0])
-            simg = simg.resize(size, Image.ANTIALIAS)
+            src_img = self.find_attachment(slug, fmt).file
+        except self.MaterialNotFound:
+            return ''
+        img = get_image(src_img.path, width,
+            self.DEFAULT_IMAGE_WIDTH, self.IMAGE_FORMATS)
+        return (img or src_img).url
 
-            tempfile = StringIO()
-            img_format = "JPEG" if fmt.upper() == "JPG" else fmt
-            simg.save(tempfile, format=img_format)
-            att_name = "%s.%s" % (th_slug, fmt)
-            lesson = Lesson.objects.get(slug=lesson_slug)
-            att = lesson.attachment_set.create(slug=th_slug, ext=fmt)
-            att.file.save(att_name, ContentFile(tempfile.getvalue()))
-        return att.file.url
+    def text_to_anchor(self, text):
+        return slughifi(text)
+
+    def get_forma_url(self, forma):
+        return '%s#%s' % (
+            reverse('catalogue_lesson', args=['metody']),
+            self.text_to_anchor(forma)
+        )
+
+    def get_help_url(self, naglowek):
+        return '%s%s#%s' % (
+            '//edukacjamedialna.edu.pl',
+            reverse('info', args=['jak-korzystac/']),
+            self.naglowek_to_anchor(naglowek)
+        )
+
 
 class PdfFormat(EduModulePDFFormat):
-    pass
+    IMAGE_FORMATS = ('PNG', 'JPEG', 'GIF')
+    DEFAULT_IMAGE_WIDTH = 1600
+
+    def get_image(self, name):
+        src_img = super(PdfFormat, self).get_image(name)
+        img = get_image(src_img.get_filename(),
+                default_width=self.DEFAULT_IMAGE_WIDTH,
+                formats=self.IMAGE_FORMATS
+            )
+        if img:
+            return IOFile.from_filename(img.storage.path(img))
+        else:
+            return src_img
 
 
 class OrmDocProvider(DocProvider):

@@ -1,0 +1,142 @@
+<section id="{{ level.slug }}" class="level" style="margin-left: 20em">
+
+    <section class="box level-toc" style="float: left; margin-left: -20em; width: 15em;">
+        <strong><a href="#{{ level.slug }}">{{ level }}</a></strong>
+        <ul  class="link-list"  style="list-style: none; padding: 0; margin: 0;">
+            {% if lessons.synthetic %}
+            <li><a href="#{{ level.slug }}_skrocony">Skrócony kurs</a></li>
+            {% endif %}
+            {% if lessons.course %}
+            <li><a href="#{{ level.slug }}_pelny">Pełny kurs</a>
+                <ul style="list-style: none; padding: 0 0 0 1em; margin: 0;">
+                {% for section in lessons.course %}
+                        <li><a href="#{{ level.slug }}_{{ section.slug}}">{{ section }}</a></li>
+                {% endfor %}
+                </ul>
+            </li>
+            {% endif %}
+            {% if lessons.project %}
+            <li><a href="#{{ level.slug }}_projekt">Projekt</a></li>
+            {% endif %}
+            {% if lessons.appendix %}
+            <li><a href="#{{ level.slug }}_pozostale">Pozostałe materiały</a></li>
+            {% endif %}
+
+            {% if courses %}
+            <li class="curriculumcourses"><a href="#{{ level.slug }}_podstawa">Wg postawy programowej</a>
+                <ul style="list-style: none; padding: 0 0 0 1em; margin: 0;">
+                {% for course, lessons in courses %}
+                        <li><a href="#{{ level.slug }}_{{ course.slug}}">{{ course }}</a></li>
+                {% endfor %}
+                </ul>
+            </li>
+            {% endif %}
+        </ul>
+    </section>
+
+
+    <h1>{{ level }}</h1>
+
+    <section class="box-button button"><a href="{{ level.package.url }}" class="dl-button">Pobierz wszystkie lekcje</a></section>
+    <section class="button"><a href="{{ level.student_package.url }}" class="dl-button">Pobierz wszystkie lekcje w&nbsp;wersji dla ucznia</a></section>
+
+    {% if lessons.synthetic %}
+    <section id="{{ level.slug }}_skrocony">
+        <h1>Skrócony kurs</h1>
+
+        <p>Masz kilka godzin? Przeprowadź po jednej lekcji przeglądowej z każdego tematu.</p>
+
+        <ul class="link-list">
+            {% for lesson in lessons.synthetic %}
+                <li>{% include "catalogue/snippets/lesson_or_stub.html" %}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+
+
+    {% if lessons.course %}
+    <section id="{{ level.slug }}_pelny">
+        <h1>Pełny kurs</h1>
+
+        <p>Masz więcej czasu? Zrealizuj kompletny program edukacji medialnej.</p>
+
+        {% for section, s_lessons in lessons.course.items %}
+            <section id="{{ level.slug }}_{{ section.slug}}">
+                <h1>{{ section }}</h1>
+
+                <ul class="link-list">
+                    {% for lesson in s_lessons %}
+                        <li>{% include "catalogue/snippets/lesson_or_stub.html" %}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endfor %}
+
+    </section>
+    {% endif %}
+
+
+    {% if lessons.project %}
+    <section id="{{ level.slug }}_projekt">
+        <h1>Projekt</h1>
+
+        <p>Masz 4-6 tygodni? Zrealizuj jeden z projektów ze swoimi uczniami.</p>
+
+        <ul class="link-list">
+            {% for lesson in lessons.project %}
+                <li>{% include "catalogue/snippets/lesson_or_stub.html" %}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+
+
+    {% if courses %}
+    <section id="{{ level.slug }}_podstawa">
+        <h1>Wg podstawy programowej</h1>
+
+        {% for course, lessons in courses %}
+        <section id="{{ level.slug}}_{{ course.slug }}">
+            <h1>{{ course }}</h1>
+
+            {% if lessons.synthetic %}
+            <section>
+                <h1>Z kursu skróconego</h1>
+                <ul class="link-list">
+                    {% for lesson in lessons.synthetic %}
+                        <li>{% include "catalogue/snippets/lesson_or_stub.html" %}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+            {% endif %}
+
+            {% if lessons.course %}
+            <section>
+                <h1>Z kursu pełnego</h1>
+                <ul class="link-list">
+                    {% for lesson in lessons.course %}
+                        <li>{% include "catalogue/snippets/lesson_or_stub.html" %}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+            {% endif %}
+
+            {% if lessons.project %}
+            <section>
+                <h1>Projekt</h1>
+                <ul class="link-list">
+                    {% for lesson in lessons.project %}
+                        <li>{% include "catalogue/snippets/lesson_or_stub.html" %}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+            {% endif %}
+
+        </section>
+        {% endfor %}
+        
+    </section>
+    {% endif %}
+
+</section>

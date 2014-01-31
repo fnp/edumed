@@ -23,15 +23,17 @@ class Command(BaseCommand):
             help='Verbosity level; 0=minimal output, 1=normal output, 2=all output'),
         make_option('-a', '--attachments', dest='attachments', metavar="PATH", default='materialy',
             help='Attachments dir path.'),
+        make_option('--ignore-incomplete', action='store_true', dest='ignore_incomplete', default=False,
+            help='Attachments dir path.'),
     )
     help = 'Imports lessons from the specified directories.'
     args = 'directory [directory ...]'
 
-    def import_book(self, file_path, options, attachments):
+    def import_book(self, file_path, options, attachments, ignore_incomplete=False):
         verbose = options.get('verbose')
         iofile = IOFile.from_filename(os.path.join(self.curdir, file_path))
         iofile.attachments = attachments
-        lesson = Lesson.publish(iofile)
+        return Lesson.publish(iofile, ignore_incomplete)
 
     @staticmethod
     def all_attachments(path):
@@ -52,8 +54,9 @@ class Command(BaseCommand):
 
 
     def handle(self, *directories, **options):
-        from django.db import transaction
+        from django.db import connection, transaction
 
+        levels = set()
         self.style = color_style()
         
         verbose = options.get('verbose')
@@ -61,9 +64,14 @@ class Command(BaseCommand):
 
 
         # Start transaction management.
-        transaction.commit_unless_managed()
-        transaction.enter_transaction_management()
-        transaction.managed(True)
+        # SQLite will choke on generating thumbnails 
+        use_transaction = not connection.features.autocommits_when_autocommit_is_off
+        if use_transaction:
+            transaction.commit_unless_managed()
+            transaction.enter_transaction_management()
+            transaction.managed(True)
+        else:
+            print 'WARNING: Not using transaction management.'
 
         files_imported = 0
         files_skipped = 0
@@ -79,6 +87,7 @@ class Command(BaseCommand):
                 # files queue
                 files = sorted(os.listdir(abs_dir))
                 postponed = {}
+                ignore_incomplete = set()
                 while files:
                     file_name = files.pop(0)
                     file_path = os.path.join(abs_dir, file_name)
@@ -96,15 +105,18 @@ class Command(BaseCommand):
 
                     # Import book files
                     try:
-                        self.import_book(file_path, options, attachments)
-                        files_imported += 1
-                        transaction.commit()
+                        lesson = self.import_book(file_path, options, attachments,
+                                    ignore_incomplete=file_name in ignore_incomplete)
                     except Section.IncompleteError, e:
                         if file_name not in postponed or postponed[file_name] < files_imported:
                             # Push it back into the queue, maybe the missing lessons will show up.
                             if verbose > 0:
                                 print self.style.NOTICE('Waiting for missing lessons.')
                             files.append(file_name)
+                            postponed[file_name] = files_imported
+                        elif options['ignore_incomplete'] and file_name not in ignore_incomplete:
+                            files.append(file_name)
+                            ignore_incomplete.add(file_name)
                             postponed[file_name] = files_imported
                         else:
                             # We're in a loop, nothing's being imported - some lesson is really missing.
@@ -113,6 +125,22 @@ class Command(BaseCommand):
                         import traceback
                         traceback.print_exc()
                         files_skipped += 1
+                    else:
+                        files_imported += 1
+                        if use_transaction:
+                            transaction.commit()
+                        if hasattr(lesson, 'level'):
+                            levels.add(lesson.level)
+                    finally:
+                        if verbose > 0:
+                            print
+
+
+        if levels:
+            print "Rebuilding level packages:"
+            for level in levels:
+                print level.name
+                level.build_packages()
 
         # Print results
         print
@@ -120,5 +148,6 @@ class Command(BaseCommand):
             files_imported, files_skipped, files_imported + files_skipped)
         print
 
-        transaction.commit()
-        transaction.leave_transaction_management()
+        if use_transaction:
+            transaction.commit()
+            transaction.leave_transaction_management()

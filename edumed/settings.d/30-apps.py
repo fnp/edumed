@@ -3,12 +3,13 @@ INSTALLED_APPS = (
     'curriculum',
     'catalogue',
     'comment',
+    'publishers',
 
     'fnpdjango',
     'south',
     'pipeline',
     # Disable, if not using Piwik.
-    'piwik.django',
+    'piwik',
     # Disable, if not using CAS.
     'honeypot',
     'django_cas',

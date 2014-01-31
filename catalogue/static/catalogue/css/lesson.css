@@ -207,15 +207,15 @@ em.person {
     font-size: 2em; }
   .activity .info {
     float: right;
-    width: 8.438em; }
+    width: 8.4375em; }
     .activity .info .infobox {
       padding: 1em 0;
       border-top: 1px solid #c9ccce; }
       .activity .info .infobox h1 {
         text-transform: uppercase;
         font-weight: bold;
-        margin: 0 0 0.5em -2.188em;
-        padding-left: 2.188em;
+        margin: 0 0 0.5em -2.1875em;
+        padding-left: 2.1875em;
         line-height: 24px;
         font-size: 1em; }
       .activity .info .infobox p {
@@ -246,3 +246,9 @@ em.person {
 
 #book-text .top-link {
   margin-top: 1em; }
+
+.help {
+  font-size: .7em;
+  padding: 0 .5em;
+  color: #888;
+  vertical-align: super; }

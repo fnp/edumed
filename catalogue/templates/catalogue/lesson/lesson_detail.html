@@ -74,6 +74,10 @@
 </aside>
 
 <div id="main-bar">
+
+{% block lesson-info %}
+{% endblock %}
+
 {{ object.html_file.read|safe }}
 
 

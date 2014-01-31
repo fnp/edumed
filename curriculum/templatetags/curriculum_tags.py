@@ -1,6 +1,7 @@
 from django import template
 from django.utils.datastructures import SortedDict
 from ..models import Competence, Curriculum, CurriculumCourse
+from catalogue.models import Lesson
 
 register = template.Library()
 
@@ -19,7 +20,7 @@ def competence(texts, level):
 @register.inclusion_tag("curriculum/snippets/curriculum.html")
 def curriculum(identifiers):
     try:
-        currs = [Curriculum.objects.get(identifier=identifier)
+        currs = [Curriculum.objects.get(identifier__iexact=identifier.replace(' ', ''))
                     for identifier in identifiers]
     except Curriculum.DoesNotExist:
         return {'identifiers': identifiers}
@@ -70,7 +71,18 @@ def course_boxes():
 
 @register.inclusion_tag("curriculum/snippets/course_boxes_toc.html")
 def course_boxes_toc(accusative=False):
+    last = None, None
+    object_list = []
+    for l in Lesson.curriculum_courses.through.objects.all().order_by(
+            'lesson__level', 'curriculumcourse'):
+        level, course = l.lesson.level, l.curriculumcourse
+        if (level, course) == last:
+            continue
+        if level != last[0]:
+            object_list.append((level, []))
+        object_list[-1][1].append(course)
+        last = (level, course)
     return {
-        'object_list': CurriculumCourse.objects.all(),
+        'object_list': object_list,
         'accusative': accusative,
     }
