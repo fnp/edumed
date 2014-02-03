@@ -92,13 +92,13 @@ class Level(models.Model):
         from StringIO import StringIO
         import zipfile
         from django.core.files.base import ContentFile
-        from catalogue.templatetags.catalogue_tags import section_box
+        from catalogue.templatetags.catalogue_tags import level_box
         from catalogue.models import Lesson
 
         buff = StringIO()
         zipf = zipfile.ZipFile(buff, 'w', zipfile.ZIP_STORED)
 
-        lessons = section_box(self)['lessons']
+        lessons = level_box(self)['lessons']
         for i, lesson in enumerate(lessons['synthetic']):
             prefix = 'Skrocony kurs/%d %s/' % (i, lesson.slug)
             lesson.add_to_zip(zipf, student, prefix)
