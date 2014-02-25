@@ -16,14 +16,14 @@
             </li>
             {% endif %}
             {% if lessons.project %}
-            <li><a href="#{{ level.slug }}_projekt">Projekt</a></li>
+            <li><a href="#{{ level.slug }}_projekty">Projekty</a></li>
             {% endif %}
             {% if lessons.appendix %}
             <li><a href="#{{ level.slug }}_pozostale">Pozostałe materiały</a></li>
             {% endif %}
 
             {% if courses %}
-            <li class="curriculumcourses"><a href="#{{ level.slug }}_podstawa">Wg postawy programowej</a>
+            <li class="curriculumcourses"><a href="#{{ level.slug }}_podstawa">Według postawy programowej</a>
                 <ul style="list-style: none; padding: 0 0 0 1em; margin: 0;">
                 {% for course, lessons in courses %}
                         <li><a href="#{{ level.slug }}_{{ course.slug}}">{{ course }}</a></li>
@@ -78,8 +78,8 @@
 
 
     {% if lessons.project %}
-    <section id="{{ level.slug }}_projekt">
-        <h1>Projekt</h1>
+    <section id="{{ level.slug }}_projekty">
+        <h1>Projekty</h1>
 
         <p>Masz 4-6 tygodni? Zrealizuj jeden z projektów ze swoimi uczniami.</p>
 
@@ -94,7 +94,7 @@
 
     {% if courses %}
     <section id="{{ level.slug }}_podstawa">
-        <h1>Wg podstawy programowej</h1>
+        <h1>Według podstawy programowej</h1>
 
         {% for course, lessons in courses %}
         <section id="{{ level.slug}}_{{ course.slug }}">
@@ -124,7 +124,7 @@
 
             {% if lessons.project %}
             <section>
-                <h1>Projekt</h1>
+                <h1>Projekty</h1>
                 <ul class="link-list">
                     {% for lesson in lessons.project %}
                         <li>{% include "catalogue/snippets/lesson_or_stub.html" %}</li>

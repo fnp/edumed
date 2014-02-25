@@ -8,7 +8,7 @@
     {% include "catalogue/lesson/box-icons.html" %}
 
     <p>Ta lekcja jest częścią tematu
-    <a href="{{ object.section.get_absolute_url }}"><strong>{{ object.section }}</strong></a>
+    <a href="{% url 'catalogue_lessons' %}#{{ object.level.slug }}_{{ object.section.slug }}"><strong>{{ object.section }}</strong></a>
     na poziomie {{ object.level|lower }}.
     </p>
     <div style="clear: right"></div>

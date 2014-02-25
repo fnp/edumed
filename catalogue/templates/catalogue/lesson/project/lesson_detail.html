@@ -11,7 +11,7 @@
 
     <p>To jest <a href="{% url 'info' 'metoda-projektowa' %}">projekt</a> 
     na poziomie
-    <a href="{% url 'catalogue_lessons' %}#{{ object.level.slug }}_pelny">{{ object.level|lower }}</a>.
+    <a href="{% url 'catalogue_lessons' %}#{{ object.level.slug }}">{{ object.level|lower }}</a>.
     </p>
 </section>
 {% endblock %}

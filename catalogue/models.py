@@ -168,10 +168,14 @@ class Lesson(models.Model):
     def populate_description(self, wldoc=None, infile=None):
         if wldoc is None:
             wldoc = self.wldocument(infile)
-        for nagl in wldoc.edoc.findall('.//naglowek_rozdzial'):
-            if (nagl.text or '').strip() == u'Pomysł na lekcję':
+        if self.type == 'project':
+            lookup = u'Zadanie'
+        else:
+            lookup = u'Pomysł na lekcję'
+        for header in wldoc.edoc.findall('.//naglowek_rozdzial'):
+            if (header.text or '').strip() == lookup:
                 from lxml import etree
-                self.description = etree.tostring(nagl.getnext(),
+                self.description = etree.tostring(header.getnext(),
                         method='text', encoding='unicode').strip()
                 self.save()
                 return

@@ -107,7 +107,7 @@ class Level(models.Model):
                 prefix = 'Pelny kurs/%d %s/%d %s/' % (c, section.slug, i, lesson.slug)
                 lesson.add_to_zip(zipf, student, prefix)
         for i, lesson in enumerate(lessons['project']):
-            prefix = 'Kurs skrocony/%d %s/' % (i, lesson.slug)
+            prefix = 'Projekty/%d %s/' % (i, lesson.slug)
             lesson.add_to_zip(zipf, student, prefix)
         # Add all appendix lessons, from all levels.
         for lesson in Lesson.objects.exclude(type__in=('synthetic', 'course', 'project')):
