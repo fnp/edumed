@@ -34,7 +34,7 @@ def level_box(level):
     by_course = defaultdict(lambda: defaultdict(list))
 
     lesson_lists = [alist for alist in [
-        list(level.lesson_set.exclude(type='appendix').order_by('section__order')),
+        list(level.lesson_set.exclude(type='appendix').order_by('section__order', 'order')),
         list(level.lessonstub_set.all())
     ] if alist]
 
