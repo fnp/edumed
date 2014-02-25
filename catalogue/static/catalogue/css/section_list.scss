@@ -1,12 +1,12 @@
 $px: 0.0625em;
 
 #level-chooser-place {
-    min-height: 4em;
+    min-height: 95*$px;
     margin-top: 2em;
 
     ul#level-chooser {
         margin: 0;
-        padding: 1em 0 1em 140*$px;
+        padding: 16*$px 0 16*$px 140*$px;
         background-color: white;
         width: 500*$px;
         z-index: 300;
@@ -17,14 +17,14 @@ $px: 0.0625em;
         .home {
             display: none;
             position: absolute;
-            top: .5em;
+            top: 1.5em;
             left: 0;
 
             a {
                 background: none;
                 padding: 0;
                 img {
-                    width: 100*$px;
+                    width: 120*$px;
                 }
             }
         }
@@ -42,11 +42,15 @@ $px: 0.0625em;
         li {
             display: inline-block;
             list-style: none;
+            max-width: 175px;
 
             a {
+                display: table-cell;
                 padding: .5em 1em;
                 border-radius: 5*$px;
                 background: #eee;
+                height: 42*$px;
+                vertical-align: middle;
 
                 &.active {
                     color: white;

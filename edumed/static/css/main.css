@@ -62,7 +62,7 @@
           vertical-align: middle;
           border: 1px solid transparent;
           border-radius: 0.625em;
-          padding-left: 1em; }
+          padding: 0 1em; }
           #main-sections ul li a .in-box .name {
             display: block;
             font-size: 1.5em;

@@ -6,7 +6,7 @@
             <li><a href="{{ lessons_url }}#{{ level.slug }}_{{ course.slug }}">
             {% if accusative %}
                 {{ course.accusative }}{% else %}
-                {{ course|lower }}{% endif %}</a>{% if not forloop.last %}, {% else %}.{% endif %}
+                {{ course|lower }}{% endif %}</a>
                 </li>
         {% endfor %}
 </ul>

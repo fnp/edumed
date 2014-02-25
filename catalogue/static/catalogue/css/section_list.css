@@ -1,5 +1,5 @@
 #level-chooser-place {
-  min-height: 4em;
+  min-height: 5.9375em;
   margin-top: 2em; }
   #level-chooser-place ul#level-chooser {
     margin: 0;
@@ -13,13 +13,13 @@
     #level-chooser-place ul#level-chooser .home {
       display: none;
       position: absolute;
-      top: .5em;
+      top: 1.5em;
       left: 0; }
       #level-chooser-place ul#level-chooser .home a {
         background: none;
         padding: 0; }
         #level-chooser-place ul#level-chooser .home a img {
-          width: 6.25em; }
+          width: 7.5em; }
     #level-chooser-place ul#level-chooser.fixed {
       position: fixed;
       top: 0;
@@ -28,11 +28,15 @@
         display: block; }
     #level-chooser-place ul#level-chooser li {
       display: inline-block;
-      list-style: none; }
+      list-style: none;
+      max-width: 175px; }
       #level-chooser-place ul#level-chooser li a {
+        display: table-cell;
         padding: .5em 1em;
         border-radius: 0.3125em;
-        background: #eee; }
+        background: #eee;
+        height: 2.625em;
+        vertical-align: middle; }
         #level-chooser-place ul#level-chooser li a.active {
           color: white;
           background: #ED7831; }
