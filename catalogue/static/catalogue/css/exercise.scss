@@ -204,6 +204,11 @@ $zielony: #16a487;
         @include bubble-drag;
         width: 618*$px;
     }
+    .question-piece.short {
+        display: inline-block;
+        margin: .2em .1em;
+        width: auto;
+    }
     span.question-piece {
         display: inline-block;
         margin: .1em;

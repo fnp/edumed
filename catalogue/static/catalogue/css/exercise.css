@@ -2,14 +2,14 @@
 .exercise img {
   vertical-align: top; }
 .exercise .question-piece {
-  border-radius: 0.688em;
-  padding: 0.5em 0.688em; }
+  border-radius: 0.6875em;
+  padding: 0.5em 0.6875em; }
 .exercise .lista.punkt {
   list-style: none;
   margin: 0;
   padding: 0; }
 .exercise .lista li {
-  margin: 0.313em 0; }
+  margin: 0.3125em 0; }
 .exercise .question-piece.correct {
   background-color: #16a487;
   color: white; }
@@ -28,7 +28,7 @@
   color: white; }
 .exercise .buttons {
   background: #5e6165;
-  border-radius: 0.563em;
+  border-radius: 0.5625em;
   height: 1.875em;
   line-height: 1.875em;
   overflow: hidden;
@@ -63,17 +63,17 @@
   cursor: pointer;
   z-index: 2;
   display: inline-block;
-  margin: 0.313em;
+  margin: 0.3125em;
   z-index: 2;
   max-width: 38em; }
 .luki .question-piece.disabled {
   background-color: #eee;
   color: #d4d6d8; }
 .luki .placeholder {
-  border-radius: 0.688em;
-  padding: 0.5em 0.688em;
+  border-radius: 0.6875em;
+  padding: 0.5em 0.6875em;
   display: inline-block;
-  margin: 0.313em;
+  margin: 0.3125em;
   z-index: 2;
   width: 4em;
   background-color: #eee;
@@ -87,7 +87,7 @@
   cursor: pointer;
   z-index: 2;
   display: inline-block;
-  margin: 0.313em;
+  margin: 0.3125em;
   z-index: 2; }
 .zastap .question-piece.disabled {
   background-color: #eee;
@@ -123,15 +123,15 @@
     background-repeat: no-repeat;
     background-position: 100% 50%; }
   .uporzadkuj .lista li:before {
-    border-radius: 0.688em;
-    padding: 0.5em 0.688em;
+    border-radius: 0.6875em;
+    padding: 0.5em 0.6875em;
     background-color: #d4d6d8;
     color: #363a3e;
     cursor: pointer;
     z-index: 2;
     content: counter(answer);
     float: left;
-    margin: -0.5em 0 0 -3em; }
+    margin: -.5em 0 0 -3em; }
   .uporzadkuj .lista li.ui-sortable-placeholder {
     counter-increment: answer 0; }
   .uporzadkuj .lista li.ui-sortable-helper:before {
@@ -143,6 +143,10 @@
   cursor: pointer;
   z-index: 2;
   width: 38.625em; }
+.przyporzadkuj .question-piece.short {
+  display: inline-block;
+  margin: .2em .1em;
+  width: auto; }
 .przyporzadkuj span.question-piece {
   display: inline-block;
   margin: .1em;
@@ -155,8 +159,8 @@
   margin: 0;
   padding: 0; }
   .przyporzadkuj .predicate > li {
-    border-radius: 0.688em;
-    padding: 0.5em 0.688em;
+    border-radius: 0.6875em;
+    padding: 0.5em 0.6875em;
     display: inline-block;
     background-color: #5e6165;
     color: white;
@@ -167,19 +171,19 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      min-height: 2.813em;
+      min-height: 2.8125em;
       position: relative;
-      margin: 0.5em -0.688em -0.5em -0.688em;
-      padding: 0.5em 0.688em; }
+      margin: 0.5em -0.6875em -0.5em -0.6875em;
+      padding: 0.5em 0.6875em; }
       .przyporzadkuj .predicate > li .subjects li {
         width: auto; }
       .przyporzadkuj .predicate > li .subjects .placeholder {
-        border-radius: 0.688em;
-        padding: 0.5em 0.688em;
+        border-radius: 0.6875em;
+        padding: 0.5em 0.6875em;
         text-align: right;
         position: relative;
-        padding: 0.5em 0.688em;
-        margin: 0 -0.688em; }
+        padding: 0.5em 0.6875em;
+        margin: 0 -0.6875em; }
       .przyporzadkuj .predicate > li .subjects .multiple {
         position: absolute;
         z-index: -1;
@@ -214,7 +218,7 @@
     text-transform: uppercase;
     font-weight: bold;
     display: inline-block;
-    padding: 0 0.688em; }
+    padding: 0 0.6875em; }
   .prawdafalsz .question .buttons a.chosen {
     background: #ed7831;
     color: white; }
