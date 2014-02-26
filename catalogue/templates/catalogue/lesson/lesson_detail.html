@@ -56,6 +56,9 @@
         {% if object.dc.authors_expert %}
         Konsultacja merytoryczna: {{ object.dc.authors_expert|person_list }}<br/>
         {% endif %}
+        {% if object.dc.authors_methodologist %}
+        Konsultacja metodyczna: {{ object.dc.authors_methodologist|person_list }}<br/>
+        {% endif %}
         Licencja: <a href="{{ object.dc.license }}">{{ object.dc.license_description }}</a>.</p>
     </section>
 
