@@ -3,9 +3,11 @@ from django.core.files import File
 from django.core.urlresolvers import reverse
 from django.db import models
 from jsonfield import JSONField
+from fnpdjango.storage import BofhFileSystemStorage
 from curriculum.models import Level, Curriculum, CurriculumCourse
 import logging
 
+bofh_storage = BofhFileSystemStorage()
 
 
 class Section(models.Model):
@@ -13,7 +15,8 @@ class Section(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
     order = models.IntegerField()
     xml_file = models.FileField(upload_to="catalogue/section/xml",
-        null=True, blank=True, max_length=255)
+        null=True, blank=True, max_length=255,
+        storage=bofh_storage)
     image = models.ImageField(upload_to="catalogue/section/image",
         null=True, blank=True)
 
@@ -88,17 +91,17 @@ class Lesson(models.Model):
     description = models.TextField(null=True, blank=True)
 
     xml_file = models.FileField(upload_to="catalogue/lesson/xml",
-        null=True, blank=True, max_length=255)
+        null=True, blank=True, max_length=255, storage=bofh_storage)
     html_file = models.FileField(upload_to="catalogue/lesson/html",
-        null=True, blank=True, max_length=255)
+        null=True, blank=True, max_length=255, storage=bofh_storage)
     package = models.FileField(upload_to="catalogue/lesson/pack",
-        null=True, blank=True, max_length=255)
+        null=True, blank=True, max_length=255, storage=bofh_storage)
     student_package = models.FileField(upload_to="catalogue/lesson/student_pack",
-        null=True, blank=True, max_length=255)
+        null=True, blank=True, max_length=255, storage=bofh_storage)
     pdf = models.FileField(upload_to="catalogue/lesson/pdf",
-        null=True, blank=True, max_length=255)
+        null=True, blank=True, max_length=255, storage=bofh_storage)
     student_pdf = models.FileField(upload_to="catalogue/lesson/student_pdf",
-        null=True, blank=True, max_length=255)
+        null=True, blank=True, max_length=255, storage=bofh_storage)
 
     class Meta:
         ordering = ['section', 'level', 'order']
@@ -273,7 +276,7 @@ class Attachment(models.Model):
     slug = models.CharField(max_length=255)
     ext = models.CharField(max_length=15)
     lesson = models.ForeignKey(Lesson)
-    file = models.FileField(upload_to="catalogue/attachment")
+    file = models.FileField(upload_to="catalogue/attachment", storage=bofh_storage)
 
     class Meta:
         ordering = ['slug', 'ext']

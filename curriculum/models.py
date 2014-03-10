@@ -3,7 +3,11 @@ import re
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _, get_language
+from fnpdjango.storage import BofhFileSystemStorage
 from fnpdjango.utils.models.translation import add_translatable
+
+bofh_storage = BofhFileSystemStorage()
+
 
 class Section(models.Model):
     slug = models.SlugField(_('slug'))
@@ -70,9 +74,9 @@ class Level(models.Model):
     meta_name = models.CharField(_('meta name'), max_length=255, unique=True)
     order = models.IntegerField(_('order'))
     package = models.FileField(upload_to=lambda i, f: "curriculum/pack/edukacjamedialna_%s.zip" % i.slug,
-        null=True, blank=True, max_length=255)
+        null=True, blank=True, max_length=255, storage=bofh_storage)
     student_package = models.FileField(upload_to=lambda i, f: "curriculum/pack/edukacjamedialna_%s_uczen.zip" % i.slug,
-        null=True, blank=True, max_length=255)
+        null=True, blank=True, max_length=255, storage=bofh_storage)
 
     class Meta:
         ordering = ['order']
