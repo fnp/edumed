@@ -25,6 +25,7 @@ PIPELINE_CSS = {
           'catalogue/css/section_list.scss',
           'curriculum/curriculum.scss',
           'jquery/colorbox/colorbox.css',
+          'fnpdjango/annoy/annoy.css',
 
           'css/forum.scss',
           'css/mil.scss'
@@ -47,6 +48,7 @@ PIPELINE_JS = {
             'curriculum/curriculum.js',
             'js/formset.js',
             'pybb/js/pybbjs.js',
+            'fnpdjango/annoy/annoy.js',
         ),
         'output_filename': 'compressed/base.js',
     },
