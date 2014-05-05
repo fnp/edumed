@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load i18n static %}
-{% load fnp_common fnp_share fnp_lang macros fnp_annoy %}
+{% load fnp_common fnp_share fnp_lang macros %}
 {% load compressed static %}
 {% load subdomainurls %}
 {% load piwik_tags %}
@@ -25,7 +25,7 @@
         <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script></script><![endif]-->
     </head>
     <body id="{% block body-id %}body{% endblock %}">
-    	{% annoy %}
+        {# 1%  {% load fnp_annoy %}{% annoy %}  #}
         <div id="header-wrapper">
         <header class="main {% block header_class %}{% endblock %}" style="position:relative;">
             <!--img
