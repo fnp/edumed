@@ -3,13 +3,14 @@ Do udziału zostały zgłoszone następujące osoby:
 {% for student in contact.body.student %}
 * {{ student.first_name }} {{ student.last_name }}{% endfor %}
 
-Pierwszy etap Turnieju odbędzie się 21 listopada 2013 r. o godz. 15.30.
-Po zakończeniu rejestracji (4 listopada) każdy Uczestnik otrzyma maila
-z indywidualną instrukcją dotyczącą udziału w I etapie Turnieju.
+Pierwszy etap Turnieju odbędzie się 18 listopada 2014 r.
+Po zakończeniu rejestracji (31 października) do dn. 12 listopada 2014 r.
+każdy Uczestniok otrzyma maila z indywidualną instrukcją dotyczącą
+udziału w I etapie Turnieju.
 
 Wszystkie ogłoszenia związane z Turniejem będą publikowane na stronie
 http://edukacjamedialna.edu.pl/WTEM. W razie pytań lub wątpliwości
-możesz kontaktować się z nami pisząc na adres
+możesz kontaktować się z nami, pisząc na adres
 edukacjamedialna@nowoczesnapolska.org.pl.
 
 Z pozdrowieniami

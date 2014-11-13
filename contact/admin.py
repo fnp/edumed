@@ -6,7 +6,7 @@ from .forms import contact_forms, admin_list_width
 from django.template import Template
 from django.utils.safestring import mark_safe
 from django.conf.urls import patterns, url
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 
 from .utils import csv_prepare
 
@@ -97,7 +97,7 @@ class ContactAdmin(admin.ModelAdmin):
     def changelist_view(self, request, extra_context=None):
         context = dict()
         if 'form_tag' in request.GET:
-            form = contact_forms[request.GET['form_tag']]
+            form = contact_forms.get(request.GET['form_tag'])
             context['extract_types'] = [dict(slug = 'all', label = _('all'))] + [dict(slug = 'contacts', label = _('contacts'))]
             context['extract_types'] += [type for type in getattr(form, 'extract_types', [])]
         return super(ContactAdmin, self).changelist_view(request, extra_context = context)
@@ -112,7 +112,9 @@ class ContactAdmin(admin.ModelAdmin):
 def extract_view(request, form_tag, extract_type_slug):
     toret = u''
     contacts_by_spec = dict()
-    form = contact_forms[form_tag]
+    form = contact_forms.get(form_tag)
+    if form is None and extract_type_slug not in ('contacts', 'all'):
+        raise Http404
 
     q = Contact.objects.filter(form_tag = form_tag)
     at_year = request.GET.get('created_at__year')

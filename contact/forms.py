@@ -1,4 +1,5 @@
 from django.contrib.sites.models import Site
+from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import UploadedFile
 from django.core.mail import send_mail, mail_managers
 from django.core.validators import validate_email
@@ -78,7 +79,11 @@ class ContactForm(forms.Form):
         mail_managers(mail_managers_subject, mail_managers_body, 
             fail_silently=True)
 
-        if validate_email(contact.contact):
+        try:
+            validate_email(contact.contact)
+        except ValidationError:
+            pass
+        else:
             mail_subject = render_to_string([
                     'contact/%s/mail_subject.txt' % self.form_tag,
                     'contact/mail_subject.txt', 

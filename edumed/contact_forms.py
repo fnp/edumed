@@ -120,8 +120,13 @@ class WTEMForm(ContactForm):
 
     zgoda_regulamin = forms.BooleanField(
         label=u'Znam i akceptuję regulamin Wielkiego Turnieju Edukacji Medialnej.',
-        help_text=u'Zobacz <a href="/media/chunks/attachment/WTEM_regulamin_1.pdf">regulamin Wielkiego Turnieju Edukacji Medialnej</a>.'
+        help_text=u'Zobacz <a href="/media/chunks/attachment/WTEM_regulamin_TmXC5VU.pdf">regulamin Wielkiego Turnieju Edukacji Medialnej</a>.'
     )
+    zgoda_dane = forms.BooleanField(
+        label=u'Wyrażam zgodę na przetwarzanie moich danych osobowych oraz danych osobowych moich podopiecznych, a także na publikację prac na wolnej licencji.',
+        help_text=u'Zobacz <a href="/media/chunks/attachment/Oswiadczenie_o_danych_osobowych.pdf">pełną treść oświadczenia</a>.'
+    )
+
     potw_uczniowie = forms.BooleanField(
         label=u'Potwierdzam, że zgłoszeni Uczestnicy/Uczestniczki w chwili rejestracji są uczniami/uczennicami szkoły ponadgimnazjalnej.',
     )
