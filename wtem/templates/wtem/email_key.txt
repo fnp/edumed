@@ -2,9 +2,13 @@ Poniżej znajduje się wygenerowany specjalnie dla Ciebie link, pod którym będ
 
 http://edukacjamedialna.edu.pl{% url 'wtem_form' key=submission.key %}
 
-Pamiętaj, że pierwszy etap Turnieju odbędzie się w czwartek 21 listopada o godz. 15.30. Na rozwiązanie testu będziesz mieć ok. 90 min. Aby rozwiązać test, potrzebny Ci będzie komputer ze stabilnym łączem internetowym, zainstalowaną i zaktualizowaną przeglądarką oraz pakietem biurowym (np. MS Office lub bezpłatny Libre Office).
+Pierwszy etap Turnieju odbędzie się we wtorek 18 listopada o godz. 16.30. Na rozwiązanie testu będziesz mieć ok. 90 min. Aby rozwiązać test, potrzebny Ci będzie komputer ze stabilnym łączem internetowym oraz zainstalowaną i zaktualizowaną przeglądarką.
 
-W razie dodatkowych pytań możesz kontaktować się z nami pod adresem edukacjamedialna@nowoczesnapolska.org.pl.
+Każdy uczestnik otrzymał indywidualny link, pod którym może rozwiązywać zadania samodzielnie. Wszelkie działania mogące świadczyć o tym, że uczestnik nie rozwiązuje testu samodzielnie, np. wchodzenie na stronę z zadaniami przez więcej niż jedną osobę, będą przez nas śledzone i poskutkują dyskwalifikacją.
+
+W razie dodatkowych pytań możesz kontaktować się z nami pod adresem edukacjamedialna@nowoczesnapolska.org.pl lub numerem telefonu +48 22 621-30-17.
+
+Przypominamy, że główną nagrodą w Turnieju jest tygodniowy pobyt na Digital Media Summer Camp na Mercer University w Macon (Georgia, USA).
 
 Powodzenia!
 
