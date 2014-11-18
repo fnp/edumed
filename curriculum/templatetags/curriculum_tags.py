@@ -73,7 +73,7 @@ def course_boxes():
 def course_boxes_toc(accusative=False):
     last = None, None
     object_list = []
-    for l in Lesson.curriculum_courses.through.objects.all().order_by(
+    for l in Lesson.curriculum_courses.through.objects.all().select_related('lesson__level', 'curriculumcourse').order_by(
             'lesson__level', 'curriculumcourse'):
         level, course = l.lesson.level, l.curriculumcourse
         if (level, course) == last:

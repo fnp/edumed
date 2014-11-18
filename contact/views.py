@@ -7,12 +7,13 @@ from .forms import contact_forms
 from .models import Attachment
 
 
-def form(request, form_tag):
+def form(request, form_tag, force_enabled=False):
     try:
         form_class = contact_forms[form_tag]
     except KeyError:
         raise Http404
-    if getattr(form_class, 'disabled', False):
+    if (getattr(form_class, 'disabled', False) and
+            not (force_enabled and request.user.is_superuser)):
         template = getattr(form_class, 'disabled_template', None)
         if template:
             return render(request, template)

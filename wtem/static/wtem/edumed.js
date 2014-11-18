@@ -546,7 +546,7 @@
     Przyporzadkuj.prototype.draggable_accept = function($draggable, $droppable) {
       var dropped;
       dropped = $droppable.closest("ul, ol").find(".draggable");
-      return (Przyporzadkuj.__super__.draggable_accept.call(this, $draggable, $droppable));
+      return (Przyporzadkuj.__super__.draggable_accept.call(this, $draggable, $droppable)) && dropped.length === 0;
     };
 
     Przyporzadkuj.prototype.check_question = function(question) {

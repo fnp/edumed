@@ -1,6 +1,7 @@
 {% extends 'base_super.html' %}
 {% load compressed %}
 {% load static %}
+{% load cache %}
 
 {% block extra_script %}
     {% compressed_js 'wtem' %}
@@ -41,28 +42,30 @@
 </style>
 
 <h1>Wielki Turniej Edukacji Medialnej</h1>
-<div class="wtem-fixed-info">Rozwiązania można wysyłać do godziny {{end_time|default:"17.00"}}. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
+<div class="wtem-fixed-info">Rozwiązania można wysyłać do godziny {{end_time|default:"18.00"}}. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
 
-<p>Witamy w I etapie Wielkiego Turnieju Edukacji Medialnej. Na rozwiązanie zadań masz czas do godz. {{end_time|default:"17.00"}}. Test składa się z 22 pytań. Dwa ostatnie mają charakter otwarty - pamiętaj, żeby zostawić sobie odpowiednią ilość czasu na ich rozwiązanie.</p>
+<p>Witamy w I etapie Wielkiego Turnieju Edukacji Medialnej. Na rozwiązanie zadań masz czas do godz. {{end_time|default:"18.00"}}. Test składa się z 21 pytań. Niektóre z nich mają charakter otwarty - pamiętaj, żeby zostawić sobie odpowiednią ilość czasu na ich rozwiązanie.</p>
 
 <p>Wszelkie aktualności dotyczące Turnieju możesz znaleźć na <a href="http://edukacjamedialna.edu.pl/wtem" target="_info">edukacjamedialna.edu.pl/wtem</a>.</p>
 
-<p>Powodzenia!
+<p>Powodzenia!<br/>
 Zespół Edukacji Medialnej, Fundacja Nowoczesna Polska</p>
 
 <form method="post" enctype="multipart/form-data">
 
+{% cache 30 wtem %}
 {% for exercise in exercises %}
     {% with 'wtem/exercises/'|add:exercise.type|add:'.html' as template_name %}
     {% include  template_name with exercise=exercise no=forloop.counter %}
     {% endwith %}
 {% endfor %}
+{% endcache %}
 
 
 <hr/>
 <input type="hidden" name="answers" value=""/>
 
-<p style="text-align:center; margin-top:20px;">Sprawdź jeszcze raz wszystkie swoje odpowiedzi, a następnie wyślij je do nas klikając w poniższy przycisk:<br/><br/>
+<p style="text-align:center; margin-top:20px;">Sprawdź jeszcze raz wszystkie swoje odpowiedzi, a następnie wyślij je do nas, klikając w poniższy przycisk:<br/><br/>
 <input type="submit" value="Wyślij moje odpowiedzi" style="display: block; margin: auto;"/>
 <br/>
 <span class="wtem_spinner">
@@ -72,7 +75,7 @@ Zespół Edukacji Medialnej, Fundacja Nowoczesna Polska</p>
 </span>
 </p>
 
-<div class="wtem-fixed-info" style="margin-top:15px;">Rozwiązania można wysyłać do godziny {{end_time|default:"17.00"}}. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
+<div class="wtem-fixed-info" style="margin-top:15px;">Rozwiązania można wysyłać do godziny {{end_time|default:"18.00"}}. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
 
 </form>
 

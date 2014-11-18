@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.utils import simplejson
 from django.conf import settings
 from django.http import Http404, HttpResponseForbidden
+from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Submission, DEBUG_KEY, exercises
@@ -27,11 +28,12 @@ def form_before(request, key):
 def form_after(request, key):
     return render(request, 'wtem/main_after.html')
 
+@never_cache
 @csrf_exempt
 def form_during(request, key):
 
     if WTEM_CONTEST_STAGE != 'during':
-        if request.META['REMOTE_ADDR'] != getattr(settings, 'WTEM_CONTEST_IP_ALLOW', 'xxx'):
+        if request.META['REMOTE_ADDR'] not in getattr(settings, 'WTEM_CONTEST_IP_ALLOW', []):
             return HttpResponseForbidden('Not allowed')
 
     try:
