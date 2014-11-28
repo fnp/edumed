@@ -1,0 +1,31 @@
+{% extends "catalogue/lesson/lesson_detail.html" %}
+{% load static from staticfiles %}
+
+{% block lesson-info %}
+<section class="box">
+    <div class="box-icon"><img src="/static/img/icons/activity-time.png"><br>45m</div>
+
+    {% include "catalogue/lesson/box-icons.html" %}
+
+    <p>Ta lekcja jest częścią tematu
+    <a href="{% url 'catalogue_lessons' %}#{{ object.level.slug }}_filmowa"><strong>Edukacja filmowa</strong></a>
+    na poziomie {{ object.level|lower }}.
+    </p>
+    <div style="clear: right"></div>
+</section>
+
+{% endblock %}
+
+
+{% block sidebar-top %}
+<div class="buttons" style="padding-bottom: 1em; border-bottom: 1px solid red;">
+
+{% if object.package %}
+    <section class="box-button"><a href="{{ object.package.url }}" class="dl-button">Pobierz całą lekcję</a></section>
+{% endif %}
+{% if object.student_package %}
+    <section><a href="{{ object.student_package.url }}" class="dl-button">Pobierz lekcję w wersji dla ucznia</a></section>
+{% endif %}
+
+</div>
+{% endblock %}
