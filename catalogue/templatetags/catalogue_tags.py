@@ -48,6 +48,7 @@ def level_box(level):
             if lesson.section not in lessons['course']:
                 lessons['course'][lesson.section] = []
             lessons['course'][lesson.section].append(lesson)
+        elif lesson.type == 'added': continue
         else:
             lessons[lesson.type].append(lesson)
 
@@ -58,10 +59,30 @@ def level_box(level):
     courses = [(course, by_course[course]) for course in
         CurriculumCourse.objects.filter(lesson__level=level).distinct()]
 
+    added = []
+    if level.slug == 'liceum':
+        added.append({
+            'slug': 'filmowa',
+            'title': u'Edukacja filmowa',
+            'lessons': [
+                Lesson.objects.get(slug=s) for s in [
+'film-co-to-wlasciwie-jest',
+'scenariusz-scenopis-i-srodki-realizacyjne',
+'kompozycja-obrazu-filmowego',
+'praca-kamery-kadr-kat',
+'montaz-materialu-filmowego',
+'swiatlo-i-dzwiek-w-filmie',
+'scenografia-charakteryzacja-kostiumy-i-aktorzy',
+'narracja-w-filmie-tekst-i-fabula',
+                ]
+            ],
+            })
+
     return {
         "level": level,
         "lessons": lessons,
         "courses": courses,
+        "added": added,
     }
 
 @register.inclusion_tag("catalogue/snippets/lesson_nav.html")
@@ -72,6 +93,20 @@ def lesson_nav(lesson):
     elif lesson.type == 'appendix':
         root = None
         siblings = Lesson.objects.filter(type=lesson.type)
+    elif lesson.type == 'added':
+        root = None
+        siblings = [
+                Lesson.objects.get(slug=s) for s in [
+'film-co-to-wlasciwie-jest',
+'scenariusz-scenopis-i-srodki-realizacyjne',
+'kompozycja-obrazu-filmowego',
+'praca-kamery-kadr-kat',
+'montaz-materialu-filmowego',
+'swiatlo-i-dzwiek-w-filmie',
+'scenografia-charakteryzacja-kostiumy-i-aktorzy',
+'narracja-w-filmie-tekst-i-fabula',
+                ]
+            ]
     else:
         root = None
         siblings = Lesson.objects.filter(type=lesson.type, level=lesson.level)

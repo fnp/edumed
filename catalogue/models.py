@@ -151,7 +151,7 @@ class Lesson(models.Model):
         wldoc = WLDocument.from_file(self.xml_file.path)
         self.dc = wldoc.book_info.to_dict()
         self.type = self.dc["type"]
-        assert self.type in ('appendix', 'course', 'synthetic', 'project'), \
+        assert self.type in ('appendix', 'course', 'synthetic', 'project', 'added'), \
             u"Unknown lesson type: %s" % self.type
         self.save()
 

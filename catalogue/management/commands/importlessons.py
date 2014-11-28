@@ -46,8 +46,8 @@ class Command(BaseCommand):
                     read_dir(fullname)
                 else:
                     f = IOFile.from_filename(fullname)
-                    files[name] = f
-                    files.setdefault(name.replace(" ", ""), f)
+                    files[name.decode('utf-8')] = f
+                    files.setdefault(name.replace(" ", "").decode('utf-8'), f)
 
         read_dir(path)
         return files

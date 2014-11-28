@@ -31,8 +31,22 @@
                 </ul>
             </li>
             {% endif %}
+
+            {% if added %}
+            <li class="curriculumcourses"><a href="#{{ level.slug }}_inne">Inne</a>
+                <ul style="list-style: none; padding: 0 0 0 1em; margin: 0;">
+                {% for item in added %}
+                    <li><a href="#{{ level.slug }}_{{ item.slug }}">{{ item.title }}</a></li>
+                {% endfor %}
+                </ul>
+            </li>
+            {% endif %}
+
         </ul>
+
+
     </section>
+
 
 
     <h1>{{ level }}</h1>
@@ -138,5 +152,25 @@
         
     </section>
     {% endif %}
+
+
+    {% if added %}
+    <section id="{{ level.slug }}_inne">
+        <h1>Inne</h1>
+
+        {% for item in added %}
+        <section id="{{ level.slug }}_{{ item.slug }}">
+            <h1>{{ item.title }}</h1>
+
+            <ul class="link-list">
+                {% for lesson in item.lessons %}
+                    <li><a href="{{ lesson.get_absolute_url }}" title="{{ lesson.description }}">{{ lesson }}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endfor %}
+    </section>
+    {% endif %}
+
 
 </section>
