@@ -1,0 +1,418 @@
+[
+
+{
+    "id": 1,
+    "type": "edumed_uporzadkuj",
+    "description": ["Ułóż propozycje haseł internetowych w kolejności od najmniej do najbardziej bezpiecznego."],
+    "items": [
+        {"id": "1", "text": "Gdzi3.j3$t.N3m0"},
+        {"id": "2", "text": "abc123"},
+        {"id": "3", "text": "mojazor17"},
+        {"id": "4", "text": "czarnyKotbialyKot"},
+        {"id": "5", "text": "qwerty456"}
+    ],
+    "answer": [2, 5, 3, 4, 1],
+    "points": 1
+},
+
+{
+    "id": 2,
+    "type": "edumed_przyporzadkuj",
+    "hide_default_instruction": 1,
+    "description": ["Rozpoznaj i nazwij typy reklam"],
+    "buckets":  [
+        {"id": 1, "title": "lokowanie produktu"},
+        {"id": 2, "title": "baner"},
+        {"id": 3, "title": "infomercial"},
+        {"id": 4, "title": "power content"},
+        {"id": 5, "title": "sponsoring"},
+        {"id": 6, "title": "AdWords"}
+    ],
+    "buckets_name": "typy",
+    "items": [
+        {"id": 1, "text": "1", "img": "1_small.png", "href": "1.png"},
+        {"id": 2, "text": "2", "img": "2_small.png", "href": "2.png"},
+        {"id": 3, "text": "3", "img": "3_small.png", "href": "3.png"}
+    ],
+    "items_name": "reklamy",
+    "items_inline": 1,
+    "items_instruction": "Przeciągnij numery zdjęć do odpowiednich szarych pól powyżej; kliknij w obrazek, aby powiększyć",
+    "answer": {
+        "1": [2],
+        "4": [3],
+        "6": [1]
+    },
+    "points_per_hit": 1
+},
+
+{
+    "id": 3,
+    "type": "edumed_wybor",
+    "description": ["Wykonałeś/wykonałaś remiks cudzych utworów. W jakich sytuacjach możesz rozpowszechnić swój utwór?"],
+    "options": [
+        {"id": 1, "text": "Mam zgodę autora/autorki oryginalnego utworu."},
+        {"id": 2, "text": "Materiały do remiksu zostały ściągnięte z serwisu do przechowywania plików."},
+        {"id": 3, "text": "Wykorzystane piosenki przesłała mi na Facebooku koleżanka."},
+        {"id": 4, "text": "Zezwala na to licencja, na której są opublikowane wykorzystane utwory."},
+        {"id": 5, "text": "Wykorzystane w remiksie utwory są dostępne w domenie publicznej (minęło 70 lat od śmierci autora)."},
+        {"id": 6, "text": "Utwory użyte w remiksie były udostępnione do odsłuchania na stronach twórców w formie plików mp3."}
+    ],
+    "answer": [1, 4, 5],
+    "points_per_hit": 1
+},
+
+{
+    "id": 4,
+    "type": "edumed_wybor",
+    "description": ["Jedziesz na wakacje do Turcji. Ustal, jaki termin ważnosci musi mieć Twój paszport."],
+    "options": [
+        {"id": 1, "text": "3 miesiące od daty wyjazdu z Polski"},
+        {"id": 2, "text": "12 miesięcy od daty powrotu do Polski"},
+        {"id": 3, "text": "6 miesięcy od daty wyjazdu z Polski"},
+        {"id": 4, "text": "nie muszę mieć paszportu, by wyjechać do Turcji"}
+    ],
+    "answer": [3],
+    "points": 1
+},
+
+{
+    "id": 5,
+    "type": "edumed_przyporzadkuj",
+    "description": ["Który z poniższych tekstów jest informacją, opinią, perswazją?"],
+    "buckets": [
+        {"id": 1, "title": "informacja"},
+        {"id": 2, "title": "opinia"},
+        {"id": 3, "title": "perswazja"}
+    ],
+    "buckets_name": "kategorie",
+    "items": [
+        {"id": 1, "text": "1", "desc": "Serdecznie zapraszamy do udziału w V Festiwalu Poezji Lokalnej im. Zbigniewa Herberta. Przyjdź i zaprezentuj swoją twórczość literacką biorąc udział w tradycyjnym już Turnieju Jednego Wiersza! Dla najlepszych poetów – atrakcyjne nagrody!"},
+        {"id": 2, "text": "2", "desc": "22 grudnia w Domu Kultury Miejskiej przy ul. Wielebskiego 3 uczestniczyliśmy w kolejnym V Festiwalu Poezji Lokalnej im. Zbigniewa Herberta. Swoje wiersze zaprezentowało blisko 30 poetów, zarówno z naszego miasta jak i przybyłych gości. Tradycyjny już Turniej Jednego Wiersza wygrał Jan Kowalski z Krętowa."},
+        {"id": 3, "text": "3", "desc": "Atmosfera V Festiwalu Poezji Lokalnej była bardzo podniosła. Nie wiedziałem, że mamy tak wielu dobrych poetów w naszym mieście i regionie. Uważam, że to jeden z najlepszych tego typu przeglądów i turniejów literackich w Polsce. Profesjonalnie przygotowany, o wysokim poziomie artystycznym. Warto było przyjechać."}
+    ],
+    "items_name": "źródła",
+    "answer": {
+        "1": [2],
+        "2": [3],
+        "3": [1]
+    },
+    "points_per_hit": 1
+},
+
+{
+    "id": 6,
+    "type": "edumed_wybor",
+    "description": ["W jaki sposób zwiększysz niezależność wyników wyszukiwania od wcześniej wprowadzanych do wyszukiwarki fraz i przeglądanych stron internetowych?"],
+    "options": [
+        {"id": 1, "text": "ustawię tryb prywatny w przeglądarce (incognito)"},
+        {"id": 2, "text": "wyloguję się z serwisu społecznościowego"},
+        {"id": 3, "text": "skorzystam z innej niż zazwyczaj wyszukiwarki"},
+        {"id": 4, "text": "skorzystam z innej niż zazwyczaj przeglądarki"},
+        {"id": 5, "text": "zamknę zakładkę z portalem społecznościowym"},
+        {"id": 6, "text": "usunę historię wyszukiwania i ciasteczka"},
+        {"id": 7, "text": "zrestartuję przeglądarkę"}
+    ],
+    "answer": [1,4,6],
+    "points_per_hit": 1
+},
+
+{
+    "id": 7,
+    "type": "edumed_wybor",
+    "description": ["Jesteś w Olsztynie na przystanku Plac Roosevelta. Którym autobusem nie dojedziesz bezpośrednio na przystanek Szpital Wojewódzki?"],
+    "options": [
+        {"id": 1, "text": "13"},
+        {"id": 2, "text": "6"},
+        {"id": 3, "text": "22"},
+        {"id": 4, "text": "3"}
+    ],
+    "open_part": ["W jaki sposób dotarłeś/aś do tej informacji? Wklej adres strony, z której skorzystałeś/aś."],
+    "open_part_rows": 1,
+    "answer": [4],
+    "max_points": 2
+},
+
+{
+    "id": 8,
+    "type": "edumed_wybor",
+    "description": ["Kupiłeś płytę CD z nowym albumem ulubionego zespołu. Co możesz z nim zrobić?"],
+    "options": [
+        {"id": 1, "text": "umieścić pliki w sieci, tak by inni mogli ściągnąć album"},
+        {"id": 2, "text": "zgrać pliki na swoje urządzenia (laptop, smartfon, odtwarzacz mp3 itp.)"},
+        {"id": 3, "text": "skopiować płytę najbliższym znajomym i rodzinie"},
+        {"id": 4, "text": "skopiować płytę nauczycielce/nauczycielowi, która lubi podobną muzykę"},
+        {"id": 5, "text": "nagrać kopie albumu na płyty CD i odsprzedać je w szkole zainteresowanym osobom"},
+        {"id": 6, "text": "odsprzedać płytę z albumem w serwisie aukcyjnym"}
+    ],
+    "answer": [2,3,6],
+    "points_per_hit": 1
+
+},
+
+{
+    "id": 9,
+    "type": "edumed_przyporzadkuj",
+    "description": ["Przyporządkuj poniższe pojęcia ich definicjom."],
+    "buckets": [
+        {"id": 1, "title": "infotainment"},
+        {"id": 2, "title": "cyfrowe narracje"},
+        {"id": 3, "title": "gatunek"},
+        {"id": 4, "title": "konwencja"},
+        {"id": 5, "title": "remiks"}
+
+    ],
+    "buckets_name": "pojęcia",
+    "items": [
+        {"id": 1, "text": "1", "desc": "zbiór cech utworów (artystycznych, dziennikarskich itp.) wielokrotnie powtarzany i wykorzystywany. Może być typowy dla jednego twórcy, grupy czy okresu. Składać się na niego mogą różne elementy utworu – zarówno te związane formą, jak i treścią."},
+        {"id": 2, "text": "2", "desc": "utwór, w którym wykorzystano i połączono elementy różnych innych dzieł. Dzięki nowemu kontekstowi zmieniają one swoje znaczenie. Pierwotnie termin ten odnosił się tylko do utworów muzycznych i oznaczał zmianę aranżacji piosenki, połączenie jej pierwotnej wersji z innymi elementami dźwiękowymi."},
+        {"id": 3, "text": "3", "desc": "zjawisko zacierania różnic pomiędzy przekazami informacyjnymi i rozrywkowymi. Obserwujemy je we współczesnych mediach."},
+        {"id": 4, "text": "4", "desc": "opowieść w formie multimedialnej. Jej autor przekazuje treść za pomocą połączenia różnych form przekazu, np. tekstu, animacji, dźwięku, obrazu, wideo. Może przybierać formę hipertekstu, prezentacji, filmu."},
+        {"id": 5, "text": "5", "desc": "typ, odmiana czegoś. W odniesieniu do tekstów kultury: określony sposób organizacji przekazu, zależny od jego celu. Utwory tego samego gatunku mają zwykle podobą formę, wykorzystują te same konwencje."}
+    ],
+    "items_name": "definicje",
+    "answer": {
+        "1": [3],
+        "2": [4],
+        "3": [5],
+        "4": [1],
+        "5": [2]
+    },
+    "points_per_hit": 0.5
+},
+
+{
+    "id": 10,
+    "type": "edumed_wybor",
+    "description": ["<div>Widzisz, że na ekranie Twojego kolegi strona <a href=\"http://www.krrit.gov.pl/\">http://www.krrit.gov.pl/</a> wyświetla się w ten sposób:</div> <img src=\"/static/wtem/img/krrit_zrzut_ekranu.png\"/ style=\"margin-bottom:10px; margin-top:10px;\"> Dlaczego?"],
+    "options": [
+        {"id": 1, "text": "Kolega ma starą wersję przeglądarki, która nie obsługuje zaawansowanej grafiki strony."},
+        {"id": 2, "text": "Został użyty przycisk “wersja kontrastowa”, który pomaga osobom słabowidzącym zapoznać się z treścią strony."},
+        {"id": 3, "text": "Komputer został zaatakowany wirusem typu Trojan."},
+        {"id": 4, "text": "Kolega wyświetla stronę przygotowaną do wydruku."}
+    ],
+    "answer": [2],
+    "points": 1
+},
+
+{
+    "id": 11,
+    "type": "edumed_wybor",
+    "description": ["Wskaż bezpośrednie zagrożenia, które wiążą się z posiadaniem profilu na portalu społecznościowym."],
+    "options": [
+        {"id": 1, "text": "możliwość niekontrolowanego wycieku prywatnych informacji (niedoskonała ochrona danych osobowych)"},
+        {"id": 2, "text": "stalking"},
+        {"id": 3, "text": "zablokowanie komputera"},
+        {"id": 4, "text": "kradzież tożsamości (profilu)"},
+        {"id": 5, "text": "kradzież pieniędzy z konta bankowego"},
+        {"id": 6, "text": "phishing"},
+        {"id": 7, "text": "cenzurowanie publikowanych i otrzymywanych treści"},
+        {"id": 8, "text": "fałszerstwo dokumentu tożsamości"},
+        {"id": 9, "text": "śledzenie aktywności użytkownika w internecie"}
+    ],
+    "answer": [1,2,4,6,7,9],
+    "points_per_hit": 0.5
+},
+
+{
+    "id": 12,
+    "type": "edumed_przyporzadkuj",
+    "description": ["Do jakiej instytucji zwrócisz się w konkretnej sprawie?"],
+    "buckets": [
+        {"id": 1, "title": "GIODO"},
+        {"id": 2, "title": "UOKiK"},
+        {"id": 3, "title": "RPD"},
+        {"id": 4, "title": "KRRiT"},
+        {"id": 5, "title": "UKE"}
+
+    ],
+    "buckets_name": "instytucje",
+    "items": [
+        {"id": 1, "text": "1", "desc": "sklep internetowy nie chce oddać Ci pieniędzy za towar zwrócony w ciągu 10 dni od daty zakupu"},
+        {"id": 2, "text": "2", "desc": "wiesz, że kolega z młodszej klasy jest prześladowany w internecie, a lokalne instytucje nie reagują na problem"},
+        {"id": 3, "text": "3", "desc": "w audycji radiowej prowadzący obrażał cudzoziemców mieszkających w Polsce"}
+    ],
+    "items_name": "sprawy",
+    "answer": {
+        "2": [1],
+        "3": [2],
+        "4": [3]
+    },
+    "points_per_hit": 1
+},
+
+{
+    "id": 13,
+    "type": "edumed_wybor",
+    "description": ["Chcesz dowiedzieć się, co sklep internetowy robi z Twoimi danymi osobowymi. Gdzie szukasz tej informacji?"],
+    "options": [
+        {"id": 1, "text": "w zakładce “O nas”"},
+        {"id": 2, "text": "w zakładce “Twój profil”"},
+        {"id": 3, "text": "w “Polityce prywatności”"},
+        {"id": 4, "text": "w “Regulaminie zakupów”"}
+    ],
+    "answer": [3],
+    "points": 1
+},
+
+{
+    "id": 14,
+    "type": "edumed_wybor",
+    "description": ["Jak należy oznaczyć zdjęcie ściągnięte z Wikipedii, które chcesz opublikować na swoim blogu?"],
+    "options": [
+        {"id": 1, "text": "Należy podać informację, że zdjęcie pochodzi z internetu (źródło: internet)."},
+        {"id": 2, "text": "Należy podać nazwisko/pseudonim autorki lub autora."},
+        {"id": 3, "text": "Należy podać informacje o licencji, na której opublikowane jest zdjęcie."},
+        {"id": 4, "text": "Należy podać link do strony, z której ściągnięto zdjęcie."}
+    ],
+    "answer": [2,3,4],
+    "answer_mode": "all_or_nothing",
+    "points": 1
+},
+
+{
+    "id": 15,
+    "type": "edumed_wybor",
+    "description": ["Na ostatniej imprezie karaoke zrobiłaś/eś świetne zdjęcie swojej koleżanki śpiewającej przeboje Abby. Wiesz, że pewnie nie będzie się jej podobać, ale chcesz, żeby jak najwięcej osób zapamiętało ten wieczór. Co robisz?"],
+    "options": [
+        {"id": 1, "text": "wysyłasz zdjęcie do wszystkich uczestników imprezy mailem"},
+        {"id": 2, "text": "wrzucasz zdjęcie na swój publiczny profil w portalu społecznościowym, a potem informujesz o tym koleżankę"},
+        {"id": 3, "text": "pytasz koleżankę, czy zgadza się na publikację zdjęcia, a potem udostępniasz je tylko osobom, które były na imprezie"},
+        {"id": 4, "text": "wrzucasz zdjęcie na swojego bloga, ale zamazujesz twarz koleżanki"}
+    ],
+    "answer": [3],
+    "points": 1
+},
+
+{
+    "id": 16,
+    "type": "edumed_wybor",
+    "description": ["Twój starszy brat chce podczas imprezy urodzinowej w Sopocie puszczać ze znajomymi tzw. chińskie lampiony. Jakie zezwolenie jest mu potrzebne?"],
+    "options": [
+        {"id": 1, "text": "zezwolenie Państwowej Straży Pożarnej"},
+        {"id": 2, "text": "zezwolenie Polskiej Agencji Żeglugi Powietrznej"},
+        {"id": 3, "text": "zezwolenie Urzędu Miasta"},
+        {"id": 4, "text": "zezwolenie Sanepidu"}
+    ],
+    "answer": [2],
+    "open_part": ["Co wpisałeś/aś w okno wyszukiwarki, żeby znaleźć tę informację?"],
+    "max_points": 2
+},
+
+{
+    "id": 17,
+    "type": "edumed_wybor",
+    "description": ["Na pulpicie Twojego komputera wyświetla się taki komunikat. Komputer faktycznie zostaje zablokowany. Co robisz?",
+        "<img src=\"/static/wtem/img/komunikat_policyjny.png\"/>"
+    ],
+    "options": [
+        {"id": 1, "text": "pokazujesz komunikat rodzicom/opiekunom"},
+        {"id": 2, "text": "sprawdzasz prawdziwość zawartych w komunikacie informacji, np. wymienionych artykułów prawnych"},
+        {"id": 3, "text": "dokonujesz zalecanej płatności"},
+        {"id": 4, "text": "sprawdzasz w wyszukiwarce internetowej (z telefonu komórkowego lub innego komputera) co należy zrobić w takiej sytuacji"},
+        {"id": 5, "text": "restartujesz komputer"},
+        {"id": 6, "text": "podejrzewasz, że może to być wirus komputerowy i zgłaszasz to osobie kompetentnej, np. informatykowi"}
+    ],
+    "answer": [1,2,4,6],
+    "points_per_hit": 0.5
+},
+
+{
+    "id": 18,
+    "type": "edumed_przyporzadkuj",
+    "hide_default_instruction": 1,
+    "description": ["Wyobraź sobie, że poniższe zdjęcia przedstawiają Twój wizerunek. Jak i gdzie można je wykorzystać? Połącz w pary zdjęcia i miejsca ich publikacji."],
+    "buckets": [
+        {"id": 1, "title": "dostępny dla wszystkich album ze zdjęciami na towarzyskim portalu społecznościowym"},
+        {"id": 2, "title": "dostępny tylko dla najbliższych znajomych album ze zdjęciami na towarzyskim portalu społecznościowym"},
+        {"id": 3, "title": "avatar na forum dotyczącym pracy w bankowości"},
+        {"id": 4, "title": "formularz rekrutacyjny na wakacyjną wymianę młodzieży"},
+        {"id": 5, "title": "nie publikuję tego zdjęcia w sieci"}
+
+    ],
+    "buckets_name": "miejsca",
+    "items": [
+        {"id": 1, "text": "1", "href_absolute": 1, "href": "http://www.flickr.com/photos/kk/5443214980/sizes/s/in/photostream/", "img": "przyp/1.jpg"},
+        {"id": 2, "text": "2", "href_absolute": 1, "href": "http://www.flickr.com/photos/keithusc/2799394010/sizes/s/in/photostream/","img": "przyp/2.jpg"},
+        {"id": 3, "text": "3", "href_absolute": 1, "href": "http://www.flickr.com/photos/mike-burns/7459087/sizes/s/in/photostream/","img": "przyp/3.jpg"},
+        {"id": 4, "text": "4", "href_absolute": 1, "href": "http://www.flickr.com/photos/76029035@N02/6829334723/sizes/s/in/photostream/","img": "przyp/4.jpg"},
+        {"id": 5, "text": "5", "href_absolute": 1, "href": "http://www.flickr.com/photos/84502900@N00/3502014745", "img": "przyp/5.jpg"}
+    ],
+    "items_name": "zdjęcia",
+    "items_instruction": "Przeciągnij numery zdjęć do odpowiednich szarych poł powyżej",
+    "items_inline": 1,
+    "description_after": ["<span class=\"wtem-disclaimer\">(Wszystkie użyte zdjęcia dostępne na CC-BY-SA - źródła/autorzy dostępni po kliknięciu w obrazek)</span>"],
+    "points_per_hit": 0.5,
+    "answer_mode": "possible_buckets_for_item",
+    "answer": {
+        "1": [1,2,3,4],
+        "2": [5],
+        "3": [2,5],
+        "4": [1,2,3,4],
+        "5": [1,2]
+    }
+},
+
+{
+    "id": 19,
+    "type": "edumed_wybor",
+    "description": ["Jaki jest symbol klasyfikacji bibliotecznej najnowszego wydania książki “Ekonomia w jednej lekcji” autorstwa Henry’ego Hazlitta w zbiorach Biblioteki Uniwersyteckiej w Warszawie?"],
+    "options": [
+        {"id": 1, "text": "HG229 .H39165 2007"},
+        {"id": 2, "text": "1151471"},
+        {"id": 3, "text": "PS3515.A96 T56165 2011"},
+        {"id": 4, "text": "HB171 .H445165 2012"}
+    ],
+    "answer": [4],
+    "points": 1
+},
+
+{
+    "id": 20,
+    "type": "edumed_prawdafalsz",
+    "description": ["Oznacz poniższe zdania jako prawdziwe lub fałszywe."],
+    "statements": [
+        ["Telewizja TVN finansowana jest ze środków pochodzących z abonamentu radiowo - telewizyjnego.", false],
+        ["Polskie Radio nie może nadawać żadnych reklam.", false],
+        ["TVP Historia należy do mediów publicznych.", true],
+        ["TVP Kultura nie jest nastawiona na zysk.", true],
+        ["Radiowa Czwórka jest stacją komercyjną.", false],
+        ["Działalność mediów publicznych ma charakter misyjny.", true]
+    ],
+    "points_per_hit": 0.5
+},
+
+{
+    "id": 21,
+    "type": "open",
+    "description": ["Przygotuj komunikat na podstawie podanych niżej wiadomości w formie:"],
+    "fields": [
+        {"caption": "1. oficjalnego zaproszenia wysyłanego mailem", "id": 1},
+        {"caption": "2. sms-a do znajomych, maksymalnie 140 znaków", "id": 2, "max_length": 140, "rows": 2, "input_id": "wtem_sms"},
+        {"caption": "3. informacji prasowej do lokalnej gazety", "id": 3}
+    ],
+    "description_after": [
+        "Twój przyjaciel – Krzysztof Gawroński, znany w środowisku jako Gawron – jest gitarzystą i wokalistą w zespole rockowo-metalowym „The Urban Jungle”. 22 stycznia br. o 19. odbędzie się koncert zespołu w Domu Kultury Miejskiej przy ul. Wielebskiego 3 w Krętowie. Zespół zagra m.in. covery Metallicy, Black Sabbath, ale też własne utwory. Bilety mają być w cenie 15 zł. Oprócz Krzysztofa w zespole grają także Michał Kordowski na gitarze basowej i Tomasz Bielewski na perkusji. Ostatnio miałeś okazję się z nimi spotkać i porozmawiać o ich twórczości. Planują występ w programie „Must be the music”, a wcześniej małą trasę koncertową po powiecie bełżeckim, odwiedzając – oprócz Krętowa – Bełżec, Wielkie Głazy i Niechorzów. Gawron zwierzył Ci się, że napisał 2 nowe utwory, które po raz pierwszy zostaną zaprezentowane na koncercie 22 stycznia. Jeśli uda im się zebrać pieniądze (ok. 15 tys. zł) chcą zacząć nagrywanie swojej pierwsze płyty."
+    ],
+    "max_points": 9
+},
+
+{
+    "id": 22,
+    "type": "file_upload",
+    "description": [
+        "Na podstawie poniższego fragmentu tekstu przygotuj 1 slajd prezentacji przeznaczonej dla uczniów 2 klasy szkoły podstawowej. Wykorzystaj też zdjęcie dostępne w interencie, które jest udostępnione na licencji umożliwiającej jego dalsze przetwarzanie i rozpowszechnianie.",
+        "Zapisz przygotowany slajd na dysku swojego komputera, a następnie, korzystając z poniższego przycisku załącz go do zadania"
+    ],
+    "description_after": [
+        "<cite>Puszcza Białowieska – kompleks leśny położony na terenie Polski i Białorusi, odznaczający się dużymi walorami przyrodniczymi i historycznymi. W Puszczy Białowieskiej zachowały się ostatnie fragmenty lasu o charakterze pierwotnym. Tutaj mieszka największa populacja wolnego żubra na świecie.</cite>",
+        "<cite>Puszcza Białowieska leży w strefie klimatu umiarkowanego przejściowego, stosunkowo chłodnego i z dominacją wpływów kontynentalnych w związku z czym w pewnych klasyfikacjach bywa on określany jako klimat leśny subkontynentalny strefy umiarkowanie chłodnej.</cite>",
+        "<cite>Według danych z Białowieskiego Parku Narodowego średnia roczna temperatura powietrza w latach 1955-2001 wynosiła 6,8 °C. Odnotowane temperatury mieściły się w zakresie od +34,5 °C do –38,7 °C (rekord zimna w 1950 r.).</cite>",
+        "<cite>Średnia ilość opadów wynosi 633 mm na rok, z czego większość w sezonie wegetacyjnym który względem Polski zachodniej jest krótszy o miesiąc i trwa 205 dni. Zima natomiast jest długa, z pokrywą śnieżną utrzymującą się średnio ponad 92 dni.</cite>",
+        "<cite>Na terenie Puszczy białowieskiej żyje 58 gatunków ssaków co stanowi ponad 70 procent fauny niżowej Polski w obrębie tej grupy. Z pośród występujących tu gatunków 33 podlegają w Polsce ochronie prawnej, a 12 figuruje w Polskiej Czerwonej Księdze Zwierząt.</cite>",
+        "Żródło: Puszcza Białowieska, <a href=\"http://pl.wikipedia.org/w/index.php?title=Puszcza_Bia%C5%82owieska&oldid=37917751\">http//pl.wikipedia.org/w/index.php?title=Puszcza_Bia%C5%82owieska&oldid=37917751</a> (dostęp 18.11.2013), CC BY-SA"
+    ],
+    "max_points": 9,
+    "max_file_size_string": "5 megabajtów"
+}
+
+]

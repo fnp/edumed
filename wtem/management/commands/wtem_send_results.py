@@ -13,7 +13,7 @@ from wtem.models import Submission
 
 
 def get_submissions():
-    return Submission.objects.exclude(answers = None).all()
+    return sorted(Submission.objects.exclude(answers = None).all(), key=lambda s: -s.final_result)
 
 minimum = 55
 
