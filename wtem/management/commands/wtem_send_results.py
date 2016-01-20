@@ -15,7 +15,7 @@ from wtem.models import Submission
 def get_submissions():
     return Submission.objects.exclude(answers = None).all()
 
-minimum = 47.5
+minimum = 55
 
 class Command(BaseCommand):
 
@@ -47,7 +47,7 @@ class Command(BaseCommand):
 
     def handle_to_students(self, *args, **options):
         self.stdout.write('>>> Sending results to students')
-        subject = 'Twój wynik w I etapie Wielkiego Turnieju Edukacji Medialnej'
+        subject = 'Wyniki I etapu Wielkiego Turnieju Edukacji Medialnej'
 
         for submission in get_submissions():
             if options['only_to'] and submission.email != options['only_to']:
@@ -64,7 +64,7 @@ class Command(BaseCommand):
 
     def handle_to_teachers(self, *args, **options):
         self.stdout.write('>>> Sending results to teachers')
-        subject = 'Wyniki Twoich uczniów w I etapie Wielkiego Turnieju Edukacji Medialnej'
+        subject = 'Wyniki I etapu Wielkiego Turnieju Edukacji Medialnej'
         failed = sent = 0
 
         submissions_by_contact = dict()
