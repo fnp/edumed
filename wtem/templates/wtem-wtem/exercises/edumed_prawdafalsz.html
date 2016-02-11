@@ -1,0 +1,26 @@
+<div class="exercise exercise-wtem prawdafalsz" data-type="prawdafalsz" data-id="{{exercise.id}}">
+
+    <h3>Zadanie {{no}}</h3>
+
+    <div class="question" data-no="1">
+        <div class="description">
+        {% for para in exercise.description %}
+            <p class="paragraph">
+                {{para}}
+            </p>
+        {% endfor %}
+        </div>
+
+        <ul class="lista punkt ">
+            {% for statement in exercise.statements %}
+                <li class="question-piece">
+                    <span class="buttons">
+                        <a href="#" data-value="true" class="true">Prawda</a>
+                        <a href="#" data-value="false" class="false">Fałsz</a>  
+                    </span>
+                    {{statement.0}}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

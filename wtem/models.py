@@ -80,11 +80,12 @@ class Submission(models.Model):
         return marks
 
     def get_final_exercise_mark(self, exercise_id):
-        exercise = exercises[int(exercise_id)-1]
+        #exercise = exercises[int(exercise_id)-1]
+        exercise = [e for e in exercises if str(e['id']) == str(exercise_id)][0]
         if exercise_checked_manually(exercise):
             marks_by_examiner = self.get_exercise_marks_by_examiner(exercise_id)
             if len(marks_by_examiner):
-                return sum(map(int, marks_by_examiner.values())) / float(len(marks_by_examiner))
+                return sum(map(float, marks_by_examiner.values())) / float(len(marks_by_examiner))
             else:
                 return None
         else:
@@ -138,7 +139,8 @@ class Submission(models.Model):
     @property
     def final_result(self):
         final = 0
-        for exercise_id in map(str,range(1, len(exercises) + 1)):
+        #for exercise_id in map(str,range(1, len(exercises) + 1)):
+        for exercise_id in [str(x['id']) for x in exercises]:
             mark = self.get_final_exercise_mark(exercise_id)
             if mark is not None:
                 final += mark
@@ -151,6 +153,7 @@ class Submission(models.Model):
 class Attachment(models.Model):
     submission = models.ForeignKey(Submission)
     exercise_id = models.IntegerField()
+    tag = models.CharField(max_length=128, null=True, blank=True)
     file = models.FileField(upload_to = 'wtem/attachment')
 
 
@@ -161,9 +164,9 @@ class Assignment(models.Model):
     def clean(self):
         if not isinstance(self.exercises, list):
             raise ValidationError(_('Assigned exercises must be declared in a list format'))
-        for exercise in self.exercises:
-            if not isinstance(exercise, int) or exercise < 1:
-                raise ValidationError(_('Invalid exercise id: %s' % exercise))
+        #for exercise in self.exercises:
+        #    if not isinstance(exercise, int) or exercise < 1:
+        #        raise ValidationError(_('Invalid exercise id: %s' % exercise))
 
     def __unicode__(self):
         return self.user.username + ': ' + ','.join(map(str,self.exercises))

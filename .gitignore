@@ -30,6 +30,9 @@ thumbs.db
 .pydevproject
 .tmp_*
 
+# PyCharm
+.idea
+
 # Tags file
 TAGS
 

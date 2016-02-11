@@ -11,7 +11,7 @@
     <a href="{{ les }}#{{ level.slug }}">
     <span class="in-box">
     <span class="name">{{ level }}</span>
-    {{ level.length_synthetic }} lub {{ level.length_course }} godzin
+    {% if level.length_synthetic %}{{ level.length_synthetic }} lub {% endif %}{{ level.length_course }} godzin
     </span>
     </a>
 </li>
@@ -24,4 +24,13 @@
     </span>
     </a>
 </li>
+<li class="box7">
+    <a href="{{ les }}#liceum_varsaviana">
+    <span class="in-box">
+    <span class="name">Edukacja varsavianistyczna</span>
+    10 godzin
+    </span>
+    </a>
+</li>
+
 </ul>

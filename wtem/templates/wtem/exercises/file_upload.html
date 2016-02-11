@@ -1,6 +1,8 @@
 <div class="exercise-wtem" data-type="file" data-id="{{exercise.id}}">
 
-    <h3>Zadanie {{no}}</h3>
+{% if not exercise.continuation %}
+<h3>Zadanie {{exercise.id_show|default:exercise.id}} ({{ exercise.max_points }} pkt)</h3>
+{% endif %}
         
     <div class="description">
         {% for para in exercise.description %}

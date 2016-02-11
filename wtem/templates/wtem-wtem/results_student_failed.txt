@@ -1,0 +1,13 @@
+{% load l10n %}Droga Uczestniczko,
+Drogi Uczestniku,
+
+Twój wynik w I etapie Wielkiego Turnieju Edukacji Medialnej to {% localize on %}{{final_result|floatformat}}{% endlocalize %} pkt.
+
+Do zakwalifikowania się do II etapu konieczne było uzyskanie min. 36 pkt.
+
+Dziękujemy za udział w zawodach!
+
+Z pozdrowieniami,
+
+Zespół Edukacji Medialnej
+Fundacja Nowoczesna Polska

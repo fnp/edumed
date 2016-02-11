@@ -91,9 +91,9 @@ $ciemny: #363a3e;
     }
     #catalogue-carousel-switcher {
         margin: 0;
-        padding: 20*$px 0 0 58*$px;
+        padding: 3*$px 0 0 58*$px;
         width: 240*$px - 58*$px;
-        height: 235*$px - 20*$px;
+        height: 235*$px - 8*$px;
         position: absolute;
         right: 0;
         top: 0;
@@ -108,7 +108,7 @@ $ciemny: #363a3e;
         /* right part of mask as background */
 
         li {
-            margin-bottom: .5em;
+            margin-bottom: .4em;
             font-size: .85em;
             line-height: 1em;
 

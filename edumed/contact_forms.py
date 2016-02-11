@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from contact.forms import ContactForm
+from django.core.mail import send_mail
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -90,15 +94,19 @@ class WTEMStudentForm(forms.Form):
     email = forms.EmailField(label=u'Adres e-mail', max_length=128)
     form_tag = "student"
 
+# FIXME: doesn't do what is says anymore.
 class NoEmptyFormsAllowedBaseFormSet(forms.formsets.BaseFormSet):
     """
     Won't allow formset_factory to be submitted with no forms
     """
     def clean(self):
+        needed = 3
         for form in self.forms:
             if form.cleaned_data:
-                return
-        raise forms.ValidationError(u"Proszę podać dane przynajmniej jednego ucznia.")
+                needed -= 1
+                #return
+        if needed > 0:
+            raise forms.ValidationError(u"Proszę podać dane przynajmniej trzech osób.")
 
 class WTEMForm(ContactForm):
     disabled = True
@@ -106,7 +114,8 @@ class WTEMForm(ContactForm):
     form_tag = "wtem"
     form_title = u"WTEM - rejestracja uczestników"
     submit_label = u"Wyślij zgłoszenie"
-    form_formsets = (forms.formsets.formset_factory(WTEMStudentForm, formset=NoEmptyFormsAllowedBaseFormSet),)
+    admin_list = ['imie', 'nazwisko', 'institution']
+    form_formsets = (forms.formsets.formset_factory(WTEMStudentForm, formset=NoEmptyFormsAllowedBaseFormSet, max_num=5, validate_max=True, extra=5),)
 
     contact = forms.EmailField(label=u'Adres e-mail opiekuna/opiekunki', max_length=128)
     imie = forms.CharField(label=u'Imię', max_length=128)
@@ -120,11 +129,11 @@ class WTEMForm(ContactForm):
 
     zgoda_regulamin = forms.BooleanField(
         label=u'Znam i akceptuję regulamin Wielkiego Turnieju Edukacji Medialnej.',
-        help_text=u'Zobacz <a href="/media/chunks/attachment/WTEM_regulamin_TmXC5VU.pdf">regulamin Wielkiego Turnieju Edukacji Medialnej</a>.'
+        help_text=u'Zobacz <a href="/media/chunks/attachment/regulamin_III_edycja.pdf">regulamin Wielkiego Turnieju Edukacji Medialnej</a>.'
     )
     zgoda_dane = forms.BooleanField(
-        label=u'Wyrażam zgodę na przetwarzanie moich danych osobowych oraz danych osobowych moich podopiecznych, a także na publikację prac na wolnej licencji.',
-        help_text=u'Zobacz <a href="/media/chunks/attachment/Oswiadczenie_o_danych_osobowych.pdf">pełną treść oświadczenia</a>.'
+        label=u'Wyrażam zgodę na przetwarzanie moich danych osobowych oraz danych osobowych moich podopiecznych.',
+        #help_text=u'Zobacz <a href="/media/chunks/attachment/Oswiadczenie_o_danych_osobowych.pdf">pełną treść oświadczenia</a>.'
     )
 
     potw_uczniowie = forms.BooleanField(
@@ -164,6 +173,23 @@ class WTEMForm(ContactForm):
                 toret.append(current)
             current = dict()
         return toret
+
+    def save(self, request, formsets=None):
+        contact = super(WTEMForm, self).save(request, formsets)
+
+        mail_subject = render_to_string('contact/wtem/student_mail_subject.html').strip()
+        mail_body = render_to_string('contact/wtem/student_mail_body.html')
+        for formset in formsets or []:
+            for f in formset.forms:
+                email = f.cleaned_data.get('email', None)
+                try:
+                    validate_email(email)
+                except ValidationError:
+                    pass
+                else:
+                    send_mail(mail_subject, mail_body, 'edukacjamedialna@nowoczesnapolska.org.pl', [email], fail_silently=True)
+
+        return contact
 
 
 class MILForm(ContactForm):
@@ -205,3 +231,67 @@ class MILForm(ContactForm):
         max_length = 255,
         required = False
     )
+
+
+class TEMForm(ContactForm):
+    form_tag = 'tem'
+    form_title = u"TEM - szkolenie dla trenerów edukacji medialnej"
+    admin_list = ['imie', 'nazwisko', 'instytucja', 'contact']
+
+    imie = forms.CharField(label=u'Imię', max_length=128)
+    nazwisko = forms.CharField(label=u'Nazwisko', max_length=128)
+    contact = forms.EmailField(label=u'E-mail', max_length=128)
+    telefon = forms.CharField(label=u'Tel. kontaktowy', max_length=128)
+    instytucja = forms.CharField(label=u'Instytucja', max_length=256)
+    adres = forms.CharField(label=u'Adres',
+            widget=forms.Textarea, max_length=1000)
+    stanowisko = forms.CharField(label=u'Stanowisko', max_length=256)
+    doswiadczenie = forms.CharField(label=u'Jakie jest Pani/Pana doświadczenie w zakresie edukacji medialnej?',
+            widget=forms.Textarea, max_length=500, help_text=u'(max 500 znaków)')
+    dlaczego = forms.CharField(label=u'Dlaczego chce Pani/Pan wziąć udział w szkoleniu?',
+            widget=forms.Textarea, max_length=500, help_text=u'(max 500 znaków)')
+    jak_wykorzystac = forms.CharField(label=u'Jak zamierza Pan/Pani wykorzystać wiedzę zdobytą w czasie szkolenia?',
+            widget=forms.Textarea, max_length=500, help_text=u'(max 500 znaków)')
+
+    zajecia = forms.BooleanField(label=u'W okresie wrzesień-październik 2015 r. przeprowadzę min. 2 godziny zajęć edukacji medialnej z wybraną grupą dzieci lub młodzieży.', required=True)
+    zgoda_informacje = forms.BooleanField(label=u'Wyrażam zgodę na otrzymywanie informacji od Fundacji Nowoczesna Polska związanych z edukacją medialną.', required=False)
+
+
+class SuperwizjaForm(ContactForm):
+    form_tag = 'superwizja'
+    form_title = u"Informacje o zajęciach"
+    admin_list = ['nazwisko', 'contact', 'skype', 'temat']
+    submit_label = u'Wyślij'
+
+    nazwisko = forms.CharField(label=u'Imię i nazwisko', max_length=1024)
+    contact = forms.CharField(label=u'E-mail kontaktowy', required=False)
+    skype = forms.CharField(label=u'Nazwa użytkownika Skype', max_length=255)
+    temat = forms.CharField(label=u'Temat zajęć', max_length=1024)
+    termin = forms.CharField(label=u'Termin zajęć', max_length=1024)
+    czas_trwania = forms.CharField(label=u'Czas trwania zajęć', max_length=1024)
+    miejsce = forms.CharField(label=u'Miejsce prowadzenia zajęć', max_length=1024)
+    rodzaj = forms.ChoiceField(label=u'Rodzaj zajęć', widget=forms.RadioSelect, choices=[('jednorazowe', 'jednorazowe'), ('w ramach cyklu', 'w ramach cyklu')])
+    cykl = forms.CharField(label=u'Jeśli w ramach cyklu, to podaj jego temat i czas trwania', required=False)
+    sposob = forms.ChoiceField(label=u'Sposób prowadzenia zajęć', widget=forms.RadioSelect, choices=[('samodzielnie', 'samodzielnie'), (u'z drugą osobą', 'z drugą osobą')])
+    wrazenia = forms.CharField(label=u'Opisz Twoje ogólne wrażenia po warsztacie.', widget=forms.Textarea, max_length=4096)
+    opiekun = forms.CharField(label=u'Czy opiekun grupy był obecny podczas zajęć? Jeśli tak, opisz krótko jego rolę.', widget=forms.Textarea, max_length=4096)
+    grupa = forms.CharField(label=u'Opisz krótko grupę uczestników zajęć (wiek, liczba osób, czy to pierwszy kontakt z grupą).', widget=forms.Textarea, max_length=4096)
+    cel = forms.CharField(label=u'Jaki był założony cel zajęć? Dlaczego wybrałaś/eś taki cel?', widget=forms.Textarea, max_length=4096)
+    ewaluacja = forms.CharField(label=u'W jaki sposób sprawdziłeś/aś, czy cel zajęć został zrealizowany? Opisz krótko efekty zajęć.', widget=forms.Textarea, max_length=4096)
+    # header
+    przygotowania = forms.CharField(label=u'Opisz w punktach proces przygotowania się do zajęć.', widget=forms.Textarea, max_length=4096)
+    przygotowania_trudnosci = forms.CharField(label=u'Co na etapie przygotowań sprawiło Ci największą trudność?', widget=forms.Textarea, max_length=4096)
+    przygotowania_pomoc = forms.CharField(label=u'Co było pomocne w przygotowaniu zajęć? (Czy korzystałaś/eś z materiałów z serwisu edukacjamedialna.edu.pl? Jeśli tak, to jakich?)', widget=forms.Textarea, max_length=4096)
+    narzedzia = forms.CharField(label=u'Jakie narzędzie/a planowałaś/eś wykorzystać, a jakie wykorzystałaś/eś?', widget=forms.Textarea, max_length=4096)
+    struktura = forms.CharField(label=u'Opisz w punktach strukturę zajęć. Zaznacz ile czasu planowałaś/eś na każdą część, a ile czasu faktycznie Ci to zajęło.', widget=forms.Textarea, max_length=4096)
+    prowadzenie_trudnosci = forms.CharField(label=u'Co sprawiało Ci trudność w prowadzeniu zajęć?', widget=forms.Textarea, max_length=4096)
+    prowadzenie_pomoc = forms.CharField(label=u'Co było pomocne w prowadzeniu zajęć?', widget=forms.Textarea, max_length=4096)
+    kontrakt = forms.CharField(label=u'W jakiej formie został zawarty kontrakt z uczestnikami? Jakie zasady zostały przyjęte? Czy w trakcie zajęć Ty bądź uczestnicy odwoływaliście się do kontraktu?', widget=forms.Textarea, max_length=4096)
+    trudne_sytuacje = forms.CharField(label=u'Czy podczas zajęć miały miejsce tzw. „trudne sytuacje”. Jak na nie zareagowałaś/eś? Czy potrzebowałabyś/łbyś czegoś w związku z nimi?', widget=forms.Textarea, max_length=4096)
+    informacje_zwrotne = forms.CharField(label=u'Czy zbierałaś/eś informacje zwrotne od uczestników? Jeśli tak, na co zwrócili uwagę? W jaki sposób zbierałaś/eś informacje zwrotne?', widget=forms.Textarea, max_length=4096)
+
+    mocne_strony = forms.CharField(label=u'Opisz w punktach mocne strony przeprowadzonych zajęć.', widget=forms.Textarea, max_length=4096)
+    zmiany = forms.CharField(label=u'Opisz w punktach, co byś zmienił(a) na przyszłość.', widget=forms.Textarea, max_length=4096)
+    potrzeby = forms.CharField(label=u'Czy potrzebowałbyś/łbyś czegoś przed następnymi zajęciami?', widget=forms.Textarea, max_length=4096)
+    uwagi = forms.CharField(label=u'Inne uwagi', widget=forms.Textarea, max_length=4096, required=False)
+

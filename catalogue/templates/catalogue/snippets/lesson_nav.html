@@ -7,6 +7,8 @@
     <a href="{% url 'catalogue_lessons' %}">Projekty, <br>{{ lesson.level }}</a>
 {% elif lesson.type == 'added' %}
     <a href="{% url 'catalogue_lessons' %}#liceum_filmowa">Edukacja filmowa</a>
+{% elif lesson.type == 'added-var' %}
+    <a href="{% url 'catalogue_lessons' %}#liceum_varsaviana">Edukacja varsavianistyczna</a>
 {% else %}
     <a href="{% url 'catalogue_lessons' %}">Inne</a>
 {% endif %}

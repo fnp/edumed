@@ -20,7 +20,8 @@ def catalogue_levels_main():
     c = object_list.count()
     return {
         'object_list': object_list,
-        'section_width': (700 - 20 * (c - 1)) / c,
+        #'section_width': (700 - 20 * (c - 1)) / c,
+        'section_width': (700 - 20 * 2) / 3
     }
 
 
@@ -48,7 +49,7 @@ def level_box(level):
             if lesson.section not in lessons['course']:
                 lessons['course'][lesson.section] = []
             lessons['course'][lesson.section].append(lesson)
-        elif lesson.type == 'added': continue
+        elif lesson.type.startswith('added'): continue
         else:
             lessons[lesson.type].append(lesson)
 
@@ -77,6 +78,26 @@ def level_box(level):
                 ]
             ],
             })
+        added.append({
+            'slug': 'varsaviana',
+            'title': u'Edukacja varsavianistyczna',
+            'lessons': [
+                Lesson.objects.get(slug=s) for s in
+'''
+czego-prus-w-lalce-o-zydach-nie-powiedzial
+jak-zmienila-sie-warszawa-o-dworcu-dawniej-i-dzis
+o-gwarze-praskiej
+poznaj-i-pokaz-prage
+praga-trzech-religii
+sladami-zydow-w-warszawie
+tajemnice-palacu-saskiego
+warszawa-przedwojenne-miasto-neonow
+warszawski-barok
+ziemianska-jako-soczewka-swiata-lat-miedzywojennych
+'''.strip().split()
+            ],
+            })
+
 
     return {
         "level": level,

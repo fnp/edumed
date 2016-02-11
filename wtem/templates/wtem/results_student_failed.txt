@@ -1,13 +1,15 @@
-{% load l10n %}Droga Uczestniczko,
-Drogi Uczestniku,
+{% load l10n %}Witaj,
 
-Twój wynik w I etapie Wielkiego Turnieju Edukacji Medialnej to {% localize on %}{{final_result|floatformat}}{% endlocalize %} pkt.
+Informujemy, że wszystkie projekty zrealizowane i nadesłane w ramach I etapu III edycji Wielkiego Turnieju Edukacji Medialnej zostały ocenione. Otrzymaliśmy ponad 100 projektów, które zrealizowało ponad 420 uczniów i uczennic szkół ponadgimnazjalnych.
 
-Do zakwalifikowania się do II etapu konieczne było uzyskanie min. 47,5 pkt.
+Liczba punktów, którą uzyskał Twój zespół to {% localize on %}{{final_result}}{% endlocalize %}.
 
-Dziękujemy za udział w zawodach!
+Niestety, ten wynik nie uprawnia Was do wzięcia udziału II etapie Turnieju. Liczba punktów, która uprawnia do wzięcia udziału w II etapie to 55. Zachęcamy do zgłębiania wiedzy za zakresu edukacji medialnej i wzięcia udziału w kolejnej edycji Wielkiego Turnieju Edukacji Medialnej.
 
-Z pozdrowieniami,
+Jeżeli temat przewodni III edycji Wielkiego Turnieju Edukacji Medialnej (bezpieczeństwo i prywatność w sieci) jest dla Ciebie interesujący, informujemy, że fundacja Nowoczesna Polska niebawem rozpocznie rekrutację szkół do projektu szkoleniowego realizowanego na zlecenie i ze środków Ministerstwa Edukacji Narodowej - "Cybernauci - kompleksowy projekt kształtowania bezpiecznych zachowań w sieci". Zachęcamy do śledzenia aktualności na stronie: http://cybernauci.edu.pl.
 
+W razie jakichkolwiek pytań prosimy o kontakt.
+
+Pozdrawiamy,
 Zespół Edukacji Medialnej
-Fundacja Nowoczesna Polska
+fundacja Nowoczesna Polska

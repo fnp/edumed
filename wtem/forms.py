@@ -1,4 +1,5 @@
 import os
+import re
 
 from django import forms
 from django.utils import simplejson
@@ -21,11 +22,13 @@ class WTEMForm(forms.ModelForm):
     def save(self):
         submission = super(WTEMForm, self).save()
         for name, file in self.files.items():
-            exercise_id = int(name.split('_')[-1])
+            m = re.match(r'attachment_for_(\d+)(?:__(.*))?', name)
+            exercise_id = int(m.group(1))
+            tag = m.group(2) or None
             try:
-                attachment = Attachment.objects.get(submission = submission, exercise_id = exercise_id)
+                attachment = Attachment.objects.get(submission = submission, exercise_id = exercise_id, tag=tag)
             except Attachment.DoesNotExist:
-                attachment = Attachment(submission = submission, exercise_id = exercise_id)
+                attachment = Attachment(submission = submission, exercise_id = exercise_id, tag=tag)
             attachment.file = file
             attachment.save()
 

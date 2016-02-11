@@ -63,7 +63,7 @@ class Command(BaseCommand):
     def send_key(self, submission):
         self.stdout.write('>>> sending to ' + submission.email)
         send_mail(
-            subject = "WTEM - Twój link do zadań",
+            subject = "Egzamin TEM - Twój link do zadań",
             body = render_to_string('wtem/email_key.txt', dict(submission = submission)),
             to = [submission.email]
             )

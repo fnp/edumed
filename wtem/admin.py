@@ -34,6 +34,17 @@ class AttachmentWidget(forms.Widget):
             a_tag = 'brak'
         return mark_safe(('<input type="hidden" name="%s" value="%s"/>' % (name, value)) + a_tag)
 
+class TextareaWithLinks(forms.Textarea):
+    def render(self, name, value, *args, **kwargs):
+        t, links = value
+        self.links = links
+        output = super(TextareaWithLinks, self).render(name, t, *args, **kwargs)
+        moreoutput = "<div style='margin-left: 106px'>"
+        for k, n, v in links:
+            moreoutput += u"<br>%s: %s" % (k, AttachmentWidget().render(n, v))
+        output += mark_safe(moreoutput + "</div>")
+        return output
+
 class SubmissionFormBase(forms.ModelForm):
     class Meta:
         model = Submission
@@ -43,7 +54,7 @@ class SubmissionFormBase(forms.ModelForm):
 def get_open_answer(answers, exercise):
     def get_option(options, id):
         for option in options:
-            if option['id'] == int(id):
+            if str(option['id']) == id:
                 return option
 
     exercise_id = str(exercise['id'])
@@ -91,17 +102,38 @@ def get_form(request, submission):
                     widget = AttachmentWidget
                     initial = attachment.file.url if attachment else None
                 else:
-                    widget = forms.Textarea(attrs={'readonly':True})
-                    initial = get_open_answer(answers, exercise)
+                    #widget = forms.Textarea(attrs={'readonly':True})
+                    widget = TextareaWithLinks(attrs={'readonly':True})
+                    links = []
+                    qfiles = []
+                    for qfield in exercise.get('fields', []):
+                        if qfield.get('type') == 'file':
+                            qfiles.append((qfield['id'], qfield['caption']))
+                    if qfiles:
+                        eid = int(exercise['id'])
+                        by_tag = {}
+                        for att in Attachment.objects.filter(submission=submission, exercise_id=eid).order_by('tag'):
+                            by_tag[att.tag] = att.file.url
+                        for tag, caption in qfiles:
+                            v = by_tag.get(tag)
+                            if v:
+                                links.append((caption, "file_%s__%s" % (eid, tag), v))
+                    initial = get_open_answer(answers, exercise), links
 
                 fields[answer_field_name] = forms.CharField(
                         widget = widget,
                         initial = initial,
-                        label = 'Rozwiązanie zadania %s' % exercise['id']
+                        label = u'Rozwiązanie zadania %s' % exercise['id'],
+                        required = False
                 )
 
+                choices = [(None, '-')] # + [(i,i) for i in range(exercise['max_points']+1)],
+                i = 0
+                while i <= exercise['max_points']:
+                    choices.append((i, i))
+                    i += .5
                 fields[mark_field_name] = forms.ChoiceField(
-                    choices = [(None, '-')] + [(i,i) for i in range(exercise['max_points']+1)],
+                    choices = choices,
                     initial = submission.get_mark(user_id = request.user.id, exercise_id = exercise['id']),
                     label = u'Twoja ocena zadania %s' % exercise['id']
                 )
@@ -195,7 +227,8 @@ def report_view(request):
     submissions = sorted(Submission.objects.all(), key = lambda s: -s.final_result)
     toret = render_to_string('wtem/admin_report.csv', dict(
         submissionsSet = SubmissionsSet(submissions),
-        exercise_ids = map(str, range(1,len(exercises)+1))
+        #exercise_ids = map(str, range(1,len(exercises)+1))
+        exercise_ids = [str(e['id']) for e in exercises]
     ))
     response = HttpResponse(toret, content_type = 'text/csv')
     response['Content-Disposition'] = 'attachment; filename="wyniki.csv"'

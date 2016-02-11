@@ -103,8 +103,8 @@ msgid "You must select at least one education level."
 msgstr "Proszę wybrać poziom edukacyjny."
 
 #: templates/curriculum/competence_list.html:8
-msgid "Media and information literacy competencies catalogue"
-msgstr "Katalog kompetencji medialnych i informacyjnych"
+msgid "Media, information and digital literacy competencies catalogue"
+msgstr "Katalog kompetencji medialnych, informacyjnych i cyfrowych"
 
 #: templates/curriculum/competence_list.html:15
 msgid "Browse competencies"

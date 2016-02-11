@@ -2,12 +2,12 @@
   float: left;
   position: relative;
   width: 43.75em;
-  height: 14.6875em;
+  height: 14.688em;
   overflow: hidden;
-  border-radius: 0.9375em; }
+  border-radius: 0.938em; }
   #catalogue-carousel #catalogue-carousel-links {
     width: 28.75em;
-    height: 14.6875em;
+    height: 14.688em;
     list-style: none;
     margin: 0;
     padding: 0; }
@@ -18,8 +18,8 @@
       left: 0;
       height: 100%;
       background-size: 100% 100%;
-      border-top-left-radius: 0.9375em 6.38%;
-      border-bottom-left-radius: 0.9375em 6.38%;
+      border-top-left-radius: 0.938em 6.38%;
+      border-bottom-left-radius: 0.938em 6.38%;
       z-index: 100;
       background-color: #888; }
       #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link {
@@ -65,22 +65,22 @@
         text-shadow: 0 0 5px #000; }
   #catalogue-carousel #catalogue-carousel-switcher {
     margin: 0;
-    padding: 1.25em 0 0 3.625em;
+    padding: 0.188em 0 0 3.625em;
     width: 11.375em;
-    height: 13.4375em;
+    height: 14.188em;
     position: absolute;
     right: 0;
     top: 0;
     list-style: none;
-    border-radius: 0 0.9375em 0.9375em 0;
+    border-radius: 0 0.938em 0.938em 0;
     background-color: #ed7831;
     background-image: url(/static/catalogue/img/carousel-right.png);
     background-position: 0 0;
     background-repeat: no-repeat;
-    background-size: auto 14.6875em;
+    background-size: auto 14.688em;
     /* right part of mask as background */ }
     #catalogue-carousel #catalogue-carousel-switcher li {
-      margin-bottom: .5em;
+      margin-bottom: .4em;
       font-size: .85em;
       line-height: 1em; }
       #catalogue-carousel #catalogue-carousel-switcher li a {

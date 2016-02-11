@@ -27,6 +27,9 @@
 
     {% for formset in formsets %}
 
+        <h3>Dane Uczestników i Uczestniczek:</h3>
+	<p>Można zgłosić 3 do 5 osób.</p>
+
         {{ formset.management_form }}
 
         <ul class="errorlist">
@@ -36,13 +39,14 @@
         </ul>
 
         {% for form in formset.forms %}
-            <h3>Dane Uczestnika/Uczestniczki:</h3>
+            <h4>Uczestnik lub Uczestniczka nr {{ forloop.counter }}:</h4>
 
             <table>
                 {{ form.as_table }}
             </table>
         {% endfor %}
 
+{% comment %}
         <div id="formstub-{{ formset.prefix }}" style="display:none">
             <h3>Dane Uczestnika/Uczestniczki:</h3>
             <table>
@@ -51,6 +55,7 @@
         </div>
 
         <input type="button" value="+ Dodaj kolejną osobę" class="add_more" data-selector="#formstub-{{formset.prefix}}" data-prefix="{{formset.prefix}}">
+{% endcomment %}
         <script>
 
         </script>

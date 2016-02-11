@@ -4,11 +4,16 @@
         vertical-align: top;
         text-align: left;
     }
+    td ul {
+        padding: 0;
+        list-style: none;
+        margin: 0;
+    }
     th {
         max-width: 16em;
         font-weight: normal;
     }
-    .required label:before {
+    .required th label:before {
         content: "* ";
         color: red;
     }

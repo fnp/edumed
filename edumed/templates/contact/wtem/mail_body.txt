@@ -3,10 +3,10 @@ Do udziału zostały zgłoszone następujące osoby:
 {% for student in contact.body.student %}
 * {{ student.first_name }} {{ student.last_name }}{% endfor %}
 
-Pierwszy etap Turnieju odbędzie się 18 listopada 2014 r.
-Po zakończeniu rejestracji (31 października) do dn. 12 listopada 2014 r.
-każdy Uczestnik otrzyma maila z indywidualną instrukcją dotyczącą
-udziału w I etapie Turnieju.
+Każdy zgłoszony uczeń powinien otrzymać wiadomość z potwierdzeniem
+rejestracji. Prosimy upewnić się, czy potwierdzenie dotarło do każdego
+ze zgłoszonych uczniów. W ten sposób zweryfikujemy, czy podane adresy
+są prawidłowe. 
 
 Wszystkie ogłoszenia związane z Turniejem będą publikowane na stronie
 http://edukacjamedialna.edu.pl/WTEM. W razie pytań lub wątpliwości

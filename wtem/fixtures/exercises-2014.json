@@ -1,0 +1,266 @@
+[
+
+{
+    "id": 1,
+    "type": "edumed_wybor",
+    "description": ["Z jaką licencją Creative Commons jest zgodna OGL (Open Government License) i w jakim kraju się ją stosuje?"],
+    "options": [
+        {"id": 1, "text": "CC BY-SA, w Nowej Zelandii,"},
+        {"id": 2, "text": "CC BY-ND, w Kanadzie,"},
+        {"id": 3, "text": "CC BY-SA, w Wlk. Brytanii,"},
+        {"id": 4, "text": "CC BY, w Wlk. Brytanii."}
+    ],
+    "answer": [4],
+    "points": 1
+},
+
+{
+    "id": 2,
+    "type": "edumed_przyporzadkuj",
+    "description": ["Dopasuj definicje do pojęć:"],
+    "buckets":  [
+        {"id": 1, "title": "plonk"},
+        {"id": 2, "title": "OZZ"},
+        {"id": 3, "title": "DRM"},
+        {"id": 4, "title": "booksprint"},
+        {"id": 5, "title": "protokół HTTPS"}
+    ],
+    "buckets_name": "Pojęcia",
+    "items": [
+        {"id": 1, "text": "1", "desc": "Oprogramowanie i sprzęt mające uniemożliwić działania niezgodne z prawem autorskim lub warunkami serwisu/wolą producenta. Stosuje się w muzyce, filmach, grach i innych mediach. Opiera się na mechanizmach kryptograficznych, zabezpieczając np. przed nieautoryzowanym odczytem lub skopiowaniem."},
+        {"id": 2, "text": "2", "desc": "Forma współpracy, polegająca na bardzo szybkim (od kilku godzin do kilku dni) stworzeniu książki przez zespół autorów. Zwykle zespół ten zbiera się przez internet, a książka wydawana jest w formie elektronicznej."},
+        {"id": 3, "text": "4", "desc": "Jeden z protokołów umożliwiający przesyłanie w sieci zaszyfrowanych informacji, dzięki czemu dostęp do treści mają jedynie nadawca oraz odbiorca komunikatu."},
+        {"id": 4, "text": "5", "desc": "Dodanie osoby, której postów nie chcemy czytać, do mechanizmu automatycznego usuwania wiadomości."},
+        {"id": 5, "text": "6", "desc": "Podmiot zarządzający majątkowymi prawami autorskimi, głównie poprzez wydawanie licencji na korzystanie z utworów."}
+    ],
+    "items_name": "Definicje",
+    "answer": {
+        "1": [4],
+        "2": [5],
+        "3": [1],
+        "4": [2],
+        "5": [3]
+    },
+    "points_per_hit": 1
+},
+
+{
+    "id": 3,
+    "type": "open",
+    "description": ["Co Myszka Miki ma wspólnego z wydłużeniem okresu obowiązywania majątkowych praw autorskich? O ile został wydłużony okres obowiązywania praw majątkowych w stosunku do wcześniejszych przepisów?"],
+    "open_part": ["W jaki sposób dotarłeś/aś do tej informacji? Wklej adres strony, z której skorzystałeś/aś."],
+    "open_part_rows": 1,
+    "max_points": 2
+},
+
+{
+    "id": 4,
+    "type": "edumed_wybor",
+    "description": ["W którym z tych miast dojedziesz trolejbusem nr 150 z dworca PKP do al. Racławickich?"],
+    "options": [
+        {"id": 1, "text": "w Lublinie"},
+        {"id": 2, "text": "w Tychach"},
+        {"id": 3, "text": "w Gdyni"}
+    ],
+    "answer": [1],
+    "points": 1,
+    "open_part": ["W jaki sposób dotarłeś/aś do tej informacji? Wklej adres strony, z której skorzystałeś/aś."],
+    "open_part_rows": 1,
+    "max_points": 1.5
+},
+
+{
+    "id": 5,
+    "type": "edumed_wybor",
+    "description": ["Którą frazę należy dodać do zapytania w wyszukiwarce internetowej Google.com, aby wyszukać tylko prezentacje w formacie OpenDocument?"],
+    "options": [
+        {"id": 1, "text": "tylko prezentacje"},
+        {"id": 2, "text": "OpenDocument"},
+        {"id": 3, "text": "filetype:ppt"},
+        {"id": 4, "text": "filetype:odp"}
+    ],
+    "answer": [4],
+    "points": 1
+},
+
+{
+    "id": 6,
+    "type": "edumed_wybor",
+    "description": ["Do jakiej organizacji powinieneś/-nnaś się zwrócić, jeśli zapłaciłeś/-aś za zamówiony przez internet  towar i go nie otrzymałeś/-aś, a ze sprzedawcą nie ma kontaktu?"],
+    "options": [
+        {"id": 1, "text": "UOKiK"},
+        {"id": 2, "text": "UKE"},
+        {"id": 3, "text": "RZP"},
+        {"id": 4, "text": "KNF"}
+    ],
+    "answer": [1],
+    "points": 1
+},
+
+{
+    "id": 7,
+    "type": "open",
+    "description": ["Ile czasu, zgodnie z polskim prawem, klient ma na zwrot towaru/usługi zakupionych przez internet? Czy można to zrobić bez podawania przyczyny? Podaj, jaki akt prawny to reguluje."],
+    "max_points": 3
+},
+
+{
+    "id": 8,
+    "type": "open",
+    "description": ["Jakie poziomy widoczności swoich postów możesz ustawić na Facebooku? Wskaż co najmniej dwa."],
+    "max_points": 2
+},
+
+{
+    "id": 9,
+    "type": "open",
+    "description": ["Podaj przykład inicjatywy sfinansowanej metodą crowdfundingu. Czy w Polsce można finansować tą metodą różne przedsięwzięcia? Jeśli tak, to na jakiej podstawie prawnej?"],
+    "max_points": 2
+},
+
+{
+    "id": 10,
+    "type": "edumed_prawdafalsz",
+    "description": ["Oznacz poniższe zdania jako prawdziwe lub fałszywe."],
+    "statements": [
+        ["Akcyza to jeden z elementów polityki antymonopolowej.", false],
+        ["Większość (98%) treści w serwisie ninateka.pl jest dostępna za darmo bez konieczności logowania.", true],
+        ["GIODO to instytucja uprawniona do kontroli zgodności przetwarzanych danych z przepisami o ochronie danych osobowych.", true],
+        ["Polska telewizja publiczna utrzymuje się jedynie z wpływów finansowych z abonamentu radiowo-telewizyjnego.", false],
+        ["Grupa ITI jest właścicielem TV TVN oraz serwisu sympatia.pl.", true]
+    ],
+    "points_per_hit": 0.5
+},
+
+{
+    "id": 11,
+    "type": "open",
+    "description": ["Znajdź w sieci krótki przykład (tekstowy lub filmowy) każdego z podanych poniżej gatunków. W przypadku tekstu - wklej go i podaj jego źródło. Jeśli prezentujesz film - wklej link do strony, na której się znajduje."],
+    "fields": [
+        {"caption": "reportaż", "id": 1},
+        {"caption": "felieton", "id": 2},
+        {"caption": "wywiad", "id": 3}
+    ],
+    "max_points": 3
+},
+
+{
+    "id": 12,
+    "type": "open",
+    "description": ["Na podstawie poniższego tekstu przygotuj:"],
+    "fields": [
+        {"caption": "a. komunikat zawierający Twoją  opinię nt. proponowanych w rozporządzeniu zmian. Staraj się uargumentować swoje stanowisko.", "id": 1},
+        {"caption": "b. komunikat perswazyjny będący częścią kampanii informacyjno-promocyjnej nowych przepisów.", "id": 2}
+    ],
+    "description_after": [
+        "Opakowania,  pojemniki lub komory ładunkowe w środkach transportu powinny być  oznakowane w sposób trwały i czytelny, umożliwiać identyfikację rodzaju  transportowanych odpadów oraz posiadać widoczne odporne na warunki  atmosferyczne oznakowanie identyfikujące zawierające:<br/>1) kod odpadów w nich transportowanych zgodnie z katalogiem odpadów;<br/>2) imię i nazwisko oraz adres zamieszkania lub nazwę i adres siedziby wytwórcy odpadów. (...)"
+    ],
+    "max_points": 4
+},
+
+{
+    "id": 13,
+    "type": "edumed_wybor",
+    "description": ["Czy możesz opublikować niekomercyjnie remiks wierszy dostępnych w bibliotece internetowej Wolne Lektury? Dlaczego?"],
+    "options": [
+        {"id": 1, "text": "Nie mogę."},
+        {"id": 2, "text": "Mogę, ale dopiero kiedy uzyskam zgodę autorów/autorek lub ich spadkobierców."},
+        {"id": 3, "text": "Mogę. Uiściłem/-am opłaty na rzecz Funduszu Promocji Twórczości."},
+        {"id": 4, "text": "Mogę, wiersze z biblioteki Wolne Lektury znajdują się w domenie publicznej albo publikowane są na licencji CC BY-SA 3.0, która umożliwia taką publikację."}
+    ],
+    "answer": [4],
+    "points": 1
+},
+
+{
+    "id": 14,
+    "type": "open",
+    "description": ["Na czym polega tzw. otwarty dostęp? Podaj dwa przykłady inicjatyw realizowanych zgodnie z tym hasłem.  Podaj adres(y) stron(y), na której/ych znalazłeś(-aś) te informacje."],
+    "max_points": 3
+},
+
+{
+    "id": 15,
+    "type": "edumed_wybor",
+    "description": ["Wskaż wszystkie prawidłowe odpowiedzi dotyczące Urzędu Komisji Nadzoru Finansowego:"],
+    "options": [
+        {"id": 1, "text": "wydaje zezwolenia na prowadzenie działalności na rynku finansowym"},
+        {"id": 2, "text": "realizuje postanowienia KNF"},
+        {"id": 3, "text": "pracownicy Urzędu należą do korpusu służby cywilnej"},
+        {"id": 4, "text": "w skład urzędu wchodzi Departament Nadzoru Inwestycji Emerytalnych"}
+    ],
+    "answer": [2, 4],
+    "points_per_hit": 1
+},
+
+{
+    "id": 16,
+    "type": "edumed_wybor",
+    "description": ["Administrator strony zgodnej z <em>Wytycznymi dla dostępności treści internetowych</em> na najwyższym poziomie zgodności (AAA) może:"],
+    "options": [
+        {"id": 1, "text": "umieszczać na niej skany dokumentów bez OCR"},
+        {"id": 2, "text": "zamieszczać najważniejsze informacje w postaci audio lub wideo, dołączając alternatywną wersję tekstową"},
+        {"id": 3, "text": "wymagać od użytkownika wpisania słowa odczytanego z obrazka"},
+        {"id": 4, "text": "pisać, stosując żargon naukowy i nie wyjaśniając znaczenia trudniejszych pojęć"}
+    ],
+    "answer": [2],
+    "points": 1
+},
+
+{
+    "id": 17,
+    "type": "open",
+    "description": ["W  pobliskim domu kultury odbywa się koncert Twojej ulubionej grupy. Zaproś swojego nauczyciela języka polskiego (napisz e-mail). Poinformuj o tym wydarzeniu swoich znajomych na Facebooku. Pamiętaj, aby każdy z komunikatów był sformułowany zgodnie z zasadami medialnego savoire vivre'u."],
+    "fields": [
+        {"caption": "e-mail do nauczyciela", "id": 1},
+        {"caption": "wiadomość do znajomych", "id": 2}
+    ],
+    "max_points": 4
+},
+
+{
+    "id": 18,
+    "type": "edumed_wybor",
+    "description": [" Kolega prosi Cię w komentarzu na Facebooku o podanie numeru telefonu wspólnego znajomego. Co robisz?"],
+    "options": [
+        {"id": 1, "text": "telefonujesz do znajomego i pytasz go, czy możesz przekażać nr telefonu koledze"},
+        {"id": 2, "text": "przekazujesz nr znajomego smsem lub w prywatnej wiadomości"},
+        {"id": 3, "text": "podajesz nr telefonu w kolejnym komentarzu"}
+    ],
+    "answer": [1, 2],
+    "answer_mode": "all_or_nothing",
+    "points": 1
+},
+
+{
+    "id": 19,
+    "type": "file_upload",
+    "description": [
+        "Poszukujesz materiałów z blogów lub innych serwisów internetowych dotyczących księcia Józefa Poniatowskiego. Zależy Ci jednak, aby materiały te można było swobodnie wykorzystywać, udostępniać i modyfikować, także w celach komercyjnych. Stwórz odpowiednie zapytanie w wyszukiwarce; zrób zrzut ekranu przedstawiający zapytanie."
+    ],
+    "max_points": 2,
+    "max_file_size_string": "5 megabajtów"
+},
+
+{
+    "id": 20,
+    "type": "edumed_wybor",
+    "description": ["W przypadku logowania się w ramach sieci TOR dostawca internetu użytkownika zna:"],
+    "options": [
+        {"id": 1, "text": "numer IP użytkownika"},
+        {"id": 2, "text": "loginy i hasła użytkownika"},
+        {"id": 3, "text": "dane, które użytkownik przesyła i odbiera"},
+        {"id": 4, "text": "adresy stron, które użytkownik odwiedza"}
+    ],
+    "answer": [1],
+    "points": 1
+},
+
+{
+    "id": 21,
+    "type": "open",
+    "description": ["Podaj trzy przykłady wolnego oprogramowania."],
+    "max_points": 3
+}
+
+]

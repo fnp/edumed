@@ -13,4 +13,5 @@ def send_mail(subject, body, to):
     email = EmailMessage(subject, body,
         getattr(settings, 'WTEM_FROM', 'edukacjamedialna@nowoczesnapolska.org.pl'),
         to, headers = headers)
+    #print email.message()
     email.send(fail_silently = False)

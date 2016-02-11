@@ -1,6 +1,8 @@
 <div class="exercise exercise-wtem wybor" data-type="wybor" data-id="{{exercise.id}}">
 
-    <h3>Zadanie {{no}}</h3>
+{% if not exercise.continuation %}
+<h3>Zadanie {{exercise.id_show|default:exercise.id}} ({{ exercise.max_points }} pkt)</h3>  
+{% endif %}
 
     {% autoescape off %}
     <div class="description">
