@@ -1,183 +1,237 @@
 $px: .0625em;
 
-#main-promobox {
-    float: right;
-
-    border-radius: 15*$px;
-
-    background: #16a487;
-    padding: 1.5em 20*$px;
-    width: 220*$px - 2 * 20*$px;
-    height: 235*$px - 2 * 1.5em;
-
-    a {
-        display: block;
-    }
-    h1 {
-        color: white;
-        margin: 0;
-        text-transform: uppercase;
-        font-size: .9em;
-    }
-    h1:before {
-        content: url(/static/img/icons/announce_white.png);
-        margin-right: 1.2em;
-        vertical-align: top;
-    }
-    h2 {
-        color: white;
-        font-size: .9em;
-        margin: 1.1em 0 0 0;
-        font-weight: normal;
-        text-transform: uppercase;
-    }
-    p {
-        color: #363a3e;
-        font-size: .8em;
-        line-height: 1.15em;
-        margin: .3em 0;
-    }
+@mixin main-promobox-shape() {
+  background: #16a487;
+  padding: 0.75em 20*$px;
+  border-radius: 15*$px;
 }
 
+#main-promobox {
+  float: right;
+
+  width: 220*$px - 2 * 20*$px;
+  height: 235*$px - 2 * 1.5em;
+
+  a {
+    @include main-promobox-shape();
+
+    display: block;
+    margin-bottom: 1.4em;
+    width: 220*$px - 4 * 20*$px;
+    float: left;
+
+    &:first-of-type {
+      padding-top: 0;
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  h1 {
+    @include main-promobox-shape();
+
+    color: white;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: .9em;
+    width: 220*$px - 3 * 20*$px;
+    float: left;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  h1:before {
+    content: url(/static/img/icons/announce_white.png);
+    margin-right: 1.2em;
+    vertical-align: top;
+  }
+  h2 {
+    color: white;
+    font-size: .9em;
+    /*margin: 1.1em 0 0 0;*/
+    margin: 0;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+  p {
+    color: #363a3e;
+    font-size: .8em;
+    line-height: 1.15em;
+    margin: .3em 0;
+  }
+}
 
 #main-sections {
-    clear: both;
-    float: left;
-    margin-top: 1.2em;
-    width: 700*$px;
+  clear: both;
+  float: left;
+  margin-top: 1.2em;
+  width: 700*$px;
 
-    h1 {
-        font-size: .9em;
-        margin: 0 0 0 20*$px;
+  h1 {
+    font-size: .9em;
+    margin: 0 0 0 20*$px;
+    text-transform: uppercase;
+  }
+
+  ul {
+    margin: -3*$px 0 0 -20*$px;
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin-top: 20*$px;
+      margin-left: 20*$px;
+      float: left;
+      height: 90*$px;
+      border-radius: 15*$px;
+
+      a {
+        color: white;
         text-transform: uppercase;
-    }
+        display: block;
+        height: 80*$px;
+        display: table;
+        padding: 5px;
 
-    ul {
-        margin: -3*$px 0 0 -20*$px;
-        padding: 0;
-        list-style: none;
+        .in-box {
+          font-size: .9em;
+          height: 100%;
+          width: 100%;
+          display: table-cell;
+          vertical-align: middle;
+          border: 1px solid transparent;
+          border-radius: 10*$px;
+          padding: 0 16*$px;
 
-        li {
-            margin-top: 20*$px;
-            margin-left: 20*$px;
-            float: left;
-            height: 90*$px;
-            border-radius: 15*$px;
-
-            a {
-                color: white;
-                text-transform: uppercase;
-                display: block;
-                height: 80*$px;
-                display: table;
-                padding: 5px;
-
-                .in-box {
-                    font-size: .9em;
-                    height: 100%;
-                    width: 100%;
-                    display: table-cell;
-                    vertical-align: middle;
-                    border: 1px solid transparent;
-                    border-radius: 10*$px;
-                    padding: 0 16*$px;
-
-                    .name {
-                        display: block;
-                        font-size: 1.5em;
-                        line-height: 1em;
-                        margin-bottom: .2em;
-                    }
-                }
-            }
-            a:hover .in-box {
-                border: 1px solid white;
-            }
+          .name {
+            display: block;
+            font-size: 1.5em;
+            line-height: 1em;
+            margin-bottom: .2em;
+          }
         }
-        .box1 {background-color: #adaeaf;}
-        .box2 {background-color: #f8b323;}
-        .box3 {background-color: #16a487;}
-        .box4 {background-color: #5e6165;}
-        // .box5 {background-color: #16a487;}
-        .box5 {background-color: #f8b323;}
-        .box6 {background-color: #363a3e;}
-        .box7 {background-color: #adaeaf;}
-        .box8 {background-color: #ed7831;}
+      }
+      a:hover .in-box {
+        border: 1px solid white;
+      }
     }
+    .box1 {
+      background-color: #adaeaf;
+    }
+    .box2 {
+      background-color: #f8b323;
+    }
+    .box3 {
+      background-color: #16a487;
+    }
+    .box4 {
+      background-color: #5e6165;
+    }
+    // .box5 {background-color: #16a487;}
+    .box5 {
+      background-color: #f8b323;
+    }
+    .box6 {
+      background-color: #363a3e;
+    }
+    .box7 {
+      background-color: #adaeaf;
+    }
+    .box8 {
+      background-color: #ed7831;
+    }
+  }
 }
 
 #main-howto {
-    float: right;
-    margin-top: 1.2em;
-    width: 220*$px;
+  float: right;
+  margin-top: 1.2em;
+  width: 220*$px;
 
-    h1 {
-        font-size: .9em;
-        margin: 0 0 0 1.4em;
-        text-transform: uppercase;
+  h1 {
+    font-size: .9em;
+    margin: 0 0 0 1.4em;
+    text-transform: uppercase;
+  }
+
+  ul {
+    margin: 17*$px 0 17*$px 1.4em;
+
+    li {
+      font-size: .9em;
+      text-transform: uppercase;
+      line-height: 1.25em;
+    }
+    a:before {
+      height: 20*$px;
     }
 
-    ul {
-        margin: 17*$px 0 17*$px 1.4em;
-
-        li {
-            font-size: .9em;
-            text-transform: uppercase;
-            line-height: 1.25em;
-        }
-        a:before {
-            height: 20*$px;
-        }
-
-        .knowledge:before {content: url(/static/img/icons/knowledge_dark.png);}
-        .activity:before {content: url(/static/img/icons/activity_dark.png);}
-        .lesson-plan:before {content: url(/static/img/icons/lesson-plan_dark.png);}
-        .reference:before {content: url(/static/img/icons/reference_dark.png);}
-        .knowledge:hover:before {content: url(/static/img/icons/knowledge_orange.png);}
-        .activity:hover:before {content: url(/static/img/icons/activity_orange.png);}
-        .lesson-plan:hover:before {content: url(/static/img/icons/lesson-plan_orange.png);}
-        .reference:hover:before {content: url(/static/img/icons/reference_orange.png);}
-
+    .knowledge:before {
+      content: url(/static/img/icons/knowledge_dark.png);
     }
-    p {
-        margin: 0 0 30*$px 1.4em;
+    .activity:before {
+      content: url(/static/img/icons/activity_dark.png);
     }
+    .lesson-plan:before {
+      content: url(/static/img/icons/lesson-plan_dark.png);
+    }
+    .reference:before {
+      content: url(/static/img/icons/reference_dark.png);
+    }
+    .knowledge:hover:before {
+      content: url(/static/img/icons/knowledge_orange.png);
+    }
+    .activity:hover:before {
+      content: url(/static/img/icons/activity_orange.png);
+    }
+    .lesson-plan:hover:before {
+      content: url(/static/img/icons/lesson-plan_orange.png);
+    }
+    .reference:hover:before {
+      content: url(/static/img/icons/reference_orange.png);
+    }
+
+  }
+  p {
+    margin: 0 0 30*$px 1.4em;
+  }
 }
 
 #main-chosen {
-    clear: left;
-    float: left;
-    margin-top: 2em;
+  clear: left;
+  float: left;
+  margin-top: 2em;
 
-    h1 {
-        font-size: .9em;
-        margin: 0 0 1em 20*$px;
-        text-transform: uppercase;
-    }
+  h1 {
+    font-size: .9em;
+    margin: 0 0 1em 20*$px;
+    text-transform: uppercase;
+  }
 
-    .levelth {
-        margin-left: 20*$px;
-    }
+  .levelth {
+    margin-left: 20*$px;
+  }
 }
 
 #main-tools {
-    clear: both;
-    .main-tools-box {
-        float: left;
-        margin-top: 1.5em;
-        margin-right: 20*$px;
-        width: 280*$px;
+  clear: both;
+  .main-tools-box {
+    float: left;
+    margin-top: 1.5em;
+    margin-right: 20*$px;
+    width: 280*$px;
 
-        h1 {
-            margin: 0;
-            font-size: .9em;
-            text-transform: uppercase;
-        }
-
-        ul, ol {
-            margin: 1.1em 0 0 0;
-            font-size: .9em;
-            line-height: 1.15em;
-        }
+    h1 {
+      margin: 0;
+      font-size: .9em;
+      text-transform: uppercase;
     }
+
+    ul, ol {
+      margin: 1.1em 0 0 0;
+      font-size: .9em;
+      line-height: 1.15em;
+    }
+  }
 }

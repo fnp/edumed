@@ -1,17 +1,39 @@
 #main-promobox {
   float: right;
-  border-radius: 0.9375em;
-  background: #16a487;
-  padding: 1.5em 1.25em;
   width: 11.25em;
   height: 11.6875em; }
   #main-promobox a {
-    display: block; }
+    background: #16a487;
+    padding: 0.75em 1.25em;
+    border-radius: 0.9375em;
+    display: block;
+    margin-bottom: 1.4em;
+    width: 8.75em;
+    float: left;
+  }
+
+#main-promobox a:first-of-type {
+  padding-top: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+#main-promobox a:last-of-type {
+  margin-bottom: 0;
+}
   #main-promobox h1 {
+    background: #16a487;
+    padding: 0.75em 1.25em;
+    border-radius: 0.9375em;
     color: white;
     margin: 0;
     text-transform: uppercase;
-    font-size: .9em; }
+    font-size: .9em;
+    width: 10em;
+    float: left;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
   #main-promobox h1:before {
     content: url(/static/img/icons/announce_white.png);
     margin-right: 1.2em;
@@ -19,7 +41,8 @@
   #main-promobox h2 {
     color: white;
     font-size: .9em;
-    margin: 1.1em 0 0 0;
+    /*margin: 1.1em 0 0 0;*/
+    margin: 0;
     font-weight: normal;
     text-transform: uppercase; }
   #main-promobox p {
