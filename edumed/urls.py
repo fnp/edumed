@@ -43,6 +43,18 @@ if 'django_cas' in settings.INSTALLED_APPS:
 
 
 if settings.DEBUG:
+    from fnpdjango.utils.urls import i18n_patterns
+    from .views import mil_home_view, mil_contact_view, mil_knowledge_base_view
+    urlpatterns += i18n_patterns(
+        '',
+        url(r'^katalog/$', mil_home_view, name="mil_home"),
+        url(r'^wez-udzial/', include('comment.urls')),
+        url(r'^kontakt/$', mil_contact_view, name='mil_contact'),
+        url(r'^bazawiedzy/(?P<url>.*)$', mil_knowledge_base_view, name="knowledge_base"),
+    )
+
+
+if settings.DEBUG:
     urlpatterns += patterns('',
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT,
