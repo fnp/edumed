@@ -13,8 +13,8 @@
 {% endblock %}
 
 {% block top_navigation %}
-    <li><a class="menu-consultations" href="{% url "mil_home" %}">{% trans 'Consultations' %}</a></li>
-    <li><a class="menu-kompetencje" href="{% url "curriculum" %}">{% trans 'About Catalogue' %}</a></li>
+    <li><a class="menu-consultations" href="{% url "mil_home" %}">{% trans 'About Catalogue' %}</a></li>
+    <li><a class="menu-kompetencje" href="{% url "curriculum" %}">{% trans 'Competencies' %}</a></li>
     {% comment %}<li><a class="menu-takepart" href="{% url "comment_document_index" %}">{% trans 'Take Part' %}</a></li>{% endcomment %}
         {% if request.LANGUAGE_CODE == 'pl' %}
             <li><a class="menu-knowledgebase" href="{% url 'knowledge_base' url='' %}">Baza wiedzy</a></li>

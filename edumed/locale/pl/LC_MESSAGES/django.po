@@ -81,12 +81,12 @@ msgid "Forum search"
 msgstr "Szukaj na forum"
 
 #: templates/base_mil.html:9
-msgid "Consultations"
-msgstr "Konsultacje"
-
-#: templates/base_mil.html:10
 msgid "About Catalogue"
 msgstr "O katalogu"
+
+#: templates/base_mil.html:10
+msgid "Competencies"
+msgstr "Kompetencje"
 
 #: templates/base_mil.html:11
 msgid "Take Part"
