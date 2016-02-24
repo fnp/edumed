@@ -19,8 +19,8 @@ class WTEMForm(forms.ModelForm):
                 continue
             self.fields['attachment_for_' + str(exercise['id'])] = forms.FileField(required = False)
 
-    def save(self):
-        submission = super(WTEMForm, self).save()
+    def save(self, commit=True):
+        submission = super(WTEMForm, self).save(commit=commit)
         for name, file in self.files.items():
             m = re.match(r'attachment_for_(\d+)(?:__(.*))?', name)
             exercise_id = int(m.group(1))

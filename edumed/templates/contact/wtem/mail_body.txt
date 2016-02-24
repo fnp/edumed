@@ -9,11 +9,11 @@ ze zgłoszonych uczniów. W ten sposób zweryfikujemy, czy podane adresy
 są prawidłowe. 
 
 Wszystkie ogłoszenia związane z Turniejem będą publikowane na stronie
-http://edukacjamedialna.edu.pl/WTEM. W razie pytań lub wątpliwości
+{% url "info" "turniej/" %}. W razie pytań lub wątpliwości
 możesz kontaktować się z nami, pisząc na adres
 edukacjamedialna@nowoczesnapolska.org.pl.
 
 Z pozdrowieniami
 
 Zespół Edukacji Medialnej
-Fundacja Nowoczesna Polska
+fundacja Nowoczesna Polska

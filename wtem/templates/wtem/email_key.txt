@@ -1,13 +1,16 @@
-Droga Trenerko/Drogi Trenerze,
-
-Poniżej znajduje się wygenerowany specjalnie dla Ciebie link, pod którym będziesz mógł/mogła rozwiązać zadania egzaminacyjne TEM.
-Pamiętaj, że egzamin rozpocznie się dziś, 16 listopada o godz. 16.00. Na rozwiązanie zadań masz dokładnie tydzień.
-W razie dodatkowych pytań skontaktuj się z koordynatorką projektu, Dorotą Górecką dorotagorecka@nowoczesnapolska.org.pl.
+Poniżej znajduje się wygenerowany specjalnie dla Ciebie link, pod którym będziesz mógł/mogła rozwiązać zadania drugiego etapu Wielkiego Turnieju Edukacji Medialnej:
 
 https://edukacjamedialna.edu.pl{% url 'wtem_form' key=submission.key %}
+
+Drugi etap Turnieju odbędzie się w poniedziałek 29 lutego o godz. 17:00. Na rozwiązanie testu będziesz mieć ok. 90 min. Aby rozwiązać test, potrzebny Ci będzie komputer ze stabilnym łączem internetowym oraz zainstalowaną i zaktualizowaną przeglądarką.
+
+Każdy uczestnik otrzymał indywidualny link, pod którym może rozwiązywać zadania samodzielnie. Wszelkie działania mogące świadczyć o tym, że uczestnik nie rozwiązuje testu samodzielnie, np. wchodzenie na stronę z zadaniami przez więcej niż jedną osobę, będą przez nas śledzone i poskutkują dyskwalifikacją.
+
+W razie dodatkowych pytań możesz kontaktować się z nami pod adresem edukacjamedialna@nowoczesnapolska.org.pl lub numerem telefonu +48 22 465 15 35.
+
+Przypominamy, że główną nagrodą w Turnieju jest indeks Collegium Civitas na dowolny kierunek studiów licencjackich oraz zwolnienie z opłat czesnego przez rok.
 
 Powodzenia!
 
 Zespół Edukacji Medialnej
-Fundacja Nowoczesna Polska 
-
+fundacja Nowoczesna Polska

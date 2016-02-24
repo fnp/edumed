@@ -41,11 +41,15 @@
 
 </style>
 
-<h1>Trenerzy Edukacji Medialnej - egzamin certyfikujący</h1>
-<div class="wtem-fixed-info">Rozwiązania można wysyłać do 30 listopada, do godziny 16:00. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
+<h1>{% include "wtem/title.html" %}</h1>
+<div class="wtem-fixed-info">Rozwiązania można wysyłać do godziny {{end_time|default:"18:30"}}. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
+
+<p>Witamy w II etapie Wielkiego Turnieju Edukacji Medialnej. Na rozwiązanie zadań masz czas do godz. {{end_time|default:"18:30"}}. Test składa się z 21 pytań. Niektóre z nich mają charakter otwarty – pamiętaj, żeby zostawić sobie odpowiednią ilość czasu na ich rozwiązanie.</p>
+
+<p>Wszelkie aktualności dotyczące Turnieju możesz znaleźć na <a href="{% url "info" "turniej/" %}" target="_info">edukacjamedialna.edu.pl/info/turniej/</a>.</p>
 
 <p>Powodzenia!<br/>
-Zespół Edukacji Medialnej, Fundacja Nowoczesna Polska</p>
+Zespół Edukacji Medialnej, fundacja Nowoczesna Polska</p>
 
 <form method="post" enctype="multipart/form-data">
 
@@ -67,11 +71,11 @@ Zespół Edukacji Medialnej, Fundacja Nowoczesna Polska</p>
 <span class="wtem_spinner">
     <span>Wysyłanie rozwiązań w toku...</span>
     <img src="{% static 'wtem/spinner.gif' %}"/>
-    <span>Spróbuj jeszcze raz jeśli wysyłanie trwa dłużej niż kilka minut.</span>
+    <span>Spróbuj jeszcze raz, jeśli wysyłanie trwa dłużej niż kilka minut.</span>
 </span>
 </p>
 
-<div class="wtem-fixed-info" style="margin-top:15px;">Rozwiązania można wysyłać do 30 listopada, do godziny 16:00. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
+<div class="wtem-fixed-info" style="margin-top:15px;">Rozwiązania można wysyłać do godziny {{end_time|default:"18.00"}}. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
 
 </form>
 

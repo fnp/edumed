@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import sys
 from optparse import make_option
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.conf import settings
 from wtem.management.commands import send_mail
 from django.template.loader import render_to_string
@@ -16,12 +15,14 @@ class Command(BaseCommand):
     args = '<email_address1>, <email_address2>, ...'
 
     option_list = BaseCommand.option_list + (
-        make_option('--all',
+        make_option(
+            '--all',
             action='store_true',
             dest='all',
             default=False,
             help='Use all available submissions'),
-        make_option('--force',
+        make_option(
+            '--force',
             action='store_true',
             dest='force',
             default=False,
@@ -38,13 +39,13 @@ class Command(BaseCommand):
         skipped = 0
         failed = 0
 
-        query = Submission.objects.all()
+        submissions = Submission.objects.all()
         if not options['force']:
-            query = query.filter(key_sent = False)
+            submissions = submissions.filter(key_sent=False)
         if len(args):
-            query = query.filter(email__in = args)
+            submissions = submissions.filter(email__in=args)
 
-        for submission in query.all():
+        for submission in submissions:
             assert len(submission.key) == 30 or (settings.DEBUG and submission.key == DEBUG_KEY)
 
             try:
@@ -63,7 +64,6 @@ class Command(BaseCommand):
     def send_key(self, submission):
         self.stdout.write('>>> sending to ' + submission.email)
         send_mail(
-            subject = "Egzamin TEM - Twój link do zadań",
-            body = render_to_string('wtem/email_key.txt', dict(submission = submission)),
-            to = [submission.email]
-            )
+            subject="WTEM - Twój link do zadań",
+            body=render_to_string('wtem/email_key.txt', dict(submission=submission)),
+            to=[submission.email])

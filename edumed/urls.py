@@ -1,7 +1,7 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from .views import HomeView, AvatarlessProfileEditView
-
 
 
 urlpatterns = patterns('',
@@ -15,8 +15,7 @@ urlpatterns = patterns('',
     url(r'^forum/', include('forum.urls')),
     url(r'^forum/', include('pybb.urls', namespace='pybb')),
     url(r'^kompetencje/', include('curriculum.urls')),
-    #url(r'^wtem/', include('wtem.urls')),
-    url(r'^tem/', include('wtem.urls')),
+    url(r'^wtem/', include('wtem.urls')),
 )
 
 
