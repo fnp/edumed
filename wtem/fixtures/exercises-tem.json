@@ -1,0 +1,173 @@
+[
+
+{
+    "id": 1,
+    "type": "open",
+    "description": ["Zbieranie literatury, aby przygotować własne wystąpienie to trudne zadanie, ale dzięki zasobom internetu może obecnie odbywać się w dużej części on-line. Przygotuj wystąpienie, które może być częścią szkolenia z edukcji medialnej. Wymyśl temat, do którego należy zebrać literaturę . Opisz w 3-5 zdaniach, czego dotyczyć będzie referat i wskaż do jakiej grupy docelowej będzie skierowany. Zaproponuj 2 źródła informacji w Internecie, które mogą się okazać użyteczne (uzasadnij dokonany wybór dla każdego ze źródeł). Dla każdego ze źródeł informacji wskaż, jak będzie wyglądać instrukcja wyszukiwawcza (używane terminy, odpowiednie operatory logiczne, ew. maskowanie końcówek, itd.)."],
+    "fields": [
+        {"caption": "Temat", "rows": 3, "id": "temat"},
+        {"caption": "Krótki opis wystąpienia", "id": "opis"},
+        {"caption": "Grupa docelowa", "id": "grupa"},
+        {"caption": "Źródło 1 (link, uzasadnienie, instrukcja wyszukiwawcza)", "id": "zrodlo1"},
+        {"caption": "Źródło 2 (link, uzasadnienie, instrukcja wyszukiwawcza)", "id": "zrodlo2"}
+    ],
+    "max_points": 12
+},
+
+{
+    "id": 2,
+    "type": "open",
+    "description": [
+        "Wykorzystaj znalezione w zadaniu 1 materiały i zawarte w nich informacje, aby przygotować graficzną ilustrację treści przedstawianych w wystąpieniu (infografika lub prezentacja multimedilana - maks. długośc prezentacji 12 slajdów). Zwróć uwagę na logiczne i klarowne przedstawienie informacji - toku rozumowania. Zadbaj o kwestie właściwego wskazania źródeł prezentownych informacji. Postaraj się rozwiązaniami graficznymi estetycznie wzmocnić przekaz wystąpienia."
+    ],
+    "fields": [
+        {"caption": "Plik z prezentacją", "type": "file", "id": "plik"},
+        {"caption": "Ew. link do prezentacji", "rows": 1, "id": "link"}
+    ],
+    "max_points": 8
+},
+
+{
+    "id": 3,
+    "type": "open",
+    "description": [
+        "Uczestnik Twoich warsztatów zwrócił się do Ciebie z prośbą o poradę w stworzeniu strony internetowej. Od kilku lat interesuje się modą, myśli o założeniu własnego bloga. Zależy mu na tym, żeby już teraz, mimo młodego wieku, świadomie budować w sieci swój wizerunek eksperta. Prosi Cię o polecenie trzech blogów, którymi według Ciebie mógłby się inspirować.",
+        "Podaj trzy strony oraz uzasadnij jakimi kryteriami się kierowałaś/eś, wybierając każdą z nich. Stwórz również mini katalog zasad, którymi wg Ciebie powinien się kierować przy prowadzeniu własnego bloga (min. 5 zasad)."
+    ],
+    "fields": [
+        {"caption": "Link + uzasadnienie (1)", "id": "link1"},
+        {"caption": "Link + uzasadnienie (2)", "id": "link2"},
+        {"caption": "Link + uzasadnienie (3)", "id": "link3"},
+        {"caption": "Katalog zasad", "id": "zasady"}
+    ],
+    "max_points": 11
+},
+
+{
+    "id": 4,
+    "type": "open",
+    "description": [
+        "Na nasz wizerunek w internecie wpływa między innymi język, jakim się posługujemy oraz umiejętność dyskutowania. Młodzież często ma problemy z określeniem granicy pomiędzy wolnością słowa a hejtowaniem czy mową nienawiści. „Konstytucja przecież gwarantuje nam wolnośćwypowiedzi, więc…!” - często słyszysz to zdanie, pracując ze swoją grupą. Postanawiasz więc przygotować warsztaty dotyczące powyższego zagadnienia.",
+        "Znajdź w internecie po jednym przykładzie obrazującym: mowę nienawiści, hejt, wolność słowa. Uzasadnij swój wybór. Przykłady przedstaw w postaci zrzutów ekranu (pamiętaj o ich odpowiednim przygotowaniu: np. wymazaniu danych osobowych i/lub zdjęcia profilowego)."
+    ],
+    "fields": [
+        {"caption": "Zrzut ekranu (1)", "type": "file", "id": "zrzut1"},
+        {"caption": "Uzasadnienie (1)", "id": "uzasadnienie1"},
+        {"caption": "Zrzut ekranu (2)", "type": "file", "id": "zrzut2"},
+        {"caption": "Uzasadnienie (2)", "id": "uzasadnienie2"},
+        {"caption": "Zrzut ekranu (3)", "type": "file", "id": "zrzut3"},
+        {"caption": "Uzasadnienie (3)", "id": "uzasadnienie3"}
+    ],
+    "max_points": 9
+},
+
+{
+    "id": 5,
+    "type": "open",
+    "description": [
+        "Przeczytaj polecenie poniżej. Wykonanie proponowanego zadania w tej formie niesie ze sobą pewne ryzyka. Jakich informacji w nim brakuje? Na co powinieneś/powinnaś zwrócić uwagę uczestniczek i uczestników?",
+        "Zadanie: Zdjęcia w sieci. Poproś uczniów o przygotowanie na lekcję dwóch zdjęć: jednego które wykonają sami, na którym będzie widnieć ktoś spośród innych uczniów z ich szkoły oraz drugiego zdjęcia, które mogą wykonać sami lub znaleźć w sieci, na którym widnieje znana osoba np. aktor lub pisarz. Następnie na lekcji poproś aby wybrali najlepszy technicznie serwis, w którym umieszczą te zdjęcia i opublikowali je, wybierając dla nich jedną z licencji Creative Commons."
+    ],
+    "max_points": 10
+},  
+
+{
+    "id": 6,
+    "type": "open",
+    "description": [
+        "W sieci dostępnych jest wiele utworów, do których prawa autorskie już wygasły (znajdują się w domenie publicznej) i można z nich swobodnie korzystać. Niestety wiele z nich nie jest wcale jasno opisanych i często nie wiemy, jakie mamy do nich prawa.",
+        "Przygotowujesz zajęcia na temat domeny publicznej. Utwory, które chcesz pokazać uczniom, o których wiesz, że prawa do nich wygałsy, w sieci często są opisane znaczkiem „copyright” lub podobnymi infomacjami. Chcesz przygotować zajęcia tak, aby omówić ten problem i pomóc uczestnikom uniknąć pomyłki w przyszłości.",
+        "a) Znajdź w sieci przykład utworu np. obrazu lub fotografii, który znajduje się w domenie publicznej, ale nie we wszystkich, nawet oficjalnych źródłach, jest tak opisany. Podaj linki do dwóch różnych miejsc w sieci, gdzie ten sam utwór jest oznaczony jako domena publiczna i drugiego, gdzie brakuje takiego opisu lub utwór jest oznaczony jako chroniony."
+    ],
+    "fields": [
+        {"caption": "Utwór", "rows": 1, "id": "a-utwor"},
+        {"caption": "Link (1)", "rows": 1, "id": "a-link-1"},
+        {"caption": "Link (2)", "rows": 1, "id": "a-link-2"},
+        {"caption": "b) Podaj dwa przykłady tego, jak można oznaczyć utwór znajdujący się w domenie publicznej, które będziesz mógł/mogła zasugerować uczniom, aby łatwiej było im rozpoznać takie utwory.", "id": "b"},
+        {"caption": "c) Podaj co najmniej trzy przykłady serwisów w sieci, które możesz polecić uczniom, w których nie będą oni mieli problemów z rozpoznaniem praw do danego utworu.<br><br>Link(1)", "rows": 1, "id": "c-1"},
+        {"caption": "Link (2)", "rows": 1, "id": "c-link-2"},
+        {"caption": "Link (3)", "rows": 1, "id": "c-link-3"}
+    ],  
+    "max_points": 10
+},  
+
+{
+    "id": 7,
+    "type": "open",
+    "description": [
+        "Znajdź w Internecie zdjęcie lub krótki film, które odwoływać się będą do zjawiska cyberprzemocy. Na ich podstawie zbuduj dwa zadania dla uczniów i uczennic gimnazjum, z których:",
+        "a. Pierwsze będzie analizą tekstu kultury (np.karta pracy, ankieta).",
+        "b. Drugie będzie omawiać zjawisko (w powiązaniu z tekstem kultury)."
+    ],
+    "fields": [
+        {"caption": "Link do znalezionego materiału", "rows": 1, "id": "link"},
+        {"caption": "Plik (1)", "type": "file", "id": "plik1"},
+        {"caption": "Plik (2)", "type": "file", "id": "plik2"}
+    ],
+    "max_points": 12
+},
+
+{
+    "id": 8,
+    "type": "file_upload",
+    "description": [
+        "Zaproponuj ćwiczenie, które będzie doskonaliło umiejętność pracy w chmurze na poziomie liceum. Młodzież na wykonanie zadania ma 45 minut. W sali są komputery (przy komputerze siedzą dwie osoby), wszyscy mają dostęp do internetu w telefonach komórkowych."
+    ],
+    "max_points": 8
+},
+
+{
+    "id": "9a",
+    "id_show": 9,
+    "type": "edumed_wybor",
+    "description": [
+        "Przygotowujesz się do przeprowadzenia zajęć poświęconych cyfrowym narracjom i publikowaniu własnych materiałów multimedialnych w sieci.",
+        "a) Wybierz prawidłową definicję terminu „narracja cyfrowa”:"],
+    "options": [
+        {"id": 1, "text": "Narracja cyfrowa to zaszyfrowana opowieść tekstowa zapisana w formie kodu binarnego."},
+        {"id": 2, "text": "Narracja cyfrowa to opowieść (filmowa, złożona z kolekcji zdjęć lub nagrania radiowego) nadawana na żywo w internecie."},
+        {"id": 3, "text": "Narracja cyfrowa to nagrany za pomocą cyfrowej kamery wideo film, opublikowany następnie w serwisie YouTube lub Vimeo."},
+        {"id": 4, "text": "Narracja cyfrowa to opowieść przygotowana w formie filmu lub podcastu, składająca się - w zależności od ostatecznej formy ze zdjęć, wideo, nagranego głosu lub dźwięków otoczenia."}
+    ],
+    "answer": [4],
+    "points": 2,
+    "max_points": 11
+},
+
+{
+    "id": "9b",
+    "continuation": true,
+    "type": "open",
+    "description": ["b) Znajdź w internecie trzy przykłady cyfrowych narracji."],
+    "fields": [
+        {"caption": "Link (1)", "rows": 1, "id": "link-1"},
+        {"caption": "Link (2)", "rows": 1, "id": "link-2"},
+        {"caption": "Link (3)", "rows": 1, "id": "link-3"}
+    ],
+    "max_points": 3
+},
+
+{
+    "id": "9c",
+    "continuation": true,
+    "type": "open",
+    "description": ["c) Wskaż trzy źródła treści, które można legalnie wykorzystać do tworzenia własnych materiałów multimedialnych (np. własnego vloga, prezentacji multimedialnej, podcastu, wpisu blogowego). Przy każdym wskazanym źródle wyjaśnij w jednym zdaniu, dlaczego można z niego skorzystać."
+    ],
+    "fields": [
+        {"caption": "Źródło zdjęć i grafik (link + uzasadnienie)", "id": "link-1"},
+        {"caption": "Źródło materiałów dźwiękowych (link + uzasadnienie)", "id": "link-2"},
+        {"caption": "Źródło materiałów wideo (link + uzasadnienie)", "id": "link-3"}
+    ],
+    "max_points": 6
+},
+
+{
+    "id": 10,
+    "type": "file_upload",
+    "description": [
+        "Zaplanuj przygotowania do realizacji wspólnej narracji cyfrowej przez całą klasę na wybranym przez Ciebie etapie edukacyjnym. Wyznacz i uzasadnij kolejne kroki realizacji w formie harmonogramu.  Zaproponuj, jak podzielisz klasę na grupy i przydzielisz im konkretne zadania. Opisz, jaki będzie efekt końcowy i jakie należy Twoim zdaniem spełnić warunki, żeby współpraca pomiędzy grupami była możliwa i przyczyniła się do wysokiej jakości realizacji narracji cyfrowej. Wskaż i uzasadnij, jakich narzędzi użyłbyś/użyłabyś na kolejnych etapach realizacji projektu."
+    ],
+    "max_points": 9
+}
+
+]

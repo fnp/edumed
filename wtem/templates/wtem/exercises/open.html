@@ -1,9 +1,7 @@
 <div class="exercise-wtem" data-type="open" data-id="{{exercise.id}}">
 
-{% if not exercise.continuation %}
-<h3>Zadanie {{exercise.id_show|default:exercise.id}} ({{ exercise.max_points }} pkt)</h3>
-{% endif %}
-        
+    {% include "wtem/exercises/exercise_no.html" %}
+
     <div class="description">
         {% autoescape off %}
         {% for para in exercise.description %}
@@ -18,23 +16,22 @@
         {% for field in exercise.fields %}
             <div class="wtem-open-field">
                 <label class="wtem-caption">{{field.caption|safe}} <span class="label_suffix"></span></label>
-{% if field.type == 'file' %}
-
-    <div style="margin: 15px auto; width:300px;">
-        <input style="float: left;" type="file" name="attachment_for_{{exercise.id}}__{{field.id}}"/>
-        <div style="clear:both;"></div>
-    </div>
-
-{% else %}
-
-                <textarea style="width: 100%;" rows="{{field.rows|default:10}}" data-field-id="{{field.id}}" {% if field.max_length %}maxlength="{{field.max_length}}"{% endif %} {% if field.input_id %}id="{{field.input_id}}"{% endif %}></textarea>
-
-{% endif %}
-
+                {% if field.type == 'file' %}
+                    <div style="margin: 15px auto; width:300px;">
+                        <input style="float: left;" type="file" name="attachment_for_{{exercise.id}}__{{field.id}}"/>
+                        <div style="clear:both;"></div>
+                    </div>
+                {% else %}
+                    <textarea style="width: 100%;" rows="{{field.rows|default:10}}" data-field-id="{{field.id}}"
+                              {% if field.max_length %}maxlength="{{field.max_length}}"{% endif %}
+                              {% if field.input_id %}id="{{field.input_id}}"{% endif %}></textarea>
+                {% endif %}
             </div>
         {% endfor %}
     {% else %}
-        <textarea style="width: 100%; margin-top:10px;" rows="{{field.rows|default:10}}" {% if field.max_length %}maxlength="{{field.max_length}}"{% endif %} {% if field.input_id %}id="#{{field.input_id}}"{% endif %}></textarea>
+        <textarea style="width: 100%; margin-top:10px;" rows="{{field.rows|default:10}}"
+                  {% if field.max_length %}maxlength="{{field.max_length}}"{% endif %}
+                  {% if field.input_id %}id="#{{field.input_id}}"{% endif %}></textarea>
     {% endif %}
 
     {% if exercise.description_after %}
