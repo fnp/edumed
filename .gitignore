@@ -5,7 +5,6 @@ dev.sqlite
 *~
 *.orig
 *.log
-exercises.json
 
 # Compress output
 /static
