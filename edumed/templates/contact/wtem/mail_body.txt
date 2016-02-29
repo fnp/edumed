@@ -9,7 +9,7 @@ ze zgłoszonych uczniów. W ten sposób zweryfikujemy, czy podane adresy
 są prawidłowe. 
 
 Wszystkie ogłoszenia związane z Turniejem będą publikowane na stronie
-{% url "info" "turniej/" %}. W razie pytań lub wątpliwości
+https://edukacjamedialna.edu.pl{% url "info" "turniej/" %}. W razie pytań lub wątpliwości
 możesz kontaktować się z nami, pisząc na adres
 edukacjamedialna@nowoczesnapolska.org.pl.
 

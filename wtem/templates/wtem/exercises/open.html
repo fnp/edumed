@@ -12,6 +12,10 @@
         {% endautoescape %}
     </div>
 
+    {% if exercise.instruction %}
+        <span class="instruction">{{ exercise.instruction }}</span>
+    {% endif %}
+
     {% if exercise.fields %}
         {% for field in exercise.fields %}
             <div class="wtem-open-field">
