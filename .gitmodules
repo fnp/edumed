@@ -1,0 +1,3 @@
+[submodule "lib/librarian"]
+	path = lib/librarian
+	url = ssh://git@git.mdrn.pl/librarian.git
