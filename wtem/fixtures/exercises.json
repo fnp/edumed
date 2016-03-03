@@ -1,2 +1,327 @@
 [
+{
+    "id": 1,
+    "type": "edumed_przyporzadkuj",
+    "hide_default_instruction": 1,
+    "description": ["Które z fotografii umieścił(a)byś jako zdjęcie profilowe na portalu Facebook, które na LinkedIn, a które z nich na żadnej z tych stron?"],
+    "buckets": [
+        {"id": 1, "title": "Facebook"},
+        {"id": 2, "title": "Facebook"},
+        {"id": 3, "title": "Facebook"},
+        {"id": 4, "title": "Facebook"},
+        {"id": 5, "title": "LinkedIn"},
+        {"id": 6, "title": "LinkedIn"},
+        {"id": 7, "title": "LinkedIn"},
+        {"id": 8, "title": "LinkedIn"},
+        {"id": 9, "title": "nigdzie"},
+        {"id": 10, "title": "nigdzie"},
+        {"id": 11, "title": "nigdzie"},
+        {"id": 12, "title": "nigdzie"}
+    ],
+    "buckets_name": "strony",
+    "items": [
+        {"id": 1, "text": "1", "href_absolute": 1, "href": "https://www.flickr.com/photos/seeminglee/3942177783/", "img": "przyp2/1.jpg"},
+        {"id": 2, "text": "2", "href_absolute": 1, "href": "https://www.flickr.com/photos/davebloggs007/14573899083/","img": "przyp2/2.jpg"},
+        {"id": 3, "text": "3", "href_absolute": 1, "href": "https://www.flickr.com/photos/125303894@N06/14365668676/","img": "przyp2/3.jpg"},
+        {"id": 4, "text": "4", "href_absolute": 1, "href": "https://www.flickr.com/photos/gagilas/4224108472/","img": "przyp2/4.jpg"},
+        {"id": 5, "text": "5", "href_absolute": 1, "href": "https://www.flickr.com/photos/conejoazul/1455987854/", "img": "przyp2/5.jpg"}
+    ],
+    "items_name": "zdjęcia",
+    "items_instruction": "Przeciągnij numery zdjęć do odpowiednich szarych pól powyżej. W każdym szarym polu można umieścić tylko jeden numer.",
+    "items_inline": 1,
+    "description_after": ["<span class=\"wtem-disclaimer\">(Wszystkie użyte zdjęcia dostępne na CC BY lub CC BY-SA – źródła/autorzy dostępni po kliknięciu w obrazek)</span>"],
+    "points_per_hit": 0.5,
+    "answer_mode": "possible_buckets_for_item",
+    "answer": {
+        "1": [1,2,3,4],
+        "2": [1,2,3,4],
+        "3": [1,2,3,4,5,6,7,8],
+        "4": [9,10,11,12],
+        "5": [9,10,11,12]
+    }
+},
+
+{
+    "id": 2,
+    "type": "open",
+    "description": ["Twoja koleżanka wygrała ogólnopolski konkurs muzyczny, na którym zyskała uznanie jury i publiczności. Pogratuluj sukcesu w określonej poniżej formie:"],
+    "fields": [
+        {"id": 1, "caption": "1. tweet"},
+        {"id": 2, "caption": "2. wpis na tablicy na Facebooku"},
+        {"id": 3, "caption": "3. krótki mail do jej rodziców"}
+    ],
+    "max_points": 6
+},
+
+{
+    "id": 3,
+    "type": "open",
+    "description": ["Twoja mama jest początkującą użytkowniczką internetu. Prosi cię o rady, jak bezpiecznie korzystać z sieci. Przekaż jej co najmniej pięć wskazówek, które będzie mogła wykorzystać podczas codziennej pracy przy komputerze."],
+    "max_points": 5
+},
+
+{
+    "id": 4,
+    "type": "edumed_przyporzadkuj",
+    "description": ["Dopasuj nazwę wtyczki do jej działania:"],
+    "buckets": [
+        {"id": 1, "title": "AdBlock"},
+        {"id": 2, "title": "CookieMonster"},
+        {"id": 3, "title": "NoScript"},
+        {"id": 4, "title": "FlashBlock"}
+    ],
+    "buckets_name": "wtyczki",
+    "items": [
+        {"id": 1, "text": "1", "desc": "rozszerzenie do przeglądarek internetowych, automatycznie blokuje skrypty uruchamiane i zewnętrzne zasoby pobierane przez strony internetowe w przeglądarce."},
+        {"id": 2, "text": "2", "desc": "rozszerzenie do przeglądarek internetowych domyślnie blokujące wszystkie filmiki typu flash na stronach internetowych, pozwalające je uruchomić jednym kliknięciem myszki."},
+        {"id": 3, "text": "3", "desc": "rozszerzenie do przeglądarek internetowych, automatycznie blokuje i usuwa reklamy ze stron internetowych. Zwiększa wygodę i bezpieczeństwo korzystania z sieci. Ogranicza przepływ informacji o historii przeglądania."},
+        {"id": 4, "text": "4", "desc": "rozszerzenie do przeglądarek internetowych, pozwala bardzo dokładnie kontrolować ciasteczka i to, jakie strony (i na jak długo) mogą je ustawiać."}
+    ],
+    "items_name": "działania",
+    "answer": {
+        "1": [3],
+        "2": [4],
+        "3": [1],
+        "4": [2]
+    },
+    "points_per_hit": 0.5
+},
+
+{
+    "id": 5,
+    "type": "open",
+    "description": ["Podaj po jednym przykładzie serwisu (konkretne nazwy), który umożliwia podane niżej akcje."],
+    "instruction": "Każda strona może byc podana tylko jeden raz.",
+    "fields": [
+        {"id": 1, "caption": "budowanie i podtrzymywanie relacji", "rows": 1},
+        {"id": 2, "caption": "komunikację, dyskusję", "rows": 1},
+        {"id": 3, "caption": "bieżące informowanie i odnoszenie się do aktualności", "rows": 1},
+        {"id": 4, "caption": "prezentacja opinii i poglądów", "rows": 1},
+        {"id": 5, "caption": "współdzielenie plików", "rows": 1},
+        {"id": 6, "caption": "współtworzenie dokumentów", "rows": 1}
+    ],
+    "max_points": 3
+},
+
+{
+    "id": 6,
+    "type": "open",
+    "description": ["Wraz ze znajomymi 5 marca 2016 r. chcecie wybrać się w podróż z Zakopanego do Gdańska. Żadne z was nie posiada prawa jazdy i samochodu, nie chcecie korzystać z pomocy rodziców. Zależy wam, aby podróż trwała jak najkrócej i była jak najtańsza. Zaplanuj waszą podróż środkami transportu publicznego. Podaj godzinę rozpoczęcia i zakończenia podróży, szczegóły trasy i usług komunikacyjnych, z których skorzystacie.", "Podaj adres(y) stron(y), z których skorzystałeś/-aś."],
+    "max_points": 6
+},
+
+{
+    "id": 7,
+    "type": "open",
+    "description": ["Podaj cztery aspekty (obszary) prywatności człowieka."],
+    "max_points": 2
+},
+
+{
+    "id": 8,
+    "type": "open",
+    "description": ["Wyjaśnij krótko, na czym polega hakowanie w pozytywnym aspekcie tego zjawiska."],
+    "max_points": 5
+},
+
+{
+    "id": 9,
+    "type": "open",
+    "description": ["Wymień trzy przykłady projektów, które powstają i rozwijają się dzięki crowdsourcingowi."],
+    "max_points": 1.5
+},
+
+{
+    "id": 10,
+    "type": "edumed_przyporzadkuj",
+    "description": ["Dopasuj pojęcie do definicji:"],
+    "buckets": [
+        {"id": 1, "title": "dyskryminacja"},
+        {"id": 2, "title": "kryptoreklama"},
+        {"id": 3, "title": "cyberprzemoc"},
+        {"id": 4, "title": "koncesja"}
+    ],
+    "buckets_name": "pojęcia",
+    "items": [
+        {"id": 1, "text": "1", "desc": "stosowanie przemocy poprzez: prześladowanie, zastraszanie, nękanie,wyśmiewanie innych osób przy pomocy narzędzi typu elektronicznego,np. SMS, e-mail, witryny internetowe, fora dyskusyjne."},
+        {"id": 2, "text": "2", "desc": "traktowanie pewnych osób lub grup społecznych w inny sposób, zwykle mniej sprawiedliwy, niż innych osób i grup."},
+        {"id": 3, "text": "3", "desc": "zezwolenie,upoważnienie do prowadzenia jakiejś działalności."},
+        {"id": 4, "text": "4", "desc": "przekaz handlowy polegający na przedstawieniu lub nawiązywaniu do towaru, usługi lub ich znaku towarowego w taki sposób, że stanowią one element samej audycji."}
+    ],
+    "items_name": "definicje",
+    "answer": {
+        "1": [2],
+        "2": [4],
+        "3": [1],
+        "4": [3]
+    },
+    "points_per_hit": 0.5
+},
+
+{
+    "id": 11,
+    "type": "open",
+    "description": ["Istnieje dwanaście wytycznych dotyczących dostępności treści internetowych (WCAG). Każdą wytyczną przyporządkuj do jednej z czterech zasad."],
+    "instruction": "Wpisz litery do odpowiednich pól tekstowych.",
+    "fields": [
+        {"id": 1, "caption": "zrozumiałość", "rows": 1},
+        {"id": 2, "caption": "brak przeszkód w obsłudze", "rows": 1},
+        {"id": 3, "caption": "postrzegalność zmysłowa", "rows": 1},
+        {"id": 4, "caption": "solidne wykonanie", "rows": 1}
+    ],
+    "description_after": [
+        "a) teksty są czytelne i łatwe w odbiorze",
+        "b) treść ma swój odpowiednik: obrazom i filmom towarzyszą opisy tekstowe, głosowe,napisy, tłumaczenia na język migowy",
+        "c) treść jest eksponowana za pomocą najnowszych technologii uwzględniających wytyczne dotyczące dostępności",
+        "d) prezentacja treści (kształt graficzny, styl) nie wpływa na odbiór",
+        "e) strona jest możliwa w obsłudze przy użyciu klawiatury",
+        "f) do treści można dotrzeć różnymi drogami (urządzenia, oprogramowanie)",
+        "g) interfejs jest intuicyjny i logicznie zbudowany",
+        "h) trudno popełnić błąd w obsłudze interfejsu",
+        "i) nie ma limitów czasowych w korzystaniu z serwisu",
+        "j) informacje pierwszoplanowe nie zlewają się z tłem",
+        "k) sekcje na stronie mają jednoznaczne tytuły i są logicznie podzielone",
+        "l) można pominąć szkodliwe dla wzroku i słuchu komunikaty"
+    ],
+    "max_points": 6
+},
+
+{
+    "id": 12,
+    "type": "edumed_wybor",
+    "description": ["Na co NIE pozwala ci dozwolony użytek?"],
+    "options": [
+        {"id": 1, "text": "na sprzedawanie kopii płyt z muzyką twojego ulubionego zespołu"},
+        {"id": 2, "text": "na oglądanie filmu pobranego z internetu"},
+        {"id": 3, "text": "na nagranie serialu na płytę i obejrzenie go z rodziną"},
+        {"id": 4, "text": "żadna z powyższych odpowiedzi nie jest prawidłowa"}
+    ],
+    "answer": [1],
+    "points": 1
+},
+
+{
+    "id": 13,
+    "type": "edumed_wybor",
+    "description": ["Chcesz opublikować swoje opowiadanie na wolnej licencji. Zezwalasz na jego kopiowanie, zmienianie, remiksowanie, rozprowadzanie i wykonanie, ale pod warunkiem, że ewentualne utwory zależne -- np. tłumaczenia -- będą przez ich autorów udostępnione na takiej samej licencji. Którą z licencji wybierzesz?"],
+    "options": [
+        {"id": 1, "text": "CC BY-SA"},
+        {"id": 2, "text": "CC BY-NC"},
+        {"id": 3, "text": "CC BY"},
+        {"id": 4, "text": "żadną z wymienionych"}
+    ],
+    "answer": [1],
+    "points": 1
+},
+
+{
+    "id": 14,
+    "type": "edumed_wybor",
+    "description": ["Do nawyków higieny informacyjnej należą:"],
+    "options": [
+        {"id": 1, "text": "tworzenie kopii zapasowych informacji, na których nam zależy"},
+        {"id": 2, "text": "odczytywanie informacji na specjalnym czytniku"},
+        {"id": 3, "text": "robienie przerw co 20 minut, aby uporządkować informacje"},
+        {"id": 4, "text": "ograniczenie korzystania z „usług w chmurze”"},
+        {"id": 5, "text": "szyfrowanie danych na dysku twardym"},
+        {"id": 6, "text": "korzystanie z technologii anonimizujących"},
+        {"id": 7, "text": "mycie rąk po skorzystaniu z komputera"}
+    ],
+    "answer": [1,4,5,6],
+    "answer_mode": "all_or_nothing",
+    "points": 2
+},
+
+{
+    "id": 15,
+    "type": "edumed_przyporzadkuj",
+    "description": ["Dopasuj rodzaj formatu do jego cech charakterystycznych."],
+    "buckets": [
+        {"id": 1, "title": "JPG"},
+        {"id": 2, "title": "PDF"},
+        {"id": 3, "title": "OpenDocument"},
+        {"id": 4, "title": "PNG"},
+        {"id": 5, "title": "EPUB"}
+    ],
+    "buckets_name": "formaty",
+    "items": [
+        {"id": 1, "text": "1", "desc": "format plików służący do prezentacji, przenoszenia i drukowania treści tekstowo-graficznych. Jego zastosowanie zapewnia to, że po otwarciu w innym programie nie zmieni się to, jak wyglądają poszczególne strony."},
+        {"id": 2, "text": "2", "desc": "format obrazów rastrowych (bitmap), najlepiej sprawdzający się przy zapisie fotografii oraz obrazów naturalnych (pejzaży, portretów itp.), w których barwy płynnie przechodzą i w których nie ma wiele ostrych krawędzi czy drobnych detali. Przy zapisie w tym formacie dokonywana jest stratna kompresja, co sprawia, że część informacji zostaje bezpowrotnie utracona."},
+        {"id": 3, "text": "3", "desc": "otwarty standard,oparty na języku XML, służący do publikowania elektronicznych książek. Tworzone w nim książki nie mają podziału na strony,choć istnieje możliwość wyświetlania na marginesie numeru strony pochodzącego z książki drukowanej."},
+        {"id": 4, "text": "4", "desc": "format plików pakietów biurowych, będący otwartym standardem ISO (Międzynarodowej Organizacji Normalizacyjnej), podstawowy dla wolnych programów do edycji tekstu."},
+        {"id": 5, "text": "5", "desc": "rastrowy format plików graficznych, korzystający z kompresji bezstratnej."}
+    ],
+    "items_name": "definicje",
+    "answer": {
+        "1": [2],
+        "2": [1],
+        "3": [4],
+        "4": [5],
+        "5": [3]
+    },
+    "points_per_hit": 0.5
+},
+
+{
+    "id": 16,
+    "type": "open",
+    "description": ["Podaj min. 3 objawy obecności wirusa na twoim komputerze."],
+    "max_points": 3
+},
+
+{
+    "id": 17,
+    "type": "open",
+    "description": ["Wyszukaj w odpowiednim katalogu Biblioteki Narodowej artykuły z polskich czasopism opublikowane w 2010 roku, które dotyczyły edukacji medialnej. Podaj liczbę tekstów oraz 3 tytuły czasopism, w których je opublikowano."],
+    "max_points": 6
+},
+
+{
+    "id": 18,
+    "type": "open",
+    "description": ["Podaj co najmniej 3 działania, które możesz podjąć, aby wyjść z bańki filtrującej."],
+    "max_points": 3
+},
+
+{
+    "id": 19,
+    "type": "open",
+    "description": ["Zauważyłeś/-aś, że twój kolega coraz rzadziej wychodzi z domu i ma coraz gorsze wyniki w nauce, za to ciągle siedzi przed komputerem. Domyślasz się, że jest uzależniony od internetu. Udziel mu co najmniej trzech rad, jak uwolnić się od tego nałogu."],
+    "max_points": 3
+},
+
+{
+    "id": 20,
+    "type": "edumed_wybor",
+    "description": ["Z poniższej listy wybierz czynności i rzeczy, na podstawie których stosowane jest profilowanie w sieci."],
+    "options": [
+        {"id": 1, "text": "przeglądane strony internetowe"},
+        {"id": 2, "text": "słowa wpisywane w wyszukiwarce internetowej"},
+        {"id": 3, "text": "informacje o sobie publikowane w sieci (np. wiek, płeć, zainteresowania)"},
+        {"id": 4, "text": "odpowiedzi na internetowe ankiety"},
+        {"id": 5, "text": "„polubienia” w serwisie społecznościowym"},
+        {"id": 6, "text": "informacje o geolokalizacji"},
+        {"id": 7, "text": "przedmioty oglądane w sklepach internetowych"},
+        {"id": 8, "text": "przedmioty kupione w sklepach internetowych"}
+    ],
+    "answer": [1,2,3,4,5,6,7,8],
+    "answer_mode": "all_or_nothing",
+    "points": 2
+},
+
+{
+    "id": 21,
+    "type": "open",
+    "description": ["Chcesz usunąć profil na Facebooku, ale nie chciał(a)byś utracić danych i treści, które udostępniałeś. Jak je zdobyć? Jakie dane ocaleją (wymień 3 rodzaje)?"],
+    "max_points": 2.5
+},
+
+{
+    "id": 22,
+    "type": "open",
+    "description": ["Znajdź informacje o 2 organizacjach pozarządowych, które działają w Twojej okolicy. Komu pomagają?",
+        "W jaki sposób dotarłeś/aś do tej informacji? Wklej adres strony, z której skorzystałeś/aś."],
+    "max_points": 3
+}
+
 ]
