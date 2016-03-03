@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django import template
 
 register = template.Library()
@@ -11,6 +12,7 @@ def csv_header(exercise_id, submissionSet):
     if examiners_string:
         toret += ',' + examiners_string
     return toret
+
 
 @register.simple_tag
 def csv_row_fragment(exercise_id, submission, submissionSet):

@@ -1,9 +1,8 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
-from django.forms import ModelForm
 from .models import Contact
 from django.utils.translation import ugettext as _
 from .forms import contact_forms, admin_list_width
-from django.template import Template
 from django.utils.safestring import mark_safe
 from django.conf.urls import patterns, url
 from django.http import HttpResponse, Http404
@@ -15,7 +14,7 @@ class ContactAdminMeta(admin.ModelAdmin.__class__):
     def __getattr__(cls, name):
         if name.startswith('admin_list_'):
             return lambda self: ""
-        raise AttributeError, name
+        raise AttributeError(name)
 
 
 class ContactAdmin(admin.ModelAdmin):
@@ -27,10 +26,11 @@ class ContactAdmin(admin.ModelAdmin):
     readonly_fields = ['form_tag', 'created_at', 'contact', 'ip']
     list_filter = ['form_tag']
 
-    def admin_list(self, obj, nr):
+    @staticmethod
+    def admin_list(obj, nr):
         try:
             field_name = contact_forms[obj.form_tag].admin_list[nr]
-        except BaseException, e:
+        except BaseException:
             return ''
         else:
             return Contact.pretty_print(obj.body.get(field_name, ''), for_html=True)
@@ -39,9 +39,9 @@ class ContactAdmin(admin.ModelAdmin):
         if name.startswith('admin_list_'):
             nr = int(name[len('admin_list_'):])
             return lambda obj: self.admin_list(obj, nr)
-        raise AttributeError, name
+        raise AttributeError(name)
 
-    def change_view(self, request, object_id, extra_context=None):
+    def change_view(self, request, object_id, from_url='', extra_context=None):
         if object_id:
             try:
                 instance = Contact.objects.get(pk=object_id)
@@ -91,21 +91,25 @@ class ContactAdmin(admin.ModelAdmin):
                     f = (lambda v: lambda self: v)(link)
                     f.short_description = orig_fields[k].label if k in orig_fields else _(k)
                     setattr(self, "body__%s" % k, f)
-        return super(ContactAdmin, self).change_view(request, object_id,
-            extra_context=extra_context)
+        return super(ContactAdmin, self).change_view(
+            request, object_id, from_url=from_url, extra_context=extra_context)
 
     def changelist_view(self, request, extra_context=None):
         context = dict()
         if 'form_tag' in request.GET:
             form = contact_forms.get(request.GET['form_tag'])
-            context['extract_types'] = [dict(slug = 'all', label = _('all'))] + [dict(slug = 'contacts', label = _('contacts'))]
+            context['extract_types'] = [
+                {'slug': 'all', 'label': _('all')},
+                {'slug': 'contacts', 'label': _('contacts')}]
             context['extract_types'] += [type for type in getattr(form, 'extract_types', [])]
-        return super(ContactAdmin, self).changelist_view(request, extra_context = context)
+        return super(ContactAdmin, self).changelist_view(request, extra_context=context)
 
     def get_urls(self):
-        urls = super(ContactAdmin, self).get_urls()
-        return patterns('',
-            url(r'^extract/(?P<form_tag>[\w-]+)/(?P<extract_type_slug>[\w-]+)/$', self.admin_site.admin_view(extract_view), name='contact_extract')
+        # urls = super(ContactAdmin, self).get_urls()
+        return patterns(
+            '',
+            url(r'^extract/(?P<form_tag>[\w-]+)/(?P<extract_type_slug>[\w-]+)/$',
+                self.admin_site.admin_view(extract_view), name='contact_extract')
         ) + super(ContactAdmin, self).get_urls()
 
 
@@ -116,13 +120,13 @@ def extract_view(request, form_tag, extract_type_slug):
     if form is None and extract_type_slug not in ('contacts', 'all'):
         raise Http404
 
-    q = Contact.objects.filter(form_tag = form_tag)
+    q = Contact.objects.filter(form_tag=form_tag)
     at_year = request.GET.get('created_at__year')
     at_month = request.GET.get('created_at__month')
     if at_year:
-        q = q.filter(created_at__year = at_year)
+        q = q.filter(created_at__year=at_year)
         if at_month:
-            q = q.filter(created_at__month = at_month)
+            q = q.filter(created_at__month=at_month)
 
     # Segregate contacts by body key sets
     for contact in q.all():
@@ -141,7 +145,7 @@ def extract_view(request, form_tag, extract_type_slug):
             if extract_type_slug == 'contacts':
                 records = [dict(contact=contact.contact)]
             elif extract_type_slug == 'all':
-                records = [dict(contact = contact.contact, **contact.body)]
+                records = [dict(contact=contact.contact, **contact.body)]
             else:
                 records = form.get_extract_records(keys, contact, extract_type_slug)
 
@@ -153,7 +157,7 @@ def extract_view(request, form_tag, extract_type_slug):
                 toret += u','.join([record[key] for key in keys]) + '\n'
         toret += '\n\n'
 
-    response = HttpResponse(toret, content_type = 'text/csv')
+    response = HttpResponse(toret, content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="kontakt.csv"'
     return response
 

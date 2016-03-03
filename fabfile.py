@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from fnpdjango.deploy import *
 
 env.project_name = 'edumed'

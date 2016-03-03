@@ -1,5 +1,9 @@
+# -*- coding: utf-8 -*-
+
+
 def csv_escape(string):
     return '"' + string.replace('\r\n', ' ').replace('\n', ' ').replace('"', '\"') + '"'
+
 
 def csv_prepare(obj):
     to_escape = obj

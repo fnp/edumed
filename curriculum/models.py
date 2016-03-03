@@ -28,7 +28,7 @@ class Section(models.Model):
         return "%s?s=%d&level=%s&d=1" % (reverse("curriculum"), self.pk, level.slug)
 
 add_translatable(Section, {
-    'name': models.CharField(_('name'), max_length=255, default = '')
+    'name': models.CharField(_('name'), max_length=255, default='')
 })
 
 
@@ -65,7 +65,7 @@ class Competence(models.Model):
             return cls.objects.get(**{lookup_field_name: parts[1].strip()})
 
 add_translatable(Competence, {
-    'name': models.CharField(_('name'), max_length=255, default = '')
+    'name': models.CharField(_('name'), max_length=255, default='')
 })
 
 
@@ -73,9 +73,11 @@ class Level(models.Model):
     slug = models.CharField(_('slug'), max_length=255, unique=True)
     meta_name = models.CharField(_('meta name'), max_length=255, unique=True)
     order = models.IntegerField(_('order'))
-    package = models.FileField(upload_to=lambda i, f: "curriculum/pack/edukacjamedialna_%s.zip" % i.slug,
+    package = models.FileField(
+        upload_to=lambda i, f: "curriculum/pack/edukacjamedialna_%s.zip" % i.slug,
         null=True, blank=True, max_length=255, storage=bofh_storage)
-    student_package = models.FileField(upload_to=lambda i, f: "curriculum/pack/edukacjamedialna_%s_uczen.zip" % i.slug,
+    student_package = models.FileField(
+        upload_to=lambda i, f: "curriculum/pack/edukacjamedialna_%s_uczen.zip" % i.slug,
         null=True, blank=True, max_length=255, storage=bofh_storage)
 
     class Meta:
@@ -127,10 +129,9 @@ class Level(models.Model):
         self.build_package(True)
 
 
-
 add_translatable(Level, {
-    'name': models.CharField(_('name'), max_length=255, default = ''),
-    'group': models.CharField(_('group'), max_length=255, default = '')
+    'name': models.CharField(_('name'), max_length=255, default=''),
+    'group': models.CharField(_('group'), max_length=255, default='')
 })
 
 
@@ -150,7 +151,7 @@ class CompetenceLevel(models.Model):
         return "%s?c=%d&level=%s&d=1" % (reverse("curriculum"), self.competence.pk, self.level.slug)
 
 add_translatable(CompetenceLevel, {
-    'description': models.TextField(_('description'), default = '')
+    'description': models.TextField(_('description'), default='')
 })
 
 
@@ -199,8 +200,7 @@ class Curriculum(models.Model):
     @classmethod
     def from_text(cls, identifier, title):
         m = re.match(r"^\d+/(?P<level>[^/]+)/(?P<course>[^/]+)/"
-                     "(?P<type>(?:%s))[^/]+(?P<roz>/roz)?" %
-                        "|".join(cls.TYPES), identifier)
+                     r"(?P<type>(?:%s))[^/]+(?P<roz>/roz)?" % "|".join(cls.TYPES), identifier)
         assert m is not None, "Curriculum identifier doesn't match template."
         level, created = CurriculumLevel.objects.get_or_create(
                                        title=m.group('level'))
@@ -225,4 +225,3 @@ class Curriculum(models.Model):
         curr.type = type_
         curr.save()
         return curr
-

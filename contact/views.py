@@ -1,7 +1,7 @@
+# -*- coding: utf-8 -*-
 from django.contrib.auth.decorators import permission_required
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils.translation import ugettext_lazy as _
 from fnpdjango.utils.views import serve_file
 from .forms import contact_forms
 from .models import Attachment
@@ -35,10 +35,10 @@ def form(request, form_tag, force_enabled=False):
         formsets = []
         for formset in getattr(form, 'form_formsets', ()):
             formsets.append(formset())
-    return render(request,
-                ['contact/%s/form.html' % form_tag, 'contact/form.html'],
-                {'form': form, 'formsets': formsets}
-            )
+    return render(
+        request, ['contact/%s/form.html' % form_tag, 'contact/form.html'],
+        {'form': form, 'formsets': formsets}
+    )
 
 
 def thanks(request, form_tag):
@@ -47,10 +47,9 @@ def thanks(request, form_tag):
     except KeyError:
         raise Http404
 
-    return render(request,
-                ['contact/%s/thanks.html' % form_tag, 'contact/thanks.html'],
-                dict(base_template = getattr(form_class, 'base_template', None))
-            )
+    return render(
+        request, ['contact/%s/thanks.html' % form_tag, 'contact/thanks.html'],
+        {'base_template': getattr(form_class, 'base_template', None)})
 
 
 @permission_required('contact.change_attachment')

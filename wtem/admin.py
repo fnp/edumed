@@ -1,30 +1,29 @@
 # -*- coding: utf-8 -*-
+import json
 
-import os
-
-from django.contrib import admin
 from django import forms
-from django.utils import simplejson
-from django.utils.safestring import mark_safe
-from django.core.urlresolvers import reverse
 from django.conf.urls import url, patterns
-from django.shortcuts import render
+from django.contrib import admin
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.template.loader import render_to_string
-from .models import Submission, Assignment, Attachment, exercises
+from django.utils.safestring import mark_safe
+
 from .middleware import get_current_request
+from .models import Submission, Assignment, Attachment, exercises
 
 
 def get_user_exercises(user):
     try:
-        assignment = Assignment.objects.get(user = user)
+        assignment = Assignment.objects.get(user=user)
         return [e for e in exercises if e['id'] in assignment.exercises]
     except Assignment.DoesNotExist:
         return []
 
 
 readonly_fields = ('submitted_by', 'first_name', 'last_name', 'email', 'key', 'key_sent')
+
 
 class AttachmentWidget(forms.Widget):
     def render(self, name, value, *args, **kwargs):
@@ -33,6 +32,7 @@ class AttachmentWidget(forms.Widget):
         else:
             a_tag = 'brak'
         return mark_safe(('<input type="hidden" name="%s" value="%s"/>' % (name, value)) + a_tag)
+
 
 class TextareaWithLinks(forms.Textarea):
     def render(self, name, value, *args, **kwargs):
@@ -44,6 +44,7 @@ class TextareaWithLinks(forms.Textarea):
             moreoutput += u"<br>%s: %s" % (k, AttachmentWidget().render(n, v))
         output += mark_safe(moreoutput + "</div>")
         return output
+
 
 class SubmissionFormBase(forms.ModelForm):
     class Meta:
@@ -68,7 +69,7 @@ def get_open_answer(answers, exercise):
         else:
             toret = answer
     if exercise['type'] == 'edumed_wybor':
-        ok = set(map(str, exercise['answer'])) == set(map(str,answer['closed_part']))
+        ok = set(map(str, exercise['answer'])) == set(map(str, answer['closed_part']))
         toret = u'Czesc testowa [%s]:\n' % ('poprawna' if ok else 'niepoprawna')
         if len(answer['closed_part']):
             for selected in answer['closed_part']:
@@ -84,8 +85,8 @@ def get_open_answer(answers, exercise):
 
 def get_form(request, submission):
     fields = dict()
-    if submission.answers:
-        answers = simplejson.loads(submission.answers)
+    if submission and submission.answers:
+        answers = json.loads(submission.answers)
         user_exercises = get_user_exercises(request.user)
         for exercise in exercises:
             if exercise not in user_exercises:
@@ -96,14 +97,14 @@ def get_form(request, submission):
             if exercise['type'] in ('open', 'file_upload') or exercise.get('open_part', None):
                 if exercise['type'] == 'file_upload':
                     try:
-                        attachment = Attachment.objects.get(submission = submission, exercise_id = exercise['id'])
+                        attachment = Attachment.objects.get(submission=submission, exercise_id=exercise['id'])
                     except Attachment.DoesNotExist:
                         attachment = None
                     widget = AttachmentWidget
                     initial = attachment.file.url if attachment else None
                 else:
-                    #widget = forms.Textarea(attrs={'readonly':True})
-                    widget = TextareaWithLinks(attrs={'readonly':True})
+                    # widget = forms.Textarea(attrs={'readonly':True})
+                    widget = TextareaWithLinks(attrs={'readonly': True})
                     links = []
                     qfiles = []
                     for qfield in exercise.get('fields', []):
@@ -121,21 +122,21 @@ def get_form(request, submission):
                     initial = get_open_answer(answers, exercise), links
 
                 fields[answer_field_name] = forms.CharField(
-                        widget = widget,
-                        initial = initial,
-                        label = u'Rozwiązanie zadania %s' % exercise['id'],
-                        required = False
+                    widget=widget,
+                    initial=initial,
+                    label=u'Rozwiązanie zadania %s' % exercise['id'],
+                    required=False
                 )
 
-                choices = [(None, '-')] # + [(i,i) for i in range(exercise['max_points']+1)],
+                choices = [(None, '-')]  # + [(i,i) for i in range(exercise['max_points']+1)],
                 i = 0
                 while i <= exercise['max_points']:
                     choices.append((i, i))
                     i += .5
                 fields[mark_field_name] = forms.ChoiceField(
-                    choices = choices,
-                    initial = submission.get_mark(user_id = request.user.id, exercise_id = exercise['id']),
-                    label = u'Twoja ocena zadania %s' % exercise['id']
+                    choices=choices,
+                    initial=submission.get_mark(user_id=request.user.id, exercise_id=exercise['id']),
+                    label=u'Twoja ocena zadania %s' % exercise['id']
                 )
 
     if not request.user.is_superuser:
@@ -151,27 +152,30 @@ class SubmissionAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'todo', 'examiners_repr')
     readonly_fields = readonly_fields
 
-    def get_form(self, request, obj, **kwargs):
+    def get_form(self, request, obj=None, **kwargs):
         return get_form(request, obj)
-    
-    def submitted_by(self, instance):
+
+    @staticmethod
+    def submitted_by(instance):
         if instance.contact:
             return '<a href="%s">%s</a>' % (
-                reverse('admin:contact_contact_change', args = [instance.contact.id]),
+                reverse('admin:contact_contact_change', args=[instance.contact.id]),
                 instance.contact.contact
             )
         return '-'
     submitted_by.allow_tags = True
     submitted_by.short_description = "Zgłoszony/a przez"
 
-    def todo(self, submission):
+    @staticmethod
+    def todo(submission):
         user = get_current_request().user
         user_exercises = get_user_exercises(user)
         user_marks = submission.marks.get(str(user.id), {})
         return ','.join([str(e['id']) for e in user_exercises if str(e['id']) not in user_marks.keys()])
     todo.short_description = 'Twoje nieocenione zadania'
 
-    def examiners_repr(self, submission):
+    @staticmethod
+    def examiners_repr(submission):
         return ', '.join([u.username for u in submission.examiners.all()])
     examiners_repr.short_description = 'Przypisani do zgłoszenia'
 
@@ -181,32 +185,33 @@ class SubmissionAdmin(admin.ModelAdmin):
                 parts = name.split('_')
                 exercise_id = parts[1]
                 user_id = parts[3]
-                submission.set_mark(user_id = user_id, exercise_id = exercise_id, mark = value)
+                submission.set_mark(user_id=user_id, exercise_id=exercise_id, mark=value)
         submission.save()
 
     def changelist_view(self, request, extra_context=None):
-        context = dict(examiners = [])
+        context = dict(examiners=[])
         assignments = Assignment.objects.all()
         if not request.user.is_superuser:
-            assignments = assignments.filter(user = request.user)
+            assignments = assignments.filter(user=request.user)
         for assignment in assignments:
-            examiner = dict(name = assignment.user.username, todo = 0)
-            for submission in Submission.objects.filter(examiners = assignment.user):
+            examiner = dict(name=assignment.user.username, todo=0)
+            for submission in Submission.objects.filter(examiners=assignment.user):
                 for exercise_id in assignment.exercises:
-                    if submission.get_mark(user_id = assignment.user.id, exercise_id = exercise_id) is None:
+                    if submission.get_mark(user_id=assignment.user.id, exercise_id=exercise_id) is None:
                         examiner['todo'] += 1
             context['examiners'].append(examiner)
-        return super(SubmissionAdmin, self).changelist_view(request, extra_context = context)
+        return super(SubmissionAdmin, self).changelist_view(request, extra_context=context)
 
     def queryset(self, request):
         qs = super(SubmissionAdmin, self).queryset(request)
         if not request.user.is_superuser:
-            qs = qs.filter(examiners = request.user)
+            qs = qs.filter(examiners=request.user)
         return qs
 
     def get_urls(self):
         urls = super(SubmissionAdmin, self).get_urls()
-        return patterns('',
+        return patterns(
+            '',
             url(r'^report/$', self.admin_site.admin_view(report_view), name='wtem_admin_report')
         ) + super(SubmissionAdmin, self).get_urls()
 
@@ -214,23 +219,22 @@ class SubmissionAdmin(admin.ModelAdmin):
 class SubmissionsSet:
     def __init__(self, submissions):
         self.submissions = submissions
-        self.examiners_by_exercise = dict()
+        self.examiners_by_exercise = {}
         for submission in submissions:
             for user_id, marks in submission.marks.items():
                 user = User.objects.get(pk=user_id)
                 for exercise_id in marks.keys():
                     examiners = self.examiners_by_exercise.setdefault(exercise_id, [])
-                    if not user in examiners:
+                    if user not in examiners:
                         examiners.append(user)
 
+
 def report_view(request):
-    submissions = sorted(Submission.objects.all(), key = lambda s: -s.final_result)
-    toret = render_to_string('wtem/admin_report.csv', dict(
-        submissionsSet = SubmissionsSet(submissions),
-        #exercise_ids = map(str, range(1,len(exercises)+1))
-        exercise_ids = [str(e['id']) for e in exercises]
-    ))
-    response = HttpResponse(toret, content_type = 'text/csv')
+    submissions = sorted(Submission.objects.all(), key=lambda s: -s.final_result)
+    toret = render_to_string('wtem/admin_report.csv', {
+        'submissionsSet': SubmissionsSet(submissions),
+        'exercise_ids': [str(e['id']) for e in exercises]})
+    response = HttpResponse(toret, content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="wyniki.csv"'
     return response
 

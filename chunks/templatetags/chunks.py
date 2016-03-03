@@ -1,5 +1,5 @@
+# -*- coding: utf-8 -*-
 from django import template
-from django.db import models
 from django.core.cache import cache
 from ..models import Chunk, Attachment
 
@@ -34,5 +34,3 @@ def attachment(key, cache_time=0):
         return c.attachment.url
     except Attachment.DoesNotExist:
         return ''
-
-

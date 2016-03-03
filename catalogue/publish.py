@@ -1,5 +1,4 @@
 # -*- coding: utf-8
-from django.core.files.base import ContentFile
 from django.core.files import File
 from django.core.urlresolvers import reverse
 from librarian import DocProvider, IOFile
@@ -12,15 +11,14 @@ from fnpdjango.utils.text.slughifi import slughifi
 # TODO: Using sorl.thumbnail for now,
 # but this should be done in Librarian,
 # directly using convert or PIL as a fallback.
-def get_image(src_img_path, width=None,
-        default_width=1600, formats=('PNG', 'JPEG', 'GIF')):
+def get_image(src_img_path, width=None, default_width=1600, formats=('PNG', 'JPEG', 'GIF')):
     """ Returns an object with `url` and `storage` attributes,
         or None if using the original image is OK.
     """
-    
+
     from PIL import Image
     from sorl.thumbnail import get_thumbnail
-    
+
     # Does it need converting?
     # Yes, if width is given explicitly.
     convert = width is not None
@@ -81,8 +79,7 @@ class HtmlFormat(EduModuleFormat):
             src_img = self.find_attachment(slug, fmt).file
         except self.MaterialNotFound:
             return ''
-        img = get_image(src_img.path, width,
-            self.DEFAULT_IMAGE_WIDTH, self.IMAGE_FORMATS)
+        img = get_image(src_img.path, width, self.DEFAULT_IMAGE_WIDTH, self.IMAGE_FORMATS)
         return (img or src_img).url
 
     def text_to_anchor(self, text):
@@ -108,10 +105,10 @@ class PdfFormat(EduModulePDFFormat):
 
     def get_image(self, name):
         src_img = super(PdfFormat, self).get_image(name)
-        img = get_image(src_img.get_filename(),
-                default_width=self.DEFAULT_IMAGE_WIDTH,
-                formats=self.IMAGE_FORMATS
-            )
+        img = get_image(
+            src_img.get_filename(),
+            default_width=self.DEFAULT_IMAGE_WIDTH,
+            formats=self.IMAGE_FORMATS)
         if img:
             return IOFile.from_filename(img.storage.path(img))
         else:

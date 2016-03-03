@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from collections import defaultdict
 from django import template
 from django.utils.datastructures import SortedDict
@@ -14,24 +15,21 @@ def catalogue_carousel():
         "object_list": Section.objects.all()
     }
 
+
 @register.inclusion_tag("catalogue/snippets/levels_main.html")
 def catalogue_levels_main():
     object_list = Level.objects.exclude(lesson=None)
     c = object_list.count()
     return {
         'object_list': object_list,
-        #'section_width': (700 - 20 * (c - 1)) / c,
+        # 'section_width': (700 - 20 * (c - 1)) / c,
         'section_width': (700 - 20 * 2) / 3
     }
 
 
 @register.inclusion_tag("catalogue/snippets/level_box.html")
 def level_box(level):
-    lessons = dict(
-        synthetic = [],
-        course = SortedDict(),
-        project = [],
-    )
+    lessons = {'synthetic': [], 'course': SortedDict(), 'project': []}
     by_course = defaultdict(lambda: defaultdict(list))
 
     lesson_lists = [alist for alist in [
@@ -49,7 +47,8 @@ def level_box(level):
             if lesson.section not in lessons['course']:
                 lessons['course'][lesson.section] = []
             lessons['course'][lesson.section].append(lesson)
-        elif lesson.type.startswith('added'): continue
+        elif lesson.type.startswith('added'):
+            continue
         else:
             lessons[lesson.type].append(lesson)
 
@@ -57,8 +56,8 @@ def level_box(level):
             for course in lesson.curriculum_courses.all():
                 by_course[course][lesson.type].append(lesson)
 
-    courses = [(course, by_course[course]) for course in
-        CurriculumCourse.objects.filter(lesson__level=level).distinct()]
+    courses = [(course, by_course[course])
+               for course in CurriculumCourse.objects.filter(lesson__level=level).distinct()]
 
     added = []
     if level.slug == 'liceum':
@@ -67,37 +66,35 @@ def level_box(level):
             'title': u'Edukacja filmowa',
             'lessons': [
                 Lesson.objects.get(slug=s) for s in [
-'film-co-to-wlasciwie-jest',
-'scenariusz-scenopis-i-srodki-realizacyjne',
-'kompozycja-obrazu-filmowego',
-'praca-kamery-kadr-kat',
-'montaz-materialu-filmowego',
-'swiatlo-i-dzwiek-w-filmie',
-'scenografia-charakteryzacja-kostiumy-i-aktorzy',
-'narracja-w-filmie-tekst-i-fabula',
+                    'film-co-to-wlasciwie-jest',
+                    'scenariusz-scenopis-i-srodki-realizacyjne',
+                    'kompozycja-obrazu-filmowego',
+                    'praca-kamery-kadr-kat',
+                    'montaz-materialu-filmowego',
+                    'swiatlo-i-dzwiek-w-filmie',
+                    'scenografia-charakteryzacja-kostiumy-i-aktorzy',
+                    'narracja-w-filmie-tekst-i-fabula',
                 ]
             ],
-            })
+        })
         added.append({
             'slug': 'varsaviana',
             'title': u'Edukacja varsavianistyczna',
             'lessons': [
-                Lesson.objects.get(slug=s) for s in
-'''
-czego-prus-w-lalce-o-zydach-nie-powiedzial
-jak-zmienila-sie-warszawa-o-dworcu-dawniej-i-dzis
-o-gwarze-praskiej
-poznaj-i-pokaz-prage
-praga-trzech-religii
-sladami-zydow-w-warszawie
-tajemnice-palacu-saskiego
-warszawa-przedwojenne-miasto-neonow
-warszawski-barok
-ziemianska-jako-soczewka-swiata-lat-miedzywojennych
-'''.strip().split()
+                Lesson.objects.get(slug=s) for s in [
+                    'czego-prus-w-lalce-o-zydach-nie-powiedzial',
+                    'jak-zmienila-sie-warszawa-o-dworcu-dawniej-i-dzis',
+                    'o-gwarze-praskiej',
+                    'poznaj-i-pokaz-prage',
+                    'praga-trzech-religii',
+                    'sladami-zydow-w-warszawie',
+                    'tajemnice-palacu-saskiego',
+                    'warszawa-przedwojenne-miasto-neonow',
+                    'warszawski-barok',
+                    'ziemianska-jako-soczewka-swiata-lat-miedzywojennych',
+                ]
             ],
-            })
-
+        })
 
     return {
         "level": level,
@@ -105,6 +102,7 @@ ziemianska-jako-soczewka-swiata-lat-miedzywojennych
         "courses": courses,
         "added": added,
     }
+
 
 @register.inclusion_tag("catalogue/snippets/lesson_nav.html")
 def lesson_nav(lesson):
@@ -118,14 +116,14 @@ def lesson_nav(lesson):
         root = None
         siblings = [
                 Lesson.objects.get(slug=s) for s in [
-'film-co-to-wlasciwie-jest',
-'scenariusz-scenopis-i-srodki-realizacyjne',
-'kompozycja-obrazu-filmowego',
-'praca-kamery-kadr-kat',
-'montaz-materialu-filmowego',
-'swiatlo-i-dzwiek-w-filmie',
-'scenografia-charakteryzacja-kostiumy-i-aktorzy',
-'narracja-w-filmie-tekst-i-fabula',
+                    'film-co-to-wlasciwie-jest',
+                    'scenariusz-scenopis-i-srodki-realizacyjne',
+                    'kompozycja-obrazu-filmowego',
+                    'praca-kamery-kadr-kat',
+                    'montaz-materialu-filmowego',
+                    'swiatlo-i-dzwiek-w-filmie',
+                    'scenografia-charakteryzacja-kostiumy-i-aktorzy',
+                    'narracja-w-filmie-tekst-i-fabula',
                 ]
             ]
     else:
@@ -137,12 +135,14 @@ def lesson_nav(lesson):
         "siblings": siblings,
     }
 
+
 @register.inclusion_tag("catalogue/snippets/lesson_link.html")
 def lesson_link(uri):
     try:
         return {'lesson': Lesson.objects.get(slug=WLURI(uri).slug)}
     except Lesson.DoesNotExist:
         return {}
+
 
 @register.filter
 def person_list(persons):
@@ -152,6 +152,8 @@ def person_list(persons):
 # FIXME: Move to fnpdjango
 import feedparser
 import datetime
+
+
 @register.inclusion_tag('catalogue/latest_blog_posts.html')
 def latest_blog_posts(feed_url, posts_to_show=5):
     try:
@@ -159,7 +161,7 @@ def latest_blog_posts(feed_url, posts_to_show=5):
         posts = []
         for i in range(posts_to_show):
             pub_date = feed['entries'][i].updated_parsed
-            published = datetime.date(pub_date[0], pub_date[1], pub_date[2] )
+            published = datetime.date(pub_date[0], pub_date[1], pub_date[2])
             posts.append({
                 'title': feed['entries'][i].title,
                 'summary': feed['entries'][i].summary,

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django import template
 from django.utils.datastructures import SortedDict
 from ..models import Competence, Curriculum, CurriculumCourse
@@ -11,17 +12,19 @@ def competence(texts, level):
     try:
         comps = [Competence.from_text(text) for text in texts]
     except:
+        # WTF
         return {'texts': texts}
     return {
         'comps': comps,
         'level': level,
     }
 
+
 @register.inclusion_tag("curriculum/snippets/curriculum.html")
 def curriculum(identifiers):
     try:
         currs = [Curriculum.objects.get(identifier__iexact=identifier.replace(' ', ''))
-                    for identifier in identifiers]
+                 for identifier in identifiers]
     except Curriculum.DoesNotExist:
         return {'identifiers': identifiers}
 
@@ -45,6 +48,7 @@ def url_for_level(comp, level):
     try:
         return comp.url_for_level(level)
     except:
+        # WTF
         return comp.get_absolute_url()
 
 
@@ -65,16 +69,20 @@ def course_box(course):
         "lessons": lessons,
     }
 
+
 @register.inclusion_tag("curriculum/snippets/course_boxes.html")
 def course_boxes():
     return {'object_list': CurriculumCourse.objects.all()}
+
 
 @register.inclusion_tag("curriculum/snippets/course_boxes_toc.html")
 def course_boxes_toc(accusative=False):
     last = None, None
     object_list = []
-    for l in Lesson.curriculum_courses.through.objects.all().select_related('lesson__level', 'curriculumcourse').order_by(
-            'lesson__level', 'curriculumcourse'):
+    lessons = Lesson.curriculum_courses.through.objects\
+        .select_related('lesson__level', 'curriculumcourse')\
+        .order_by('lesson__level', 'curriculumcourse')
+    for l in lessons:
         level, course = l.lesson.level, l.curriculumcourse
         if (level, course) == last:
             continue

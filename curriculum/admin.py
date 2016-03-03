@@ -1,18 +1,22 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
-from .models import (Competence, CompetenceLevel, Level, Section,
-    CurriculumCourse, CurriculumLevel, Curriculum)
+from .models import Competence, CompetenceLevel, Level, Section, CurriculumCourse, CurriculumLevel, Curriculum
+
 
 class CompetenceLevelInline(admin.TabularInline):
     model = CompetenceLevel
+
 
 class CompetenceAdmin(admin.ModelAdmin):
     model = Competence
     list_display = ['name_pl', 'name_en', 'section', 'slug', 'order']
     inlines = [CompetenceLevelInline]
 
+
 class LevelAdmin(admin.ModelAdmin):
     model = Level
     list_display = ['name_pl', 'name_en', 'group_pl', 'group_en', 'slug', 'order']
+
 
 class SectionAdmin(admin.ModelAdmin):
     model = Section

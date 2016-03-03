@@ -4,7 +4,8 @@ from django.conf import settings
 from .views import HomeView, AvatarlessProfileEditView
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^$', HomeView.as_view(), name="home"),
     url(r'^lekcje/', include('catalogue.urls')),
     url(r'^info/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage',
@@ -25,17 +26,20 @@ if 'django.contrib.admin' in settings.INSTALLED_APPS:
     admin.autodiscover()
 
     if 'django_cas' in settings.INSTALLED_APPS:
-        urlpatterns += patterns('',
+        urlpatterns += patterns(
+            '',
             (r'^admin/logout/$', 'django_cas.views.logout'),
         )
-    urlpatterns += patterns('',
+    urlpatterns += patterns(
+        '',
         url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
         url(r'^admin/', include(admin.site.urls)),
     )
 
 # Auth stuff, if necessary
 if 'django_cas' in settings.INSTALLED_APPS:
-    urlpatterns += patterns('',
+    urlpatterns += patterns(
+        '',
         url(r'^accounts/login/$', 'django_cas.views.login', name='login'),
         url(r'^accounts/logout/$', 'django_cas.views.logout', name='logout'),
     )
@@ -54,8 +58,9 @@ if settings.DEBUG:
 
 
 if settings.DEBUG:
-    urlpatterns += patterns('',
+    urlpatterns += patterns(
+        '',
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT,
         }),
-   )
+    )

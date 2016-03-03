@@ -1,9 +1,9 @@
-import os.path
-from django.conf import settings
+# -*- coding: utf-8 -*-
 from django.views.generic import DetailView, ListView
-from .models import Lesson, Section
+
 from curriculum.models import Level
 from publishers.models import Publisher
+from .models import Lesson
 
 
 class LessonListView(ListView):
@@ -30,6 +30,6 @@ class LessonView(DetailView):
         try:
             context['publisher'] = Publisher.objects.get(
                 name=context['object'].dc.get('publisher', '').strip())
-        except:
+        except (Publisher.DoesNotExist, Publisher.MultipleObjectsReturned):
             pass
         return context

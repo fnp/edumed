@@ -4,27 +4,26 @@
 #
 import os
 import sys
-import time
 from optparse import make_option
-from django.conf import settings
+
 from django.core.management.base import BaseCommand
 from django.core.management.color import color_style
-from django.core.files import File
+from django.db import transaction
 
-from librarian import IOFile
 from catalogue.models import Lesson, Section
+from librarian import IOFile
 
-#from search import Index
+# from search import Index
 
 
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('-q', '--quiet', action='store_false', dest='verbose', default=True,
-            help='Verbosity level; 0=minimal output, 1=normal output, 2=all output'),
+                    help='Verbosity level; 0=minimal output, 1=normal output, 2=all output'),
         make_option('-a', '--attachments', dest='attachments', metavar="PATH", default='materialy',
-            help='Attachments dir path.'),
+                    help='Attachments dir path.'),
         make_option('--ignore-incomplete', action='store_true', dest='ignore_incomplete', default=False,
-            help='Attachments dir path.'),
+                    help='Attachments dir path.'),
     )
     help = 'Imports lessons from the specified directories.'
     args = 'directory [directory ...]'
@@ -52,26 +51,14 @@ class Command(BaseCommand):
         read_dir(path)
         return files
 
-
+    @transaction.atomic
     def handle(self, *directories, **options):
-        from django.db import connection, transaction
 
         levels = set()
         self.style = color_style()
         
         verbose = options.get('verbose')
         self.curdir = os.path.abspath(os.curdir)
-
-
-        # Start transaction management.
-        # SQLite will choke on generating thumbnails 
-        use_transaction = not connection.features.autocommits_when_autocommit_is_off
-        if use_transaction:
-            transaction.commit_unless_managed()
-            transaction.enter_transaction_management()
-            transaction.managed(True)
-        else:
-            print 'WARNING: Not using transaction management.'
 
         files_imported = 0
         files_skipped = 0
@@ -105,8 +92,9 @@ class Command(BaseCommand):
 
                     # Import book files
                     try:
-                        lesson = self.import_book(file_path, options, attachments,
-                                    ignore_incomplete=file_name in ignore_incomplete)
+                        lesson = self.import_book(
+                            file_path, options, attachments,
+                            ignore_incomplete=file_name in ignore_incomplete)
                     except Section.IncompleteError, e:
                         if file_name not in postponed or postponed[file_name] < files_imported:
                             # Push it back into the queue, maybe the missing lessons will show up.
@@ -121,20 +109,17 @@ class Command(BaseCommand):
                         else:
                             # We're in a loop, nothing's being imported - some lesson is really missing.
                             raise e
-                    except BaseException, e:
+                    except BaseException:
                         import traceback
                         traceback.print_exc()
                         files_skipped += 1
                     else:
                         files_imported += 1
-                        if use_transaction:
-                            transaction.commit()
                         if hasattr(lesson, 'level'):
                             levels.add(lesson.level)
                     finally:
                         if verbose > 0:
                             print
-
 
         if levels:
             print "Rebuilding level packages:"
@@ -147,7 +132,3 @@ class Command(BaseCommand):
         print "Results: %d files imported, %d skipped, %d total." % (
             files_imported, files_skipped, files_imported + files_skipped)
         print
-
-        if use_transaction:
-            transaction.commit()
-            transaction.leave_transaction_management()

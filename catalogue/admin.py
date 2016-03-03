@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
 from .models import Attachment, Section, Lesson, LessonStub
 
+
 class AttachmentInline(admin.TabularInline):
     model = Attachment
+
 
 class LessonAdmin(admin.ModelAdmin):
     inlines = [AttachmentInline]
@@ -12,4 +15,3 @@ class LessonAdmin(admin.ModelAdmin):
 admin.site.register(Section)
 admin.site.register(Lesson, LessonAdmin)
 admin.site.register(LessonStub)
-

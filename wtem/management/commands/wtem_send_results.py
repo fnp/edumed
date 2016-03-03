@@ -3,7 +3,6 @@
 from optparse import make_option
 
 from django.core.management.base import BaseCommand
-from django.conf import settings
 from wtem.management.commands import send_mail
 from django.utils import translation
 from django.template.loader import render_to_string
@@ -13,24 +12,28 @@ from wtem.models import Submission
 
 
 def get_submissions():
-    return sorted(Submission.objects.exclude(answers = None).all(), key=lambda s: -s.final_result)
+    return sorted(Submission.objects.exclude(answers=None).all(), key=lambda s: -s.final_result)
 
 minimum = 55
+
 
 class Command(BaseCommand):
 
     option_list = BaseCommand.option_list + (
-        make_option('--to-teachers',
+        make_option(
+            '--to-teachers',
             action='store_true',
             dest='to_teachers',
             default=False,
             help='Send emails to teachers'),
-        make_option('--to-students',
+        make_option(
+            '--to-students',
             action='store_true',
             dest='to_students',
             default=False,
             help='Send emails to students'),
-        make_option('--only-to',
+        make_option(
+            '--only-to',
             action='store',
             dest='only_to',
             default=None,
@@ -57,7 +60,7 @@ class Command(BaseCommand):
                 template = 'results_student_failed.txt'
             else:
                 template = 'results_student_passed.txt'
-            message = render_to_string('wtem/' + template, dict(final_result = submission.final_result))
+            message = render_to_string('wtem/' + template, dict(final_result=submission.final_result))
             self.send_message(message, subject, submission.email)
 
         self.sum_up()
@@ -76,7 +79,7 @@ class Command(BaseCommand):
 
         for contact_id, submissions in submissions_by_contact.items():
             contact = Contact.objects.get(id=contact_id)
-            message = render_to_string('wtem/results_teacher.txt', dict(submissions = submissions))
+            message = render_to_string('wtem/results_teacher.txt', dict(submissions=submissions))
             self.send_message(message, subject, contact.contact)
 
         self.sum_up()
@@ -87,16 +90,10 @@ class Command(BaseCommand):
     def send_message(self, message, subject, email):
         self.stdout.write('>>> sending results to %s' % email)
         try:
-            send_mail(
-                subject = subject,
-                body = message,
-                to = [email]
-            )
+            send_mail(subject=subject, body=message, to=[email])
         except BaseException, e:
             self.failed += 1
             self.stdout.write('failed sending to: ' + email + ': ' + str(e))
         else:
             self.sent += 1
             self.stdout.write('message sent to: ' + email)
-
-

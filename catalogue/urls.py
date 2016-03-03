@@ -1,7 +1,9 @@
-from django.conf.urls import patterns, include, url
+# -*- coding: utf-8 -*-
+from django.conf.urls import patterns, url
 from .views import LessonListView, LessonView
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^$',
         LessonListView.as_view(),
         name="catalogue_lessons"),

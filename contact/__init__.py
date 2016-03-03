@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Generic app for creating contact forms.
 

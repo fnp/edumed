@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from pybb.permissions import DefaultPermissionHandler
 
 
@@ -22,4 +23,3 @@ class ForumPermissionHandler(DefaultPermissionHandler):
             return False
 
         return user.is_authenticated()
-        

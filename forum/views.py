@@ -1,8 +1,7 @@
+# -*- coding: utf-8 -*-
 from django.core.exceptions import ObjectDoesNotExist
 import pybb.views
 import pybb.forms
-
-from catalogue.models import Lesson
 
 from .forms import PostForm
 from .models import Topic
@@ -21,7 +20,7 @@ class PostEditMixin(pybb.views.PostEditMixin):
 
         pybb_post = self.object
         pybb_topic = pybb_post.topic
-        topic, topic_created = Topic.objects.get_or_create(pybb_topic = pybb_topic)
+        topic, topic_created = Topic.objects.get_or_create(pybb_topic=pybb_topic)
 
         if pybb_post == pybb_topic.head:
             topic.lesson = form.cleaned_data['lesson']

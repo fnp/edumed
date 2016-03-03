@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from haystack import indexes
 from pybb.models import Post
 

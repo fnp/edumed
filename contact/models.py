@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import yaml
-from django.core.files.storage import FileSystemStorage
 from django.db import models
 from django.utils.encoding import smart_unicode
 from django.utils.translation import ugettext_lazy as _
@@ -18,9 +17,7 @@ class Contact(models.Model):
     @staticmethod
     def pretty_print(value, for_html=False):
         if type(value) in (tuple, list, dict):
-            value = yaml.safe_dump(value, 
-                allow_unicode=True,
-                default_flow_style=False)
+            value = yaml.safe_dump(value, allow_unicode=True, default_flow_style=False)
             if for_html:
                 value = smart_unicode(value).replace(u" ", unichr(160))
         return value
@@ -41,7 +38,7 @@ class Attachment(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('contact_attachment', [self.contact_id, self.tag])
+        return 'contact_attachment', [self.contact_id, self.tag]
 
 
 __import__(app_settings.FORMS_MODULE)

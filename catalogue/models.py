@@ -14,11 +14,11 @@ class Section(models.Model):
     title = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
     order = models.IntegerField()
-    xml_file = models.FileField(upload_to="catalogue/section/xml",
+    xml_file = models.FileField(
+        upload_to="catalogue/section/xml",
         null=True, blank=True, max_length=255,
         storage=bofh_storage)
-    image = models.ImageField(upload_to="catalogue/section/image",
-        null=True, blank=True)
+    image = models.ImageField(upload_to="catalogue/section/image", null=True, blank=True)
 
     pic = models.ImageField(upload_to="catalogue/section/pic", null=True, blank=True)
     pic_attribution = models.CharField(max_length=255, null=True, blank=True)
@@ -90,17 +90,23 @@ class Lesson(models.Model):
     curriculum_courses = models.ManyToManyField(CurriculumCourse, blank=True)
     description = models.TextField(null=True, blank=True)
 
-    xml_file = models.FileField(upload_to="catalogue/lesson/xml",
+    xml_file = models.FileField(
+        upload_to="catalogue/lesson/xml",
         null=True, blank=True, max_length=255, storage=bofh_storage)
-    html_file = models.FileField(upload_to="catalogue/lesson/html",
+    html_file = models.FileField(
+        upload_to="catalogue/lesson/html",
         null=True, blank=True, max_length=255, storage=bofh_storage)
-    package = models.FileField(upload_to="catalogue/lesson/pack",
+    package = models.FileField(
+        upload_to="catalogue/lesson/pack",
         null=True, blank=True, max_length=255, storage=bofh_storage)
-    student_package = models.FileField(upload_to="catalogue/lesson/student_pack",
+    student_package = models.FileField(
+        upload_to="catalogue/lesson/student_pack",
         null=True, blank=True, max_length=255, storage=bofh_storage)
-    pdf = models.FileField(upload_to="catalogue/lesson/pdf",
+    pdf = models.FileField(
+        upload_to="catalogue/lesson/pdf",
         null=True, blank=True, max_length=255, storage=bofh_storage)
-    student_pdf = models.FileField(upload_to="catalogue/lesson/student_pdf",
+    student_pdf = models.FileField(
+        upload_to="catalogue/lesson/student_pdf",
         null=True, blank=True, max_length=255, storage=bofh_storage)
 
     class Meta:
@@ -111,7 +117,7 @@ class Lesson(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('catalogue_lesson', [self.slug])
+        return 'catalogue_lesson', [self.slug]
 
     @classmethod
     def publish(cls, infile, ignore_incomplete=False):
@@ -158,7 +164,8 @@ class Lesson(models.Model):
         courses = set()
         for identifier in wldoc.book_info.curriculum:
             identifier = (identifier or "").replace(' ', '')
-            if not identifier: continue
+            if not identifier:
+                continue
             try:
                 curr = Curriculum.objects.get(identifier__iexact=identifier)
             except Curriculum.DoesNotExist:
@@ -178,8 +185,8 @@ class Lesson(models.Model):
         for header in wldoc.edoc.findall('.//naglowek_rozdzial'):
             if (header.text or '').strip() == lookup:
                 from lxml import etree
-                self.description = etree.tostring(header.getnext(),
-                        method='text', encoding='unicode').strip()
+                self.description = etree.tostring(
+                    header.getnext(), method='text', encoding='unicode').strip()
                 self.save()
                 return
 
@@ -199,8 +206,7 @@ class Lesson(models.Model):
         from .publish import HtmlFormat
         wldoc = self.wldocument(infile)
         html = HtmlFormat(wldoc).build()
-        self.html_file.save("%s.html" % self.slug,
-            File(open(html.get_filename())))
+        self.html_file.save("%s.html" % self.slug, File(open(html.get_filename())))
 
     def build_pdf(self, student=False):
         from .publish import PdfFormat
@@ -209,23 +215,18 @@ class Lesson(models.Model):
         wldoc = self.wldocument()
         if student:
             pdf = PdfFormat(wldoc).build()
-            self.student_pdf.save("%s.pdf" % self.slug,
-                File(open(pdf.get_filename())))
+            self.student_pdf.save("%s.pdf" % self.slug, File(open(pdf.get_filename())))
         else:
             pdf = PdfFormat(wldoc, teacher=True).build()
-            self.pdf.save("%s.pdf" % self.slug,
-                File(open(pdf.get_filename())))
+            self.pdf.save("%s.pdf" % self.slug, File(open(pdf.get_filename())))
 
     def add_to_zip(self, zipf, student=False, prefix=''):
         pdf = self.student_pdf if student else self.pdf
         if pdf:
-            zipf.write(pdf.path, 
-                "%s%s%s.pdf" % (prefix, self.slug, "_student" if student else ""))
+            zipf.write(pdf.path, "%s%s%s.pdf" % (prefix, self.slug, "_student" if student else ""))
             for attachment in self.attachment_set.all():
-                zipf.write(attachment.file.path,
-                    u"%smaterialy/%s.%s" % (prefix, attachment.slug, attachment.ext))
-            zipf.write(self.xml_file.path,
-                "%spliki-zrodlowe/%s.xml" % (prefix, self.slug))
+                zipf.write(attachment.file.path, u"%smaterialy/%s.%s" % (prefix, attachment.slug, attachment.ext))
+            zipf.write(self.xml_file.path, "%spliki-zrodlowe/%s.xml" % (prefix, self.slug))
 
     def build_package(self, student=False):
         from StringIO import StringIO
@@ -241,17 +242,20 @@ class Lesson(models.Model):
             ContentFile(buff.getvalue()))
 
     def get_syntetic(self):
-        if self.section is None: return None
+        if self.section is None:
+            return None
         return self.section.syntetic_lesson(self.level)
 
     def get_other_level(self):
-        if self.section is None: return None
+        if self.section is None:
+            return None
         other_levels = self.section.lesson_set.exclude(level=self.level)
         if other_levels.exists():
             return other_levels[0].level
 
     def get_previous(self):
-        if self.section is None: return None
+        if self.section is None:
+            return None
         try:
             return self.section.lesson_set.filter(
                 type=self.type, level=self.level,
@@ -260,7 +264,8 @@ class Lesson(models.Model):
             return None
 
     def get_next(self):
-        if self.section is None: return None
+        if self.section is None:
+            return None
         try:
             return self.section.lesson_set.filter(
                 type=self.type, level=self.level,
@@ -288,10 +293,8 @@ class Attachment(models.Model):
 
 class Part(models.Model):
     lesson = models.ForeignKey(Lesson)
-    pdf = models.FileField(upload_to="catalogue/part/pdf",
-        null=True, blank=True)
-    student_pdf = models.FileField(upload_to="catalogue/part/student_pdf",
-        null=True, blank=True)
+    pdf = models.FileField(upload_to="catalogue/part/pdf", null=True, blank=True)
+    student_pdf = models.FileField(upload_to="catalogue/part/student_pdf", null=True, blank=True)
 
 
 class LessonStub(models.Model):

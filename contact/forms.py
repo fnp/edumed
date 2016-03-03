@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import UploadedFile
@@ -11,10 +12,12 @@ from django.utils.translation import ugettext_lazy as _
 
 contact_forms = {}
 admin_list_width = 0
+
+
 class ContactFormMeta(forms.Form.__class__):
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, name, bases, attrs):
         global admin_list_width
-        model = super(ContactFormMeta, cls).__new__(cls, *args, **kwargs)
+        model = super(ContactFormMeta, cls).__new__(cls, name, bases, attrs)
         assert model.form_tag not in contact_forms, 'Duplicate form_tag.'
         if model.admin_list:
             admin_list_width = max(admin_list_width, len(model.admin_list))
@@ -50,10 +53,11 @@ class ContactForm(forms.Form):
                 if sub_body:
                     body.setdefault(f.form_tag, []).append(sub_body)
                 
-        contact = Contact.objects.create(body=body,
-                    ip=request.META['REMOTE_ADDR'],
-                    contact=self.cleaned_data['contact'],
-                    form_tag=self.form_tag)
+        contact = Contact.objects.create(
+            body=body,
+            ip=request.META['REMOTE_ADDR'],
+            contact=self.cleaned_data['contact'],
+            form_tag=self.form_tag)
         for name, value in self.cleaned_data.items():
             if isinstance(value, UploadedFile):
                 attachment = Attachment(contact=contact, tag=name)
@@ -76,8 +80,7 @@ class ContactForm(forms.Form):
                 'contact/%s/mail_managers_body.txt' % self.form_tag,
                 'contact/mail_managers_body.txt', 
             ], dictionary, context)
-        mail_managers(mail_managers_subject, mail_managers_body, 
-            fail_silently=True)
+        mail_managers(mail_managers_subject, mail_managers_body, fail_silently=True)
 
         try:
             validate_email(contact.contact)
@@ -92,9 +95,6 @@ class ContactForm(forms.Form):
                     'contact/%s/mail_body.txt' % self.form_tag,
                     'contact/mail_body.txt', 
                 ], dictionary, context)
-            send_mail(mail_subject, mail_body,
-                'no-reply@%s' % site.domain,
-                [contact.contact],
-                fail_silently=True)
+            send_mail(mail_subject, mail_body, 'no-reply@%s' % site.domain, [contact.contact], fail_silently=True)
 
         return contact

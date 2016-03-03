@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django import forms
 from django.forms.models import ModelChoiceIterator
 from django.utils.translation import ugettext as _
@@ -15,7 +16,7 @@ class GroupedModelChoiceIterator(ModelChoiceIterator):
     def choice(self, obj):
         items_query = self.items_queryset.filter(**{self.field.grouping_fk_field: obj})
         items = [super(GroupedModelChoiceIterator, self).choice(item) for item in items_query.all()]
-        return (unicode(obj), items)
+        return unicode(obj), items
 
 
 class GroupedModelChoiceField(forms.ModelChoiceField):
@@ -35,5 +36,6 @@ class GroupedModelChoiceField(forms.ModelChoiceField):
 
 
 class PostForm(pybb.forms.PostForm):
-    lesson = GroupedModelChoiceField(label = _('Related lesson'), queryset = Lesson.objects.all(),
-        grouping_fk_field = 'section', required = False)
+    lesson = GroupedModelChoiceField(
+        label=_('Related lesson'), queryset=Lesson.objects.all(),
+        grouping_fk_field='section', required=False)
