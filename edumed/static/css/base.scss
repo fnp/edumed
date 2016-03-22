@@ -21,9 +21,10 @@ body {
     clear: both;
 }
 
-#ads {
+#banners {
     display: inline-block;
-    width: 100%;
+    margin: 0 auto 1.4375em;
+    width: 58.75em;
 
     > a {
         display: block;
@@ -33,6 +34,7 @@ body {
     img {
         display: block;
         margin: 0 auto;
+        width: 100%;
     }
 }
 #header-wrapper {
