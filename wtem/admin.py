@@ -155,8 +155,7 @@ class SubmissionAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         return get_form(request, obj)
 
-    @staticmethod
-    def submitted_by(instance):
+    def submitted_by(self, instance):
         if instance.contact:
             return '<a href="%s">%s</a>' % (
                 reverse('admin:contact_contact_change', args=[instance.contact.id]),
@@ -166,16 +165,14 @@ class SubmissionAdmin(admin.ModelAdmin):
     submitted_by.allow_tags = True
     submitted_by.short_description = "Zgłoszony/a przez"
 
-    @staticmethod
-    def todo(submission):
+    def todo(self, submission):
         user = get_current_request().user
         user_exercises = get_user_exercises(user)
         user_marks = submission.marks.get(str(user.id), {})
         return ','.join([str(e['id']) for e in user_exercises if str(e['id']) not in user_marks.keys()])
     todo.short_description = 'Twoje nieocenione zadania'
 
-    @staticmethod
-    def examiners_repr(submission):
+    def examiners_repr(self, submission):
         return ', '.join([u.username for u in submission.examiners.all()])
     examiners_repr.short_description = 'Przypisani do zgłoszenia'
 
