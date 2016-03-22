@@ -9,7 +9,7 @@ from .models import CommentDocument as CommentDocumentModel
 
 
 class CommentDocumentList(ListView):
-    model = CommentDocument
+    model = CommentDocumentModel
 
     def get_queryset(self):
         return super(CommentDocumentList, self).get_queryset().filter(language_code=get_language())

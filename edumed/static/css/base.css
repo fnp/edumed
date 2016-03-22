@@ -16,6 +16,16 @@ body {
 .clr {
   clear: both; }
 
+#ads {
+  display: inline-block;
+  width: 100%; }
+  #ads > a {
+    display: block;
+    width: 100%; }
+  #ads img {
+    display: block;
+    margin: 0 auto; }
+
 #header-wrapper {
   background-image: url(../img/header-bar.png);
   background-repeat: repeat-x;
