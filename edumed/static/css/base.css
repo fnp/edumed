@@ -16,15 +16,16 @@ body {
 .clr {
   clear: both; }
 
-#ads {
-  display: inline-block;
-  width: 100%; }
-  #ads > a {
+#banners {
+  margin: 0 auto;
+  width: 58.75em; }
+  #banners > a {
     display: block;
     width: 100%; }
-  #ads img {
+  #banners img {
     display: block;
-    margin: 0 auto; }
+    margin: 0 auto;
+    width: 100%; }
 
 #header-wrapper {
   background-image: url(../img/header-bar.png);
