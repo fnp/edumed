@@ -53,16 +53,17 @@ class Command(BaseCommand):
         self.stdout.write('>>> Sending results to students')
         subject = 'Wyniki I etapu Wielkiego Turnieju Edukacji Medialnej'
 
-        for result in self.results:
-            if options['only_to'] and result[1] != options['only_to']:
+        for email, last_name, first_name, final_result in self.results:
+            if options['only_to'] and email != options['only_to']:
                 continue
-            final_result = result[4]
-            if result[5] != 'TAK':
+            if final_result == 'dyskwalifikacja':
+                template = 'results_student_disqualified.txt'
+            elif float(final_result) < minimum:
                 template = 'results_student_failed.txt'
             else:
                 template = 'results_student_passed.txt'
             message = render_to_string('wtem/' + template, dict(final_result=final_result))
-            self.send_message(message, subject, result[1])
+            self.send_message(message, subject, email)
 
         self.sum_up()
 
@@ -80,13 +81,16 @@ class Command(BaseCommand):
             except InvalidOperation:
                 return Decimal(0)
 
-        for result in sorted(self.results, key=lambda r: dec_or_0(r[4]), reverse=True):
-            if options['only_to'] and result[3] != options['only_to']:
+        sorted_results = sorted(self.results, key=lambda r: dec_or_0(r[3]), reverse=True)
+        for email, last_name, first_name, final_result in sorted_results:
+            submission = Submission.objects.get(email=email)
+            teacher_email = submission.contact.contact
+            if options['only_to'] and teacher_email != options['only_to']:
                 continue
-            submissions_by_contact.setdefault(result[3], []).append({
-                'first_name': result[0].split()[0],
-                'last_name': result[0].split()[1],
-                'final_result': result[4],
+            submissions_by_contact.setdefault(teacher_email, []).append({
+                'first_name': first_name,
+                'last_name': last_name,
+                'final_result': final_result,
             })
 
         for email, submissions in submissions_by_contact.items():
