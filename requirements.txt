@@ -1,4 +1,4 @@
--i http://pypi.nowoczesnapolska.org.pl/simple
+-i https://py.mdrn.pl:8443/simple
 
 Django>=1.6,<1.7
 South>=0.7.4
