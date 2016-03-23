@@ -1,12 +1,10 @@
 {% load l10n %}Witaj,
 
-Informujemy, że wszystkie projekty zrealizowane i nadesłane w ramach I etapu III edycji Wielkiego Turnieju Edukacji Medialnej zostały ocenione. Otrzymaliśmy ponad 100 projektów, które zrealizowało ponad 420 uczniów i uczennic szkół ponadgimnazjalnych.
+Informujemy, że wszystkie testy rozwiązane w ramach II etapu III edycji Wielkiego Turnieju Edukacji Medialnej zostały ocenione. 
 
-Liczba punktów, którą uzyskał Twój zespół to {% localize on %}{{final_result}}{% endlocalize %}.
+Liczba punktów zdobytych przez Ciebie w teście to {% localize on %}{{final_result}}{% endlocalize %}.
 
-Niestety, ten wynik nie uprawnia Was do wzięcia udziału II etapie Turnieju. Liczba punktów, która uprawnia do wzięcia udziału w II etapie to 55. Zachęcamy do zgłębiania wiedzy za zakresu edukacji medialnej i wzięcia udziału w kolejnej edycji Wielkiego Turnieju Edukacji Medialnej.
-
-Jeżeli temat przewodni III edycji Wielkiego Turnieju Edukacji Medialnej (bezpieczeństwo i prywatność w sieci) jest dla Ciebie interesujący, informujemy, że fundacja Nowoczesna Polska niebawem rozpocznie rekrutację szkół do projektu szkoleniowego realizowanego na zlecenie i ze środków Ministerstwa Edukacji Narodowej - "Cybernauci - kompleksowy projekt kształtowania bezpiecznych zachowań w sieci". Zachęcamy do śledzenia aktualności na stronie: http://cybernauci.edu.pl.
+Niestety, ten wynik nie uprawnia Cię do wzięcia udziału w III etapie Turnieju. Liczba punktów, która uprawnia do wzięcia udziału w finale to 52. Zachęcamy do zgłębiania wiedzy za zakresu edukacji medialnej i wzięcia udziału w kolejnej edycji Wielkiego Turnieju Edukacji Medialnej.
 
 W razie jakichkolwiek pytań prosimy o kontakt.
 

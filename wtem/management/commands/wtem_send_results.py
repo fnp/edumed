@@ -14,7 +14,7 @@ from wtem.models import Submission
 def get_submissions():
     return sorted(Submission.objects.exclude(answers=None).all(), key=lambda s: -s.final_result)
 
-minimum = 55
+minimum = 52
 
 
 class Command(BaseCommand):
@@ -37,7 +37,7 @@ class Command(BaseCommand):
             action='store',
             dest='only_to',
             default=None,
-            help='Send emails to students'),
+            help='Send emails only to listed addresses'),
     )
 
     def handle(self, *args, **options):

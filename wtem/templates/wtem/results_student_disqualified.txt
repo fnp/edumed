@@ -1,0 +1,13 @@
+{% load l10n %}Witaj,
+
+Informujemy, że wszystkie testy rozwiązane w ramach II etapu III edycji Wielkiego Turnieju Edukacji Medialnej zostały ocenione. 
+
+Niestety, ze względu na wykrycie niesamodzielnego rozwiązywania przez Ciebie testu, Twoja praca została zdysfkwalifikowana.
+
+Przypominamy, że zgodnie z § 6. pkt. 2. istnieje możliwość odwołania od decyzji Kapituły WTEM. Regulamin dostępny jest na stronie Turnieju: http://edukacjamedialna.edu.pl/info/turniej/.
+
+W razie jakichkolwiek pytań prosimy o kontakt.
+
+Pozdrawiamy,
+Zespół Edukacji Medialnej
+fundacja Nowoczesna Polska

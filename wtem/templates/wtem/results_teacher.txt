@@ -1,8 +1,8 @@
 Dzień dobry,
 
-Informujemy, że wszystkie projekty zrealizowane i nadesłane w ramach I etapu III edycji Wielkiego Turnieju Edukacji Medialnej zostały ocenione. Otrzymaliśmy ponad 100 projektów, które zrealizowało ponad 420 uczniów i uczennic szkół ponadgimnazjalnych.
+Informujemy, że wszystkie testy rozwiązane w ramach II etapu III edycji Wielkiego Turnieju Edukacji Medialnej zostały ocenione. 
 
-Poniżej znajdują się wyniki uzyskane przez zgłoszonych przez Panią/Pana uczniów i uczennice, którzy nadesłali swoje prace. Jeśli nie są to wszyscy zgłoszeni uczniowie, oznacza to, że zrezygnowali z przystąpienia do konkursu i nie nadesłali swoich prac lub nadesłali je po terminie. Liczba punktów, która uprawnia do wzięcia udziału w II etapie to 55. Gratulujemy tym, którym się to udało. Przypominamy, że II etap Turnieju odbędzie się w lutym i będzie miał formę testu on-line rozwiązywanego przez uczniów indywidualnie. Niebawem prześlemy dokładne informacje.
+Poniżej znajdują się wyniki uzyskane przez zgłoszonych przez Panią/Pana uczniów i uczennice, którzy rozwiązali test. Liczba punktów, która uprawnia do wzięcia udziału w zawodach finałowych to 52. Gratulujemy tym, którym się to udało. Zawody finałowe odbędą się w drugiej połowie kwietnia. Niebawem prześlemy szczegółowe informacje na ten temat.
 
 Wyniki uzyskane przez Pani/Pana podopiecznych:
 
@@ -10,10 +10,6 @@ Wyniki uzyskane przez Pani/Pana podopiecznych:
 {% endfor %}
 
 Informacje o wynikach zostały przesłane również uczestnikom i uczestniczkom. Prosimy upewnić się, że wszyscy otrzymali wiadomość. Jeśli jednak do nich nie dotarła, prosimy o podanie danych kontaktowych tych osób (imię i nazwisko, adres e-mail).
-
-Jeżeli temat przewodni III edycji Wielkiego Turnieju Edukacji Medialnej (bezpieczeństwo i prywatność w sieci) jest dla Pani/Pana interesujący, informujemy, że fundacja Nowoczesna Polska niebawem rozpocznie rekrutację szkół do projektu szkoleniowego realizowanego na zlecenie i ze środków Ministerstwa Edukacji Narodowej - "Cybernauci - kompleksowy projekt kształtowania bezpiecznych zachowań w sieci". Zachęcamy do śledzenia aktualności na stronie: http://cybernauci.edu.pl.
-
-Jeśli chciał(a)by Pani/Pan otrzymywać newsletter z informacjami na temat działań fundacji Nowoczesna Polska w zakresie edukacji medialnej, proszę wypełnić formularz: http://edukacjamedialna.edu.pl/zglos/wspolpraca/.
 
 W razie jakichkolwiek pytań prosimy o kontakt.
 
