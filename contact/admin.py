@@ -41,7 +41,7 @@ class ContactAdmin(admin.ModelAdmin):
             return lambda obj: self.admin_list(obj, nr)
         raise AttributeError(name)
 
-    def change_view(self, request, object_id, from_url='', extra_context=None):
+    def change_view(self, request, object_id, form_url='', extra_context=None):
         if object_id:
             try:
                 instance = Contact.objects.get(pk=object_id)
@@ -92,7 +92,7 @@ class ContactAdmin(admin.ModelAdmin):
                     f.short_description = orig_fields[k].label if k in orig_fields else _(k)
                     setattr(self, "body__%s" % k, f)
         return super(ContactAdmin, self).change_view(
-            request, object_id, from_url=from_url, extra_context=extra_context)
+            request, object_id, form_url=form_url, extra_context=extra_context)
 
     def changelist_view(self, request, extra_context=None):
         context = dict()

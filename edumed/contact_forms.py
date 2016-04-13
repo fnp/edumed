@@ -342,3 +342,70 @@ class SuperwizjaForm(ContactForm):
     potrzeby = forms.CharField(
         label=u'Czy potrzebowałbyś/łbyś czegoś przed następnymi zajęciami?', widget=forms.Textarea, max_length=4096)
     uwagi = forms.CharField(label=u'Inne uwagi', widget=forms.Textarea, max_length=4096, required=False)
+
+
+class CybernauciForm(ContactForm):
+    form_tag = 'trenerzy-cybernauci'
+    form_title = u"Cybernauci – szkolenie dla trenerów"
+    admin_list = ['nazwisko', 'instytucja', 'contact']
+    submit_label = u'Wyślij'
+
+    nazwisko = forms.CharField(label=u'Imię i nazwisko', max_length=1024)
+    contact = forms.CharField(label=u'E-mail kontaktowy')
+    telefon = forms.CharField(label=u'Telefon', max_length=32)
+    dlaczego = forms.CharField(
+        label=u'Proszę opisać, dlaczego chce Pan/Pani zostać Emisariuszem Bezpiecznego Internetu.',
+        widget=forms.Textarea, max_length=4096)
+    grupy = forms.MultipleChoiceField(
+        label=u'Proszę wskazać, dla których grup realizował Pan/ realizowała Pani zajęcia warsztatowe',
+        widget=forms.CheckboxSelectMultiple,
+        choices=[
+            ('Uczniowie klas 1-3', 'Uczniowie klas 1-3'),
+            ('Uczniowie klas 4-6', 'Uczniowie klas 4-6'),
+            ('Uczniowie szkół gimnazjalnych', 'Uczniowie szkół gimnazjalnych'),
+            ('Uczniowie szkół ponadgimnazjalnych', 'Uczniowie szkół ponadgimnazjalnych'),
+            ('Nauczyciele', 'Nauczyciele'),
+            ('Rodzice', 'Rodzice'),
+        ])
+    doswiadczenie_grupy = forms.CharField(
+        label=u'Proszę opisać swoje doświadczenie w pracy warsztatowej z grupami docelowymi Projektu '
+              u'(dziećmi, młodzieżą, osobami dorosłymi: nauczycielami, rodzicami).',
+        widget=forms.Textarea, max_length=4096)
+    doswiadczenie_edumed = forms.CharField(
+        label=u'Jakie jest Pana/Pani doświadczenie w zakresie edukacji medialnej,'
+              u'zwłaszcza w zakresie bezpieczeństwa w Internecie i korzystania z TIK?'
+              u' Skąd czerpie Pan/Pani wiedzę w tym zakresie? W jakich projektach brał'
+              u' Pan/brała Pani udział dotychczas?',
+        widget=forms.Textarea, max_length=4096)
+    szkolenia = forms.CharField(
+        label=u'Proszę wymienić studia, szkolenia albo kursy (maks. 5 najważniejszych) '
+              u'powiązane z tematyką Projektu, w których Pan/Pani uczestniczył/ła, '
+              u'w tym dane na temat instytucji czy osoby prowadzącej (z JEDNOZDANIOWYM '
+              u'omówieniem i terminami, w których się odbyły).',
+        widget=forms.Textarea, max_length=4096)
+    realizacje = forms.CharField(
+        label=u'Proszę wymienić studia, szkolenia albo kursy (maks. 5 najważniejszych) '
+              u'powiązane z tematyką Projektu, w których Pan/Pani uczestniczył/ła, w tym '
+              u'dane na temat instytucji czy osoby prowadzącej (z JEDNOZDANIOWYM omówieniem '
+              u'i terminami, w których się odbyły).',
+        widget=forms.Textarea, max_length=4096)
+    cel = forms.CharField(
+        label=u'Proszę opisać, jaką wiedzę i umiejętności chce Pan/Pani zdobyć '
+              u'lub doskonalić poprzez uczestnictwo w Szkoleniu trenerskim.',
+        widget=forms.Textarea, max_length=4096)
+    zgoda_regulamin = forms.BooleanField(
+        label=u'Oświadczam, że zapoznałem/zapoznałam się z Regulaminem Rekrutacji '
+              u'i Uczestnictwa w Projekcie „Cybernauci – kompleksowy projekt '
+              u'kształtowania bezpiecznych zachowań w sieci” i akceptuję jego warunki.')
+    zgoda_dane = forms.BooleanField(
+        label=u'Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych '
+              u'w niniejszym dokumencie dla potrzeb niezbędnych do realizacji Projektu '
+              u'„Cybernauci – kompleksowy projekt kształtowania bezpiecznych zachowań '
+              u'w sieci”  zgodnie z ustawą z dnia 29.08.1997 roku o Ochronie Danych '
+              u'Osobowych (Dz. U. z 2002 r. Nr 101, poz. 926 z późniejszymi zmianami).')
+    zgoda_niekaralnosc = forms.BooleanField(
+        label=u'W przypadku zakwalifikowania się na kurs zobowiązuję się '
+              u'do dostarczenia świadectwa o niekaralności – najpóźniej w dniu rozpoczęcia Szkolenia.')
+    cv = forms.FileField(
+        label=u'Wgraj plik CV.',
+        help_text=u'Prosimy o nazwanie pliku swoim imieniem i nazwiskiem. Preferowany format: PDF.')
