@@ -120,7 +120,7 @@ msgstr "Poziom edukacyjny"
 
 #: templates/curriculum/competence_list.html:31
 msgid "Competency categories"
-msgstr "Kategories kompetencji"
+msgstr "Kategorie kompetencji"
 
 #: templates/curriculum/competence_list.html:49
 msgid "Show"
