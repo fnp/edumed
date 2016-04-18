@@ -9,6 +9,28 @@ from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
 
+WOJEWODZTWA = (
+    u'dolnośląskie',
+    u'kujawsko-pomorskie',
+    u'lubelskie',
+    u'lubuskie',
+    u'łódzkie',
+    u'małopolskie',
+    u'mazowieckie',
+    u'opolskie',
+    u'podkarpackie',
+    u'podlaskie',
+    u'pomorskie',
+    u'śląskie',
+    u'świętokrzyskie',
+    u'warmińsko-mazurskie',
+    u'wielkopolskie',
+    u'zachodniopomorskie',
+)
+
+WOJEWODZTWO_CHOICES = [(u'', u'(wybierz)')] + [(w, w) for w in WOJEWODZTWA]
+
+
 class RegistrationForm(ContactForm):
     form_tag = 'sugestie'
     form_title = u"Zgłoś sugestię"
@@ -353,6 +375,7 @@ class CybernauciForm(ContactForm):
     nazwisko = forms.CharField(label=u'Imię i nazwisko', max_length=1024)
     contact = forms.CharField(label=u'E-mail kontaktowy')
     telefon = forms.CharField(label=u'Telefon', max_length=32)
+    wojewodztwo = forms.ChoiceField(label=u'Województwo', choices=WOJEWODZTWO_CHOICES)
     dlaczego = forms.CharField(
         label=u'Proszę opisać, dlaczego chce Pan/Pani zostać Emisariuszem Bezpiecznego Internetu.',
         widget=forms.Textarea, max_length=4096)
@@ -384,10 +407,8 @@ class CybernauciForm(ContactForm):
               u'omówieniem i terminami, w których się odbyły).',
         widget=forms.Textarea, max_length=4096)
     realizacje = forms.CharField(
-        label=u'Proszę wymienić studia, szkolenia albo kursy (maks. 5 najważniejszych) '
-              u'powiązane z tematyką Projektu, w których Pan/Pani uczestniczył/ła, w tym '
-              u'dane na temat instytucji czy osoby prowadzącej (z JEDNOZDANIOWYM omówieniem '
-              u'i terminami, w których się odbyły).',
+        label=u'Proszę opisać swoje doświadczenie w zakresie realizacji działań w lokalnym środowisku '
+              u'szkolnym (np. na terenie gminy/powiatu/województwa).',
         widget=forms.Textarea, max_length=4096)
     cel = forms.CharField(
         label=u'Proszę opisać, jaką wiedzę i umiejętności chce Pan/Pani zdobyć '
@@ -396,7 +417,9 @@ class CybernauciForm(ContactForm):
     zgoda_regulamin = forms.BooleanField(
         label=u'Oświadczam, że zapoznałem/zapoznałam się z Regulaminem Rekrutacji '
               u'i Uczestnictwa w Projekcie „Cybernauci – kompleksowy projekt '
-              u'kształtowania bezpiecznych zachowań w sieci” i akceptuję jego warunki.')
+              u'kształtowania bezpiecznych zachowań w sieci” i akceptuję jego warunki.',
+        help_text=u'Zobacz <a href="http://cybernauci.edu.pl/wp-content/uploads/2016/04/'
+                  u'regulamin_Cybernauci_szkolenie_trenerskie.pdf">regulamin</a>.')
     zgoda_dane = forms.BooleanField(
         label=u'Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych '
               u'w niniejszym dokumencie dla potrzeb niezbędnych do realizacji Projektu '
