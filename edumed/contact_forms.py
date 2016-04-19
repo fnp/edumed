@@ -62,6 +62,14 @@ class CooperateForm(ContactForm):
     zajecia_wyzsze = forms.BooleanField(label=u'Prowadzę zajęcia w szkole wyższej', required=False)
     zajecia_dorosli = forms.BooleanField(label=u'Prowadzę zajęcia dla dorosłych', required=False)
     zajecia_seniorzy = forms.BooleanField(label=u'Prowadzę zajęcia dla seniorów', required=False)
+    zgoda_dane = forms.BooleanField(
+        label=u'Oświadczam, że wyrażam zgodę na przetwarzanie moich danych osobowych zawartych '
+              u'w niniejszym formularzu zgłoszeniowym przez Fundację Nowoczesna Polska '
+              u'(administratora danych) z siedzibą w Warszawie (00-514) przy ul. Marszałkowskiej 84/92 '
+              u'lok. 125 w celu otrzymywania newslettera Edukacja medialna. Jednocześnie oświadczam, '
+              u'że zostałam/em poinformowana/y o tym, że mam prawo wglądu w treść swoich danych '
+              u'i możliwość ich poprawiania oraz że ich podanie jest dobrowolne, ale niezbędne '
+              u'do dokonania zgłoszenia.')
 
 
 class ContestForm(ContactForm):
