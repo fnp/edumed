@@ -88,5 +88,5 @@ msgid "Thank you"
 msgstr "Dziękujemy"
 
 #: templates/contact/thanks.html:11
-msgid "Thank you for submitting the contact form."
-msgstr "Dziękujemy za wypełnienie formularza kontaktowego."
+msgid "Thank you for submitting the form."
+msgstr "Dziękujemy za wypełnienie formularza."
