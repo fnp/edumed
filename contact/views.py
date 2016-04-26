@@ -57,5 +57,5 @@ def thanks(request, form_tag):
 @permission_required('contact.change_attachment')
 def attachment(request, contact_id, tag):
     attachment = get_object_or_404(Attachment, contact_id=contact_id, tag=tag)
-    attachment_url = unquote(attachment.file.url).decode('utf-8')
+    attachment_url = unquote(attachment.file.url)
     return serve_file(attachment_url)
