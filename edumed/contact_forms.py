@@ -440,3 +440,42 @@ class CybernauciForm(ContactForm):
     cv = forms.FileField(
         label=u'Wgraj plik CV.',
         help_text=u'Prosimy o nazwanie pliku swoim imieniem i nazwiskiem. Preferowany format: PDF.')
+
+
+class WLEMForm(ContactForm):
+    form_tag = 'wlem'
+    form_title = u"WLEM - szkolenie dla warszawskich liderów edukacji medialnej"
+    admin_list = ['nazwisko', 'instytucja', 'contact']
+    submit_label = u'Wyślij'
+
+    nazwisko = forms.CharField(label=u'Imię i nazwisko', max_length=128)
+    contact = forms.CharField(label=u'Adres e-mail')
+    telefon = forms.CharField(label=u'Tel. kontaktowy', max_length=32)
+    instytucja = forms.CharField(label=u'Instytucja', max_length=128)
+    instytucja_adres = forms.CharField(label=u'Adres (instytucji)', max_length=1024)
+    stanowisko = forms.CharField(label=u'Stanowisko', max_length=256)
+    doswiadczenie = forms.CharField(
+        label=u'Jakie jest Pani/Pana doświadczenie w zakresie edukacji medialnej?',
+        widget=forms.Textarea, max_length=4096)
+    dlaczego = forms.CharField(
+        label=u'Dlaczego chce Pani/Pan wziąć udział w szkoleniu?',
+        widget=forms.Textarea, max_length=4096)
+    cel = forms.CharField(
+        label=u'Jaką wiedzę i umiejętności chce Pan/Pani zdobyć lub doskonalić poprzez uczestnictwo w szkoleniu?',
+        widget=forms.Textarea, max_length=4096)
+    jak_wykorzystac = forms.CharField(
+        label=u'Jak zamierza Pan/Pani wykorzystać wiedzę zdobytą w czasie szkolenia?',
+        widget=forms.Textarea, max_length=4096)
+    zgoda_zajecia = forms.BooleanField(
+        label=u'W okresie lipiec-październik 2016 r. przeprowadzę min. 2 godziny zajęć '
+              u'edukacji medialnej z grupą warszawiaków.')
+    zgoda_dane = forms.BooleanField(
+        label=u'Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych '
+              u'w niniejszym dokumencie dla potrzeb niezbędnych do realizacji Projektu '
+              u'„Warszawscy Liderzy Edukacji Medialnej” zgodnie z ustawą z dnia 29.08.1997 '
+              u'roku o Ochronie Danych Osobowych (Dz. U. z 2002 r. Nr 101, poz. 926 '
+              u'z późniejszymi zmianami).')
+    zgoda_newsletter = forms.BooleanField(
+        required=False,
+        label=u'Wyrażam zgodę na otrzymywanie informacji od Fundacji Nowoczesna Polska '
+              u'związanych z edukacją medialną.')
