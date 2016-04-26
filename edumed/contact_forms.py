@@ -464,7 +464,7 @@ class WLEMForm(ContactForm):
         label=u'Jaką wiedzę i umiejętności chce Pan/Pani zdobyć lub doskonalić poprzez uczestnictwo w szkoleniu?',
         widget=forms.Textarea, max_length=4096)
     jak_wykorzystac = forms.CharField(
-        label=u'Jak zamierza Pan/Pani wykorzystać wiedzę zdobytą w czasie szkolenia?',
+        label=u'Jak zamierza Pan/Pani wykorzystać wiedzę i umiejętności zdobyte w czasie szkolenia?',
         widget=forms.Textarea, max_length=4096)
     zgoda_zajecia = forms.BooleanField(
         label=u'W okresie lipiec-październik 2016 r. przeprowadzę min. 2 godziny zajęć '
