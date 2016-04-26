@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from urllib import unquote
+
 from django.contrib.auth.decorators import permission_required
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
@@ -55,4 +57,5 @@ def thanks(request, form_tag):
 @permission_required('contact.change_attachment')
 def attachment(request, contact_id, tag):
     attachment = get_object_or_404(Attachment, contact_id=contact_id, tag=tag)
-    return serve_file(attachment.file.url)
+    attachment_url = unquote(attachment.file.url).decode('utf-8')
+    return serve_file(attachment_url)
