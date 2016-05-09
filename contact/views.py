@@ -18,7 +18,7 @@ def form(request, form_tag, force_enabled=False):
             not (force_enabled and request.user.is_superuser)):
         template = getattr(form_class, 'disabled_template', None)
         if template:
-            return render(request, template)
+            return render(request, template, {'title': form_class.form_title})
         raise Http404
     if request.method == 'POST':
         form = form_class(request.POST, request.FILES)

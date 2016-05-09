@@ -376,7 +376,7 @@ class SuperwizjaForm(ContactForm):
 
 class CybernauciForm(ContactForm):
     disabled = True
-    disabled_template = 'wtem/disabled_contact_form.html'
+    disabled_template = 'contact/disabled_contact_form.html'
     form_tag = 'trenerzy-cybernauci'
     form_title = u"Cybernauci – szkolenie dla trenerów"
     admin_list = ['nazwisko', 'instytucja', 'contact']
