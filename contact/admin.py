@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
+import csv
+
 from django.contrib import admin
-from .models import Contact
 from django.utils.translation import ugettext as _
-from .forms import contact_forms, admin_list_width
 from django.utils.safestring import mark_safe
 from django.conf.urls import patterns, url
 from django.http import HttpResponse, Http404
 
-from .utils import csv_prepare
+from .forms import contact_forms, admin_list_width
+from .models import Contact
 
 
 class ContactAdminMeta(admin.ModelAdmin.__class__):
@@ -114,7 +115,6 @@ class ContactAdmin(admin.ModelAdmin):
 
 
 def extract_view(request, form_tag, extract_type_slug):
-    toret = u''
     contacts_by_spec = dict()
     form = contact_forms.get(form_tag)
     if form is None and extract_type_slug not in ('contacts', 'all'):
@@ -137,10 +137,13 @@ def extract_view(request, form_tag, extract_type_slug):
         else:
             keys = form.get_extract_fields(contact, extract_type_slug)
         contacts_by_spec.setdefault(tuple(keys), []).append(contact)
-    
+
+    response = HttpResponse(content_type='text/csv')
+    csv_writer = csv.writer(response)
+
     # Generate list for each body key set
     for keys, contacts in contacts_by_spec.items():
-        toret += u','.join(keys) + '\n'
+        csv_writer.writerow(keys)
         for contact in contacts:
             if extract_type_slug == 'contacts':
                 records = [dict(contact=contact.contact)]
@@ -153,11 +156,9 @@ def extract_view(request, form_tag, extract_type_slug):
                 for key in keys:
                     if key not in record:
                         record[key] = ''
-                    record[key] = csv_prepare(record[key])
-                toret += u','.join([record[key] for key in keys]) + '\n'
-        toret += '\n\n'
+                csv_writer.writerow([record[key].encode('utf-8') for key in keys])
+        csv_writer.writerow([])
 
-    response = HttpResponse(toret, content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="kontakt.csv"'
     return response
 
