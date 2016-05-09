@@ -7,6 +7,7 @@ from django.utils.safestring import mark_safe
 from django.conf.urls import patterns, url
 from django.http import HttpResponse, Http404
 
+from edumed.utils import UnicodeCSVWriter
 from .forms import contact_forms, admin_list_width
 from .models import Contact
 
@@ -139,7 +140,7 @@ def extract_view(request, form_tag, extract_type_slug):
         contacts_by_spec.setdefault(tuple(keys), []).append(contact)
 
     response = HttpResponse(content_type='text/csv')
-    csv_writer = csv.writer(response)
+    csv_writer = UnicodeCSVWriter(response)
 
     # Generate list for each body key set
     for keys, contacts in contacts_by_spec.items():
@@ -156,7 +157,7 @@ def extract_view(request, form_tag, extract_type_slug):
                 for key in keys:
                     if key not in record:
                         record[key] = ''
-                csv_writer.writerow([record[key].encode('utf-8') for key in keys])
+                csv_writer.writerow([record[key] for key in keys])
         csv_writer.writerow([])
 
     response['Content-Disposition'] = 'attachment; filename="kontakt.csv"'
