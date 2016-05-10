@@ -160,7 +160,7 @@ def extract_view(request, form_tag, extract_type_slug):
                     if isinstance(record[key], bool):
                         record[key] = 'tak' if record[key] else 'nie'
                     if isinstance(record[key], (list, tuple)):
-                        record[key] = '; '.join(record[key])
+                        record[key] = ', '.join(record[key])
 
                 csv_writer.writerow([record[key] for key in keys])
         csv_writer.writerow([])
