@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import csv
+import json
 
 from django.contrib import admin
 from django.utils.translation import ugettext as _
@@ -52,10 +53,8 @@ class ContactAdmin(admin.ModelAdmin):
                 pass
             else:
                 # Create readonly fields from the body JSON.
-                body_fields = ['body__%s' % k for k in instance.body.keys()]
                 attachments = list(instance.attachment_set.all())
-                body_fields += ['body__%s' % a.tag for a in attachments]
-                self.readonly_fields.extend(body_fields)
+                body_keys = instance.body.keys() + [a.tag for a in attachments]
 
                 # Find the original form.
                 try:
@@ -64,15 +63,12 @@ class ContactAdmin(admin.ModelAdmin):
                     orig_fields = {}
 
                 # Try to preserve the original order.
-                admin_fields = []
                 orig_keys = list(orig_fields.keys())
-                while orig_keys:
-                    key = orig_keys.pop(0)
-                    key = "body__%s" % key
-                    if key in body_fields:
-                        admin_fields.append(key)
-                        body_fields.remove(key)
-                admin_fields.extend(body_fields)
+                admin_keys = [key for key in orig_keys if key in body_keys] + \
+                             [key for key in body_keys if key not in orig_keys]
+                admin_fields = ['body__%s' % key for key in admin_keys]
+
+                self.readonly_fields.extend(admin_fields)
 
                 self.fieldsets = [
                     (None, {'fields': self.fields}),
@@ -80,19 +76,20 @@ class ContactAdmin(admin.ModelAdmin):
                 ]
 
                 # Create field getters for fields and attachments.
+                def attach_getter(key, value):
+                    def f(self):
+                        return value
+                    f.short_description = orig_fields[key].label if key in orig_fields else _(key)
+                    setattr(self, "body__%s" % key, f)
+
                 for k, v in instance.body.items():
-                    f = (lambda v: lambda self: v)(Contact.pretty_print(v, for_html=True))
-                    f.short_description = orig_fields[k].label if k in orig_fields else _(k)
-                    setattr(self, "body__%s" % k, f)
+                    attach_getter(k, Contact.pretty_print(v, for_html=True))
 
                 download_link = "<a href='%(url)s'>%(url)s</a>"
                 for attachment in attachments:
-                    k = attachment.tag
                     link = mark_safe(download_link % {
                             'url': attachment.get_absolute_url()})
-                    f = (lambda v: lambda self: v)(link)
-                    f.short_description = orig_fields[k].label if k in orig_fields else _(k)
-                    setattr(self, "body__%s" % k, f)
+                    attach_getter(attachment.tag, link)
         return super(ContactAdmin, self).change_view(
             request, object_id, form_url=form_url, extra_context=extra_context)
 
@@ -130,11 +127,16 @@ def extract_view(request, form_tag, extract_type_slug):
             q = q.filter(created_at__month=at_month)
 
     # Segregate contacts by body key sets
+    if form:
+        orig_keys = list(form().fields.keys())
+    else:
+        orig_keys = []
     for contact in q.all():
         if extract_type_slug == 'contacts':
             keys = ['contact']
         elif extract_type_slug == 'all':
             keys = contact.body.keys() + ['contact']
+            keys = [key for key in orig_keys if key in keys] + [key for key in keys if key not in orig_keys]
         else:
             keys = form.get_extract_fields(contact, extract_type_slug)
         contacts_by_spec.setdefault(tuple(keys), []).append(contact)
@@ -157,10 +159,14 @@ def extract_view(request, form_tag, extract_type_slug):
                 for key in keys:
                     if key not in record:
                         record[key] = ''
-                    if isinstance(record[key], bool):
+                    if isinstance(record[key], basestring):
+                        pass
+                    elif isinstance(record[key], bool):
                         record[key] = 'tak' if record[key] else 'nie'
-                    if isinstance(record[key], (list, tuple)):
+                    elif isinstance(record[key], (list, tuple)) and all(isinstance(v, basestring) for v in record[key]):
                         record[key] = ', '.join(record[key])
+                    else:
+                        record[key] = json.dumps(record[key])
 
                 csv_writer.writerow([record[key] for key in keys])
         csv_writer.writerow([])
