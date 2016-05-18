@@ -116,7 +116,7 @@ class Level(models.Model):
             prefix = 'Projekty/%d %s/' % (i, lesson.slug)
             lesson.add_to_zip(zipf, student, prefix)
         # Add all appendix lessons, from all levels.
-        for lesson in Lesson.objects.exclude(type__in=('synthetic', 'course', 'project')):
+        for lesson in Lesson.objects.filter(type='appendix'):
             prefix = '%s/' % lesson.slug
             lesson.add_to_zip(zipf, student, prefix)
         zipf.close()
