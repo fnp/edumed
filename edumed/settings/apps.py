@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 INSTALLED_APPS = (
     'edumed',
     'curriculum',
@@ -5,7 +7,7 @@ INSTALLED_APPS = (
     'comment',
     'wtem',
     'publishers',
-    'api'
+    'api',
 
     'fnpdjango',
     'south',

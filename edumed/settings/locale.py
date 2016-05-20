@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import os.path
+
+from .paths import PROJECT_DIR
 
 LANGUAGES = (
     ('pl', u'polski'),
@@ -33,5 +36,5 @@ CONTRIB_LOCALE_APPS = (
     'pybb',
 )
 LOCALE_PATHS = (
-    path.join(PROJECT_DIR, 'edumed/locale-contrib'),
+    os.path.join(PROJECT_DIR, 'edumed/locale-contrib'),
 )

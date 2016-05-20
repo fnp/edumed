@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import codecs
 import csv
-
 import cStringIO
+
+from settings.apps import INSTALLED_APPS
 
 
 # source: https://docs.python.org/2/library/csv.html#examples
@@ -34,3 +35,10 @@ class UnicodeCSVWriter(object):
     def writerows(self, rows):
         for row in rows:
             self.writerow(row)
+
+
+def process_app_deps(list_with_deps):
+    return tuple(
+        (x[0] if type(x) == tuple else x)
+        for x in list_with_deps
+        if type(x) != tuple or x[1] in INSTALLED_APPS)

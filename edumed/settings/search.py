@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
