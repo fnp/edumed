@@ -5,6 +5,7 @@ INSTALLED_APPS = (
     'comment',
     'wtem',
     'publishers',
+    'api'
 
     'fnpdjango',
     'south',
