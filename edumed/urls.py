@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import patterns, include, url
 from django.conf import settings
+from django.contrib.flatpages.views import flatpage
+from django.shortcuts import redirect
+
 from .views import HomeView, AvatarlessProfileEditView
 
 
@@ -8,8 +11,10 @@ urlpatterns = patterns(
     '',
     url(r'^$', HomeView.as_view(), name="home"),
     url(r'^lekcje/', include('catalogue.urls')),
-    url(r'^info/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage',
-        name="info"),
+    url(r'^info/turniej/(?P<url>.*)$', lambda request, url: redirect('olimpiada', url)),
+    url(r'^info/(?P<url>.*)$', flatpage, name="info"),
+    url(r'^olimpiada/$', lambda request: flatpage(request, 'turniej/'), name='olimpiada'),
+    url(r'^olimpiada/(?P<url>.*)$', lambda request, url: flatpage(request, 'turniej/' + url), name='olimpiada'),
     url(r'^szukaj/', include('haystack.urls')),
     url(r'^zglos/', include('contact.urls')),
     url(r'^forum/profile/edit/$', AvatarlessProfileEditView.as_view(), name='edit_profile'),
