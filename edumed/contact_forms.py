@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.forms.formsets import BaseFormSet
+from django.utils.safestring import mark_safe
+
 from contact.forms import ContactForm
 from django.core.mail import send_mail
 from django.core.exceptions import ValidationError
@@ -481,3 +483,80 @@ class WLEMForm(ContactForm):
         required=False,
         label=u'Wyrażam zgodę na otrzymywanie informacji od Fundacji Nowoczesna Polska '
               u'związanych z edukacją medialną.')
+
+
+def textarea_field(label, max_length=500):
+    return forms.CharField(label=label, widget=forms.Textarea, max_length=max_length)
+
+
+def ordered_textarea_field(start, pre_label=u'', label=u'', max_length=500):
+    return textarea_field(
+        mark_safe(u'%s<ol type="a" start="%s"><li>%s (max. %s znaków)</li></ol>' % (
+            pre_label, start, label, max_length)))
+
+
+def simple_choices(*choices):
+    return tuple((choice, choice) for choice in choices)
+
+
+class CybernauciAnkietaForm(ContactForm):
+    def __init__(self, *args, **kwargs):
+        super(CybernauciAnkietaForm, self).__init__(*args, **kwargs)
+        self.label_suffix = ''
+
+    form_tag = 'cybernauci-ankieta-trenera'
+    form_title = u"Cybernauci – kompleksowy projekt kształtowania bezpiecznych zachowań w sieci"
+    nazwisko = forms.CharField(label=u'Imię i nazwisko trenera', max_length=128)
+    contact = forms.CharField(label=u'Adres e-mail')
+    pyt1a = ordered_textarea_field(
+        1, pre_label=u'W kontekście planowanego szkolenia jakie są Twoje oczekiwania w zakresie:',
+        label=u'przekazywanej wiedzy')
+    pyt1b = ordered_textarea_field(2, label=u'tematyki szkoleń z bezpieczeństwa w sieci')
+    pyt1c = ordered_textarea_field(3, label=u'materiałów dydaktycznych')
+    pyt1d = ordered_textarea_field(4, label=u'organizacji  i prowadzenia szkoleń w projekcie')
+    pyt1e = ordered_textarea_field(5, label=u'umiejętności trenerskich')
+    pyt1f = ordered_textarea_field(6, label=u'inne, jakie?')
+    pyt2 = textarea_field(u'W których tematach z obszaru bezpieczeństwa w sieci czujesz się najpewniej? '
+                          u'Dlaczego? (max. 500 znaków)')
+    pyt3 = textarea_field(u'Które z tematów znasz słabej lub których nie znasz zupełnie? (max. 500 znaków)')
+    pyt4 = textarea_field(u'Jakie są Twoje mocne strony jako osoby prowadzącej warsztaty? (max. 500 znaków)')
+    pyt5 = textarea_field(u'Nad jakimi elementami pracy trenerskiej chciałbyś/chciałabyś popracować? (max. 500 znaków)')
+    pyt6 = textarea_field(u'Co jest dla Ciebie najważniejsze w pracy z grupą? '
+                          u'Na co zwracasz uwagę w tym obszarze jako osoba prowadząca warsztaty? (max. 500 znaków)')
+    pyt7 = textarea_field(u'Opisz najtrudniejszą Twoim zdaniem sytuację, której doświadczyłeś/doświadczyłaś '
+                          u'podczas prowadzenia zajęć w grupie z młodzieżą, rodzicami lub nauczycielami? '
+                          u'(max. 500 znaków)')
+    pyt8 = forms.ChoiceField(
+        label=u'W jaki sposób poradzisz sobie z niespodziewaną sytuacją skrócenia czasu zajęć? '
+              u'Na który z poniższych punktów przeznaczysz w takiej sytuacji najmniej czasu?',
+        widget=forms.RadioSelect,
+        choices=simple_choices(
+            u'Przedstawienie się prowadzących i uczestników',
+            u'Poznanie oczekiwań i dostosowanie do nich programu zajęć',
+            u'Integracja',
+            u'Poprowadzenie kolejnych elementów zajęć (teoria-ćwiczenia)',
+            u'Podsumowanie - sprawdzenie efektów warsztatu',
+            u'Zaplanowanie dalszych prac',
+            u'Ewaluacja'))
+    pyt8a = textarea_field(label=u'Dlaczego? (max. 1000 znaków)', max_length=1000)
+    pyt9 = textarea_field(
+        label=u'Jeden z uczestników przeszkadza podczas warsztatów: '
+              u'głośno żartuje, nie wykonuje zleconych zadań. Co robisz? (max. 500 znaków)')
+    pyt10 = textarea_field(
+        u'Z całej grupy tylko trzy osoby odpowiadają na każde zadane przez Ciebie pytanie. '
+        u'Co robisz? (max. 500 znaków)')
+    pyt11 = textarea_field(
+        u'Jakie są Twoje największe obawy wobec realizacji szkoleń w placówkach oświatowych? (max. 500 znaków)')
+    pyt12a = ordered_textarea_field(
+        1, pre_label=u'Opisz szczegółowo doświadczenie z różnymi grupami:', label=u'rodzice')
+    pyt12b = ordered_textarea_field(2, label=u'nauczyciele')
+    pyt12c = ordered_textarea_field(3, label=u'młodzież ponadgimnazjalna')
+    pyt12d = ordered_textarea_field(4, label=u'młodzież gimnazjalna')
+    pyt12e = ordered_textarea_field(5, label=u'dzieci i młodzież szkół podstawowych')
+    pyt13 = textarea_field(
+        u'Z jakimi grupami wiekowymi najlepiej Ci się współpracuje?'
+        u'Umiejętności w zakresie pracy z którą grupą najbardziej chciałabyś/chciałbyś zdobyć/doskonalić? '
+        u'(max. 500 znaków)')
+    pyt14 = textarea_field(
+        u'W jaki sposób na co dzień dbasz o swój rozwój jako trenera,'
+        u'osoby prowadzącej warsztaty czy inne formy szkoleniowe? (max. 500 znaków)')
