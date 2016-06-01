@@ -1,0 +1,15 @@
+{% extends "base_super.html" %}
+
+{% block logo %}{% endblock %}
+{% block title %}Olimpiada cyfrowa{% endblock %}
+
+{% block body %}
+  <img src="http://edukacjamedialna.edu.pl/media/chunks/attachment/olimpiada_cyfrowa-srednie.png"/>
+  <h1>Tutaj będzie coś zajebistego!</h1>
+  <p>Podaj swój adres e-mail, żeby dostać powiadomienie:</p>
+  <form method="post" action="">
+    {% csrf_token %}
+    <label><input type="text" name="email"/></label>
+    <input type="submit" value="Wyślij">
+  </form>
+{% endblock %}
