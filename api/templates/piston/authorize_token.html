@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block titleextra %}Zezwól na dostęp do Edukacji Medialnej{% endblock %}
+
+{% block body %}
+  <h1>Zezwól na dostęp do Edukacji Medialnej</h1>
+
+  <div class="normal-text">
+    <p>
+      Potwierdź dostęp do Edukacji Medialnej jako użytkownik <strong>{{ user }}</strong>.
+    </p>
+
+    <form action="{% url 'piston.authentication.oauth_user_auth' %}" method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Potwierdź</button>
+    </form>
+  </div>
+{% endblock %}
