@@ -4,8 +4,7 @@ from django.conf import settings
 from django.contrib.flatpages.views import flatpage
 from django.shortcuts import redirect
 
-from .views import HomeView, AvatarlessProfileEditView
-
+from .views import HomeView, AvatarlessProfileEditView, flatpage_with_template
 
 urlpatterns = patterns(
     '',
@@ -15,7 +14,9 @@ urlpatterns = patterns(
     url(r'^info/(?P<url>.*)$', flatpage, name="info"),
     url(r'^olimpiada/$', lambda request: flatpage(request, 'turniej/'), name='olimpiada'),
     url(r'^olimpiada/(?P<url>.*)$', lambda request, url: flatpage(request, 'turniej/' + url), name='olimpiada'),
-    url(r'^olimpiada-teaser/$', 'edumed.views.olimpiada_teaser', name='olimpiada_teaser'),
+    url(r'^olimpiada-teaser/(?P<url>.*)$',
+        lambda request, url: flatpage_with_template(request, 'turniej/' + url, 'olimpiada_teaser.html'),
+        name='olimpiada_teaser'),
     url(r'^szukaj/', include('haystack.urls')),
     url(r'^zglos/', include('contact.urls')),
     url(r'^forum/profile/edit/$', AvatarlessProfileEditView.as_view(), name='edit_profile'),

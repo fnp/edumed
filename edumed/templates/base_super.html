@@ -60,11 +60,13 @@
             </div>
 
             <div id="tagline">{% block tagline %}{% endblock %}</div>
-            <div id="search">
-                <form action="{% url 'haystack_search' None %}">
-                    <input name="q" placeholder="szukaj" /><button><span>&rarr;</span></button>
-                </form>
-            </div>
+            {% block searchbox %}
+              <div id="search">
+                  <form action="{% url 'haystack_search' None %}">
+                      <input name="q" placeholder="szukaj" /><button><span>&rarr;</span></button>
+                  </form>
+              </div>
+            {% endblock %}
             <div class="clr"></div>
         </header>
         </div>
@@ -97,6 +99,7 @@
                 Jeśli nie oznaczono inaczej, wszystkie materiały na stronie są objęte wolną licencją
                 <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.pl">Creative Commons Uznanie autorstwa
                 – Na tych samych warunkach 3.0</a>.
+                {% block copyrights %}{% endblock %}
                 </p>
             </div>
             {% block sponsors %}

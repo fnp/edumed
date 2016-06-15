@@ -116,6 +116,42 @@ header.main {
   header.main nav .menu-kontakt:hover:before {
     background: url(../img/menu/kontakt_active.png) no-repeat 0 0;
     background-size: 100%; }
+  header.main nav .menu-oc-program:before {
+    background: url(../img/menu/olimpiada/program.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.main nav .menu-oc-harmonogram:before {
+    background: url(../img/menu/olimpiada/harmonogram.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.main nav .menu-oc-regulamin:before {
+    background: url(../img/menu/olimpiada/regulamin.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.main nav .menu-oc-literatura:before {
+    background: url(../img/menu/olimpiada/literatura.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.main nav .menu-oc-komitet:before {
+    background: url(../img/menu/olimpiada/komitet.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.main nav .menu-oc-kontakt:before {
+    background: url(../img/menu/olimpiada/kontakt.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.main nav .menu-oc-program:hover:before {
+    background: url(../img/menu/olimpiada/program_active.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.main nav .menu-oc-harmonogram:hover:before {
+    background: url(../img/menu/olimpiada/harmonogram_active.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.main nav .menu-oc-regulamin:hover:before {
+    background: url(../img/menu/olimpiada/regulamin_active.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.main nav .menu-oc-literatura:hover:before {
+    background: url(../img/menu/olimpiada/literatura_active.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.main nav .menu-oc-komitet:hover:before {
+    background: url(../img/menu/olimpiada/komitet_active.png) no-repeat 0 0;
+    background-size: 100%; }
+  header.main nav .menu-oc-kontakt:hover:before {
+    background: url(../img/menu/olimpiada/kontakt_active.png) no-repeat 0 0;
+    background-size: 100%; }
   header.main #tagline {
     clear: both;
     float: left;
