@@ -1,5 +1,6 @@
 {% extends "base_super.html" %}
 {% load textile_pl from fnp_markup %}
+{% load sponsor_tags %}
 
 {% block full_title %}Olimpiada cyfrowa{% endblock %}
 
@@ -22,7 +23,28 @@
   </div>
 {% endblock %}
 
+{% block footer_contact %}
+  <div class="footer-item">
+      <p>
+      fundacja Nowoczesna Polska<br/>
+      <br/>
+      ul. Marszałkowska 84/92 lok. 125<br/>
+      00-514 Warszawa<br/>
+      tel/fax: +48 22 621 30 17<br/>
+      e-mail: fundacja@nowoczesnapolska.org.pl
+      <br/><br/>
+      KRS: 0000070056<br/>
+      REGON: 017423865<br/>
+      Nr konta: 59 1030 0019 0109 8530 0040 5685
+      </p>
+  </div>
+{% endblock %}
+
 {% block copyrights %}
   <br/>Ikonki w menu:
   <a href="http://www.flaticon.com/authors/freepik">Designed by Freepik and distributed by Flaticon</a>
+{% endblock %}
+
+{% block sponsors %}
+    {% sponsor_page "footer_olimpiada" %}
 {% endblock %}
