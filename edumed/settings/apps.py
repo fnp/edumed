@@ -27,6 +27,7 @@ INSTALLED_APPS = (
     'django_libravatar',
     'sorl.thumbnail',
     'subdomains',
+    'piston',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',

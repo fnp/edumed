@@ -5,10 +5,13 @@ from django.contrib.auth.decorators import permission_required
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from fnpdjango.utils.views import serve_file
+from honeypot.decorators import check_honeypot
+
 from .forms import contact_forms
 from .models import Attachment
 
 
+@check_honeypot
 def form(request, form_tag, force_enabled=False):
     try:
         form_class = contact_forms[form_tag]

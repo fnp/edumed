@@ -10,7 +10,6 @@ MIDDLEWARE_CLASSES = process_app_deps((
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'honeypot.middleware.HoneypotMiddleware',
     ('django.contrib.auth.middleware.AuthenticationMiddleware', 'django.contrib.auth'),
     ('django_cas.middleware.CASMiddleware', 'django_cas'),
     ('django.contrib.messages.middleware.MessageMiddleware', 'django.contrib.messages'),
