@@ -123,8 +123,7 @@ class Lesson(models.Model):
     def publish(cls, infile, ignore_incomplete=False):
         from librarian.parser import WLDocument
         from django.core.files.base import ContentFile
-        xml = infile.get_string()
-        wldoc = WLDocument.from_string(xml)
+        wldoc = WLDocument(infile)
 
         # Check if not section metadata block.
         if wldoc.book_info.parts:
@@ -138,7 +137,7 @@ class Lesson(models.Model):
             lesson = cls(slug=slug, order=0)
 
         # Save XML file
-        lesson.xml_file.save('%s.xml' % slug, ContentFile(xml), save=False)
+        lesson.xml_file.save('%s.xml' % slug, ContentFile(infile.get_string()), save=False)
         lesson.title = wldoc.book_info.title
 
         lesson.level = Level.objects.get(meta_name=wldoc.book_info.audience)
