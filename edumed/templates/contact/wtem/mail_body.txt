@@ -1,19 +1,19 @@
-Dziękujemy za rejestrację w Wielkim Turnieju Edukacji Medialnej.
+Dziękujemy za rejestrację w Olimpiadzie Cyfrowej.
 Do udziału zostały zgłoszone następujące osoby:
-{% for student in contact.body.student %}
-* {{ student.first_name }} {{ student.last_name }}{% endfor %}
+{% for student in contact.body.student %}* {{ student.first_name }} {{ student.last_name }}{% endfor %}
 
 Każdy zgłoszony uczeń powinien otrzymać wiadomość z potwierdzeniem
 rejestracji. Prosimy upewnić się, czy potwierdzenie dotarło do każdego
 ze zgłoszonych uczniów. W ten sposób zweryfikujemy, czy podane adresy
-są prawidłowe. 
+są prawidłowe.
 
-Wszystkie ogłoszenia związane z Turniejem będą publikowane na stronie
-https://edukacjamedialna.edu.pl{% url "info" "turniej/" %}. W razie pytań lub wątpliwości
-możesz kontaktować się z nami, pisząc na adres
-edukacjamedialna@nowoczesnapolska.org.pl.
+Pierwszy etap Olimpiady (test on-line) odbędzie się
+15 listopada 2016 r. o godz. 10:00 i potrwa 90 minut.
 
-Z pozdrowieniami
+Wszystkie ogłoszenia związane z Turniejem będą publikowane na stronie https://olimpiadacyfrowa.pl.
+W razie pytań lub wątpliwości można kontaktować się z nami, pisząc na adres: olimpiada@nowoczesnapolska.org.pl.
 
-Zespół Edukacji Medialnej
-fundacja Nowoczesna Polska
+Z pozdrowieniami,
+
+Zespół Olimpiady Cyfrowej
+Fundacja Nowoczesna Polska
