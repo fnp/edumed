@@ -25,21 +25,19 @@ def form(request, form_tag, force_enabled=False):
         raise Http404
     if request.method == 'POST':
         form = form_class(request.POST, request.FILES)
-        formsets = []
-        valid = form.is_valid()
-        for formset in getattr(form, 'form_formsets', ()):
-            fset = formset(request.POST, request.FILES)
-            if not fset.is_valid():
-                valid = False
-            formsets.append(fset)
-        if valid:
-            form.save(request, formsets)
-            return redirect('contact_thanks', form_tag)
     else:
         form = form_class(initial=request.GET)
-        formsets = []
-        for formset in getattr(form, 'form_formsets', ()):
-            formsets.append(formset())
+    formset_classes = getattr(form, 'form_formsets', {})
+    if request.method == 'POST':
+        formsets = {
+            prefix: formset_class(request.POST, request.FILES, prefix=prefix)
+            for prefix, formset_class in formset_classes.iteritems()}
+        if form.is_valid() and all(formset.is_valid() for formset in formsets.itervalues()):
+            form.save(request, formsets.values())
+            return redirect('contact_thanks', form_tag)
+    else:
+        formsets = {prefix: formset_class(prefix=prefix) for prefix, formset_class in formset_classes.iteritems()}
+
     return render(
         request, ['contact/%s/form.html' % form_tag, 'contact/form.html'],
         {'form': form, 'formsets': formsets}

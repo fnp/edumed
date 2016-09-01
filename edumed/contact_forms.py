@@ -130,19 +130,15 @@ class WTEMStudentForm(forms.Form):
     form_tag = "student"
 
 
-# FIXME: doesn't do what is says anymore.
-class NoEmptyFormsAllowedBaseFormSet(BaseFormSet):
+class NonEmptyBaseFormSet(BaseFormSet):
     """
     Won't allow formset_factory to be submitted with no forms
     """
     def clean(self):
-        needed = 3
         for form in self.forms:
             if form.cleaned_data:
-                needed -= 1
-                # return
-        if needed > 0:
-            raise forms.ValidationError(u"Proszę podać dane przynajmniej trzech osób.")
+                return
+        forms.ValidationError(u"Proszę podać dane przynajmniej jednej osoby.")
 
 
 class WTEMForm(ContactForm):
@@ -152,8 +148,10 @@ class WTEMForm(ContactForm):
     form_title = u"WTEM - rejestracja uczestników"
     submit_label = u"Wyślij zgłoszenie"
     admin_list = ['imie', 'nazwisko', 'institution']
-    form_formsets = (forms.formsets.formset_factory(
-        WTEMStudentForm, formset=NoEmptyFormsAllowedBaseFormSet, max_num=5, validate_max=True, extra=5),)
+    form_formsets = {
+        'student': forms.formsets.formset_factory(
+            WTEMStudentForm, formset=NonEmptyBaseFormSet, max_num=5, validate_max=True, extra=5),
+    }
 
     contact = forms.EmailField(label=u'Adres e-mail opiekuna/opiekunki', max_length=128)
     imie = forms.CharField(label=u'Imię', max_length=128)
@@ -231,6 +229,94 @@ class WTEMForm(ContactForm):
                 else:
                     send_mail(mail_subject, mail_body, 'edukacjamedialna@nowoczesnapolska.org.pl', [email],
                               fail_silently=True)
+
+        return contact
+
+
+class CommissionForm(forms.Form):
+    name = forms.CharField(label=u'Imię i nazwisko Członka Komisji', max_length=128)
+    form_tag = "commission"
+
+
+class OlimpiadaForm(ContactForm):
+    disabled = False
+    disabled_template = 'wtem/disabled_contact_form.html'
+    form_tag = "olimpiada"
+    form_title = u"Olimpiada Cyfrowa - Elektroniczny System Zgłoszeń"
+    submit_label = u"Wyślij zgłoszenie"
+    admin_list = ['nazwisko', 'school']
+    form_formsets = {
+        'student': forms.formsets.formset_factory(WTEMStudentForm, formset=NonEmptyBaseFormSet),
+        'commission': forms.formsets.formset_factory(CommissionForm, formset=BaseFormSet),
+    }
+
+    contact = forms.EmailField(label=u'Adres e-mail Przewodniczącego/Przewodniczącej', max_length=128)
+    przewodniczacy = forms.CharField(label=u'Imię i nazwisko Przewodniczącego/Przewodniczącej', max_length=128)
+    school = forms.CharField(label=u'Nazwa szkoły', max_length=255)
+    school_address = forms.CharField(label=u'Adres szkoły', widget=forms.Textarea, max_length=1000)
+    school_email = forms.EmailField(label=u'Adres e-mail szkoły', max_length=128)
+    school_phone = forms.CharField(label=u'Numer telefonu szkoły', max_length=32)
+    school_www = forms.URLField(label=u'Strona WWW szkoły', max_length=255, required=False)
+
+    zgoda_regulamin = forms.BooleanField(
+        label=u'Znam i akceptuję Regulamin Olimpiady Cyfrowej.',
+        help_text=u'Zobacz <a href="https://olimpiadacyfrowa.pl/regulamin/" target="_blank">'
+                  u'regulamin Olimpiady Cyfrowej</a>.'
+    )
+    zgoda_dane = forms.BooleanField(
+        label=u'Oświadczam, że wyrażam zgodę na przetwarzanie danych osobowych zawartych w niniejszym formularzu '
+              u'zgłoszeniowym przez Fundację Nowoczesna Polska (administratora danych) z siedzibą w Warszawie (00-514) '
+              u'przy ul. Marszałkowskiej 84/92 lok. 125 na potrzeby organizacji Olimpiady Cyfrowej. Jednocześnie '
+              u'oświadczam, że zostałam/em poinformowana/y o tym, że mam prawo wglądu w treść swoich danych '
+              u'i możliwość ich poprawiania oraz że ich podanie jest dobrowolne, ale niezbędne do dokonania '
+              u'zgłoszenia.')
+
+    extract_types = (dict(slug='extended', label=_('extended')),)
+
+    @staticmethod
+    def get_extract_fields(contact, extract_type_slug):
+        fields = contact.body.keys()
+        fields.remove('student')
+        fields.extend(['contact', 'student_first_name', 'student_last_name', 'student_email'])
+        return fields
+
+    @staticmethod
+    def get_extract_records(keys, contact, extract_type_slug):
+        toret = [{}]
+        for field_name in keys:
+            if field_name.startswith('student_'):
+                continue
+            if field_name == 'contact':
+                val = contact.contact
+            else:
+                val = contact.body[field_name]
+            toret[0][field_name] = val
+
+        current = toret[0]
+        for student in contact.body['student']:
+            for attr in ('first_name', 'last_name', 'email'):
+                current['student_' + attr] = student[attr]
+            if current not in toret:
+                toret.append(current)
+            current = {}
+        return toret
+
+    def save(self, request, formsets=None):
+        contact = super(OlimpiadaForm, self).save(request, formsets)
+
+        mail_subject = render_to_string('contact/olimpiada/student_mail_subject.html').strip()
+        mail_body = render_to_string('contact/olimpiada/student_mail_body.html')
+        for formset in formsets or []:
+            if formset.prefix == 'student':
+                for f in formset.forms:
+                    email = f.cleaned_data.get('email', None)
+                    try:
+                        validate_email(email)
+                    except ValidationError:
+                        pass
+                    else:
+                        send_mail(mail_subject, mail_body, 'edukacjamedialna@nowoczesnapolska.org.pl', [email],
+                                  fail_silently=True)
 
         return contact
 
