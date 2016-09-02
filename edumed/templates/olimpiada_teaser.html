@@ -2,6 +2,7 @@
 {% load textile_pl from fnp_markup %}
 {% load sponsor_tags %}
 {% load compressed %}
+{% load static %}
 
 {% block full_title %}Olimpiada cyfrowa{% endblock %}
 
@@ -11,7 +12,7 @@
 
 {% block og_image %}http://olimpiadacyfrowa.pl/media/chunks/attachment/olimpiada_cyfrowa_logo.png{% endblock %}
 
-{% block logo %}<img src="/media/chunks/attachment/olimpiada_cyfrowa_logo.png" height="73" alt="Olimpiada cyfrowa"/>{% endblock %}
+{% block logo %}<img src="{% static "img/logo-oc.png" %}" height="73" alt="Olimpiada cyfrowa"/>{% endblock %}
 
 {% block searchbox %}{% endblock %}
 
