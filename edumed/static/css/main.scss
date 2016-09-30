@@ -198,6 +198,11 @@ $px: .0625em;
   p {
     margin: 0 0 30*$px 1.4em;
   }
+  .side-banner img {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.2em;
+  }
 }
 
 #main-chosen {
