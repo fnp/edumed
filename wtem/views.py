@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import json
+from copy import deepcopy
 
 from django.conf import settings
 from django.http import HttpResponseForbidden
@@ -46,8 +48,16 @@ def form_during(request, key):
                 first_name='Debug', last_name='Debug', email='debug@debug.com', key=DEBUG_KEY)
         else:
             return render(request, 'wtem/key_not_found.html')
+    exercises_with_answers = deepcopy(exercises)
+    answers = json.loads(submission.answers)
+    for exercise in exercises_with_answers:
+        exercise['saved_answer'] = answers[str(exercise['id'])]
+        if exercise['type'] == 'open' and exercise.get('fields'):
+            field_answers = {field['id']: field['text'] for field in exercise['saved_answer']}
+            for field in exercise['fields']:
+                field['saved_answer'] = field_answers[field['id']]
     if request.method == 'GET':
-        return render(request, 'wtem/main.html', dict(exercises=exercises, end_time=submission.end_time))
+        return render(request, 'wtem/main.html', {'exercises': exercises_with_answers, 'end_time': submission.end_time})
     elif request.method == 'POST':
         form = WTEMForm(request.POST, request.FILES, instance=submission)
         if form.is_valid():

@@ -28,14 +28,14 @@
                 {% else %}
                     <textarea style="width: 100%;" rows="{{field.rows|default:10}}" data-field-id="{{field.id}}"
                               {% if field.max_length %}maxlength="{{field.max_length}}"{% endif %}
-                              {% if field.input_id %}id="{{field.input_id}}"{% endif %}></textarea>
+                              {% if field.input_id %}id="{{field.input_id}}"{% endif %}>{{ field.saved_answer }}</textarea>
                 {% endif %}
             </div>
         {% endfor %}
     {% else %}
         <textarea style="width: 100%; margin-top:10px;" rows="{{field.rows|default:10}}"
                   {% if field.max_length %}maxlength="{{field.max_length}}"{% endif %}
-                  {% if field.input_id %}id="#{{field.input_id}}"{% endif %}></textarea>
+                  {% if field.input_id %}id="#{{field.input_id}}"{% endif %}>{{ exercise.answer }}</textarea>
     {% endif %}
 
     {% if exercise.description_after %}

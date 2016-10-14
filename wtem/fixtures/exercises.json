@@ -1,327 +1,149 @@
 [
+
 {
     "id": 1,
-    "type": "edumed_przyporzadkuj",
-    "hide_default_instruction": 1,
-    "description": ["Które z fotografii umieścił(a)byś jako zdjęcie profilowe na portalu Facebook, które na LinkedIn, a które z nich na żadnej z tych stron?"],
-    "buckets": [
-        {"id": 1, "title": "Facebook"},
-        {"id": 2, "title": "Facebook"},
-        {"id": 3, "title": "Facebook"},
-        {"id": 4, "title": "Facebook"},
-        {"id": 5, "title": "LinkedIn"},
-        {"id": 6, "title": "LinkedIn"},
-        {"id": 7, "title": "LinkedIn"},
-        {"id": 8, "title": "LinkedIn"},
-        {"id": 9, "title": "nigdzie"},
-        {"id": 10, "title": "nigdzie"},
-        {"id": 11, "title": "nigdzie"},
-        {"id": 12, "title": "nigdzie"}
+    "type": "open",
+    "description": [
+        "W sieci nieustannie pojawiają się nowe zagrożenia, która bardzo często celują w naszą nieuwagę i słabą higienę pracy z komputerem. Są to m.in. phishing, a ostatnio ransomware. Chcesz przygotować uczestników zajęć na to, by potrafili rozpoznawać je i unikać ryzykowanych sytuacji. Twoim zadaniem jest przygotowanie zajęć, które wyczulą uczestników na sygnały, które mogą świadczyć o zbliżającym się zagrożeniu.",
+        ""
     ],
-    "buckets_name": "strony",
-    "items": [
-        {"id": 1, "text": "1", "href_absolute": 1, "href": "https://www.flickr.com/photos/seeminglee/3942177783/", "img": "przyp2/1.jpg"},
-        {"id": 2, "text": "2", "href_absolute": 1, "href": "https://www.flickr.com/photos/davebloggs007/14573899083/","img": "przyp2/2.jpg"},
-        {"id": 3, "text": "3", "href_absolute": 1, "href": "https://www.flickr.com/photos/125303894@N06/14365668676/","img": "przyp2/3.jpg"},
-        {"id": 4, "text": "4", "href_absolute": 1, "href": "https://www.flickr.com/photos/gagilas/4224108472/","img": "przyp2/4.jpg"},
-        {"id": 5, "text": "5", "href_absolute": 1, "href": "https://www.flickr.com/photos/conejoazul/1455987854/", "img": "przyp2/5.jpg"}
+    "fields": [
+        {"caption": "a) Wypisz 2 oznaki tego, że mail, strona WWW lub sms mogą być atakiem phishingowym.", "id": "1a"},
+        {"caption": "b) Wypisz 2 porady jak możesz zabezpieczyć się przed konsekwencjami działania ransomware.", "id": "1b"},
+        {"caption": "c) Wymyśl i opisz krótko propozycję ćwiczenia, które w praktyczny sposób nauczy jak odróżniać groźne wiadomości mailowe, strony WWW czy sms-y, które mogą być atakami. Wybierz jeden z tych sposobów ataku, znajdź w sieci jeden przykład historii ataku w Polsce, który będzie mógł posłużyć Ci za przykład w ćwiczeniu. Przygotuj krótką instrukcje dla uczestników zajęć – co mają zrobić w ramach ćwiczenia? Uwaga! Nie podpowiadaj uczestnikom za bardzo, spróbuj pobudzić ich czujność i samodzielność.", "id": "1c"}
     ],
-    "items_name": "zdjęcia",
-    "items_instruction": "Przeciągnij numery zdjęć do odpowiednich szarych pól powyżej. W każdym szarym polu można umieścić tylko jeden numer.",
-    "items_inline": 1,
-    "description_after": ["<span class=\"wtem-disclaimer\">(Wszystkie użyte zdjęcia dostępne na CC BY lub CC BY-SA – źródła/autorzy dostępni po kliknięciu w obrazek)</span>"],
-    "points_per_hit": 0.5,
-    "answer_mode": "possible_buckets_for_item",
-    "answer": {
-        "1": [1,2,3,4],
-        "2": [1,2,3,4],
-        "3": [1,2,3,4,5,6,7,8],
-        "4": [9,10,11,12],
-        "5": [9,10,11,12]
-    }
+    "max_points": 10
 },
 
 {
     "id": 2,
     "type": "open",
-    "description": ["Twoja koleżanka wygrała ogólnopolski konkurs muzyczny, na którym zyskała uznanie jury i publiczności. Pogratuluj sukcesu w określonej poniżej formie:"],
-    "fields": [
-        {"id": 1, "caption": "1. tweet"},
-        {"id": 2, "caption": "2. wpis na tablicy na Facebooku"},
-        {"id": 3, "caption": "3. krótki mail do jej rodziców"}
+    "description": [
+        "Twoja instytucja/organizacja posiada współczesnego patrona (np. Jana Nowaka-Jeziorańskiego). Chcesz zorganizować publiczną wystawę na jego temat oraz wspomnień o nim jego bliskich, rodziny i przyjaciół. Będziecie potrzebować do tego zdjęć Nowaka-Jeziorańskiego oraz zdjęć jego bliskich. Zdjęcia do wystawy mają pozyskać uczestnicy Twoich zajęć."
     ],
-    "max_points": 6
+    "fields": [
+        {"caption": "a) Na co powinnaś zwrócić im uwagę: podaj jakie obszary prawa mogą być ważne w tym zadaniu?", "id": "2a"},
+        {"caption": "b) Co zawrzesz w instrukcji dot. Pozyskiwania praw do zdjęć? Podaj 3 przykładowe porady z dwóch różnych obszarów prawa.", "id": "2b"}
+    ],
+    "max_points": 11
 },
 
 {
     "id": 3,
     "type": "open",
-    "description": ["Twoja mama jest początkującą użytkowniczką internetu. Prosi cię o rady, jak bezpiecznie korzystać z sieci. Przekaż jej co najmniej pięć wskazówek, które będzie mogła wykorzystać podczas codziennej pracy przy komputerze."],
-    "max_points": 5
+    "description": [
+        "Czy wiesz, kiedy autorzy i prawo wymagają, by podczas wykorzystania cudzego utworu podpisać odpowiednio utwór? Co możesz zrobić z utworem który cytujesz, a co z takim dostępnym na jednej z licencji CC?"
+    ],
+    "fields": [
+        {"caption": "a) Znajdź w sieci przykład utworu literackiego chronionego przez prawo autorskie, który mogłabyś użyć w krytycznym opracowaniu na temat jego autora/ki. Opisz ten cytat tak jakbyś zrobiła to w.w. publikacji.", "id": "3a"},
+        {"caption": "b) Napisz krótkie uzasadnienie, co pozwala Ci zacytować ten utwór w powyższej sytuacji.", "id": "3b"},
+        {"caption": "c) Znajdź w sieci przykłady utworów (po jednym do każdej sytuacji). Podaj linki do nich razem z opisem licencji/praw.<br><br>na licencji Creative Commons Uznanie autorstwa – Użycie niekomercyjne,", "id": "cc-by-nc"},
+        {"caption": "na licencji Creative Commons Uznanie autorstwa – bez utworów zależnych,", "id": "cc-by-nd"},
+        {"caption": "utworu z domeny publicznej.", "id": "pd"},
+        {"caption": "d) Uszereguj wszystkie utwory z pkt. a) i c) wg swobody wykorzystania (od tych z najszerszą swobodą)", "id": "3d"}
+    ],
+    "max_points": 12
 },
 
 {
     "id": 4,
-    "type": "edumed_przyporzadkuj",
-    "description": ["Dopasuj nazwę wtyczki do jej działania:"],
-    "buckets": [
-        {"id": 1, "title": "AdBlock"},
-        {"id": 2, "title": "CookieMonster"},
-        {"id": 3, "title": "NoScript"},
-        {"id": 4, "title": "FlashBlock"}
+    "type": "open",
+    "description": [
+        "Doceniając potencjał mediów społecznościowych i wykorzystując ich różne formy, przygotuj trasę wycieczki: „Najpiękniejsze murale w Polsce”."
     ],
-    "buckets_name": "wtyczki",
-    "items": [
-        {"id": 1, "text": "1", "desc": "rozszerzenie do przeglądarek internetowych, automatycznie blokuje skrypty uruchamiane i zewnętrzne zasoby pobierane przez strony internetowe w przeglądarce."},
-        {"id": 2, "text": "2", "desc": "rozszerzenie do przeglądarek internetowych domyślnie blokujące wszystkie filmiki typu flash na stronach internetowych, pozwalające je uruchomić jednym kliknięciem myszki."},
-        {"id": 3, "text": "3", "desc": "rozszerzenie do przeglądarek internetowych, automatycznie blokuje i usuwa reklamy ze stron internetowych. Zwiększa wygodę i bezpieczeństwo korzystania z sieci. Ogranicza przepływ informacji o historii przeglądania."},
-        {"id": 4, "text": "4", "desc": "rozszerzenie do przeglądarek internetowych, pozwala bardzo dokładnie kontrolować ciasteczka i to, jakie strony (i na jak długo) mogą je ustawiać."}
+    "fields": [
+        {"caption": "a) Opisz w maksymalnie 7 punktach przebieg wycieczki.", "id": "4a"},
+        {"caption": "b) Wskaż minimum 3 źródła informacji, z których skorzystałaś, uzasadniając ich użyteczność i kryteria wyboru, którymi się kierowałaś. Weź pod uwagę różnorodność mediów społecznościowych i ich różne funkcje.", "id": "4b"}
     ],
-    "items_name": "działania",
-    "answer": {
-        "1": [3],
-        "2": [4],
-        "3": [1],
-        "4": [2]
-    },
-    "points_per_hit": 0.5
+    "max_points": 8
 },
 
 {
     "id": 5,
     "type": "open",
-    "description": ["Podaj po jednym przykładzie serwisu (konkretne nazwy), który umożliwia podane niżej akcje."],
-    "instruction": "Każda strona może byc podana tylko jeden raz.",
+    "description": [
+        "Wyjaśnij, jakie są różnice między telenowelą dokumentalną a mockumentem. Podaj 2 wiarygodne źródła, gdzie można znaleźć informacje na ten temat."
+    ],
     "fields": [
-        {"id": 1, "caption": "budowanie i podtrzymywanie relacji", "rows": 1},
-        {"id": 2, "caption": "komunikację, dyskusję", "rows": 1},
-        {"id": 3, "caption": "bieżące informowanie i odnoszenie się do aktualności", "rows": 1},
-        {"id": 4, "caption": "prezentacja opinii i poglądów", "rows": 1},
-        {"id": 5, "caption": "współdzielenie plików", "rows": 1},
-        {"id": 6, "caption": "współtworzenie dokumentów", "rows": 1}
+        {"caption": "a) Różnice", "id": "5a"},
+        {"caption": "b) Źródła informacji.", "id": "5b"}
     ],
     "max_points": 3
-},
+},  
 
 {
     "id": 6,
     "type": "open",
-    "description": ["Wraz ze znajomymi 5 marca 2016 r. chcecie wybrać się w podróż z Zakopanego do Gdańska. Żadne z was nie posiada prawa jazdy i samochodu, nie chcecie korzystać z pomocy rodziców. Zależy wam, aby podróż trwała jak najkrócej i była jak najtańsza. Zaplanuj waszą podróż środkami transportu publicznego. Podaj godzinę rozpoczęcia i zakończenia podróży, szczegóły trasy i usług komunikacyjnych, z których skorzystacie.", "Podaj adres(y) stron(y), z których skorzystałeś/-aś."],
+    "description": [
+        "Zostałaś poproszona przez swojego pracodawcę o przygotowanie warsztatu z zakresu edukacji medialnej na temat: „Informacja a opinia. Jak je rozróżnić?”. Wyszukaj w internecie po 3 zestawy tekstów, z których przygotujesz karty pracy dla uczestników. W każdym zestawie uczestnik warsztatów będzie musiał wskazać, który tekst jest informacją, a który opinią. Przygotowując się, weź pod uwagę: wydanie online dziennika opinii, portal internetowy i medium społecznościowe.",
+        "Uzasadnij, czym się kierowałaś, dokonując wyboru."
+    ],
     "max_points": 6
 },
 
 {
-    "id": 7,
+    "id": "7a",
+    "id_show": 7,
+    "type": "edumed_wybor",
+    "description": [
+        "Zaproponuj ćwiczenie poszerzające umiejętności grupy, z którą najczęściej pracujesz, w zakresie (wybierz jeden z trzech)"
+    ],
+    "options": [
+        {"id": 1, "text": "formatowania pliku tekstowego,"},
+        {"id": 2, "text": "obróbki obrazu,"},
+        {"id": 3, "text": "montażu wideo."}
+    ],
+    "answer": [1],
+    "points": 0,
+    "max_points": 12
+},
+
+{
+    "id": "7b",
+    "continuation": true,
     "type": "open",
-    "description": ["Podaj cztery aspekty (obszary) prywatności człowieka."],
-    "max_points": 2
+    "description": [],
+    "fields": [
+        {"caption": "Opisz grupę, dla której planujesz ćwiczenie (wiek, posiadane już umiejętności i doświadczenie w korzystaniu z nowych technologii)", "id": "7a"},
+        {"caption": "Podaj cel (cele) ćwiczenia oraz jego rezultaty (po zakończeniu ćwiczenia uczestnik/uczestniczka: 1. wie… 2. rozumie… 3. umie…)", "id": "7b"},
+        {"caption": "Zaplanuj ćwiczenie w czasie (ile czasu potrzebujesz? Ile czasu zajmą poszczególne części ćwiczenia?)", "id": "7c"},
+        {"caption": "Opisz, czego potrzebujesz (materiały, oprogramowanie), żeby je zrealizować. Jeśli ćwiczenie zakłada wykorzystanie przykładowych materiałów (np. tekst, zdjęcie, wideo) – dołącz je do ćwiczenia. Jeśli częścią ćwiczenia jest zdobycie tych materiałów przez uczestników – uwzględnij to w opisie ćwiczenia. ", "id": "7d"},
+        {"caption": "Opisz przebieg ćwiczenia tak, by było ono zrozumiałe nie tylko dla Ciebie, ale dla innych osób chcących je wykorzystać w pracy ze swoimi grupami.", "id": "7e"}
+    ],
+    "max_points": 12
 },
 
 {
     "id": 8,
     "type": "open",
-    "description": ["Wyjaśnij krótko, na czym polega hakowanie w pozytywnym aspekcie tego zjawiska."],
-    "max_points": 5
+    "description": [
+        "Korzystając z technologii informacyjno-komunikacyjnych (TIK) internauci narażeni są na to, że ktoś wykorzysta ich wizerunek lub twórczość niezgodnie z prawem.  Zaplanuj dla grupy, z którą pracujesz, ćwiczenie przygotowujące jej członków/członkinie do interwencji w takiej sytuacji."
+    ],
+    "fields": [
+        {"caption": "a) Opisz grupę, dla której planujesz ćwiczenie (wiek, posiadane już umiejętności i doświadczenie w korzystaniu z TIK),", "id": "8a"},
+        {"caption": "b) Znajdź (pamiętaj o podaniu źródeł) lub stwórz przykłady dwóch sytuacji dotyczących naruszenia wizerunku i/lub praw autorskich w mediach – pasujących do sytuacji, z jakimi mogą się spotkać uczestnicy/uczestniczki Twoich zajęć.", "id": "8b"},
+        {"caption": "c) Stwórz listę możliwych działań interwencyjnych pasujących do tych sytuacji, które możesz omówić podczas zajęć.", "id": "8c"},
+        {"caption": "d) Opisz przebieg ćwiczenia tak, by było ono zrozumiałe nie tylko dla Ciebie, ale dla innych osób chcących je wykorzystać w pracy z grupami.", "id": "8d"}
+    ],
+    "max_points": 12
 },
 
 {
     "id": 9,
     "type": "open",
-    "description": ["Wymień trzy przykłady projektów, które powstają i rozwijają się dzięki crowdsourcingowi."],
-    "max_points": 1.5
-},
-
-{
-    "id": 10,
-    "type": "edumed_przyporzadkuj",
-    "description": ["Dopasuj pojęcie do definicji:"],
-    "buckets": [
-        {"id": 1, "title": "dyskryminacja"},
-        {"id": 2, "title": "kryptoreklama"},
-        {"id": 3, "title": "cyberprzemoc"},
-        {"id": 4, "title": "koncesja"}
+    "description": [
+        "Przyjrzyj się, jak w praktyce wygląda komunikacja w sieci. Wykorzystaj do tego własne doświadczenia z portali społecznościowych czy informacyjnych.",
+        "Przypomnij sobie sytuacje, w których zabierałaś głos w toczących się tam dyskusjach. Przyjrzyj się językowi, którego używałaś. Czy sprzyjał on osiągnięciu celów, które sobie zakładałaś włączając się w dyskusję? Czy język, który tam spotkałaś wolny był od agresji, mowy nienawiści i hejtu?",
+        "Jeśli dotąd nie miałaś doświadczenia komunikacji z internautami lub nie umiesz przywołać takich doświadczeń – zdobądź je!",
+        "<br>W odpowiedzi możesz pominąć tematy, na które zabierałaś głos – Twoje poglądy nie mają znaczenia dla oceny zadania. Podczas oceny zadania liczyć się będzie: zwięzły opis konkretnych doświadczeń i sytuacji, które spotkałeś/spotkałaś oraz Twoje pomysły na przełożenie ich na pracę z grupami."
     ],
-    "buckets_name": "pojęcia",
-    "items": [
-        {"id": 1, "text": "1", "desc": "stosowanie przemocy poprzez: prześladowanie, zastraszanie, nękanie,wyśmiewanie innych osób przy pomocy narzędzi typu elektronicznego,np. SMS, e-mail, witryny internetowe, fora dyskusyjne."},
-        {"id": 2, "text": "2", "desc": "traktowanie pewnych osób lub grup społecznych w inny sposób, zwykle mniej sprawiedliwy, niż innych osób i grup."},
-        {"id": 3, "text": "3", "desc": "zezwolenie,upoważnienie do prowadzenia jakiejś działalności."},
-        {"id": 4, "text": "4", "desc": "przekaz handlowy polegający na przedstawieniu lub nawiązywaniu do towaru, usługi lub ich znaku towarowego w taki sposób, że stanowią one element samej audycji."}
-    ],
-    "items_name": "definicje",
-    "answer": {
-        "1": [2],
-        "2": [4],
-        "3": [1],
-        "4": [3]
-    },
-    "points_per_hit": 0.5
-},
-
-{
-    "id": 11,
-    "type": "open",
-    "description": ["Istnieje dwanaście wytycznych dotyczących dostępności treści internetowych (WCAG). Każdą wytyczną przyporządkuj do jednej z czterech zasad."],
-    "instruction": "Wpisz litery do odpowiednich pól tekstowych.",
     "fields": [
-        {"id": 1, "caption": "zrozumiałość", "rows": 1},
-        {"id": 2, "caption": "brak przeszkód w obsłudze", "rows": 1},
-        {"id": 3, "caption": "postrzegalność zmysłowa", "rows": 1},
-        {"id": 4, "caption": "solidne wykonanie", "rows": 1}
+        {"caption": "Opisz krótko wnioski z Twoich doświadczeń.", "id": "9a"},
+        {"caption": "Jak wykorzystasz je w pracy z Twoją grupą/grupami? Dlaczego?", "id": "9b"},
+        {"caption": "Jaką aktywność na podstawie swoich wniosków zaproponujesz grupie?", "id": "9c"},
+        {"caption": "Jakie cele chciałabyś osiągnąć swoim ćwiczeniem?", "id": "9d"}
     ],
-    "description_after": [
-        "a) teksty są czytelne i łatwe w odbiorze",
-        "b) treść ma swój odpowiednik: obrazom i filmom towarzyszą opisy tekstowe, głosowe,napisy, tłumaczenia na język migowy",
-        "c) treść jest eksponowana za pomocą najnowszych technologii uwzględniających wytyczne dotyczące dostępności",
-        "d) prezentacja treści (kształt graficzny, styl) nie wpływa na odbiór",
-        "e) strona jest możliwa w obsłudze przy użyciu klawiatury",
-        "f) do treści można dotrzeć różnymi drogami (urządzenia, oprogramowanie)",
-        "g) interfejs jest intuicyjny i logicznie zbudowany",
-        "h) trudno popełnić błąd w obsłudze interfejsu",
-        "i) nie ma limitów czasowych w korzystaniu z serwisu",
-        "j) informacje pierwszoplanowe nie zlewają się z tłem",
-        "k) sekcje na stronie mają jednoznaczne tytuły i są logicznie podzielone",
-        "l) można pominąć szkodliwe dla wzroku i słuchu komunikaty"
-    ],
-    "max_points": 6
-},
-
-{
-    "id": 12,
-    "type": "edumed_wybor",
-    "description": ["Na co NIE pozwala ci dozwolony użytek?"],
-    "options": [
-        {"id": 1, "text": "na sprzedawanie kopii płyt z muzyką twojego ulubionego zespołu"},
-        {"id": 2, "text": "na oglądanie filmu pobranego z internetu"},
-        {"id": 3, "text": "na nagranie serialu na płytę i obejrzenie go z rodziną"},
-        {"id": 4, "text": "żadna z powyższych odpowiedzi nie jest prawidłowa"}
-    ],
-    "answer": [1],
-    "points": 1
-},
-
-{
-    "id": 13,
-    "type": "edumed_wybor",
-    "description": ["Chcesz opublikować swoje opowiadanie na wolnej licencji. Zezwalasz na jego kopiowanie, zmienianie, remiksowanie, rozprowadzanie i wykonanie, ale pod warunkiem, że ewentualne utwory zależne -- np. tłumaczenia -- będą przez ich autorów udostępnione na takiej samej licencji. Którą z licencji wybierzesz?"],
-    "options": [
-        {"id": 1, "text": "CC BY-SA"},
-        {"id": 2, "text": "CC BY-NC"},
-        {"id": 3, "text": "CC BY"},
-        {"id": 4, "text": "żadną z wymienionych"}
-    ],
-    "answer": [1],
-    "points": 1
-},
-
-{
-    "id": 14,
-    "type": "edumed_wybor",
-    "description": ["Do nawyków higieny informacyjnej należą:"],
-    "options": [
-        {"id": 1, "text": "tworzenie kopii zapasowych informacji, na których nam zależy"},
-        {"id": 2, "text": "odczytywanie informacji na specjalnym czytniku"},
-        {"id": 3, "text": "robienie przerw co 20 minut, aby uporządkować informacje"},
-        {"id": 4, "text": "ograniczenie korzystania z „usług w chmurze”"},
-        {"id": 5, "text": "szyfrowanie danych na dysku twardym"},
-        {"id": 6, "text": "korzystanie z technologii anonimizujących"},
-        {"id": 7, "text": "mycie rąk po skorzystaniu z komputera"}
-    ],
-    "answer": [1,4,5,6],
-    "answer_mode": "all_or_nothing",
-    "points": 2
-},
-
-{
-    "id": 15,
-    "type": "edumed_przyporzadkuj",
-    "description": ["Dopasuj rodzaj formatu do jego cech charakterystycznych."],
-    "buckets": [
-        {"id": 1, "title": "JPG"},
-        {"id": 2, "title": "PDF"},
-        {"id": 3, "title": "OpenDocument"},
-        {"id": 4, "title": "PNG"},
-        {"id": 5, "title": "EPUB"}
-    ],
-    "buckets_name": "formaty",
-    "items": [
-        {"id": 1, "text": "1", "desc": "format plików służący do prezentacji, przenoszenia i drukowania treści tekstowo-graficznych. Jego zastosowanie zapewnia to, że po otwarciu w innym programie nie zmieni się to, jak wyglądają poszczególne strony."},
-        {"id": 2, "text": "2", "desc": "format obrazów rastrowych (bitmap), najlepiej sprawdzający się przy zapisie fotografii oraz obrazów naturalnych (pejzaży, portretów itp.), w których barwy płynnie przechodzą i w których nie ma wiele ostrych krawędzi czy drobnych detali. Przy zapisie w tym formacie dokonywana jest stratna kompresja, co sprawia, że część informacji zostaje bezpowrotnie utracona."},
-        {"id": 3, "text": "3", "desc": "otwarty standard,oparty na języku XML, służący do publikowania elektronicznych książek. Tworzone w nim książki nie mają podziału na strony,choć istnieje możliwość wyświetlania na marginesie numeru strony pochodzącego z książki drukowanej."},
-        {"id": 4, "text": "4", "desc": "format plików pakietów biurowych, będący otwartym standardem ISO (Międzynarodowej Organizacji Normalizacyjnej), podstawowy dla wolnych programów do edycji tekstu."},
-        {"id": 5, "text": "5", "desc": "rastrowy format plików graficznych, korzystający z kompresji bezstratnej."}
-    ],
-    "items_name": "definicje",
-    "answer": {
-        "1": [2],
-        "2": [1],
-        "3": [4],
-        "4": [5],
-        "5": [3]
-    },
-    "points_per_hit": 0.5
-},
-
-{
-    "id": 16,
-    "type": "open",
-    "description": ["Podaj min. 3 objawy obecności wirusa na twoim komputerze."],
-    "max_points": 3
-},
-
-{
-    "id": 17,
-    "type": "open",
-    "description": ["Wyszukaj w odpowiednim katalogu Biblioteki Narodowej artykuły z polskich czasopism opublikowane w 2010 roku, które dotyczyły edukacji medialnej. Podaj liczbę tekstów oraz 3 tytuły czasopism, w których je opublikowano."],
-    "max_points": 6
-},
-
-{
-    "id": 18,
-    "type": "open",
-    "description": ["Podaj co najmniej 3 działania, które możesz podjąć, aby wyjść z bańki filtrującej."],
-    "max_points": 3
-},
-
-{
-    "id": 19,
-    "type": "open",
-    "description": ["Zauważyłeś/-aś, że twój kolega coraz rzadziej wychodzi z domu i ma coraz gorsze wyniki w nauce, za to ciągle siedzi przed komputerem. Domyślasz się, że jest uzależniony od internetu. Udziel mu co najmniej trzech rad, jak uwolnić się od tego nałogu."],
-    "max_points": 3
-},
-
-{
-    "id": 20,
-    "type": "edumed_wybor",
-    "description": ["Z poniższej listy wybierz czynności i rzeczy, na podstawie których stosowane jest profilowanie w sieci."],
-    "options": [
-        {"id": 1, "text": "przeglądane strony internetowe"},
-        {"id": 2, "text": "słowa wpisywane w wyszukiwarce internetowej"},
-        {"id": 3, "text": "informacje o sobie publikowane w sieci (np. wiek, płeć, zainteresowania)"},
-        {"id": 4, "text": "odpowiedzi na internetowe ankiety"},
-        {"id": 5, "text": "„polubienia” w serwisie społecznościowym"},
-        {"id": 6, "text": "informacje o geolokalizacji"},
-        {"id": 7, "text": "przedmioty oglądane w sklepach internetowych"},
-        {"id": 8, "text": "przedmioty kupione w sklepach internetowych"}
-    ],
-    "answer": [1,2,3,4,5,6,7,8],
-    "answer_mode": "all_or_nothing",
-    "points": 2
-},
-
-{
-    "id": 21,
-    "type": "open",
-    "description": ["Chcesz usunąć profil na Facebooku, ale nie chciał(a)byś utracić danych i treści, które udostępniałeś. Jak je zdobyć? Jakie dane ocaleją (wymień 3 rodzaje)?"],
-    "max_points": 2.5
-},
-
-{
-    "id": 22,
-    "type": "open",
-    "description": ["Znajdź informacje o 2 organizacjach pozarządowych, które działają w Twojej okolicy. Komu pomagają?",
-        "W jaki sposób dotarłeś/aś do tej informacji? Wklej adres strony, z której skorzystałeś/aś."],
-    "max_points": 3
+    "max_points": 12
 }
-
 ]
+
