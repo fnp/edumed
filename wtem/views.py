@@ -49,9 +49,12 @@ def form_during(request, key):
         else:
             return render(request, 'wtem/key_not_found.html')
     exercises_with_answers = deepcopy(exercises)
-    answers = json.loads(submission.answers)
+    if submission.answers:
+        answers = json.loads(submission.answers)
+    else:
+        answers = {}
     for exercise in exercises_with_answers:
-        exercise['saved_answer'] = answers[str(exercise['id'])]
+        exercise['saved_answer'] = answers.get(str(exercise['id']), {})
         if exercise['type'] == 'open' and exercise.get('fields'):
             field_answers = {field['id']: field['text'] for field in exercise['saved_answer']}
             for field in exercise['fields']:
