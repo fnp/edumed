@@ -17,7 +17,7 @@ class Command(BaseCommand):
 
         for wlem_contact in query:
             if not Submission.objects.filter(email=wlem_contact.contact).exists():
-                first_name, last_name = wlem_contact.body['nazwisko'].split(' ')
+                first_name, last_name = wlem_contact.body['nazwisko'].split()
                 args = {
                     'email': wlem_contact.contact,
                     'first_name': first_name,
