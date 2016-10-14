@@ -3,6 +3,7 @@ Poniżej znajduje się wygenerowany specjalnie dla Ciebie link, pod którym będ
 https://edukacjamedialna.edu.pl{% url 'wtem_form' key=submission.key %}
 
 Egzamin rozpocznie się w piątek, 14 października i potrwa do 30 października. Aby rozwiązać test, potrzebny Ci będzie komputer ze stabilnym łączem internetowym oraz zainstalowaną i zaktualizowaną przeglądarką.
+Egzamin możesz rozwiązywać w kilku podejściach - pamiętaj, żeby za każdym razem zapisać swoje odpowiedzi (klikając przycisk: Wyślij moje odpowiedzi). Za każdym razem korzystaj z przypisanego Ci linku.
 
 Każda z Was otrzymała indywidualny link, pod którym może rozwiązywać zadania samodzielnie.
 

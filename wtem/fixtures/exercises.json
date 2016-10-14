@@ -75,8 +75,11 @@
     "id": 6,
     "type": "open",
     "description": [
-        "Zostałaś poproszona przez swojego pracodawcę o przygotowanie warsztatu z zakresu edukacji medialnej na temat: „Informacja a opinia. Jak je rozróżnić?”. Wyszukaj w internecie po 3 zestawy tekstów, z których przygotujesz karty pracy dla uczestników. W każdym zestawie uczestnik warsztatów będzie musiał wskazać, który tekst jest informacją, a który opinią. Przygotowując się, weź pod uwagę: wydanie online dziennika opinii, portal internetowy i medium społecznościowe.",
-        "Uzasadnij, czym się kierowałaś, dokonując wyboru."
+        "Zostałaś poproszona przez swojego pracodawcę o przygotowanie warsztatu z zakresu edukacji medialnej na temat: „Informacja a opinia. Jak je rozróżnić?”. Wyszukaj w internecie po 3 zestawy tekstów, z których przygotujesz karty pracy dla uczestników. W każdym zestawie uczestnik warsztatów będzie musiał wskazać, który tekst jest informacją, a który opinią. Przygotowując się, weź pod uwagę: wydanie online dziennika opinii, portal internetowy i medium społecznościowe."
+    ],
+    "fields": [
+        {"caption": "Wskaż 3 zestawy tekstów, z których przygotujesz karty pracy dla uczestników.", "id": "6a"},
+        {"caption": "Uzasadnij, czym się kierowałaś, dokonując wyboru.", "id": "6b"}
     ],
     "max_points": 6
 },

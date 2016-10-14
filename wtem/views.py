@@ -55,7 +55,7 @@ def form_during(request, key):
         if exercise['type'] == 'open' and exercise.get('fields'):
             field_answers = {field['id']: field['text'] for field in exercise['saved_answer']}
             for field in exercise['fields']:
-                field['saved_answer'] = field_answers[field['id']]
+                field['saved_answer'] = field_answers.get(field['id'])
     if request.method == 'GET':
         return render(request, 'wtem/main.html', {'exercises': exercises_with_answers, 'end_time': submission.end_time})
     elif request.method == 'POST':
