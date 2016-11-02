@@ -34,7 +34,7 @@ pysolr>=3,<4
 pybbm>=0.14,<0.15
 django-libravatar
 
-sorl-thumbnail>=11,<12
+sorl-thumbnail>=12,<13
 pyyaml
 
 django-subdomains>=2.0.4,<2.1

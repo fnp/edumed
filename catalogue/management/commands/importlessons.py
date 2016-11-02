@@ -33,6 +33,8 @@ class Command(BaseCommand):
     @staticmethod
     def all_attachments(path):
         files = {}
+        if not os.path.isdir(path):
+            return files
 
         def read_dir(path):
             for name in os.listdir(path):
@@ -93,6 +95,12 @@ class Command(BaseCommand):
             file_name = files.pop(0)
             file_path = os.path.join(abs_dir, file_name)
             file_base, ext = os.path.splitext(file_path)
+
+            if os.path.isdir(file_path):
+                dir_imported, dir_skipped = self.import_from_dir(file_path)
+                files_imported += dir_imported
+                files_skipped += files_skipped
+                continue
 
             # Skip files that are not XML files
             if not ext == '.xml':
