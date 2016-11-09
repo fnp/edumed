@@ -276,7 +276,8 @@ class OlimpiadaForm(ContactForm):
     @staticmethod
     def get_extract_fields(contact, extract_type_slug):
         fields = contact.body.keys()
-        fields.remove('student')
+        if 'student' in fields:
+            fields.remove('student')
         fields.extend(['contact', 'student_first_name', 'student_last_name', 'student_email'])
         return fields
 
@@ -293,12 +294,13 @@ class OlimpiadaForm(ContactForm):
             toret[0][field_name] = val
 
         current = toret[0]
-        for student in contact.body['student']:
-            for attr in ('first_name', 'last_name', 'email'):
-                current['student_' + attr] = student[attr]
-            if current not in toret:
-                toret.append(current)
-            current = {}
+        if 'student' in contact.body:
+            for student in contact.body['student']:
+                for attr in ('first_name', 'last_name', 'email'):
+                    current['student_' + attr] = student[attr]
+                if current not in toret:
+                    toret.append(current)
+                current = {}
         return toret
 
     def save(self, request, formsets=None):
