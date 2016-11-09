@@ -239,7 +239,7 @@ class CommissionForm(forms.Form):
 
 
 class OlimpiadaForm(ContactForm):
-    disabled = False
+    disabled = True
     disabled_template = 'wtem/disabled_contact_form.html'
     form_tag = "olimpiada"
     form_title = u"Olimpiada Cyfrowa - Elektroniczny System Zgłoszeń"
@@ -533,6 +533,7 @@ class CybernauciForm(ContactForm):
 
 
 class WLEMForm(ContactForm):
+    disabled = True
     form_tag = 'wlem'
     form_title = u"WLEM - szkolenie dla warszawskich liderów edukacji medialnej"
     admin_list = ['nazwisko', 'instytucja', 'contact']
