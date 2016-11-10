@@ -11,7 +11,7 @@ class Command(BaseCommand):
         new = 0
         skipped = 0
 
-        query = Contact.objects.filter(form_tag='wtem').order_by('-created_at')
+        query = Contact.objects.filter(form_tag='olimpiada').order_by('-created_at')
         if ids:
             query = query.filter(pk__in=ids)
 
