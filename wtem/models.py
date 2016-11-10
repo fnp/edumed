@@ -16,7 +16,7 @@ f = file(os.path.dirname(__file__) + '/fixtures/exercises.json')
 exercises = json.loads(f.read())
 f.close()
 
-DEBUG_KEY = '12345'
+DEBUG_KEY = 'smerfetka159'
 
 
 class Submission(models.Model):
