@@ -12,7 +12,7 @@ class Command(BaseCommand):
         sent = 0
         failed = 0
 
-        query = Contact.objects.filter(form_tag='wtem').order_by('contact').distinct('contact')
+        query = Contact.objects.filter(form_tag='olimpiada').order_by('contact').distinct('contact')
         template_name = args[0]
         message = render_to_string('wtem/' + template_name + '.txt')
         subject = render_to_string('wtem/' + template_name + '_subject.txt')
