@@ -18,7 +18,7 @@ MIDDLEWARE_CLASSES = process_app_deps((
     ('pagination.middleware.PaginationMiddleware', 'pagination'),
     'django.middleware.cache.FetchFromCacheMiddleware',
     'fnpdjango.middleware.SetRemoteAddrFromXRealIP',
-    'pybb.middleware.PybbMiddleware',
-    'forum.middleware.ForumMiddleware',
+    # 'pybb.middleware.PybbMiddleware',
+    # 'forum.middleware.ForumMiddleware',
     'wtem.middleware.ThreadLocalMiddleware'
 ))

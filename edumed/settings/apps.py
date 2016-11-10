@@ -12,7 +12,7 @@ INSTALLED_APPS = (
     'fnpdjango',
     'south',
     'pipeline',
-    'django_extensions',
+    # 'django_extensions',
     # Disable, if not using Piwik.
     'piwik',
     # Disable, if not using CAS.

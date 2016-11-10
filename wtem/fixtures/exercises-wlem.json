@@ -1,0 +1,152 @@
+[
+
+{
+    "id": 1,
+    "type": "open",
+    "description": [
+        "W sieci nieustannie pojawiają się nowe zagrożenia, która bardzo często celują w naszą nieuwagę i słabą higienę pracy z komputerem. Są to m.in. phishing, a ostatnio ransomware. Chcesz przygotować uczestników zajęć na to, by potrafili rozpoznawać je i unikać ryzykowanych sytuacji. Twoim zadaniem jest przygotowanie zajęć, które wyczulą uczestników na sygnały, które mogą świadczyć o zbliżającym się zagrożeniu.",
+        ""
+    ],
+    "fields": [
+        {"caption": "a) Wypisz 2 oznaki tego, że mail, strona WWW lub sms mogą być atakiem phishingowym.", "id": "1a"},
+        {"caption": "b) Wypisz 2 porady jak możesz zabezpieczyć się przed konsekwencjami działania ransomware.", "id": "1b"},
+        {"caption": "c) Wymyśl i opisz krótko propozycję ćwiczenia, które w praktyczny sposób nauczy jak odróżniać groźne wiadomości mailowe, strony WWW czy sms-y, które mogą być atakami. Wybierz jeden z tych sposobów ataku, znajdź w sieci jeden przykład historii ataku w Polsce, który będzie mógł posłużyć Ci za przykład w ćwiczeniu. Przygotuj krótką instrukcje dla uczestników zajęć – co mają zrobić w ramach ćwiczenia? Uwaga! Nie podpowiadaj uczestnikom za bardzo, spróbuj pobudzić ich czujność i samodzielność.", "id": "1c"}
+    ],
+    "max_points": 10
+},
+
+{
+    "id": 2,
+    "type": "open",
+    "description": [
+        "Twoja instytucja/organizacja posiada współczesnego patrona (np. Jana Nowaka-Jeziorańskiego). Chcesz zorganizować publiczną wystawę na jego temat oraz wspomnień o nim jego bliskich, rodziny i przyjaciół. Będziecie potrzebować do tego zdjęć Nowaka-Jeziorańskiego oraz zdjęć jego bliskich. Zdjęcia do wystawy mają pozyskać uczestnicy Twoich zajęć."
+    ],
+    "fields": [
+        {"caption": "a) Na co powinnaś zwrócić im uwagę: podaj jakie obszary prawa mogą być ważne w tym zadaniu?", "id": "2a"},
+        {"caption": "b) Co zawrzesz w instrukcji dot. Pozyskiwania praw do zdjęć? Podaj 3 przykładowe porady z dwóch różnych obszarów prawa.", "id": "2b"}
+    ],
+    "max_points": 11
+},
+
+{
+    "id": 3,
+    "type": "open",
+    "description": [
+        "Czy wiesz, kiedy autorzy i prawo wymagają, by podczas wykorzystania cudzego utworu podpisać odpowiednio utwór? Co możesz zrobić z utworem który cytujesz, a co z takim dostępnym na jednej z licencji CC?"
+    ],
+    "fields": [
+        {"caption": "a) Znajdź w sieci przykład utworu literackiego chronionego przez prawo autorskie, który mogłabyś użyć w krytycznym opracowaniu na temat jego autora/ki. Opisz ten cytat tak jakbyś zrobiła to w.w. publikacji.", "id": "3a"},
+        {"caption": "b) Napisz krótkie uzasadnienie, co pozwala Ci zacytować ten utwór w powyższej sytuacji.", "id": "3b"},
+        {"caption": "c) Znajdź w sieci przykłady utworów (po jednym do każdej sytuacji). Podaj linki do nich razem z opisem licencji/praw.<br><br>na licencji Creative Commons Uznanie autorstwa – Użycie niekomercyjne,", "id": "cc-by-nc"},
+        {"caption": "na licencji Creative Commons Uznanie autorstwa – bez utworów zależnych,", "id": "cc-by-nd"},
+        {"caption": "utworu z domeny publicznej.", "id": "pd"},
+        {"caption": "d) Uszereguj wszystkie utwory z pkt. a) i c) wg swobody wykorzystania (od tych z najszerszą swobodą)", "id": "3d"}
+    ],
+    "max_points": 12
+},
+
+{
+    "id": 4,
+    "type": "open",
+    "description": [
+        "Doceniając potencjał mediów społecznościowych i wykorzystując ich różne formy, przygotuj trasę wycieczki: „Najpiękniejsze murale w Polsce”."
+    ],
+    "fields": [
+        {"caption": "a) Opisz w maksymalnie 7 punktach przebieg wycieczki.", "id": "4a"},
+        {"caption": "b) Wskaż minimum 3 źródła informacji, z których skorzystałaś, uzasadniając ich użyteczność i kryteria wyboru, którymi się kierowałaś. Weź pod uwagę różnorodność mediów społecznościowych i ich różne funkcje.", "id": "4b"}
+    ],
+    "max_points": 8
+},
+
+{
+    "id": 5,
+    "type": "open",
+    "description": [
+        "Wyjaśnij, jakie są różnice między telenowelą dokumentalną a mockumentem. Podaj 2 wiarygodne źródła, gdzie można znaleźć informacje na ten temat."
+    ],
+    "fields": [
+        {"caption": "a) Różnice", "id": "5a"},
+        {"caption": "b) Źródła informacji.", "id": "5b"}
+    ],
+    "max_points": 3
+},  
+
+{
+    "id": 6,
+    "type": "open",
+    "description": [
+        "Zostałaś poproszona przez swojego pracodawcę o przygotowanie warsztatu z zakresu edukacji medialnej na temat: „Informacja a opinia. Jak je rozróżnić?”. Wyszukaj w internecie po 3 zestawy tekstów, z których przygotujesz karty pracy dla uczestników. W każdym zestawie uczestnik warsztatów będzie musiał wskazać, który tekst jest informacją, a który opinią. Przygotowując się, weź pod uwagę: wydanie online dziennika opinii, portal internetowy i medium społecznościowe."
+    ],
+    "fields": [
+        {"caption": "Wskaż 3 zestawy tekstów, z których przygotujesz karty pracy dla uczestników.", "id": "6a"},
+        {"caption": "Uzasadnij, czym się kierowałaś, dokonując wyboru.", "id": "6b"}
+    ],
+    "max_points": 6
+},
+
+{
+    "id": "7a",
+    "id_show": 7,
+    "type": "edumed_wybor",
+    "description": [
+        "Zaproponuj ćwiczenie poszerzające umiejętności grupy, z którą najczęściej pracujesz, w zakresie (wybierz jeden z trzech)"
+    ],
+    "options": [
+        {"id": 1, "text": "formatowania pliku tekstowego,"},
+        {"id": 2, "text": "obróbki obrazu,"},
+        {"id": 3, "text": "montażu wideo."}
+    ],
+    "answer": [1],
+    "points": 0,
+    "max_points": 12
+},
+
+{
+    "id": "7b",
+    "continuation": true,
+    "type": "open",
+    "description": [],
+    "fields": [
+        {"caption": "Opisz grupę, dla której planujesz ćwiczenie (wiek, posiadane już umiejętności i doświadczenie w korzystaniu z nowych technologii)", "id": "7a"},
+        {"caption": "Podaj cel (cele) ćwiczenia oraz jego rezultaty (po zakończeniu ćwiczenia uczestnik/uczestniczka: 1. wie… 2. rozumie… 3. umie…)", "id": "7b"},
+        {"caption": "Zaplanuj ćwiczenie w czasie (ile czasu potrzebujesz? Ile czasu zajmą poszczególne części ćwiczenia?)", "id": "7c"},
+        {"caption": "Opisz, czego potrzebujesz (materiały, oprogramowanie), żeby je zrealizować. Jeśli ćwiczenie zakłada wykorzystanie przykładowych materiałów (np. tekst, zdjęcie, wideo) – dołącz je do ćwiczenia. Jeśli częścią ćwiczenia jest zdobycie tych materiałów przez uczestników – uwzględnij to w opisie ćwiczenia. ", "id": "7d"},
+        {"caption": "Opisz przebieg ćwiczenia tak, by było ono zrozumiałe nie tylko dla Ciebie, ale dla innych osób chcących je wykorzystać w pracy ze swoimi grupami.", "id": "7e"}
+    ],
+    "max_points": 12
+},
+
+{
+    "id": 8,
+    "type": "open",
+    "description": [
+        "Korzystając z technologii informacyjno-komunikacyjnych (TIK) internauci narażeni są na to, że ktoś wykorzysta ich wizerunek lub twórczość niezgodnie z prawem.  Zaplanuj dla grupy, z którą pracujesz, ćwiczenie przygotowujące jej członków/członkinie do interwencji w takiej sytuacji."
+    ],
+    "fields": [
+        {"caption": "a) Opisz grupę, dla której planujesz ćwiczenie (wiek, posiadane już umiejętności i doświadczenie w korzystaniu z TIK),", "id": "8a"},
+        {"caption": "b) Znajdź (pamiętaj o podaniu źródeł) lub stwórz przykłady dwóch sytuacji dotyczących naruszenia wizerunku i/lub praw autorskich w mediach – pasujących do sytuacji, z jakimi mogą się spotkać uczestnicy/uczestniczki Twoich zajęć.", "id": "8b"},
+        {"caption": "c) Stwórz listę możliwych działań interwencyjnych pasujących do tych sytuacji, które możesz omówić podczas zajęć.", "id": "8c"},
+        {"caption": "d) Opisz przebieg ćwiczenia tak, by było ono zrozumiałe nie tylko dla Ciebie, ale dla innych osób chcących je wykorzystać w pracy z grupami.", "id": "8d"}
+    ],
+    "max_points": 12
+},
+
+{
+    "id": 9,
+    "type": "open",
+    "description": [
+        "Przyjrzyj się, jak w praktyce wygląda komunikacja w sieci. Wykorzystaj do tego własne doświadczenia z portali społecznościowych czy informacyjnych.",
+        "Przypomnij sobie sytuacje, w których zabierałaś głos w toczących się tam dyskusjach. Przyjrzyj się językowi, którego używałaś. Czy sprzyjał on osiągnięciu celów, które sobie zakładałaś włączając się w dyskusję? Czy język, który tam spotkałaś wolny był od agresji, mowy nienawiści i hejtu?",
+        "Jeśli dotąd nie miałaś doświadczenia komunikacji z internautami lub nie umiesz przywołać takich doświadczeń – zdobądź je!",
+        "<br>W odpowiedzi możesz pominąć tematy, na które zabierałaś głos – Twoje poglądy nie mają znaczenia dla oceny zadania. Podczas oceny zadania liczyć się będzie: zwięzły opis konkretnych doświadczeń i sytuacji, które spotkałeś/spotkałaś oraz Twoje pomysły na przełożenie ich na pracę z grupami."
+    ],
+    "fields": [
+        {"caption": "Opisz krótko wnioski z Twoich doświadczeń.", "id": "9a"},
+        {"caption": "Jak wykorzystasz je w pracy z Twoją grupą/grupami? Dlaczego?", "id": "9b"},
+        {"caption": "Jaką aktywność na podstawie swoich wniosków zaproponujesz grupie?", "id": "9c"},
+        {"caption": "Jakie cele chciałabyś osiągnąć swoim ćwiczeniem?", "id": "9d"}
+    ],
+    "max_points": 12
+}
+]
+

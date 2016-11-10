@@ -4,7 +4,7 @@ from fnpdjango.deploy import *
 env.project_name = 'edumed'
 env.hosts = ['giewont.icm.edu.pl']
 env.user = 'edumed'
-env.app_path = '/srv/edukacjamedialna.edu.pl'
+env.app_path = '/srv/olimpiadacyfrowa.pl'
 env.services = [
-    Supervisord('edumed'),
+    Supervisord('olimpiada'),
 ]
