@@ -1,6 +1,7 @@
 from django.core.mail import EmailMessage
 from django.conf import settings
 
+
 def send_mail(subject, body, to):
     if not isinstance(to, list):
         to = [to]
@@ -11,7 +12,7 @@ def send_mail(subject, body, to):
         headers['Reply-To'] = reply_to
 
     email = EmailMessage(subject, body,
-        getattr(settings, 'WTEM_FROM', 'edukacjamedialna@nowoczesnapolska.org.pl'),
+        getattr(settings, 'WTEM_FROM', 'olimpiada@nowoczesnapolska.org.pl'),
         to, headers = headers)
     #print email.message()
     email.send(fail_silently = False)
