@@ -1,22 +1,37 @@
 {% extends "base_super.html" %}
+{% load textile_pl from fnp_markup %}
 {% load sponsor_tags %}
 {% load compressed %}
+{% load static %}
 
+{% block full_title %}Olimpiada cyfrowa{% endblock %}
 
-{% block tagline %}Scenariusze zajęć, ćwiczenia, materiały{% endblock %}
+{% block og_site_name %}Olimpiada cyfrowa{% endblock %}
+
+{% block ogurl %}https://olimpiadacyfrowa.pl{% endblock %}
+
+{% block og_image %}http://olimpiadacyfrowa.pl/media/chunks/attachment/olimpiada_cyfrowa_logo.png{% endblock %}
+
+{% block logo %}<img src="{% static "img/logo-oc.png" %}" height="73" alt="Olimpiada cyfrowa"/>{% endblock %}
+
+{% block searchbox %}{% endblock %}
 
 {% block top_navigation %}
-    <li><a class="menu-lekcje" href="{% url "catalogue_lessons" %}">Lekcje</a></li>
-    {% comment %}<li><a class="menu-wspolpraca" href="{% url "info" "wspolpraca/" %}">Współpraca</a></li>{% endcomment %}
-    <li><a class="menu-kompetencje" href="{% url "curriculum" %}">Kompetencje</a></li>
-    <li><a class="menu-szkolenia" href="https://olimpiadacyfrowa.pl">Olimpiada</a></li>
-    <li><a class="menu-o-nas" href="{% url "info" "dlatrenera/" %}">Dla trenera</a></li>
-    <li><a class="menu-wesprzyj" href="{% url "info" "wesprzyj/" %}">Wesprzyj nas</a></li>
-    <li><a class="menu-kontakt" href="{% url "info" "o-nas/" %}">O projekcie</a></li>
+  <li><a class="menu-oc-regulamin" href="/regulamin/">Regulamin</a></li>
+  <li><a class="menu-oc-program" href="/program/">Program</a></li>
+  <li><a class="menu-oc-literatura" href="/literatura/">Literatura</a></li>
+  <li><a class="menu-oc-harmonogram" href="/harmonogram/">Harmonogram</a></li>
+  <li><a class="menu-oc-komitet" href="/sklad/">Rada i komitet</a></li>
+  <li><a class="menu-oc-kontakt" href="/kontakt/">Kontakt</a></li>
+{% endblock %}
+
+{% block copyrights %}
+  <br/>Ikonki w menu:
+  <a href="http://www.flaticon.com/authors/freepik">Designed by Freepik and distributed by Flaticon</a>
 {% endblock %}
 
 {% block sponsors %}
-    {% sponsor_page "footer" %}
+    {% sponsor_page "footer_olimpiada" %}
 {% endblock %}
 
 {% block extra_script %}

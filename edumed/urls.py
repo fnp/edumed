@@ -14,7 +14,7 @@ urlpatterns = patterns(
     # url(r'^info/(?P<url>.*)$', flatpage, name="info"),
     # url(r'^olimpiada/$', lambda request: flatpage(request, 'turniej/'), name='olimpiada'),
     # url(r'^olimpiada/(?P<url>.*)$', lambda request, url: flatpage(request, 'turniej/' + url), name='olimpiada'),
-    # url(r'^szukaj/', include('haystack.urls')),
+    url(r'^szukaj/', include('haystack.urls')),
 
     # url(r'^olimpiada-teaser/(?P<url>.*)$',
     #     lambda request, url: flatpage_with_template(request, 'turniej/' + url, 'olimpiada_teaser.html'),
@@ -55,7 +55,7 @@ if 'django_cas' in settings.INSTALLED_APPS:
 
 urlpatterns += (
     url(r'^(?P<url>[^/]*/|)$',
-        lambda request, url: flatpage_with_template(request, 'turniej/' + url, 'olimpiada_teaser.html')),
+        lambda request, url: flatpage(request, 'turniej/' + url)),
 )
 
 if settings.DEBUG:
