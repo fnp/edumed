@@ -54,7 +54,7 @@ class Command(BaseCommand):
     @transaction.atomic
     def handle(self, *directories, **options):
 
-        repackage = self.options.get('repackage')
+        repackage = options.get('repackage')
 
         self.levels = set()
 
