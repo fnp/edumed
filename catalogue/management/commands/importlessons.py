@@ -21,6 +21,8 @@ class Command(BaseCommand):
                     help='Attachments dir path.'),
         make_option('--ignore-incomplete', action='store_true', dest='ignore_incomplete', default=False,
                     help='Attachments dir path.'),
+        make_option('--dont-repackage', action='store_false', dest='repackage', default=True,
+                    help='Don\'t refresh level packages.'),
     )
     help = 'Imports lessons from the specified directories.'
     args = 'directory [directory ...]'
@@ -52,6 +54,8 @@ class Command(BaseCommand):
     @transaction.atomic
     def handle(self, *directories, **options):
 
+        repackage = self.options.get('repackage')
+
         self.levels = set()
 
         curdir = os.path.abspath(os.curdir)
@@ -69,7 +73,7 @@ class Command(BaseCommand):
                 files_imported += files_imported_dir
                 files_skipped += files_skipped_dir
 
-        if self.levels:
+        if self.levels and repackage:
             print "Rebuilding level packages:"
             for level in self.levels:
                 print level.name
