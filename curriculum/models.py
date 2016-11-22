@@ -109,6 +109,7 @@ class Level(models.Model):
             prefix = 'Skrocony kurs/%d %s/' % (i, lesson.slug)
             lesson.add_to_zip(zipf, student, prefix)
         for c, (section, clessons) in enumerate(lessons['course'].items()):
+            assert section, clessons
             for i, lesson in enumerate(clessons):
                 prefix = 'Pelny kurs/%d %s/%d %s/' % (c, section.slug, i, lesson.slug)
                 lesson.add_to_zip(zipf, student, prefix)
