@@ -224,6 +224,8 @@ class SubmissionsSet:
                     examiners = self.examiners_by_exercise.setdefault(exercise_id, [])
                     if user not in examiners:
                         examiners.append(user)
+            contact_body = submission.contact.body
+            submission.school = '%s %s' % (contact_body['institution'], contact_body['institution_address'])
 
 
 def report_view(request):
