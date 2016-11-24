@@ -127,6 +127,8 @@ class Submission(models.Model):
             if t == 'edumed_prawdafalsz':
                 toret = 0
                 for idx, statement in enumerate(exercise['statements']):
+                    if statement[1] == 'ignore':
+                        continue
                     if answer[idx] == 'true':
                         given = True
                     elif answer[idx] == 'false':
