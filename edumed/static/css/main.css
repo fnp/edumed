@@ -4,27 +4,23 @@
   height: 11.6875em; }
   #main-promobox a {
     background: #16a487;
-    padding: 1em 1.25em;
+    padding: 1em 0.625em;
     border-radius: 0.9375em;
     display: block;
     margin-bottom: 1em;
-    width: 10em;
+    width: 11.25em;
     float: left; }
-    #main-promobox a:first-of-type {
-      padding-top: 0;
-      border-top-right-radius: 0;
-      border-top-left-radius: 0; }
     #main-promobox a:last-of-type {
       margin-bottom: 0; }
   #main-promobox h1 {
     background: #16a487;
-    padding: 1em 1.25em;
+    padding: 1em 0.625em;
     border-radius: 0.9375em;
     color: white;
     margin: 0;
     text-transform: uppercase;
     font-size: .9em;
-    width: 11.375em;
+    width: 12.625em;
     float: left;
     padding-top: 1.25em;
     padding-bottom: 1.25em;
@@ -69,7 +65,6 @@
       #main-sections ul li a {
         color: white;
         text-transform: uppercase;
-        display: block;
         height: 5em;
         display: table;
         padding: 5px; }

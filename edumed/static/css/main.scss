@@ -1,15 +1,18 @@
 $px: .0625em;
 
+$horiz_padding: 10*$px;
+$width_offset: 20*$px;
+
 @mixin main-promobox-shape() {
   background: #16a487;
-  padding: 1em 20*$px;
+  padding: 1em $horiz_padding;
   border-radius: 15*$px;
 }
 
 #main-promobox {
   float: right;
 
-  width: 220*$px - 20*$px;
+  width: 220*$px - $width_offset;
   height: 235*$px - 2 * 1.5em;
 
   a {
@@ -17,14 +20,9 @@ $px: .0625em;
 
     display: block;
     margin-bottom: 1em;
-    width: 220*$px - 3 * 20*$px;
+    width: 220*$px - $width_offset - 2*$horiz_padding;
     float: left;
 
-    &:first-of-type {
-      padding-top: 0;
-      border-top-right-radius: 0;
-      border-top-left-radius: 0;
-    }
     &:last-of-type {
       margin-bottom: 0;
     }
@@ -36,7 +34,7 @@ $px: .0625em;
     margin: 0;
     text-transform: uppercase;
     font-size: .9em;
-    width: 222*$px - 2 * 20*$px;
+    width: 222*$px - 2 * $horiz_padding;
     float: left;
     padding-top: 1.25em;
     padding-bottom: 1.25em;
@@ -91,7 +89,6 @@ $px: .0625em;
       a {
         color: white;
         text-transform: uppercase;
-        display: block;
         height: 80*$px;
         display: table;
         padding: 5px;
