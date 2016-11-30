@@ -7,7 +7,6 @@ from wtem.management.commands import send_mail
 from django.utils import translation
 from django.template.loader import render_to_string
 
-from contact.models import Contact
 from wtem.models import Submission
 
 
@@ -78,12 +77,11 @@ class Command(BaseCommand):
         for submission in get_submissions():
             if options['only_to'] and submission.contact.contact != options['only_to']:
                 continue
-            submissions_by_contact.setdefault(submission.contact.id, []).append(submission)
+            submissions_by_contact.setdefault(submission.contact.contact, []).append(submission)
 
-        for contact_id, submissions in submissions_by_contact.items():
-            contact = Contact.objects.get(id=contact_id)
+        for contact_email, submissions in submissions_by_contact.items():
             message = render_to_string('wtem/results_teacher.txt', dict(submissions=submissions))
-            self.send_message(message, subject, contact.contact)
+            self.send_message(message, subject, contact_email)
 
         self.sum_up()
 
