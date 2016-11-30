@@ -1,13 +1,19 @@
 {% load l10n %}Witaj,
 
-Informujemy, że wszystkie testy rozwiązane w ramach II etapu III edycji Wielkiego Turnieju Edukacji Medialnej zostały ocenione. 
+Informujemy, że wszystkie testy rozwiązane w ramach zawodów I stopnia I edycji Olimpiady Cyfrowej zostały ocenione, a nazwiska osób, które awansowały do II etapu, są już znane. 
+
+W I etapie Olimpiady Cyfrowej test rozwiązało i uzyskało dodatni wynik aż 1725 osób. Ten sukces Olimpiady ogromnie nas cieszy. Ze względu na tak wysoką liczbę Uczestników i Uczestniczek oraz wysoki poziom współzawodnictwa Komitet postanowił – zgodnie z punktem 4.4.11. Regulaminu Olimpiady – podnieść próg punktowy pozwalający na awans do II etapu do 80% możliwych do uzyskanych punktów. 
+
+Oznacza to, że Uczestnicy i Uczestniczki zakwalifikowani do II etapu musieli uzyskać na teście minimum 34 punkty.  
+
+Jednocześnie informujemy, że łączna liczba punktów do zdobycia wyniosła 42,5 pkt. Ze względu na błąd w zapisie w jednym ze zdań w zad. 6 dotyczącym algorytmów, który został zauważony przez uczestników podczas rozwiązywania testu, Komitet postanowił nie uwzględniać go podczas oceny zadania i zmniejszyć liczbę punktów do zdobycia za zad. 6 o pół punktu. 
 
 Liczba punktów zdobytych przez Ciebie w teście to {% localize on %}{{final_result}}{% endlocalize %}.
 
-Niestety, ten wynik nie uprawnia Cię do wzięcia udziału w III etapie Turnieju. Liczba punktów, która uprawnia do wzięcia udziału w finale to 52. Zachęcamy do zgłębiania wiedzy za zakresu edukacji medialnej i wzięcia udziału w kolejnej edycji Wielkiego Turnieju Edukacji Medialnej.
+Niestety, ten wynik nie uprawnia Cię do wzięcia udziału w zawodach II stopnia. Liczba punktów, która zapewnia awans to 34. Zachęcamy do zgłębiania wiedzy za zakresu edukacji cyfrowej i wzięcia udziału w kolejnej edycji Olimpiady.
 
 W razie jakichkolwiek pytań prosimy o kontakt.
 
 Pozdrawiamy,
-Zespół Edukacji Medialnej
+Zespół Olimpiady Cyfrowej
 fundacja Nowoczesna Polska

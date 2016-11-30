@@ -37,8 +37,12 @@ class Command(BaseCommand):
             action='store',
             dest='only_to',
             default=None,
-            help='Send emails only to listed addresses'),
+            help='Send email only to one address'),
     )
+
+    def __init__(self):
+        super(Command, self).__init__()
+        self.sent = self.failed = None
 
     def handle(self, *args, **options):
         translation.activate('pl')
