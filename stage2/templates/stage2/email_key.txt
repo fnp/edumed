@@ -1,0 +1,16 @@
+Poniżej znajduje się wygenerowany specjalnie dla Ciebie link, pod którym będziesz mógł/mogła rozwiązać zadania II etapu Olimpiady Cyfrowej:
+
+https://olimpiadacyfrowa.pl{% url 'stage2_participant' participant_id=participant.id key=participant.key %}
+
+I etap Olimpiady odbędzie się we wtorek 15 listopada o godz. 10:00 w sali wyznaczonej przez Komisję Szkolną. Na rozwiązanie testu będziesz mieć ok. 90 min. Aby rozwiązać test, potrzebny Ci będzie komputer ze stabilnym łączem internetowym oraz zainstalowaną i zaktualizowaną przeglądarką.
+
+Każdy uczestnik otrzymał indywidualny link, pod którym może rozwiązywać zadania samodzielnie. Wszelkie działania mogące świadczyć o tym, że uczestnik nie rozwiązuje testu samodzielnie, np. wchodzenie na stronę z zadaniami przez więcej niż jedną osobę, będą przez nas śledzone i poskutkują dyskwalifikacją.
+
+W razie dodatkowych pytań możesz kontaktować się z nami pod adresem olimpiada@nowoczesnapolska.org.pl lub numerem telefonu +48 515-502-666.
+
+Przypominamy, że główną nagrodą w Olimpiadzie Cyfrowej jest indeks Collegium Civitas na dowolny kierunek studiów licencjackich oraz zwolnienie z opłat czesnego przez rok.
+
+Powodzenia!
+
+Zespół Olimpiady Cyfrowej
+fundacja Nowoczesna Polska
