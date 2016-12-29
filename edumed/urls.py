@@ -2,9 +2,9 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.contrib.flatpages.views import flatpage
-from django.shortcuts import redirect
+# from django.shortcuts import redirect
 
-from .views import HomeView, AvatarlessProfileEditView, flatpage_with_template
+# from .views import HomeView, AvatarlessProfileEditView, flatpage_with_template
 
 urlpatterns = patterns(
     '',

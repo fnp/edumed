@@ -2,7 +2,6 @@
 from django.contrib.flatpages.views import flatpage
 from django.views.defaults import page_not_found
 from django.views.generic import TemplateView
-from pybb.views import ProfileEditView
 
 from .forms import AvatarlessEditProfileForm
 
@@ -25,10 +24,6 @@ def mil_contact_view(request):
 
 def mil_knowledge_base_view(request, url):
     return flatpage(request, url='bazawiedzy/' + url)
-
-
-class AvatarlessProfileEditView(ProfileEditView):
-    form_class = AvatarlessEditProfileForm
 
 
 def flatpage_with_template(request, url, template_name):
