@@ -6,6 +6,7 @@ INSTALLED_APPS = (
     'catalogue',
     'comment',
     'wtem',
+    'stage2',
     'publishers',
     'api',
 
