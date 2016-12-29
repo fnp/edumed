@@ -6,18 +6,23 @@ import string
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from jsonfield import JSONField
 
 from contact.models import Contact
 
 
 class Participant(models.Model):
-    contact = models.ForeignKey(Contact, null=True)
-    key = models.CharField(max_length=30, unique=True)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100, unique=True)
-    key_sent = models.BooleanField(default=False)
+    contact = models.ForeignKey(Contact, verbose_name=_('contact'), null=True)
+    key = models.CharField(_('key'), max_length=30, unique=True)
+    first_name = models.CharField(_('first name'), max_length=100)
+    last_name = models.CharField(_('last_name'), max_length=100)
+    email = models.EmailField(_('email'), max_length=100, unique=True)
+    key_sent = models.BooleanField(_('key sent'), default=False)
+
+    class Meta:
+        verbose_name = _('participant')
+        verbose_name_plural = _('participants')
 
     def __unicode__(self):
         return ', '.join((self.last_name, self.first_name, self.email))
@@ -46,14 +51,16 @@ class Participant(models.Model):
 
 
 class Assignment(models.Model):
-    title = models.CharField(max_length=128)
-    content = models.TextField()
-    deadline = models.DateTimeField()
-    max_points = models.IntegerField()
-    file_descriptions = JSONField()
+    title = models.CharField(_('title'), max_length=128)
+    content = models.TextField(_('content'))
+    deadline = models.DateTimeField(_('deadline'))
+    max_points = models.IntegerField(_('max points'))
+    file_descriptions = JSONField(_('file descriptions'))
 
     class Meta:
         ordering = ['deadline']
+        verbose_name = _('assignment')
+        verbose_name_plural = _('assignments')
 
     def __unicode__(self):
         return self.title

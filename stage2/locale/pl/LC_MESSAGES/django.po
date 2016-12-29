@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-29 15:35+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#: models.py:16
+msgid "contact"
+msgstr "kontakt"
+
+#: models.py:17
+msgid "key"
+msgstr "klucz"
+
+#: models.py:18
+msgid "first name"
+msgstr "imię"
+
+#: models.py:19
+msgid "last_name"
+msgstr "nazwisko"
+
+#: models.py:20
+msgid "email"
+msgstr "email"
+
+#: models.py:21
+msgid "key sent"
+msgstr "wysłano klucz"
+
+#: models.py:24
+msgid "participant"
+msgstr "uczestnik"
+
+#: models.py:25
+msgid "participants"
+msgstr "uczestnicy"
+
+#: models.py:54
+msgid "title"
+msgstr "tytuł"
+
+#: models.py:55
+msgid "content"
+msgstr "treść"
+
+#: models.py:56
+msgid "deadline"
+msgstr "termin"
+
+#: models.py:57
+msgid "max points"
+msgstr "max punktów"
+
+#: models.py:58
+msgid "file descriptions"
+msgstr "opisy plików"
+
+#: models.py:62
+msgid "assignment"
+msgstr "zadanie"
+
+#: models.py:63
+msgid "assignments"
+msgstr "zadania"
