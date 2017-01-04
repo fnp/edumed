@@ -1,0 +1,110 @@
+#catalogue-carousel {
+  float: left;
+  position: relative;
+  width: 43.75em;
+  height: 14.6875em;
+  overflow: hidden;
+  border-radius: 0.9375em;
+}
+  #catalogue-carousel #catalogue-carousel-links {
+    width: 28.75em;
+    height: 14.6875em;
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    #catalogue-carousel #catalogue-carousel-links li {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background-size: 100% 100%;
+      border-top-left-radius: 0.9375em 6.38%;
+      border-bottom-left-radius: 0.9375em 6.38%;
+      z-index: 100;
+      background-color: #888; }
+      #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link {
+        display: block;
+        overflow: hidden;
+        width: 28.75em;
+        height: 100%;
+        background: url(/static/catalogue/img/carousel-left.png) 100% 0 no-repeat;
+        background-size: 4.375em 100%; }
+        #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link .catalogue-carousel-note {
+          position: relative;
+          height: 100%;
+          color: white;
+          margin-top: 8.5em; }
+          #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link .catalogue-carousel-note div:before {
+            content: " ";
+            display: block;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            background-color: black;
+            opacity: 0.6; }
+          #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link .catalogue-carousel-note div p {
+            padding: .4em 3em 0 .5em; }
+            #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link .catalogue-carousel-note div p strong {
+              font-size: 1.2em;
+              display: block; }
+            #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link .catalogue-carousel-note div p .more {
+              position: absolute;
+              right: 4em;
+              top: 4.5em; }
+      #catalogue-carousel #catalogue-carousel-links li a.catalogue-carousel-link:active {
+        outline: none; }
+      #catalogue-carousel #catalogue-carousel-links li .attribution {
+        text-align: right;
+        font-size: .75em;
+        position: absolute;
+        right: 5em;
+        top: .1em;
+        color: white;
+        font-weight: bold;
+        text-shadow: 0 0 5px #000; }
+  #catalogue-carousel #catalogue-carousel-switcher {
+    margin: 0;
+    padding: 0.1875em 0 0 3.625em;
+    width: 11.375em;
+    height: 14.6875em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    list-style: none;
+    border-radius: 0 0.9375em 0.9375em 0;
+    background-color: #ed7831;
+    background-image: url(/static/catalogue/img/carousel-right.png);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: auto 14.6875em;
+    /* right part of mask as background */ }
+    #catalogue-carousel #catalogue-carousel-switcher li {
+      margin-bottom: .4em;
+      font-size: .85em;
+      line-height: 1em; }
+      #catalogue-carousel #catalogue-carousel-switcher li a {
+        text-transform: uppercase;
+        color: #363a3e; }
+      #catalogue-carousel #catalogue-carousel-switcher li a:before {
+        vertical-align: top;
+        margin-right: 1.5em; }
+      #catalogue-carousel #catalogue-carousel-switcher li .knowledge:before {
+        content: url(/static/img/icons/knowledge_dark.png); }
+      #catalogue-carousel #catalogue-carousel-switcher li .activity:before {
+        content: url(/static/img/icons/activity_dark.png); }
+      #catalogue-carousel #catalogue-carousel-switcher li .lesson-plan:before {
+        content: url(/static/img/icons/lesson-plan_dark.png); }
+      #catalogue-carousel #catalogue-carousel-switcher li .reference:before {
+        content: url(/static/img/icons/reference_dark.png); }
+    #catalogue-carousel #catalogue-carousel-switcher li.activeSlide a {
+      color: white; }
+    #catalogue-carousel #catalogue-carousel-switcher li.activeSlide .knowledge:before {
+      content: url(/static/img/icons/knowledge_white.png); }
+    #catalogue-carousel #catalogue-carousel-switcher li.activeSlide .activity:before {
+      content: url(/static/img/icons/activity_white.png); }
+    #catalogue-carousel #catalogue-carousel-switcher li.activeSlide .lesson-plan:before {
+      content: url(/static/img/icons/lesson-plan_white.png); }
+    #catalogue-carousel #catalogue-carousel-switcher li.activeSlide .reference:before {
+      content: url(/static/img/icons/reference_white.png); }

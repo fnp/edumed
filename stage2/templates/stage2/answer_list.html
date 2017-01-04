@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+  <h1>{% if marked %}Ocenione odpowiedzi{% else %}Odpowiedzi do oceny{% endif %}</h1>
+  <p>Zadanie <cite>{{ assignment.title }}</cite> (max {{ assignment.max_points }} pkt)</p>
+  <p><strong>{% if assignment.is_active %}Możliwość oceniania zostanie włączona po terminie wysyłania rozwiązań</strong>{% endif %}</p>
+  {% if marked %}
+    <p><a href="{% url 'stage2_answer_list' assignment.id %}">Przejdź do odpowiedzi do oceny</a></p>
+  {% else %}
+    <p><a href="{% url 'stage2_marked_answers' assignment.id %}">Przejdź do ocenionych odpowiedzi</a></p>
+  {% endif %}
+  {% for answer in answers %}
+    <h3>{{ answer.participant }}</h3>
+    {% for label, attachment in answer.attachments %}
+      <p>
+        <strong>{{ label }}</strong>:
+        {% if attachment.file %}
+          <a href="{% url 'stage2_expert_download' attachment.id %}">{{ attachment.filename }}</a>
+          ({{ attachment.file.size|filesizeformat }})
+        {% else %}
+          (nie wysłano pliku)
+        {% endif %}
+      </p>
+    {% endfor %}
+    {% if not assignment.is_active %}
+      <form method="post" action="{% url 'stage2_mark_answer' answer.id %}">
+        {% csrf_token %}
+        {{ answer.form.as_p }}
+        <input type="submit" value="Zapisz"/>
+      </form>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

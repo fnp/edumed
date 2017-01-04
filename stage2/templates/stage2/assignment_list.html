@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+  <h1>Zadania przydzielone do ocenienia</h1>
+  {% for assignment in assignments %}
+    <p>
+      <a href="{% url 'stage2_answer_list' assignment.id %}">{{ assignment.title }}</a>
+      ({% if assignment.marked_count %}<a href="{% url 'stage2_marked_answers' assignment.id %}">{{ assignment.marked_count }} ocenionych</a>{% else %}{{ assignment.marked_count }} ocenionych{% endif %},
+      {{ assignment.to_mark_count }} dostępnych do oceny)
+    </p>
+  {% endfor %}
+{% endblock %}

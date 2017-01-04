@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-29 15:35+0100\n"
+"POT-Creation-Date: 2017-01-04 13:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,62 +18,70 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: models.py:16
+#: models.py:18
 msgid "contact"
 msgstr "kontakt"
 
-#: models.py:17
+#: models.py:19
 msgid "key"
 msgstr "klucz"
 
-#: models.py:18
+#: models.py:20
 msgid "first name"
 msgstr "imię"
 
-#: models.py:19
+#: models.py:21
 msgid "last_name"
 msgstr "nazwisko"
 
-#: models.py:20
+#: models.py:22
 msgid "email"
 msgstr "email"
 
-#: models.py:21
+#: models.py:23
 msgid "key sent"
 msgstr "wysłano klucz"
 
-#: models.py:24
+#: models.py:26
 msgid "participant"
 msgstr "uczestnik"
 
-#: models.py:25
+#: models.py:27
 msgid "participants"
 msgstr "uczestnicy"
 
-#: models.py:54
+#: models.py:59
 msgid "title"
 msgstr "tytuł"
 
-#: models.py:55
+#: models.py:60
 msgid "content"
 msgstr "treść"
 
-#: models.py:56
+#: models.py:61
 msgid "deadline"
 msgstr "termin"
 
-#: models.py:57
+#: models.py:62
 msgid "max points"
 msgstr "max punktów"
 
-#: models.py:58
+#: models.py:63
+msgid "experts"
+msgstr "eksperci"
+
+#: models.py:64
 msgid "file descriptions"
 msgstr "opisy plików"
 
-#: models.py:62
+#: models.py:68
 msgid "assignment"
 msgstr "zadanie"
 
-#: models.py:63
+#: models.py:69
 msgid "assignments"
 msgstr "zadania"
+
+#: models.py:135
+msgid "points"
+msgstr "punkty"

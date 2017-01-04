@@ -6,7 +6,10 @@ import string
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 from jsonfield import JSONField
 
 from contact.models import Contact
@@ -49,12 +52,16 @@ class Participant(models.Model):
     def check(self, key):
         return key == self.key
 
+    def score(self):
+        return sum(answer.score() for answer in self.answer_set.all())
+
 
 class Assignment(models.Model):
     title = models.CharField(_('title'), max_length=128)
     content = models.TextField(_('content'))
     deadline = models.DateTimeField(_('deadline'))
     max_points = models.IntegerField(_('max points'))
+    experts = models.ManyToManyField(User, verbose_name=_('experts'), related_name='stage2_assignments')
     file_descriptions = JSONField(_('file descriptions'))
 
     class Meta:
@@ -65,24 +72,53 @@ class Assignment(models.Model):
     def __unicode__(self):
         return self.title
 
+    def available_answers(self, expert):
+        return self.answer_set.exclude(mark__expert=expert).exclude(complete=True)
+
+    def is_active(self):
+        return self.deadline >= timezone.now()
+
 
 class Answer(models.Model):
     participant = models.ForeignKey(Participant)
     assignment = models.ForeignKey(Assignment)
+    # useful redundancy
+    complete = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ['participant', 'assignment']
 
+    def update_complete(self):
+        marks = self.mark_set.all()
+        if len(marks) < 2:
+            complete = False
+        elif len(marks) == 2:
+            mark1, mark2 = marks
+            complete = abs(mark1.points - mark2.points) < 0.2 * self.assignment.max_points
+        else:
+            complete = True
+        self.complete = complete
+        self.save()
+
+    def score(self):
+        marks = self.mark_set.all()
+        if len(marks) < 2:
+            return None
+        return self.mark_set.aggregate(models.Avg('points'))
+
 
 def attachment_path(instance, filename):
     answer = instance.answer
-    return 'stage2/attachment/%s/%s/%s' % (answer.participant_id, answer.assignment_id, filename)
+    return 'stage2/attachment/%s/%s/%s/%s' % (answer.participant_id, answer.assignment_id, instance.file_no, filename)
 
 
 class Attachment(models.Model):
     answer = models.ForeignKey(Answer)
     file_no = models.IntegerField()
     file = models.FileField(upload_to=attachment_path)
+
+    class Meta:
+        ordering = ['file_no']
 
     def filename(self):
         return os.path.basename(self.file.name)
@@ -93,11 +129,20 @@ class Attachment(models.Model):
             args=(self.answer.assignment_id, self.file_no,
                   self.answer.participant_id, self.answer.participant.key))
 
+    def expert_download_url(self):
+        return reverse('stage2_expert_download', args=[self.id])
+
 
 class Mark(models.Model):
     expert = models.ForeignKey(User)
     answer = models.ForeignKey(Answer)
-    points = models.DecimalField(max_digits=3, decimal_places=1)
+    points = models.DecimalField(verbose_name=_('points'), max_digits=3, decimal_places=1)
 
     class Meta:
         unique_together = ['expert', 'answer']
+
+
+@receiver(post_save, sender=Mark, dispatch_uid='update_answer')
+def update_answer(sender, **kwargs):
+    mark = kwargs['instance']
+    mark.answer.update_complete()

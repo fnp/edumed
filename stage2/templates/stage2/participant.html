@@ -1,4 +1,5 @@
-{% extends 'base_super.html' %}
+{% extends 'base.html' %}
+{% load textile_pl from fnp_markup %}
 
 {% block title %}Drugi etap{% endblock %}
 
@@ -7,16 +8,17 @@
 
   {% for assignment in assignments %}
     <h2>{{ assignment.title }} (do {{ assignment.deadline }})</h2>
-    <p>{{ assignment.content }}</p>
+    <p>{{ assignment.content|textile_pl }}</p>
     <form method="POST" action="{% url 'stage2_upload' assignment.id participant.id participant.key %}"
           enctype="multipart/form-data">
       {% csrf_token %}
       {% for form, attachment in assignment.forms %}
         <p><strong>{{ form.file.label }}:</strong></p>
         <p>
-          {% if assignment.active %}{{ form.file }}{% endif %}
+          {% if assignment.is_active %}{{ form.file }}{% endif %}
           {% if attachment.file %}
             <a href="{{ attachment.download_url }}">{{ attachment.filename }}</a>
+            ({{ attachment.file.size|filesizeformat }})
           {% else %}
             (nie wysłano pliku)
           {% endif %}

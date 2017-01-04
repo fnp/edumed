@@ -1,0 +1,112 @@
+$px: .0625em;
+$new_black: #363a3e;
+
+.box-button {
+    background-color: #ed7831;
+    border-radius: 15*$px;
+    .dl-button {
+        color: white;
+        padding: 17*$px 12*$px 17*$px 12*$px;
+    }
+}
+.dl-button {
+    color: $new_black;
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: .9em;
+}
+.dl-button:after {
+    content: " ↓";
+}
+
+#main-bar section.button {
+    margin-bottom: 17*$px;
+}
+
+#sidebar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 220*$px;
+    color: $new_black;
+
+    section {
+        margin-bottom: 17*$px;
+        h1 {
+            margin: 0;
+        }
+        h1.realisation {
+            font-weight: normal;
+        }
+    }
+
+    .section {
+        border-top: 1px solid #c9ccce;
+        padding-top: 17*$px;
+    }
+    .section-minor {
+        border-top: 1px solid #c9ccce;
+        padding-top: 17*$px;
+        h1 {
+            font-weight: normal;
+            font-size: 1em;
+        }
+    }
+    .section-micro {
+        font-size: .8em;
+        color: #888;
+        border-top: 1px solid #c9ccce;
+        padding-top: 17*$px;
+        h1 {
+            font-weight: normal;
+            font-size: 1em;
+        }
+        .link-list a {
+            color: #888;
+        }
+    }
+    section:first-child {
+        border-top: 0;
+        padding-top: 0;
+    }
+}
+#main-bar {
+    width: 640*$px;
+
+    .top-link {
+        float:right;
+    }
+
+    .box {
+        background-color: #d4d6d8;
+        border-radius: 15*$px;
+        padding: 17*$px;
+        h1 {
+            font-size: 1em;
+            text-transform: uppercase;
+        }
+        p {
+            margin: 0;
+        }
+        .box-icon {
+            margin: -.2em 0 -.2em 1em;
+            float: right;
+            text-align: center;
+        }
+    }
+}
+
+.lesson-footer {
+    clear: both;
+    border-top: 1px solid #777;
+    margin-top: 2em;
+    padding-top: 1em;
+
+    .section-info {
+        text-align: center;
+    }
+    .previous-lesson {float: left;}
+    .next-lesson {float: right;}
+}
