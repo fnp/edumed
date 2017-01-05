@@ -16,9 +16,9 @@ def all_assignments(participant):
     for assignment in assignments:
         assignment.answer = assignment.answer_set.filter(participant=participant).first()
         assignment.forms = [
-            (AttachmentForm(assignment=assignment, file_no=i, label=label),
+            (AttachmentForm(assignment=assignment, file_no=i, label=label, extensions=ext),
              assignment.answer.attachment_set.filter(file_no=i).first() if assignment.answer else None)
-            for i, label in enumerate(assignment.file_descriptions, 1)]
+            for i, (label, ext) in enumerate(assignment.file_descriptions, 1)]
     return assignments
 
 
@@ -40,12 +40,12 @@ def upload(request, assignment_id, participant_id, key):
     now = timezone.now()
     if assignment.deadline < now:
         raise Http404  # TODO za późno
-    for i, label in enumerate(assignment.file_descriptions, 1):
+    for i, (label, ext) in enumerate(assignment.file_descriptions, 1):
         answer, created = Answer.objects.get_or_create(participant=participant, assignment=assignment)
         attachment, created = Attachment.objects.get_or_create(answer=answer, file_no=i)
         form = AttachmentForm(
             data=request.POST, files=request.FILES,
-            assignment=assignment, file_no=i, label=label, instance=attachment)
+            assignment=assignment, file_no=i, label=label, instance=attachment, extensions=ext)
         if form.is_valid():
             form.save()
     return HttpResponseRedirect(reverse('stage2_participant', args=(participant_id, key)))
@@ -95,7 +95,7 @@ def available_answers(assignment, expert, answer_with_errors=None, form_with_err
         attachments_by_file_no = {attachment.file_no: attachment for attachment in attachments}
         answer.attachments = [
             (desc, attachments_by_file_no.get(i))
-            for (i, desc) in enumerate(assignment.file_descriptions, 1)]
+            for (i, (desc, ext)) in enumerate(assignment.file_descriptions, 1)]
         if answer == answer_with_errors:
             answer.form = form_with_errors
         else:

@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% load textile_pl from fnp_markup %}
+{% load chunks %}
 
 {% block title %}Drugi etap{% endblock %}
 
 {% block body %}
   <h1>Drugi etap Olimpiady Cyfrowej</h1>
+
+  {% chunk 'stage2_header' %}
 
   {% for assignment in assignments %}
     <h2>{{ assignment.title }} (do {{ assignment.deadline }})</h2>

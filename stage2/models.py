@@ -65,7 +65,7 @@ class Assignment(models.Model):
     file_descriptions = JSONField(_('file descriptions'))
 
     class Meta:
-        ordering = ['deadline']
+        ordering = ['deadline', 'title']
         verbose_name = _('assignment')
         verbose_name_plural = _('assignments')
 
