@@ -11,7 +11,9 @@
 
   {% for assignment in assignments %}
     <h2>{{ assignment.title }} (do {{ assignment.deadline }})</h2>
-    <p>{{ assignment.content|textile_pl }}</p>
+    {% if assignment.is_active %}
+      <p>{{ assignment.content|textile_pl }}</p>
+    {% endif %}
     <form method="POST" action="{% url 'stage2_upload' assignment.id participant.id participant.key %}"
           enctype="multipart/form-data">
       {% csrf_token %}

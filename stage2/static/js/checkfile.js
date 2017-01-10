@@ -8,7 +8,10 @@ $(function() {
                 var ext = this.getAttribute('data-ext');
                 var re = new RegExp('\\.(' + ext + ')$', 'i');
                 if (!re.exec(name)) {
-                    alert('Błędne rozszerzenie! Powinno być jedno z: ' + ext.replace(/\|/g, ', '));
+                    if (/\|/.exec(ext))
+                        alert('Błędne rozszerzenie! Powinno być jedno z: ' + ext.replace(/\|/g, ', '));
+                    else
+                        alert('Błędne rozszerzenie! Powinno być: ' + ext);
                     ok = false;
                 }
             }

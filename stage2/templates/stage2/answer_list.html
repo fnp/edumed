@@ -5,11 +5,14 @@
   <h1>{% if marked %}Ocenione odpowiedzi{% else %}Odpowiedzi do oceny{% endif %}</h1>
   <p>Zadanie <cite>{{ assignment.title }}</cite> (max {{ assignment.max_points }} pkt)</p>
   <p><strong>{% if assignment.is_active %}Możliwość oceniania zostanie włączona po terminie wysyłania rozwiązań</strong>{% endif %}</p>
-  {% if marked %}
-    <p><a href="{% url 'stage2_answer_list' assignment.id %}">Przejdź do odpowiedzi do oceny</a></p>
-  {% else %}
-    <p><a href="{% url 'stage2_marked_answers' assignment.id %}">Przejdź do ocenionych odpowiedzi</a></p>
+  {% if not assignment.is_active %}
+    {% if marked %}
+      <p><a href="{% url 'stage2_answer_list' assignment.id %}">Przejdź do odpowiedzi do oceny</a></p>
+    {% else %}
+      <p><a href="{% url 'stage2_marked_answers' assignment.id %}">Przejdź do ocenionych odpowiedzi</a></p>
+    {% endif %}
   {% endif %}
+  <p>{% if not marked and not assignment.is_active %}Pozostało {% endif %}{{ answers|length }} odpowiedzi</p>
   {% for answer in answers %}
     <h3>{{ answer.participant }}</h3>
     {% for label, attachment in answer.attachments %}
