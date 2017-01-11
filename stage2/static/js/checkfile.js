@@ -16,8 +16,8 @@ $(function() {
                 }
             }
             var size = this.files[0].size;
-            if (size > 10 * 1024 * 1024) {
-                alert('Rozmiar pliku nie może przekraczać 10 MB!');
+            if (size > 20 * 1024 * 1024) {
+                alert('Rozmiar pliku nie może przekraczać 20 MB!');
                 ok = false;
             }
             if (!ok) {
