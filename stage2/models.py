@@ -64,7 +64,7 @@ class Assignment(models.Model):
     max_points = models.IntegerField(_('max points'))
     experts = models.ManyToManyField(User, verbose_name=_('experts'), related_name='stage2_assignments')
     arbiters = models.ManyToManyField(
-        User, empty=True, verbose_name=_('arbiters'), related_name='stage2_arbitrated')
+        User, blank=True, verbose_name=_('arbiters'), related_name='stage2_arbitrated')
     file_descriptions = JSONField(_('file descriptions'))
 
     class Meta:
