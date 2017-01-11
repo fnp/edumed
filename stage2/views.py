@@ -75,7 +75,7 @@ def get_file(request, assignment_id, file_no, participant_id, key):
 def assignment_list(request):
     assignments = request.user.stage2_assignments.all()
     if not assignments:
-        return HttpResponseForbidden()
+        return HttpResponseForbidden('Not allowed')
     for assignment in assignments:
         assignment.marked_count = Mark.objects.filter(expert=request.user, answer__assignment=assignment).count()
         assignment.to_mark_count = assignment.available_answers(request.user).count()
@@ -109,7 +109,7 @@ def available_answers(assignment, expert, answer_with_errors=None, form_with_err
 def answer_list(request, assignment_id):
     assignment = get_object_or_404(Assignment, id=assignment_id)
     if request.user not in assignment.experts.all():
-        return HttpResponseForbidden()
+        return HttpResponseForbidden('Not allowed')
     return render(request, 'stage2/answer_list.html',
                   {'answers': available_answers(assignment, request.user), 'assignment': assignment})
 
@@ -118,7 +118,7 @@ def answer_list(request, assignment_id):
 def marked_answer_list(request, assignment_id):
     assignment = get_object_or_404(Assignment, id=assignment_id)
     if request.user not in assignment.experts.all():
-        return HttpResponseForbidden()
+        return HttpResponseForbidden('Not allowed')
     return render(request, 'stage2/answer_list.html', {
         'answers': available_answers(assignment, request.user, marked=True),
         'assignment': assignment,
@@ -137,9 +137,9 @@ def expert_download(request, attachment_id):
 def mark_answer(request, answer_id):
     answer = get_object_or_404(Answer, id=answer_id)
     if request.user not in answer.assignment.experts.all():
-        return HttpResponseForbidden()
+        return HttpResponseForbidden('Not allowed')
     if answer.assignment.is_active():
-        return HttpResponseForbidden()
+        return HttpResponseForbidden('Not allowed')
     mark, created = Mark.objects.get_or_create(answer=answer, expert=request.user, defaults={'points': 0})
     form = MarkForm(data=request.POST, answer=answer, instance=mark, prefix='ans%s' % answer.id)
     if form.is_valid():
