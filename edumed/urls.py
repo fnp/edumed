@@ -26,7 +26,7 @@ urlpatterns = patterns(
     # url(r'^forum/', include('pybb.urls', namespace='pybb')),
     # url(r'^kompetencje/', include('curriculum.urls')),
     url(r'^zadania/', include('wtem.urls')),
-    url(r'^2etap/', include('stage2.urls')),
+    url(r'^drugi-etap/', include('stage2.urls')),
 )
 
 
