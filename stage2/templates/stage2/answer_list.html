@@ -3,7 +3,7 @@
 
 {% block body %}
   <h1>{% if marked %}Ocenione odpowiedzi{% else %}Odpowiedzi do oceny{% endif %}</h1>
-  <p>Zadanie <cite>{{ assignment.title }}</cite> (max {{ assignment.max_points }} pkt)</p>
+  <h2>{{ assignment.title }} (max {{ assignment.max_points }} pkt)</h2>
   <p><strong>{% if assignment.is_active %}Możliwość oceniania zostanie włączona po terminie wysyłania rozwiązań</strong>{% endif %}</p>
   {% if not assignment.is_active %}
     {% if marked %}

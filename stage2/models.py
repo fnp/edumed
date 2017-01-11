@@ -59,9 +59,11 @@ class Participant(models.Model):
 class Assignment(models.Model):
     title = models.CharField(_('title'), max_length=128)
     content = models.TextField(_('content'))
+    content_url = models.URLField(_('URL'))
     deadline = models.DateTimeField(_('deadline'))
     max_points = models.IntegerField(_('max points'))
     experts = models.ManyToManyField(User, verbose_name=_('experts'), related_name='stage2_assignments')
+    arbiters = models.ManyToManyField(User, verbose_name=_('arbiters'), related_name='stage2_arbitrated')
     file_descriptions = JSONField(_('file descriptions'))
 
     class Meta:
@@ -73,7 +75,10 @@ class Assignment(models.Model):
         return self.title
 
     def available_answers(self, expert):
-        return self.answer_set.exclude(mark__expert=expert).exclude(complete=True)
+        answers = self.answer_set.exclude(mark__expert=expert).exclude(complete=True)
+        if expert in self.arbiters.all():
+            answers = answers.filter(need_arbiter=True)
+        return answers
 
     def is_active(self):
         return self.deadline >= timezone.now()
@@ -84,6 +89,7 @@ class Answer(models.Model):
     assignment = models.ForeignKey(Assignment)
     # useful redundancy
     complete = models.BooleanField(default=False)
+    need_arbiter = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ['participant', 'assignment']
@@ -92,12 +98,16 @@ class Answer(models.Model):
         marks = self.mark_set.all()
         if len(marks) < 2:
             complete = False
+            need_arbiter = False
         elif len(marks) == 2:
             mark1, mark2 = marks
             complete = abs(mark1.points - mark2.points) < 0.2 * self.assignment.max_points
+            need_arbiter = not complete
         else:
             complete = True
+            need_arbiter = False
         self.complete = complete
+        self.need_arbiter = need_arbiter
         self.save()
 
     def score(self):

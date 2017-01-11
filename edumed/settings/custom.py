@@ -2,4 +2,4 @@
 
 CONTACT_FORMS_MODULE = 'edumed.contact_forms'
 
-MAX_UPLOAD_SIZE = 10485760  # 10 MB
+MAX_UPLOAD_SIZE = 20 * 1024 * 1024

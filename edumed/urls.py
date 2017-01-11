@@ -53,6 +53,12 @@ if 'django_cas' in settings.INSTALLED_APPS:
         url(r'^accounts/login/$', 'django_cas.views.login', name='login'),
         url(r'^accounts/logout/$', 'django_cas.views.logout', name='logout'),
     )
+else:
+    from django.contrib.auth.views import login, logout
+    urlpatterns += (
+        url(r'^accounts/login/$', login, name='login'),
+        url(r'^accounts/logout/$', logout, name='logout'),
+    )
 
 urlpatterns += (
     url(r'^(?P<url>[^/]*/|)$',
@@ -60,8 +66,7 @@ urlpatterns += (
 )
 
 if settings.DEBUG:
-    urlpatterns += patterns(
-        '',
+    urlpatterns += (
         # url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         #     'document_root': settings.MEDIA_ROOT,
         # }),

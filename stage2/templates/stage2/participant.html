@@ -11,9 +11,7 @@
 
   {% for assignment in assignments %}
     <h2>{{ assignment.title }} (do {{ assignment.deadline }})</h2>
-    {% if assignment.is_active %}
-      <p>{{ assignment.content|textile_pl }}</p>
-    {% endif %}
+    <a href="{{ assignment.content_url }}"><strong>Zobacz treść zadania</strong></a>
     <form method="POST" action="{% url 'stage2_upload' assignment.id participant.id participant.key %}"
           enctype="multipart/form-data">
       {% csrf_token %}
@@ -29,7 +27,7 @@
           {% endif %}
         </p>
       {% endfor %}
-      <input type="submit" value="Wyślij"/>
+      {% if assignment.is_active %}<input type="submit" value="Wyślij"/>{% endif %}
     </form>
   {% endfor %}
 

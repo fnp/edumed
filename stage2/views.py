@@ -76,11 +76,12 @@ def assignment_list(request):
     assignments = request.user.stage2_assignments.all()
     if not assignments:
         return HttpResponseForbidden()
-    if len(assignments) == 1:
-        return HttpResponseRedirect(reverse('stage2_answer_list', args=[assignments.get().id]))
     for assignment in assignments:
         assignment.marked_count = Mark.objects.filter(expert=request.user, answer__assignment=assignment).count()
         assignment.to_mark_count = assignment.available_answers(request.user).count()
+    non_empty_assignments = [ass for ass in assignments if ass.marked_count > 0 or ass.to_mark_count > 0]
+    if len(non_empty_assignments) == 1 and non_empty_assignments[0].to_mark_count > 0:
+        return HttpResponseRedirect(reverse('stage2_answer_list', args=[non_empty_assignments[0].id]))
     return render(request, 'stage2/assignment_list.html', {'assignments': assignments})
 
 
