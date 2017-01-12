@@ -1,10 +1,19 @@
-Poniżej znajduje się wygenerowany specjalnie dla Ciebie link, pod którym będziesz mógł/mogła rozwiązać zadania II etapu Olimpiady Cyfrowej:
+Poniżej znajduje się wygenerowany specjalnie dla Ciebie link, pod którym będziesz mógł/mogła przesłać rozwiązania zadań II etapu Olimpiady Cyfrowej:
 
 https://olimpiadacyfrowa.pl{% url 'stage2_participant' participant_id=participant.id key=participant.key %}
 
-I etap Olimpiady odbędzie się we wtorek 15 listopada o godz. 10:00 w sali wyznaczonej przez Komisję Szkolną. Na rozwiązanie testu będziesz mieć ok. 90 min. Aby rozwiązać test, potrzebny Ci będzie komputer ze stabilnym łączem internetowym oraz zainstalowaną i zaktualizowaną przeglądarką.
+Pamiętaj, że rozwiązania musisz przesłać w określonych terminach:
 
-Każdy uczestnik otrzymał indywidualny link, pod którym może rozwiązywać zadania samodzielnie. Wszelkie działania mogące świadczyć o tym, że uczestnik nie rozwiązuje testu samodzielnie, np. wchodzenie na stronę z zadaniami przez więcej niż jedną osobę, będą przez nas śledzone i poskutkują dyskwalifikacją.
+Zadanie 1 – do 16.01.2017 r. godz. 23:59:59
+Zadanie 2 – do 23.01.2017 r. godz. 23:59:59
+Zadanie 3 – do 30.01.2017 r. godz. 23:59:59
+Zadanie 4 – do 30.01.2017 r. godz. 23:59:59
+
+Terminy nadsyłania rozwiązań są nieprzekraczalne. Niedotrzymanie terminu oznacza automatyczną dyskwalifikację. Zmiany terminów są możliwe wyłącznie w przypadku problemów technicznych.
+
+Przed upłynięciem terminu przesłania rozwiązania danego zadania możesz je wielokrotnie zmieniać.
+
+Zgodnie z instrukcją dołączoną do zadań, pliki, które będziesz ładował(a) do systemu muszą mieć określony format. Maksymalna wielkość pliku to 20 MB.
 
 W razie dodatkowych pytań możesz kontaktować się z nami pod adresem olimpiada@nowoczesnapolska.org.pl lub numerem telefonu +48 515-502-666.
 

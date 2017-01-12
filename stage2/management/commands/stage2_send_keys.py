@@ -62,6 +62,6 @@ class Command(BaseCommand):
     def send_key(self, participant):
         self.stdout.write('>>> sending to ' + participant.email)
         send_mail(
-            subject="Olimpiada Cyfrowa - Twój link do drugiego etapu",
+            subject=u"II etap Olimpiady Cyfrowej - przesyłanie rozwiązań",
             body=render_to_string('stage2/email_key.txt', {'participant': participant}),
             to=[participant.email])
