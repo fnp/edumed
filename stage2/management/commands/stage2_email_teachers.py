@@ -3,7 +3,6 @@
 from django.core.management.base import BaseCommand
 from django.template.loader import render_to_string
 
-from contact.models import Contact
 from stage2.models import Participant
 from wtem.management.commands import send_mail
 
@@ -16,8 +15,8 @@ class Command(BaseCommand):
         query = Participant.objects.order_by('contact__contact').distinct('contact__contact')\
             .values_list('contact__contact', flat=True)
         template_name = args[0]
-        message = render_to_string('wtem/' + template_name + '.txt')
-        subject = render_to_string('wtem/' + template_name + '_subject.txt')
+        message = render_to_string('stage2/' + template_name + '.txt')
+        subject = render_to_string('stage2/' + template_name + '_subject.txt')
         
         answer = raw_input(
             'Send the following to %d teachers with subject "%s"\n\n %s\n\n?' %
