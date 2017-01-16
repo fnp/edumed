@@ -14,6 +14,10 @@ $(function() {
                         alert('Błędne rozszerzenie! Powinno być: ' + ext);
                     ok = false;
                 }
+                if (name.length > 100) {
+                    alert('Za długa nazwa pliku! Maksymalna długość: 100 znaków (jest: ' + name.length + ')');
+                    ok = false;
+                }
             }
             var size = this.files[0].size;
             if (size > 20 * 1024 * 1024) {
