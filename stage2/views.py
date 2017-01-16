@@ -6,6 +6,7 @@ from django.http.response import HttpResponseRedirect, HttpResponse, HttpRespons
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from django.views.decorators.http import require_POST
+from unidecode import unidecode
 
 from stage2.forms import AttachmentForm, MarkForm
 from stage2.models import Participant, Assignment, Answer, Attachment, Mark
@@ -54,9 +55,8 @@ def upload(request, assignment_id, participant_id, key):
 def attachment_download(attachment):
     response = HttpResponse(content_type='application/force-download')
     response.write(attachment.file.read())
-    base, ext = attachment.filename().rsplit('.', 1)
-    response['Content-Disposition'] = 'attachment; filename="%s.%s"' % (
-        base.strip()[:20].replace('\n', '').strip(), ext)
+    # workaround to this: https://code.djangoproject.com/ticket/20889
+    response['Content-Disposition'] = 'attachment; filename="%s"' % unidecode(attachment.filename().replace('\n', ' '))
     response['Content-Length'] = response.tell()
     return response
 

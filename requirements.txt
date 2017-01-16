@@ -38,3 +38,5 @@ sorl-thumbnail>=12,<13
 pyyaml
 
 django-subdomains>=2.0.4,<2.1
+
+unidecode
