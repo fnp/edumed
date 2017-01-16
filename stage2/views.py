@@ -55,7 +55,7 @@ def attachment_download(attachment):
     response = HttpResponse(content_type='application/force-download')
     response.write(attachment.file.read())
     base, ext = attachment.filename().rsplit('.', 1)
-    response['Content-Disposition'] = 'attachment; filename="%s.%s"' % (base[:10].replace('\n', ''), ext)
+    response['Content-Disposition'] = 'attachment; filename="%s.%s"' % (base[:20].replace('\n', '').strip(), ext)
     response['Content-Length'] = response.tell()
     return response
 
