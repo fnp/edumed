@@ -5,6 +5,8 @@ from django.http import Http404
 from django.http.response import HttpResponseRedirect, HttpResponse, HttpResponseForbidden
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
+from django.utils.cache import patch_cache_control
+from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_POST
 from unidecode import unidecode
 
@@ -23,13 +25,17 @@ def all_assignments(participant):
     return assignments
 
 
+@never_cache
 def participant_view(request, participant_id, key):
     participant = get_object_or_404(Participant, id=participant_id)
     if not participant.check(key):
         raise Http404
-    return render(request, 'stage2/participant.html', {
+    response = render(request, 'stage2/participant.html', {
         'participant': participant,
         'assignments': all_assignments(participant)})
+    # not needed in Django 1.8
+    patch_cache_control(response, no_cache=True, no_store=True, must_revalidate=True)
+    return response
 
 
 @require_POST
