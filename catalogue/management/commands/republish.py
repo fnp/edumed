@@ -12,20 +12,14 @@ class Command(BaseCommand):
         from catalogue.models import Lesson
         from curriculum.models import Level
 
-        from catalogue.management.commands.importlessons import Command
-        from django.conf import settings
-        import os.path
-
-        attachments = Command.all_attachments(os.path.join(settings.MEDIA_ROOT, 'catalogue', 'attachments'))
-
         for lesson in Lesson.objects.all():
             print
             print 'Republishing: %s' % lesson.slug
-            try:
-                lesson.republish(repackage_level=False)
-            except BaseException as e:
-                print '!!!!!! EXCEPTION !!!!!!'
-                print e
+            # try:
+            lesson.republish(repackage_level=False)
+            # except BaseException as e:
+            #     print '!!!!!! EXCEPTION !!!!!!'
+            #     print e
 
         print 'Rebuilding levels...'
         for level in Level.objects.all():

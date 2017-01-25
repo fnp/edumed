@@ -155,13 +155,13 @@ class Lesson(models.Model):
     def republish(self, repackage_level=True, attachments=None):
         from librarian import IOFile
         import os.path
+        from django.conf import settings
         if attachments is None:
             attachments = {}
             for attachment in self.attachment_set.all():
-                f = IOFile.from_filename(attachment.file.name)
-                name = os.path.basename(attachment.file.name)
-                attachments[name.decode('utf-8')] = f
-                attachments.setdefault(name.replace(" ", "").decode('utf-8'), f)
+                full_name = os.path.join(settings.MEDIA_ROOT, attachment.file.name)
+                f = IOFile.from_filename(full_name)
+                attachments[attachment.slug] = f
         infile = IOFile.from_filename(self.xml_file.path, attachments=attachments)
         Lesson.publish(infile)
         if repackage_level:
