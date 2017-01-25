@@ -21,7 +21,11 @@ class Command(BaseCommand):
         for lesson in Lesson.objects.all():
             print
             print 'Republishing: %s' % lesson.slug
-            lesson.republish(repackage_level=False, attachments=attachments)
+            try:
+                lesson.republish(repackage_level=False)
+            except BaseException as e:
+                print '!!!!!! EXCEPTION !!!!!!'
+                print e
 
         print 'Rebuilding levels...'
         for level in Level.objects.all():
