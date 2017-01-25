@@ -159,9 +159,9 @@ class Lesson(models.Model):
         if attachments is None:
             attachments = {}
             for attachment in self.attachment_set.all():
-                full_name = os.path.join(settings.MEDIA_ROOT, '%s.%s' % (attachment.file.name, attachment.ext))
+                full_name = os.path.join(settings.MEDIA_ROOT, attachment.file.name)
                 f = IOFile.from_filename(full_name)
-                attachments[attachment.slug] = f
+                attachments['%s.%s' % (attachment.slug, attachment.ext)] = f
         infile = IOFile.from_filename(self.xml_file.path, attachments=attachments)
         Lesson.publish(infile)
         if repackage_level:

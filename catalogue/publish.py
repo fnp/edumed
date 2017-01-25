@@ -40,7 +40,11 @@ def get_image(src_img_path, width=None, default_width=1600, formats=('PNG', 'JPE
     if convert:
         if width is None:
             width = default_width
-        return get_thumbnail(src_img_path, '%sx%s' % (width, 10*width))
+        try:
+            return get_thumbnail(src_img_path, '%sx%s' % (width, 10*width))
+        except:
+            # hard to predict what solr raises on invalid image
+            return None
     else:
         return None
 
