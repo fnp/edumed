@@ -152,9 +152,17 @@ class Lesson(models.Model):
             lesson.build_package(student=True)
         return lesson
 
-    def republish(self, repackage_level=True):
+    def republish(self, repackage_level=True, attachments=None):
         from librarian import IOFile
-        infile = IOFile.from_filename(self.xml_file.path)
+        import os.path
+        if attachments is None:
+            attachments = {}
+            for attachment in self.attachment_set.all():
+                f = IOFile.from_filename(attachment.file.name)
+                name = os.path.basename(attachment.file.name)
+                attachments[name.decode('utf-8')] = f
+                attachments.setdefault(name.replace(" ", "").decode('utf-8'), f)
+        infile = IOFile.from_filename(self.xml_file.path, attachments=attachments)
         Lesson.publish(infile)
         if repackage_level:
             self.level.build_packages()
