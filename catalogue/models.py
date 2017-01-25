@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from jsonfield import JSONField
 from fnpdjango.storage import BofhFileSystemStorage
+
 from curriculum.models import Level, Curriculum, CurriculumCourse
 import logging
 
@@ -150,6 +151,13 @@ class Lesson(models.Model):
             lesson.build_pdf(student=True)
             lesson.build_package(student=True)
         return lesson
+
+    def republish(self, repackage_level=True):
+        from librarian import IOFile
+        infile = IOFile.from_filename(self.xml_file.path)
+        Lesson.publish(infile)
+        if repackage_level:
+            self.level.build_packages()
 
     def populate_dc(self):
         from librarian.parser import WLDocument
