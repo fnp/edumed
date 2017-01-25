@@ -4,6 +4,7 @@
 #
 from optparse import make_option
 
+import librarian
 from django.core.management.base import BaseCommand
 
 
@@ -32,11 +33,11 @@ class Command(BaseCommand):
         for lesson in lessons:
             print
             print 'Republishing: %s' % lesson.slug
-            # try:
-            lesson.republish(repackage_level=False)
-            # except BaseException as e:
-            #     print '!!!!!! EXCEPTION !!!!!!'
-            #     print e
+            try:
+                lesson.republish(repackage_level=False)
+            except librarian.ParseError as e:
+                print '!!!!!! PARSE ERROR !!!!!!'
+                print e
 
         print 'Rebuilding levels...'
         for level in Level.objects.all():
