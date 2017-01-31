@@ -22,6 +22,7 @@ class Participant(models.Model):
     last_name = models.CharField(_('last_name'), max_length=100)
     email = models.EmailField(_('email'), max_length=100, unique=True)
     key_sent = models.BooleanField(_('key sent'), default=False)
+    complete_set = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = _('participant')
@@ -76,7 +77,8 @@ class Assignment(models.Model):
         return self.title
 
     def available_answers(self, expert):
-        answers = self.answer_set.exclude(mark__expert=expert).exclude(complete=True)
+        answers = self.answer_set.exclude(mark__expert=expert).exclude(complete=True)\
+            .filter(participant__complete_set=True)
         if expert in self.arbiters.all():
             answers = answers.filter(need_arbiter=True)
         return answers
