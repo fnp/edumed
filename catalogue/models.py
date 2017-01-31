@@ -289,7 +289,7 @@ class Lesson(models.Model):
             return None
 
     def requires_internet(self):
-        return 'internet' in self.dc.get('requires', [])
+        return any(requirement in self.dc.get('requires', []) for requirement in ('internet', 'Internet'))
 
 
 class Attachment(models.Model):
