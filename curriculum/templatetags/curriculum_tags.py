@@ -22,6 +22,8 @@ def competence(texts, level):
 
 @register.inclusion_tag("curriculum/snippets/curriculum.html")
 def curriculum(identifiers):
+    # shouldn't be needed, but is
+    identifiers = [id for id in identifiers if id]
     try:
         currs = [Curriculum.objects.get(identifier__iexact=identifier.replace(' ', ''))
                  for identifier in identifiers]
