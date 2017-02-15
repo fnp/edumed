@@ -41,4 +41,5 @@ class Command(BaseCommand):
 
         print 'Rebuilding levels...'
         for level in Level.objects.all():
+            print level.name
             level.build_packages()
