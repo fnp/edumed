@@ -3,7 +3,7 @@ import os
 import random
 import string
 
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save
@@ -63,9 +63,12 @@ class Assignment(models.Model):
     content_url = models.URLField(_('URL'))
     deadline = models.DateTimeField(_('deadline'))
     max_points = models.IntegerField(_('max points'))
-    experts = models.ManyToManyField(User, verbose_name=_('experts'), related_name='stage2_assignments')
+    experts = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, verbose_name=_('experts'), related_name='stage2_assignments')
     arbiters = models.ManyToManyField(
-        User, blank=True, verbose_name=_('arbiters'), related_name='stage2_arbitrated')
+        settings.AUTH_USER_MODEL, blank=True, verbose_name=_('arbiters'), related_name='stage2_arbitrated')
+    supervisors = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, verbose_name=_('supervisors'), related_name='stage2_supervised')
     file_descriptions = JSONField(_('file descriptions'))
 
     class Meta:
@@ -77,8 +80,9 @@ class Assignment(models.Model):
         return self.title
 
     def available_answers(self, expert):
-        answers = self.answer_set.exclude(mark__expert=expert).exclude(complete=True)\
-            .filter(participant__complete_set=True)
+        answers = self.answer_set.exclude(mark__expert=expert).filter(participant__complete_set=True)
+        if expert not in self.supervisors.all():
+            answers = answers.exclude(complete=True)
         if expert in self.arbiters.all():
             answers = answers.filter(need_arbiter=True)
         return answers
@@ -147,7 +151,7 @@ class Attachment(models.Model):
 
 
 class Mark(models.Model):
-    expert = models.ForeignKey(User)
+    expert = models.ForeignKey(settings.AUTH_USER_MODEL)
     answer = models.ForeignKey(Answer)
     points = models.DecimalField(verbose_name=_('points'), max_digits=3, decimal_places=1)
 
