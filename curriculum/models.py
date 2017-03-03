@@ -118,6 +118,13 @@ class Level(models.Model):
             lesson.add_to_zip(zipf, student, prefix)
         # Add all appendix lessons, from all levels.
         for lesson in Lesson.objects.filter(type='appendix'):
+            # ugly fix
+            if self.slug in ('przedszkole', 'sp1-3', 'sp4-6'):
+                if lesson.slug == 'slowniczek':
+                    continue
+            else:
+                if lesson.slug == 'slowniczek-sp':
+                    continue
             prefix = '%s/' % lesson.slug
             lesson.add_to_zip(zipf, student, prefix)
         zipf.close()
