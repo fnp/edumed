@@ -7,7 +7,8 @@
     <p>
       <a href="{% url 'stage2_answer_list' assignment.id %}">{{ assignment.title }}</a>
       ({% if assignment.marked_count %}<a href="{% url 'stage2_marked_answers' assignment.id %}">{{ assignment.marked_count }} ocenionych</a>{% else %}{{ assignment.marked_count }} ocenionych{% endif %},
-      {{ assignment.to_mark_count }} dostępnych do oceny)
+      {{ assignment.to_mark_count }} dostępnych do oceny{% if assignment.supervisor %},
+      {{ assignment.arbiter_count }} do rozstrzygnięcia{% endif %})
     </p>
   {% endfor %}
 {% endblock %}

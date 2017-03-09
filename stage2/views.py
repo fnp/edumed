@@ -87,6 +87,9 @@ def assignment_list(request):
     for assignment in assignments:
         assignment.marked_count = Mark.objects.filter(expert=request.user, answer__assignment=assignment).count()
         assignment.to_mark_count = assignment.available_answers(request.user).count()
+        assignment.supervisor = request.user in assignment.supervisors.all()
+        assignment.arbiter_count = assignment.answer_set.filter(need_arbiter=True).count()
+
     non_empty_assignments = [ass for ass in assignments if ass.marked_count > 0 or ass.to_mark_count > 0]
     if len(non_empty_assignments) == 1 and non_empty_assignments[0].to_mark_count > 0:
         return HttpResponseRedirect(reverse('stage2_answer_list', args=[non_empty_assignments[0].id]))
