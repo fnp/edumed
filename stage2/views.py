@@ -160,3 +160,41 @@ def mark_answer(request, answer_id):
 
     return HttpResponseRedirect(reverse(
         'stage2_answer_list' if created else 'stage2_marked_answers', args=[answer.assignment_id]))
+
+
+@login_required
+def csv_results(request):
+    import csv
+    response = HttpResponse(content_type='text/csv')
+    writer = csv.writer(response)
+    assignments = Assignment.objects.all()
+    participants = Participant.objects.filter(complete_set=True)
+    headers = [u'imię', u'nazwisko', u'szkoła']
+    assignments_experts = []
+    for assignment in assignments:
+        for expert in assignment.experts.filter(mark__answer__assignment=assignment).distinct():
+            assignments_experts.append((assignment, expert))
+            headers.append(u'%s %s' % (assignment.title, expert.last_name))
+    for assignment in assignments:
+        headers.append(u'%s - średnia' % assignment.title.encode('utf-8'))
+    headers.append(u'ostateczny wynik')
+    writer.writerow([unicode(item).encode('utf-8') for item in headers])
+    for participant in participants:
+        row = [
+            participant.first_name,
+            participant.last_name,
+            participant.contact.body['school'],
+        ]
+        for assignment, expert in assignments_experts:
+            try:
+                row.append(
+                    Mark.objects.get(
+                        expert=expert, answer__assignment=assignment, answer__participant=participant).points)
+            except Mark.DoesNotExist:
+                row.append('')
+        for assignment in assignments:
+            row.append('%.2f' % participant.answer_set.get(assignment=assignment).score())
+        row.append('%.2f' % participant.score())
+        writer.writerow([unicode(item).encode('utf-8') for item in row])
+    response['Content-Disposition'] = 'attachment; filename="wyniki.csv"'
+    return response

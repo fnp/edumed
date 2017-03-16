@@ -121,7 +121,7 @@ class Answer(models.Model):
         marks = self.mark_set.all()
         if len(marks) < 2:
             return None
-        return self.mark_set.aggregate(models.Avg('points'))
+        return self.mark_set.aggregate(avg=models.Avg('points'))['avg']
 
 
 def attachment_path(instance, filename):
