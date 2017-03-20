@@ -1,0 +1,18 @@
+Dzień dobry,
+
+Informujemy, że wszystkie prace nadesłane w ramach II etapu Olimpiady Cyfrowej zostały ocenione. 
+
+Poniżej znajdują się wyniki uzyskane przez zgłoszonych przez Panią/Pana uczniów i uczennice, którzy przesłali komplet rozwiązań. Liczba punktów, która uprawnia do wzięcia udziału w zawodach finałowych to 55. Gratulujemy tym, którym się to udało. Zawody finałowe odbędą się 21 kwietnia. Jeśli Pania/Pana uczniowie i uczennice awansowali do finału, niebawem otrzyma Pani/Pan szczegółowe informacje na ten temat.
+
+Wyniki uzyskane przez Pani/Pana podopiecznych:
+
+{% for participant in participants %}{{participant.first_name.strip}} {{participant.last_name.strip}}: {{participant.score|floatformat:2}}
+{% endfor %}
+
+Informacje o wynikach zostały przesłane również Uczestnikom i Uczestniczkom. Prosimy upewnić się, że wszyscy otrzymali wiadomość. Jeśli jednak do nich nie dotarła, prosimy o podanie danych kontaktowych tych osób (imię i nazwisko, adres e-mail).
+
+W razie jakichkolwiek pytań prosimy o kontakt.
+
+Pozdrawiamy,
+Zespół Olimpiady Cyfrowej
+fundacja Nowoczesna Polska

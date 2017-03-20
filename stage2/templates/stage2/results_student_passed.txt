@@ -1,0 +1,13 @@
+{% load l10n %}Witaj,
+
+Informujemy, że wszystkie prace nadesłane w ramach II etapu Olimpiady Cyfrowej zostały ocenione. 
+
+Liczba zdobytych przez Ciebie punktów to {% localize on %}{{ final_result|floatformat:2 }}{% endlocalize %}.
+
+Wynik ten uprawnia Cię do wzięcia udziału zawodach III stopnia. Serdecznie gratulujemy! Zawody finałowe odbędą się w 21 kwietnia w Warszawie. Niebawem prześlemy Ci szczegółowe informacje na ich temat.
+
+W razie jakichkolwiek pytań prosimy o kontakt.
+
+Pozdrawiamy,
+Zespół Olimpiady Cyfrowej
+fundacja Nowoczesna Polska

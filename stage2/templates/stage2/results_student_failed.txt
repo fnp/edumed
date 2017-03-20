@@ -1,0 +1,13 @@
+{% load l10n %}Witaj,
+
+Informujemy, że wszystkie prace nadesłane w ramach II etapu Olimpiady Cyfrowej zostały ocenione. 
+
+Liczba zdobytych przez Ciebie punktów to {% localize on %}{{ final_result|floatformat:2 }}{% endlocalize %}.
+
+Niestety, ten wynik nie uprawnia Cię do wzięcia udziału w zawodach III stopnia. Liczba punktów, która uprawnia do wzięcia udziału w finale to 55. Zachęcamy do zgłębiania wiedzy za zakresu edukacji cyfrowej i medialnej oraz wzięcia udziału w kolejnej edycji Olimpiady.
+
+W razie jakichkolwiek pytań prosimy o kontakt.
+
+Pozdrawiamy,
+Zespół Olimpiady Cyfrowej
+fundacja Nowoczesna Polsk
