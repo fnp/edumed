@@ -515,6 +515,7 @@ class CybernauciForm(ContactForm):
         label=u'Proszę opisać, jaką wiedzę i umiejętności chce Pan/Pani zdobyć '
               u'lub doskonalić poprzez uczestnictwo w Szkoleniu trenerskim.',
         widget=forms.Textarea, max_length=500)
+    skad = forms.CharField(label=u'Skąd dowiedział/dowiedziała się Pan/Pani o projekcie „Cybernauci”?')
     zgoda_regulamin = forms.BooleanField(
         label=u'Oświadczam, że zapoznałem/zapoznałam się z Regulaminem Rekrutacji '
               u'i Uczestnictwa w Projekcie „Cybernauci – kompleksowy projekt '
