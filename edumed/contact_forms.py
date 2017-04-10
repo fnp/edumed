@@ -465,22 +465,23 @@ class SuperwizjaForm(ContactForm):
 
 
 class CybernauciForm(ContactForm):
-    disabled = True
+    disabled = False
     disabled_template = 'contact/disabled_contact_form.html'
-    form_tag = 'trenerzy-cybernauci'
+    form_tag = 'trenerzy-cybernauci2017'
     form_title = u"Cybernauci – szkolenie dla trenerów"
     admin_list = ['nazwisko', 'instytucja', 'contact']
     submit_label = u'Wyślij'
 
     nazwisko = forms.CharField(label=u'Imię i nazwisko', max_length=1024)
-    contact = forms.CharField(label=u'E-mail kontaktowy')
-    telefon = forms.CharField(label=u'Telefon', max_length=32)
+    adres = forms.CharField(label=u'Adres zamieszkania')
     wojewodztwo = forms.ChoiceField(label=u'Województwo', choices=WOJEWODZTWO_CHOICES)
+    contact = forms.CharField(label=u'Adres e-mail')
+    telefon = forms.CharField(label=u'Telefon kontaktowy', max_length=32)
     dlaczego = forms.CharField(
         label=u'Proszę opisać, dlaczego chce Pan/Pani zostać Emisariuszem Bezpiecznego Internetu.',
-        widget=forms.Textarea, max_length=4096)
+        widget=forms.Textarea, max_length=500)
     grupy = forms.MultipleChoiceField(
-        label=u'Proszę wskazać, dla których grup realizował Pan/ realizowała Pani zajęcia warsztatowe',
+        label=u'Proszę wskazać, dla których grup realizował Pan/realizowała Pani zajęcia warsztatowe',
         widget=forms.CheckboxSelectMultiple,
         choices=[
             ('Uczniowie klas 1-3', 'Uczniowie klas 1-3'),
@@ -493,27 +494,27 @@ class CybernauciForm(ContactForm):
     doswiadczenie_grupy = forms.CharField(
         label=u'Proszę opisać swoje doświadczenie w pracy warsztatowej z grupami docelowymi Projektu '
               u'(dziećmi, młodzieżą, osobami dorosłymi: nauczycielami, rodzicami).',
-        widget=forms.Textarea, max_length=4096)
+        widget=forms.Textarea, max_length=750)
     doswiadczenie_edumed = forms.CharField(
-        label=u'Jakie jest Pana/Pani doświadczenie w zakresie edukacji medialnej,'
-              u'zwłaszcza w zakresie bezpieczeństwa w Internecie i korzystania z TIK?'
-              u' Skąd czerpie Pan/Pani wiedzę w tym zakresie? W jakich projektach brał'
-              u' Pan/brała Pani udział dotychczas?',
-        widget=forms.Textarea, max_length=4096)
+        label=u'Jakie jest Pana/Pani doświadczenie w zakresie edukacji medialnej, '
+              u'zwłaszcza w zakresie bezpieczeństwa w Internecie i korzystania z TIK? '
+              u'Skąd czerpie Pan/Pani wiedzę w tym zakresie? W jakich projektach brał '
+              u'Pan/brała Pani udział dotychczas?',
+        widget=forms.Textarea, max_length=750)
     szkolenia = forms.CharField(
         label=u'Proszę wymienić studia, szkolenia albo kursy (maks. 5 najważniejszych) '
               u'powiązane z tematyką Projektu, w których Pan/Pani uczestniczył/ła, '
               u'w tym dane na temat instytucji czy osoby prowadzącej (z JEDNOZDANIOWYM '
               u'omówieniem i terminami, w których się odbyły).',
-        widget=forms.Textarea, max_length=4096)
+        widget=forms.Textarea, max_length=500)
     realizacje = forms.CharField(
         label=u'Proszę opisać swoje doświadczenie w zakresie realizacji działań w lokalnym środowisku '
               u'szkolnym (np. na terenie gminy/powiatu/województwa).',
-        widget=forms.Textarea, max_length=4096)
+        widget=forms.Textarea, max_length=500)
     cel = forms.CharField(
         label=u'Proszę opisać, jaką wiedzę i umiejętności chce Pan/Pani zdobyć '
               u'lub doskonalić poprzez uczestnictwo w Szkoleniu trenerskim.',
-        widget=forms.Textarea, max_length=4096)
+        widget=forms.Textarea, max_length=500)
     zgoda_regulamin = forms.BooleanField(
         label=u'Oświadczam, że zapoznałem/zapoznałam się z Regulaminem Rekrutacji '
               u'i Uczestnictwa w Projekcie „Cybernauci – kompleksowy projekt '
