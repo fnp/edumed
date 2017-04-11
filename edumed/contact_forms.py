@@ -464,6 +464,11 @@ class SuperwizjaForm(ContactForm):
     uwagi = forms.CharField(label=u'Inne uwagi', widget=forms.Textarea, max_length=4096, required=False)
 
 
+def textarea_field(label, max_length=500):
+    return forms.CharField(
+        label=label, widget=forms.Textarea, max_length=max_length, help_text=u'(do %s znaków)' % max_length)
+
+
 class CybernauciForm(ContactForm):
     disabled = False
     disabled_template = 'contact/disabled_contact_form.html'
@@ -477,9 +482,8 @@ class CybernauciForm(ContactForm):
     wojewodztwo = forms.ChoiceField(label=u'Województwo', choices=WOJEWODZTWO_CHOICES)
     contact = forms.CharField(label=u'Adres e-mail')
     telefon = forms.CharField(label=u'Telefon kontaktowy', max_length=32)
-    dlaczego = forms.CharField(
-        label=u'Proszę opisać, dlaczego chce Pan/Pani zostać Emisariuszem Bezpiecznego Internetu.',
-        widget=forms.Textarea, max_length=500)
+    dlaczego = textarea_field(
+        label=u'Proszę opisać, dlaczego chce Pan/Pani zostać Emisariuszem Bezpiecznego Internetu.')
     grupy = forms.MultipleChoiceField(
         label=u'Proszę wskazać, dla których grup realizował Pan/realizowała Pani zajęcia warsztatowe',
         widget=forms.CheckboxSelectMultiple,
@@ -491,30 +495,27 @@ class CybernauciForm(ContactForm):
             ('Nauczyciele', 'Nauczyciele'),
             ('Rodzice', 'Rodzice'),
         ])
-    doswiadczenie_grupy = forms.CharField(
+    doswiadczenie_grupy = textarea_field(
         label=u'Proszę opisać swoje doświadczenie w pracy warsztatowej z grupami docelowymi Projektu '
               u'(dziećmi, młodzieżą, osobami dorosłymi: nauczycielami, rodzicami).',
-        widget=forms.Textarea, max_length=750)
-    doswiadczenie_edumed = forms.CharField(
+        max_length=750)
+    doswiadczenie_edumed = textarea_field(
         label=u'Jakie jest Pana/Pani doświadczenie w zakresie edukacji medialnej, '
               u'zwłaszcza w zakresie bezpieczeństwa w Internecie i korzystania z TIK? '
               u'Skąd czerpie Pan/Pani wiedzę w tym zakresie? W jakich projektach brał '
               u'Pan/brała Pani udział dotychczas?',
-        widget=forms.Textarea, max_length=750)
-    szkolenia = forms.CharField(
+        max_length=750)
+    szkolenia = textarea_field(
         label=u'Proszę wymienić studia, szkolenia albo kursy (maks. 5 najważniejszych) '
               u'powiązane z tematyką Projektu, w których Pan/Pani uczestniczył/ła, '
               u'w tym dane na temat instytucji czy osoby prowadzącej (z JEDNOZDANIOWYM '
-              u'omówieniem i terminami, w których się odbyły).',
-        widget=forms.Textarea, max_length=500)
-    realizacje = forms.CharField(
+              u'omówieniem i terminami, w których się odbyły).')
+    realizacje = textarea_field(
         label=u'Proszę opisać swoje doświadczenie w zakresie realizacji działań w lokalnym środowisku '
-              u'szkolnym (np. na terenie gminy/powiatu/województwa).',
-        widget=forms.Textarea, max_length=500)
-    cel = forms.CharField(
+              u'szkolnym (np. na terenie gminy/powiatu/województwa).')
+    cel = textarea_field(
         label=u'Proszę opisać, jaką wiedzę i umiejętności chce Pan/Pani zdobyć '
-              u'lub doskonalić poprzez uczestnictwo w Szkoleniu trenerskim.',
-        widget=forms.Textarea, max_length=500)
+              u'lub doskonalić poprzez uczestnictwo w Szkoleniu trenerskim.')
     skad = forms.CharField(label=u'Skąd dowiedział/dowiedziała się Pan/Pani o projekcie „Cybernauci”?')
     zgoda_regulamin = forms.BooleanField(
         label=u'Oświadczam, że zapoznałem/zapoznałam się z Regulaminem Rekrutacji '
@@ -576,14 +577,10 @@ class WLEMForm(ContactForm):
               u'związanych z edukacją medialną.')
 
 
-def textarea_field(label, max_length=500):
-    return forms.CharField(label=label, widget=forms.Textarea, max_length=max_length)
-
-
 def ordered_textarea_field(start, pre_label=u'', label=u'', max_length=500):
     return textarea_field(
-        mark_safe(u'%s<ol type="a" start="%s"><li>%s (max. %s znaków)</li></ol>' % (
-            pre_label, start, label, max_length)))
+        mark_safe(u'%s<ol type="a" start="%s"><li>%s</li></ol>' % (pre_label, start, label)),
+        max_length=max_length)
 
 
 def simple_choices(*choices):
@@ -608,16 +605,14 @@ class CybernauciAnkietaForm(ContactForm):
     pyt1e = ordered_textarea_field(5, label=u'umiejętności trenerskich')
     pyt1f = ordered_textarea_field(6, label=u'inne, jakie?')
     pyt2 = textarea_field(u'2. W których tematach z obszaru bezpieczeństwa w sieci czujesz się najpewniej? '
-                          u'Dlaczego? (max. 500 znaków)')
-    pyt3 = textarea_field(u'3. Które z tematów znasz słabej lub których nie znasz zupełnie? (max. 500 znaków)')
-    pyt4 = textarea_field(u'4. Jakie są Twoje mocne strony jako osoby prowadzącej warsztaty? (max. 500 znaków)')
-    pyt5 = textarea_field(u'5. Nad jakimi elementami pracy trenerskiej chciałbyś/chciałabyś popracować? '
-                          u'(max. 500 znaków)')
+                          u'Dlaczego?')
+    pyt3 = textarea_field(u'3. Które z tematów znasz słabej lub których nie znasz zupełnie?')
+    pyt4 = textarea_field(u'4. Jakie są Twoje mocne strony jako osoby prowadzącej warsztaty?')
+    pyt5 = textarea_field(u'5. Nad jakimi elementami pracy trenerskiej chciałbyś/chciałabyś popracować?')
     pyt6 = textarea_field(u'6. Co jest dla Ciebie najważniejsze w pracy z grupą? '
-                          u'Na co zwracasz uwagę w tym obszarze jako osoba prowadząca warsztaty? (max. 500 znaków)')
+                          u'Na co zwracasz uwagę w tym obszarze jako osoba prowadząca warsztaty?')
     pyt7 = textarea_field(u'7. Opisz najtrudniejszą Twoim zdaniem sytuację, której doświadczyłeś/doświadczyłaś '
-                          u'podczas prowadzenia zajęć w grupie z młodzieżą, rodzicami lub nauczycielami? '
-                          u'(max. 500 znaków)')
+                          u'podczas prowadzenia zajęć w grupie z młodzieżą, rodzicami lub nauczycielami?')
     pyt8 = forms.MultipleChoiceField(
         label=u'8. W jaki sposób poradzisz sobie z niespodziewaną sytuacją skrócenia czasu zajęć? '
               u'Na które z poniższych punktów przeznaczysz w takiej sytuacji najmniej czasu?',
@@ -630,15 +625,15 @@ class CybernauciAnkietaForm(ContactForm):
             u'Podsumowanie - sprawdzenie efektów warsztatu',
             u'Zaplanowanie dalszych prac',
             u'Ewaluacja'))
-    pyt8a = textarea_field(label=u'Dlaczego? (max. 1000 znaków)', max_length=1000)
+    pyt8a = textarea_field(label=u'Dlaczego?', max_length=1000)
     pyt9 = textarea_field(
         label=u'9. Jeden z uczestników przeszkadza podczas warsztatów: '
-              u'głośno żartuje, nie wykonuje zleconych zadań. Co robisz? (max. 500 znaków)')
+              u'głośno żartuje, nie wykonuje zleconych zadań. Co robisz?')
     pyt10 = textarea_field(
         u'10. Z całej grupy tylko trzy osoby odpowiadają na każde zadane przez Ciebie pytanie. '
-        u'Co robisz? (max. 500 znaków)')
+        u'Co robisz?')
     pyt11 = textarea_field(
-        u'11. Jakie są Twoje największe obawy wobec realizacji szkoleń w placówkach oświatowych? (max. 500 znaków)')
+        u'11. Jakie są Twoje największe obawy wobec realizacji szkoleń w placówkach oświatowych?')
     pyt12a = ordered_textarea_field(
         1, pre_label=u'12. Opisz szczegółowo doświadczenie z różnymi grupami:', label=u'rodzice')
     pyt12b = ordered_textarea_field(2, label=u'nauczyciele')
@@ -647,8 +642,7 @@ class CybernauciAnkietaForm(ContactForm):
     pyt12e = ordered_textarea_field(5, label=u'dzieci i młodzież szkół podstawowych')
     pyt13 = textarea_field(
         u'13. Z jakimi grupami wiekowymi najlepiej Ci się współpracuje? '
-        u'Umiejętności w zakresie pracy z którą grupą najbardziej chciałabyś/chciałbyś zdobyć/doskonalić? '
-        u'(max. 500 znaków)')
+        u'Umiejętności w zakresie pracy z którą grupą najbardziej chciałabyś/chciałbyś zdobyć/doskonalić?')
     pyt14 = textarea_field(
         u'14. W jaki sposób na co dzień dbasz o swój rozwój jako trenera/trenerki, '
-        u'osoby prowadzącej warsztaty czy inne formy szkoleniowe? (max. 500 znaków)')
+        u'osoby prowadzącej warsztaty czy inne formy szkoleniowe?')
