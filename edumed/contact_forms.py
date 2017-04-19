@@ -521,8 +521,8 @@ class CybernauciForm(ContactForm):
         label=u'Oświadczam, że zapoznałem/zapoznałam się z Regulaminem Rekrutacji '
               u'i Uczestnictwa w Projekcie „Cybernauci – kompleksowy projekt '
               u'kształtowania bezpiecznych zachowań w sieci” i akceptuję jego warunki.',
-        help_text=u'Zobacz <a href="http://cybernauci.edu.pl/wp-content/uploads/2016/04/'
-                  u'regulamin_Cybernauci_szkolenie_trenerskie.pdf">regulamin</a>.')
+        help_text=u'Zobacz <a href="https://cybernauci.edu.pl/wp-content/uploads/2017/04/'
+                  u'regulamin_Cybernauci_szkolenie_trenerskie_2017.pdf">regulamin</a>.')
     zgoda_dane = forms.BooleanField(
         label=u'Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych '
               u'w niniejszym dokumencie dla potrzeb niezbędnych do realizacji Projektu '
@@ -532,6 +532,9 @@ class CybernauciForm(ContactForm):
     zgoda_niekaralnosc = forms.BooleanField(
         label=u'W przypadku zakwalifikowania się na kurs zobowiązuję się '
               u'do dostarczenia świadectwa o niekaralności – najpóźniej w dniu rozpoczęcia Szkolenia.')
+    zgoda_newsletter = forms.BooleanField(
+        required=False,
+        label=u'Chcę otrzymywać newsletter Edukacja Medialna.')
     cv = forms.FileField(
         label=u'Wgraj plik CV.',
         help_text=u'Prosimy o nazwanie pliku swoim imieniem i nazwiskiem. Preferowany format: PDF.')
