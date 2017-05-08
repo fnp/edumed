@@ -470,7 +470,7 @@ def textarea_field(label, max_length=500):
 
 
 class CybernauciForm(ContactForm):
-    disabled = False
+    disabled = True
     disabled_template = 'contact/disabled_contact_form.html'
     form_tag = 'trenerzy-cybernauci2017'
     form_title = u"Cybernauci – szkolenie dla trenerów"
