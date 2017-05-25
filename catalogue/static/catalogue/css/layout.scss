@@ -4,12 +4,12 @@ $new_black: #363a3e;
 .box-button {
     background-color: #ed7831;
     border-radius: 15*$px;
-    .dl-button {
+    .dl-button, .nice-button {
         color: white;
         padding: 17*$px 12*$px 17*$px 12*$px;
     }
 }
-.dl-button {
+.dl-button, .nice-button {
     color: $new_black;
     display: block;
     font-weight: bold;

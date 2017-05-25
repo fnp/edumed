@@ -1,0 +1,18 @@
+Witaj,
+
+Oto wyniki testu:
+
+Suma uzyskanych punktów: {{ results.points|floatformat }} na {{ results.total }} możliwych.
+
+Zapraszamy do zgłoszenia się na warsztaty:
+https://edukacjamedialna.edu.pl{% url 'contact_form' 'sciezki-kopernika' %}
+
+Pod poniższym adresem możesz obejrzeć swoje odpowiedzi z komentarzami:
+https://edukacjamedialna.edu.pl{% url 'contact_results' contact.id contact.digest %}
+
+
+Z pozdrowieniami
+fundacja Nowoczesna Polska
+
+--
+Wiadomość wysłana automatycznie. Prosimy na nią nie odpowiadać.

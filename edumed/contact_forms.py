@@ -649,3 +649,292 @@ class CybernauciAnkietaForm(ContactForm):
     pyt14 = textarea_field(
         u'14. W jaki sposób na co dzień dbasz o swój rozwój jako trenera/trenerki, '
         u'osoby prowadzącej warsztaty czy inne formy szkoleniowe?')
+
+
+def quiz_question(label, choices):
+    return forms.TypedChoiceField(label=label, choices=choices, coerce=int, widget=forms.RadioSelect)
+
+
+def make_link(text, url):
+    return u'<a href="%s">%s</a>' % (url, text)
+
+
+class SciezkiKopernikaTestForm(ContactForm):
+    def __init__(self, *args, **kwargs):
+        super(SciezkiKopernikaTestForm, self).__init__(*args, **kwargs)
+        self.label_suffix = ''
+
+    result_page = True
+    form_tag = 'sciezki-kopernika-test'
+    form_title = u'Test'
+    submit_label = u'Wyślij'
+
+    contact = forms.EmailField(label=u'Adres e-mail, na który przyślemy informację o wynikach')
+    pyt1 = quiz_question(
+        label=u'1) Na stronie portalu internetowego opublikowano wpis o treści '
+              u'„Nie wszyscy muzułmanie to terroryści, ale wszyscy terroryści to muzułmanie”. '
+              u'Komentarz podlega moderacji i powinien:',
+        choices=[
+            (1, u'zostać zachowany, ponieważ jest prywatną opinią korzystającą z wolności słowa,'),
+            (0, u'zostać zachowany, ponieważ informuje o fakcie,'),
+            (2, u'zostać usunięty, ponieważ jest wprowadzającą w błąd interpretacją faktów.'),
+        ])
+    pyt2 = quiz_question(
+        label=u'2) Aby przygotować podcast, należy posiadać przynajmniej:',
+        choices=[
+            (0, u'półprofesjonalny mikrofon radiowy, z wbudowanym interfejsem dźwiękowym, '
+                u'komercyjne oprogramowanie typu DAW, średnio-zaawansowane umiejętności cyfrowej obróbki dźwięku,'),
+            (1, u'urządzenie do nagrywania dźwięku, laptop, oprogramowanie dedykowane do tworzenia podcastów,'),
+            (2, u'urządzenie do nagrywania dźwięku, podstawowe oprogramowanie do edycji dźwięku, '
+                u'podstawowe umiejętności cyfrowej obróbki dźwięku.')])
+    pyt3 = quiz_question(
+        label=u'3) Muzeum cyfrowe chce udostępnić skan XIV-wiecznego kodeksu. '
+              u'Zgodnym z ideą domeny publicznej sposobem jego udostępnienia będzie:',
+        choices=[
+            (0, u'udostępnienie go na licencji Creative Commons,'),
+            (2, u'udostępnienie go bez licencji z czytelnym wskazaniem praw do dowolnego wykorzystania,'),
+            (1, u'udostępnienie go w pliku jakości produkcyjnej.')])
+    pyt4 = quiz_question(
+        label=u'4) Aby uniknąć możliwości podejrzenia przez niepowołane osoby, jakie strony internetowe '
+              u'odwiedzałeś ostatnio, powinieneś/powinnaś:',
+        choices=[
+            (0, u'ustawić opcję otwierania nowej sesji przeglądarki bez wyświetlania ostatnio używanych kart '
+                u'oraz regularnie czyścić historię wyszukiwania,'),
+            (2, u'wylogowywać się lub blokować ekran za każdym razem, kiedy odchodzisz od komputera, tabletu '
+                u'lub odkładasz gdzieś telefon, regularnie czyścić dane zgromadzone przez przeglądarkę internetową,'),
+            (1, u'wylogowywać się lub blokować ekran za każdym razem, kiedy odchodzisz od komputera, tabletu '
+                u'lub odkładasz gdzieś telefon, regularnie czyścić historię przeglądanych stron.')])
+    pyt5 = quiz_question(
+        label=u'5) Komentarz opublikowany w internecie ma taką samą wartość bez względu na to, '
+              u'czy jest anonimowy czy podpisany imieniem i nazwiskiem:',
+        choices=[
+            (0, u'tak, ze względu na zasadę wolności słowa,'),
+            (2, u'to zależy od jego treści i kontekstu, w którym go opublikowano,'),
+            (1, u'tak, z punktu widzenia odpowiedzialności prawnej. [poprawna]')])
+    pyt6 = quiz_question(
+        label=u'6) Wraz z grupą osób zamierzasz przygotować cyfrową opowieść (narrację) na temat współczesnych '
+              u'nastolatków i ich stosunku do szkoły. Żeby praca była efektywna, a jej rezultat efektowny, warto '
+              u'zorganizować wspólną pracę w następujących krokach:',
+        choices=[
+            (2, u'przeprowadzić wspólną dyskusję odnośnie tematu opowieści, wybrać jeden, ustalić, co należy zrobić, '
+                u'podzielić zadania w grupie i przygotować scenariusz narracji (opisać poszczególne sceny, co się '
+                u'w nich znajdzie, co będzie potrzebne do ich przygotowania),'),
+            (0, u'zgromadzić jak najwięcej materiałów wideo i zdjęć, wybrać oprogramowanie do obróbki wideo i wspólnie '
+                u'decydować o kolejności scen i zawartości opowieści,'),
+            (1, u'wybrać temat opowieści, zgromadzić jak najwięcej filmików i zdjęć, podzielić się zadaniami w grupie, '
+                u'zmontować narrację z części przygotowanych przez uczestników zespołu.')])
+    pyt7 = quiz_question(
+        label=u'7) Firma telekomunikacyjna wykorzystuje boty do automatycznego odpowiadania na pytania klientów '
+              u'zadawane przez Facebooka. Boty zwracają się do wszystkich po imieniu. Kiedy użytkownik, który nie '
+              u'życzy sobie tego nie życzy, wyraża swoje niezadowolenie z takiej formy rozmowy, firma:',
+        choices=[
+            (2, u'przeprosić użytkownika, szanując preferowane przez niego reguły komunikacji,'),
+            (0, u'zignorować użytkownika odwołując się do zasad netykiety,'),
+            (1, u'zareagować zgodnie z wypracowanymi wewnętrznie zasadami komunikacji.')])
+    pyt8 = quiz_question(
+        label=u'8) Jesteś członkiem/członkinią grupy, która przygotowuje aplikację, mającą ułatwić osobom '
+              u'niepełnosprawnym poruszanie się po Twojej miejscowości. Oprogramowanie będzie m.in. informować, '
+              u'czy przy określonej instytucji, firmie, sklepie, znajdują się miejsca parkingowe '
+              u'dla niepełnosprawnych i ile ich jest. Aby aplikacja działała prawidłowo, powinieneś/powinnaś:',
+        choices=[
+            (1, u'przygotować listę najważniejszych obiektów w Twoim mieście i skontaktować się z ich administracją, '
+                u'pytając o liczbę miejsc parkingowych,'),
+            (0, u'poszukać informacji o dostępnych miejscach parkingowych na stronach instytucji, firm i sklepów,'),
+            (2, u'skontaktować się z administracją obiektów, o których będzie informować aplikacja, udać się również '
+                u'do tych obiektów, aby potwierdzić ilość dostępnych miejsc, spróbować zgromadzić informacje o tym, '
+                u'jak często miejsca parkingowe są zajmowane przez ludzi pełnosprawnych.')])
+    pyt9 = quiz_question(
+        label=u'9) Pojęcie „niewidzialnej pracy” może dotyczyć:',
+        choices=[
+            (2, u'moderatorów mediów społecznościowych zatrudnianych w krajach o niskich kosztach pracy, [najlepsze]'),
+            (1, u'użytkowników serwisów społecznościowych publikujących codziennie i bez wynagrodzenia własne '
+                u'materiały w tym serwisie, [dobre]'),
+            (0, u'informatyków budujących rozwiązania IT dla firm. [złe]')])
+
+    pyt10 = quiz_question(
+        label=u'10) Możesz uważać, że informacje, do których docierasz, są wiarygodne, ponieważ:',
+        choices=[
+            (1, u'pojawiają się w wielu telewizyjnych serwisach informacyjnych, na profilach społecznościowych '
+                u'moich znajomych i w różnorodnych internetowych serwisach informacyjnych, wszędzie przedstawiane '
+                u'są w podobny sposób,'),
+            (2, u'pojawiają się w wielu serwisach informacyjnych, na profilach moich znajomych, zawierają odnośniki '
+                u'do oryginalnych źródeł, do których można dotrzeć,'),
+            (0, u'pojawiają się na profilach wielu moich znajomych w serwisach społecznościowych i '
+                u'w kilku internetowych serwisach informacyjnych.')])
+    pyt11 = quiz_question(
+        label=u'11) W pewnym mieście prokuratura bada umowy z wykonawcami projektów budżetu obywatelskiego. '
+              u'Nikomu, jak dotąd, nie postawiono zarzutów. Która postać tytułu newsa opublikowanego '
+              u'na lokalnym portalu internetowym będzie najbardziej zgodna z zasadami etyki dziennikarskiej?',
+        choices=[
+            (1, u'„Budżet obywatelski: niejasne umowy z wykonawcami?”,'),
+            (2, u'„Prokuratura zbada umowy z wykonawcami projektów budżetu obywatelskiego.”,'),
+            (0, u'„Zobacz, które firmy mogły obłowić się na projektach budżetu obywatelskiego!”.')])
+    pyt12 = quiz_question(
+        label=u'12) Dołączyłeś/-aś do grupy, która zbiera informacje o problemach dotyczących młodych ludzi '
+              u'w Twojej okolicy. Zamierzacie zaprezentować zgromadzone informacje w interesujący sposób, '
+              u'tak by zainteresować lokalne media, służby miejskie, zwykłych obywateli i waszych rówieśników. '
+              u'Grupa nie ma możliwości regularnego spotykania się, dlatego wybraliście pracę wyłącznie '
+              u'przez internet. Który zestaw narzędzi pozwoli wam na jak najlepszą, wspólną pracę?',
+        choices=[
+            (0, u'mail grupowy, komunikator tekstowy (np. Messenger), oprogramowanie do tworzenia podcastów, '
+                u'stacjonarne narzędzie do tworzenia prezentacji (np. Power Point),'),
+            (1, u'mail grupowy, komunikator tekstowy zespołu (np. Slack), narzędzie do kolektywnego tworzenia '
+                u'map myśli (np. Coggle), blog redagowany przez wszystkich uczestników projektu, aplikacja do '
+                u'synchronizowania plików w chmurze (np. Dropbox), narzędzie do grupowej komunikacji za pomocą wideo '
+                u'(dyskusyjna) (np. Skype),'),
+            (2, u'aplikacja do zarządzania zadaniami zespołu i terminami do wykonania (np. Wunderlist), '
+                u'narzędzie do tworzenia kolektywnych notatek (np. OneNote) lub wspólnej pracy z tekstem '
+                u'(np. EtherPad, Google Dokumenty), grupa w serwisie społecznościowym lub tekstowy komunikator '
+                u'zespołu (np. Messenger lub Slack), narzędzia do gromadzenia lub prezentowania materiałów '
+                u'(np. wspólny blog, kanał w serwisie społecznościowym).')])
+    pyt13 = quiz_question(
+        label=u'13) Poniżej podano wybrane cechy hasła opublikowanego w Wikipedii. '
+              u'Która z nich jest najbardziej pomocna przy analizie jakości hasła?',
+        choices=[
+            (0, u'liczba edycji hasła,'),
+            (1, u'długość i struktura hasła,'),
+            (2, u'obecność i jakość przypisów.')])
+    pyt14 = quiz_question(
+        label=u'14) Na przeglądanej stronie internetowej znalazłeś/-aś interesującą grafikę, którą chciał(a)byś '
+              u'wykorzystać przygotowywanej cyfrowej narracji. Nie jest ona jednak podpisana. Co robisz?',
+        choices=[
+            (0, u'podpisuję grafikę adresem strony, na której ją znalazłem/-am,'),
+            (1, u'korzystam z opcji wyszukiwania obrazem w wyszukiwarce grafiki, chcąc znaleźć inne strony, '
+                u'gdzie pojawiła się grafika,'),
+            (2, u'korzystam z opcji wyszukiwania obrazem, a jeśli to się nie powiedzie, skontaktuję się '
+                u'z administratorem strony, na której znalazłem/-am grafikę, pytając o autora; przeglądam także '
+                u'informacje o stronie, szukając ewentualnych informacji o zasadach publikacji treści; być może '
+                u'autor informuje, że wszystkie grafiki są jego autorstwa.')])
+    pyt15 = quiz_question(
+        label=mark_safe(
+            u'15) W nieistniejącym języku programowania TEST dana jest funkcja zapisana w następujący sposób:'
+            u'<p><code>funkcja f(a) { wyświetl a + b;<br>'
+            u'}</code></p>'
+            u'<strong>Przeczytaj uważnie kod i zastanów się, jak działa ta funkcja.'
+            u'Główną wadą tego kodu jest przetwarzanie brakującego argumentu:</strong>'),
+        choices=[
+            (2, u'b,'),
+            (1, u'b będącego dowolną liczbą,'),
+            (0, u'f.')])
+    pyt16 = quiz_question(
+        label=u'16) Przygotowujesz teledysk do utworu nagranego przez twój zespół. Efekt swojej pracy opublikujesz '
+              u'na kanale zespołu na YouTube. Teledysk nie może łamać praw autorskich, w przeciwnym razie zostanie '
+              u'usunięty z serwisu. W teledysku możesz wykorzystać zdjęcia, ikony, fragmenty filmów:',
+        choices=[
+            (1, mark_safe(
+                u'znalezionych w wyszukiwarce serwisu Flickr na licencji %s, przygotowanych przez ciebie, '
+                u'ściągniętych z serwisu %s,' % (
+                    make_link(u'CC BY-SA', 'https://www.flickr.com/creativecommons/by-sa-2.0/'),
+                    make_link(u'The Noun Project', 'https://thenounproject.com')))),
+            (2, mark_safe(
+                u'znalezionych w wyszukiwarce serwisu Flickr na licencji %s, przygotowanych przez ciebie, '
+                u'ściągniętych z %s,' % (
+                    make_link(u'CC-BY', 'https://www.flickr.com/creativecommons/by-2.0/'),
+                    make_link(u'serwisu ze zdjęciami NASA',
+                              'https://www.nasa.gov/multimedia/imagegallery/index.html')))),
+            (0, mark_safe(
+                u'znalezionych w wyszukiwarce serwisu Flickr na licencji %s, przygotowanych przez ciebie, '
+                u'ściągniętych z wyszukiwarki grafiki Google.' %
+                make_link('CC-BY-NC', 'https://www.flickr.com/creativecommons/by-nc-2.0/')))])
+    pyt17 = quiz_question(
+        label=mark_safe(
+            u'17) Muzeum cyfrowe udostępniło skan druku propagandowego z pierwszej połowy XVII w. '
+            u'w humorystyczny sposób przedstawiający strony angielskiej wojny domowej (trwającej z przerwami '
+            u'między 1642-1651 rokiem):'
+            u'<p><a href="https://commons.wikimedia.org/wiki/File:Engl-Bürgerkrieg.JPG">'
+            u'<img src="https://upload.wikimedia.org/wikipedia/commons/c/c6/Engl-B%C3%BCrgerkrieg.JPG"></a></p>'
+            u'<p><a href="https://commons.wikimedia.org/wiki/File:Engl-Bürgerkrieg.JPG">'
+            u'https://commons.wikimedia.org/wiki/File:Engl-Bürgerkrieg.JPG</a></p>'
+            u'<strong>Najbardziej użytecznym dla użytkowników przeszukujących stronę zestawem słów kluczowych '
+            u'opisujących ten obiekt będzie:</strong>'),
+        choices=[
+            (2, u'Anglia, wojna domowa, karykatura, propaganda,'),
+            (0, u'komiks, śmiech, Anglicy, Wielka Brytania, psy,'),
+            (1, u'Angielska Wojna Domowa 1642-1651, propaganda.')])
+    pyt18 = quiz_question(
+        label=u'18) Podczas wycieczki szkolnej zrobiłeś sporo zdjęć znajomym, w różnych sytuacjach. '
+              u'Masz również dostęp do wielu fotografii, które przygotowali twoi koledzy i koleżanki. '
+              u'Zamierzasz niektóre z nich zamieścić na swoim kanale w serwisie społecznościowym. Możesz opublikować:',
+        choices=[
+            (0, u'zdjęcia prezentujące selfie (o ile nie przedstawiają więcej niż dwóch osób), '
+                u'zdjęcia grupy podczas zwiedzania, zdjęcia, które ktoś zrobił tobie na tle zwiedzanych obiektów, '
+                u'zdjęcia, na których ludzie się uśmiechają i cieszą, że robisz im zdjęcie,'),
+            (1, u'zdjęcia prezentujące selfie (ale tylko twoje), zdjęcia pokazujące w oddali grupę na tle '
+                u'zwiedzanych obiektów, zdjęcia, zdjęcia na których widać tylko ciebie, na tle zwiedzanych obiektów,'),
+            (2, u'zdjęcia prezentujące selfie (na których jesteś ty, ale również inne osoby, które potwierdziły, '
+                u'że możesz opublikować fotografie), zdjęcia na których widać tylko ciebie '
+                u'i masz zgodę na ich publikację od osoby, która wykonała fotografię, '
+                u'wykonane przez ciebie zdjęcia zwiedzanych obiektów.')])
+    pyt19 = quiz_question(
+        label=u'19) Korzystając z sieci, natrafiamy na różne interesujące informacje. '
+              u'Pojawiają się w wielu serwisach informacyjnych, społecznościowych, w postaci reklam '
+              u'dołączanych do materiałów wideo, reklam zamieszczonych w tekstach itp. '
+              u'Na co warto zwracać uwagę, podczas codziennego korzystania z mediów, '
+              u'żeby efektywnie wykorzystać czas spędzony w internecie?',
+        choices=[
+            (1, u'zaplanować czas spędzany na korzystaniu z mediów i starać się trzymać swojego planu, '
+                u'nie unikasz jednak nagłych rozmów przez komunikator, oglądania postów, '
+                u'zdjęć i filmików dodawanych przez znajomych,'),
+            (0, u'zaplanować, co będziesz robił(a), ale traktujesz to jako ramę działania, wiesz, '
+                u'że po drodze pojawi się wiele interesujących informacji, z których skorzystasz,'),
+            (2, u'zaplanować czas spędzany na korzystaniu z mediów i rejestrować, co, '
+                u'kiedy i przez ile czasu robisz, np. instalując aplikację do mierzenia czasu spędzanego w sieci. '
+                u'Następnie analizujesz zebrane informacje i starasz się określić, co robisz zbyt często '
+                u'i jakie rzeczy odciągają Twoją uwagę od tych zaplanowanych.')])
+    pyt20 = quiz_question(
+        label=u'20) Blokująca reklamy wtyczka do przeglądarki działa w następujący sposób:',
+        choices=[
+            (0, u'analizuje treść tekstów oraz obrazków i blokuje te, które zawierają reklamy,'),
+            (1, u'blokuje wyświetlanie plików reklam zanim wyświetli je przeglądarka,'),
+            (2, u'blokuje komunikację przeglądarki z serwerami publikującymi reklamy.')])
+
+    ANSWER_COMMENTS = [
+        (u'dobrze', u'źle', u'najlepiej'),
+        (u'średnio', u'głupio', u'super'),
+        (u'słabo', u'beznadziejnie', u'ujdzie'),
+        (u'trója', u'pała', u'szóstka'),
+        (u'dobrze', u'źle', u'najlepiej'),
+        (u'średnio', u'głupio', u'super'),
+        (u'słabo', u'beznadziejnie', u'ujdzie'),
+        (u'trója', u'pała', u'szóstka'),
+        (u'dobrze', u'źle', u'najlepiej'),
+        (u'średnio', u'głupio', u'super'),
+        (u'słabo', u'beznadziejnie', u'ujdzie'),
+        (u'trója', u'pała', u'szóstka'),
+        (u'dobrze', u'źle', u'najlepiej'),
+        (u'średnio', u'głupio', u'super'),
+        (u'słabo', u'beznadziejnie', u'ujdzie'),
+        (u'trója', u'pała', u'szóstka'),
+        (u'dobrze', u'źle', u'najlepiej'),
+        (u'średnio', u'głupio', u'super'),
+        (u'słabo', u'beznadziejnie', u'ujdzie'),
+        (u'trója', u'pała', u'szóstka'),
+    ]
+
+    @classmethod
+    def results(cls, contact):
+        fields = cls().fields
+
+        def get_idx(choices, answer):
+            return dict((score, i) for i, (score, text) in enumerate(choices))[answer]
+
+        def question_data(i):
+            field = 'pyt%s' % i
+            choices = fields[field].choices
+            score = contact.body[field]
+            chosen_idx = get_idx(choices, score)
+            correct_idx = get_idx(choices, 2)
+            return {
+                'score': score,
+                'chosen_idx': chosen_idx,
+                'correct_idx': correct_idx,
+                'chosen': 'abc'[chosen_idx],
+                'correct': 'abc'[correct_idx],
+                'label': fields[field].label,
+                'comment': cls.ANSWER_COMMENTS[i-1][chosen_idx],
+                'answers': [(text, a_score == score, a_score == 2) for a_score, text in choices],
+            }
+        question_count = len(fields) - 1
+        questions = [question_data(i) for i in xrange(1, question_count + 1)]
+        points = sum(question['score'] for question in questions)
+        return {'questions': questions, 'points': points/2., 'total': question_count}

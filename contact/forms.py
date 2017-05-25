@@ -3,6 +3,7 @@ from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import UploadedFile
 from django.core.mail import send_mail, mail_managers
+from django.core.urlresolvers import reverse
 from django.core.validators import validate_email
 from django import forms
 from django.template.loader import render_to_string
@@ -33,6 +34,7 @@ class ContactForm(forms.Form):
     form_title = _('Contact form')
     submit_label = _('Submit')
     admin_list = None
+    result_page = False
 
     required_css_class = 'required'
     contact = forms.CharField(max_length=128)
@@ -52,7 +54,7 @@ class ContactForm(forms.Form):
                         sub_body[name] = value
                 if sub_body:
                     body.setdefault(f.form_tag, []).append(sub_body)
-                
+
         contact = Contact.objects.create(
             body=body,
             ip=request.META['REMOTE_ADDR'],
@@ -91,10 +93,18 @@ class ContactForm(forms.Form):
                     'contact/%s/mail_subject.txt' % self.form_tag,
                     'contact/mail_subject.txt', 
                 ], dictionary, context).strip()
-            mail_body = render_to_string([
-                    'contact/%s/mail_body.txt' % self.form_tag,
-                    'contact/mail_body.txt', 
-                ], dictionary, context)
+            if self.result_page:
+                mail_body = render_to_string(
+                    'contact/%s/results_email.txt' % contact.form_tag,
+                    {
+                        'contact': contact,
+                        'results': self.results(contact),
+                    }, context)
+            else:
+                mail_body = render_to_string([
+                        'contact/%s/mail_body.txt' % self.form_tag,
+                        'contact/mail_body.txt',
+                    ], dictionary, context)
             send_mail(mail_subject, mail_body, 'no-reply@%s' % site.domain, [contact.contact], fail_silently=True)
 
         return contact

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import yaml
+from hashlib import sha1
 from django.db import models
 from django.utils.encoding import smart_unicode
 from django.utils.translation import ugettext_lazy as _
@@ -29,6 +30,11 @@ class Contact(models.Model):
 
     def __unicode__(self):
         return unicode(self.created_at)
+
+    def digest(self):
+        serialized_body = ';'.join(sorted('%s:%s' % item for item in self.body.iteritems()))
+        data = '%s%s%s%s%s' % (self.id, self.contact, serialized_body, self.ip, self.form_tag)
+        return sha1(data).hexdigest()
 
 
 class Attachment(models.Model):

@@ -1,0 +1,6 @@
+{% extends "contact/form.html" %}
+
+{% block form %}
+    {{ form.as_p }}
+    <p><button>{{ form.submit_label }}</button></p>
+{% endblock %}

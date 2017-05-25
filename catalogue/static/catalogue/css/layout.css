@@ -2,11 +2,11 @@
 .box-button {
   background-color: #ed7831;
   border-radius: 0.9375em; }
-  .box-button .dl-button {
+  .box-button .dl-button, .box-button .nice-button {
     color: white;
     padding: 1.0625em 0.75em 1.0625em 0.75em; }
 
-.dl-button {
+.dl-button, .nice-button {
   color: #363a3e;
   display: block;
   font-weight: bold;

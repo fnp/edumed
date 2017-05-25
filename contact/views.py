@@ -8,7 +8,7 @@ from fnpdjango.utils.views import serve_file
 from honeypot.decorators import check_honeypot
 
 from .forms import contact_forms
-from .models import Attachment
+from .models import Attachment, Contact
 
 
 @check_honeypot
@@ -33,8 +33,11 @@ def form(request, form_tag, force_enabled=False):
             prefix: formset_class(request.POST, request.FILES, prefix=prefix)
             for prefix, formset_class in formset_classes.iteritems()}
         if form.is_valid() and all(formset.is_valid() for formset in formsets.itervalues()):
-            form.save(request, formsets.values())
-            return redirect('contact_thanks', form_tag)
+            contact = form.save(request, formsets.values())
+            if form.result_page:
+                return redirect('contact_results', contact.id, contact.digest())
+            else:
+                return redirect('contact_thanks', form_tag)
     else:
         formsets = {prefix: formset_class(prefix=prefix) for prefix, formset_class in formset_classes.iteritems()}
 
@@ -53,6 +56,24 @@ def thanks(request, form_tag):
     return render(
         request, ['contact/%s/thanks.html' % form_tag, 'contact/thanks.html'],
         {'base_template': getattr(form_class, 'base_template', None)})
+
+
+def results(request, contact_id, digest):
+    contact = get_object_or_404(Contact, id=contact_id)
+    if digest != contact.digest():
+        raise Http404
+    try:
+        form_class = contact_forms[contact.form_tag]
+    except KeyError:
+        raise Http404
+
+    return render(
+        request, 'contact/%s/results.html' % contact.form_tag,
+        {
+            'results': form_class.results(contact),
+            'base_template': getattr(form_class, 'base_template', None),
+        }
+    )
 
 
 @permission_required('contact.change_attachment')
