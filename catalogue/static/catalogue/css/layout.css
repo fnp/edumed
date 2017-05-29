@@ -84,3 +84,16 @@
     float: left; }
   .lesson-footer .next-lesson {
     float: right; }
+
+ol.alpha {
+  counter-reset: list; }
+  ol.alpha > li {
+    list-style: none;
+    position: relative; }
+  ol.alpha > li:before {
+    counter-increment: list;
+    content: counter(list,lower-alpha) ") ";
+    position: absolute;
+    left: -1.4em; }
+
+/*# sourceMappingURL=layout.css.map */

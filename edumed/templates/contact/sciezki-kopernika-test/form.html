@@ -1,5 +1,10 @@
 {% extends "contact/form.html" %}
 
+{% block body %}
+    {% include 'sciezki_logos.html' %}
+    {{ block.super }}
+{% endblock %}
+
 {% block form %}
     {{ form.as_p }}
     <p><button>{{ form.submit_label }}</button></p>

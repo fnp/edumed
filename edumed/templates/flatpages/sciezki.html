@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load textile_pl from fnp_markup %}
+
+{% block title %}{{ flatpage.title }}{% endblock %}
+
+{% block body %}
+    {% include "sciezki_logos.html" %}
+    <div id="main-bar" class="flatpage">
+        {{ flatpage.content|textile_pl }}
+    </div>
+{% endblock %}

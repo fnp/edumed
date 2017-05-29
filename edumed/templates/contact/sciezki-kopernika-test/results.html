@@ -4,6 +4,7 @@
 {% block title %}Wyniki{% endblock %}
 
 {% block body %}
+    {% include 'sciezki_logos.html' %}
     <h1>Wyniki</h1>
 
     <p>Suma uzyskanych punktów: {{ results.points|floatformat }} na {{ results.total }} możliwych.</p>
@@ -12,7 +13,7 @@
 
     {% for question in results.questions %}
         <strong>{{ question.label }}</strong>
-        <ol type="a">
+        <ol class="alpha">
             {% for answer, chosen, correct in question.answers %}
                 <li style="{% if chosen %}font-weight: bold;{% endif %}{% if correct %}color: #00cc44;{% endif %}">{{ answer }}</li>
             {% endfor %}
@@ -22,7 +23,11 @@
         {% else %}
             <p>Wybrana odpowiedź {{ question.chosen }}, poprawna odpowiedź {{ question.correct }}.</p>
         {% endif %}
-        <p>Komentarz do odpowiedzi: {{ question.comment }}</p>
+        <p><strong>Komentarz do odpowiedzi:</strong></p>
+        {{ question.comment }}
     {% endfor %}
     <p class="box-button" style="max-width: 20em;"><a href="{% url 'contact_form' 'sciezki-kopernika' %}" class="nice-button">Zgłoś się na warsztaty</a></p>
+    <p>Pytania stworzyli: Grzegorz Stunża, Marcin Wilkowski.</p>
+    <p>Komentarzami opatrzyli: Paulina Piasecka, Paweł Maranowski.</p>
+
 {% endblock %}
