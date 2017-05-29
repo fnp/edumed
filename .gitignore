@@ -41,3 +41,4 @@ media
 search_index
 .sass-cache
 *.css.map
+.comments
