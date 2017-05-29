@@ -651,6 +651,34 @@ class CybernauciAnkietaForm(ContactForm):
         u'osoby prowadzącej warsztaty czy inne formy szkoleniowe?')
 
 
+class SciezkiKopernikaForm(ContactForm):
+    form_tag = 'sciezki-kopernika'
+    form_title = u'Formularz zgłoszeniowy na warsztaty'
+
+    nazwisko = forms.CharField(label=u'Imię i nazwisko uczestnika/uczestniczki', max_length=128)
+    rok_urodzenia = forms.IntegerField(label=u'Rok urodzenia')
+    adres_dom = forms.CharField(label=u'Adres zamieszkania – ulica i numer', max_length=128)
+    adres_poczta = forms.CharField(label=u'Adres zamieszkania – kod pocztowy i miejscowość', max_length=128)
+    contact = forms.EmailField(label=u'Adres e-mail')
+    szkola = forms.CharField(label=u'Nazwa szkoły', max_length=128)
+    adres_szkola = forms.CharField(label=u'Adres szkoły – ulica i numer', max_length=128)
+    poczta_szkola = forms.CharField(label=u'Adres szkoły – kod pocztowy i miejscowość', max_length=128)
+    opiekun = forms.CharField(label=u'Imię i nazwisko rodzica/opiekuna', max_length=128)
+    adres_opiekun = forms.CharField(label=u'Adres zamieszkania rodzica/opiekuna – ulica i numer', max_length=128)
+    poczta_opiekun = forms.CharField(
+        label=u'Adres zamieszkania rodzica/opiekuna – kod pocztowy i miejscowość', max_length=128)
+    telefon_opiekun = forms.CharField(label=u'Numer telefonu rodzica/opiekuna', max_length=32)
+    email_opiekun = forms.EmailField(label=u'Adres e-mail rodzica/opiekuna', max_length=32)
+    specjalne_potrzeby = forms.ChoiceField(
+        label=u'Czy uczestnik/uczestniczka ma specjalne potrzeby wynikające z niepełnosprawności', required=True,
+        choices=[('tak', 'tak'), ('nie', 'nie')], widget=forms.RadioSelect)
+    zgoda_regulamin = forms.BooleanField(
+        label=mark_safe(
+            u'Oświadczam, że zapoznałem/-am się z <a href="/media/chunks/attachment/Regulamin.pdf">'
+            u'Regulaminem udziału w projekcie</a> '
+            u'i spełniam kryteria kwalifikowalności do udziału w projekcie.'))
+
+
 def quiz_question(label, choices):
     return forms.TypedChoiceField(label=label, choices=choices, coerce=int, widget=forms.RadioSelect)
 
