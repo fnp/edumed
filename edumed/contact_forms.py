@@ -742,7 +742,7 @@ class SciezkiKopernikaTestForm(ContactForm):
             (1, u'wylogowywać się lub blokować ekran za każdym razem, kiedy odchodzisz od komputera, tabletu '
                 u'lub odkładasz gdzieś telefon, regularnie czyścić historię przeglądanych stron.')])
     pyt5 = quiz_question(
-        label=u'5. Komentarz opublikowany w internecie ma taką samą wartość bez względu na to, '
+        label=u'5. Komentarz opublikowany w Internecie ma taką samą wartość bez względu na to, '
               u'czy jest anonimowy czy podpisany imieniem i nazwiskiem:',
         choices=[
             (0, u'tak, ze względu na zasadę wolności słowa,'),
@@ -811,7 +811,7 @@ class SciezkiKopernikaTestForm(ContactForm):
               u'w Twojej okolicy. Zamierzacie zaprezentować zgromadzone informacje w interesujący sposób, '
               u'tak by zainteresować lokalne media, służby miejskie, zwykłych obywateli i waszych rówieśników. '
               u'Grupa nie ma możliwości regularnego spotykania się, dlatego wybraliście pracę wyłącznie '
-              u'przez internet. Który zestaw narzędzi pozwoli wam na jak najlepszą, wspólną pracę?',
+              u'przez Internet. Który zestaw narzędzi pozwoli wam na jak najlepszą, wspólną pracę?',
         choices=[
             (0, u'mail grupowy, komunikator tekstowy (np. Messenger), oprogramowanie do tworzenia podcastów, '
                 u'stacjonarne narzędzie do tworzenia prezentacji (np. Power Point),'),
@@ -908,7 +908,7 @@ class SciezkiKopernikaTestForm(ContactForm):
               u'Pojawiają się w wielu serwisach informacyjnych, społecznościowych, w postaci reklam '
               u'dołączanych do materiałów wideo, reklam zamieszczonych w tekstach itp. '
               u'Na co warto zwracać uwagę, podczas codziennego korzystania z mediów, '
-              u'żeby efektywnie wykorzystać czas spędzony w internecie?',
+              u'żeby efektywnie wykorzystać czas spędzony w Internecie?',
         choices=[
             (1, u'zaplanować czas spędzany na korzystaniu z mediów i starać się trzymać swojego planu, '
                 u'nie unikasz jednak nagłych rozmów przez komunikator, oglądania postów, '
@@ -933,7 +933,7 @@ class SciezkiKopernikaTestForm(ContactForm):
             u"założeniem jest, że „wszyscy terroryści są muzułmanami”. Terroryzm jako akt agresji fizycznej wymierzony"
             u" przeciwko innym osobom nie jest domeną tej, czy innej religii. Wynika on często z fundamentalistycznych "
             u"postaw i może pojawić się w różnych kontekstach politycznych i społecznych, a nie tylko religijnych. "
-            u"Z drugiej strony, każdemu użytkownikowi internetu przysługuje wolność słowa, która oznacza prawo "
+            u"Z drugiej strony, każdemu użytkownikowi Internetu przysługuje wolność słowa, która oznacza prawo "
             u"do publicznego wyrażania własnych poglądów w przestrzenie publicznej. Zachęca do tego zwłaszcza możliwość"
             u" zostawiania komentarzy pod różnego rodzaju artykułami. Należy liczyć się z tym, że część z nich może "
             u"wprowadzać w błąd. Jeśli przyjmiemy interpretację, zgodnie z którą wpis użytkownika na portalu "
@@ -942,7 +942,7 @@ class SciezkiKopernikaTestForm(ContactForm):
             u"pt. „Zjawisko terroryzmu”: "
             u"http://www.ies.krakow.pl/wydawnictwo/prokuratura/pdf/2012/07-08/11resztak.pdf.\n"
             u"\n"
-            u"O prawie do wolności wypowiedzi w internecie i zagrożeniach związanych z jego ograniczeniem możesz "
+            u"O prawie do wolności wypowiedzi w Internecie i zagrożeniach związanych z jego ograniczeniem możesz "
             u"przeczytać w komentarzu prawnika pt. „Masz prawo swobodnie wypowiadać się w Internecie, tak samo jak "
             u"wyjść z domu i chodzić po ulicach!”: "
             u"http://prawokultury.pl/newsy/masz-prawo-swobodnie-wypowiadac-sie-w-internecie-t/.",
@@ -980,7 +980,7 @@ class SciezkiKopernikaTestForm(ContactForm):
             u"\n"
             u"Tak jak nie od razu Rzym zbudowano, tak nie od razu trzeba nagrywać w profesjonalnym studio. Nawet "
             u"zawodowi podcasterzy od czegoś musieli zacząć – w większości od mikrofonu wbudowanego w komputer. Prawie "
-            u"każdy młody człowiek ma w ręku znacznie doskonalsze narzędzie, jakim jest smartfon. W internecie można "
+            u"każdy młody człowiek ma w ręku znacznie doskonalsze narzędzie, jakim jest smartfon. W Internecie można "
             u"łatwo znaleźć darmowe oprogramowanie do obróbki dźwięku i tutoriale, które pomogą w tworzeniu podcastu.\n"
             u"\n"
             u"O tym, jak zacząć tworzyć podcast, nie wydając nawet złotówki przeczytasz tu: "
@@ -1073,11 +1073,11 @@ class SciezkiKopernikaTestForm(ContactForm):
             u"synchronizowaną historię aktywności. Jak ją usunąć, dowiesz się tu:\n"
             u"https://support.google.com/websearch/answer/54068?hl=pl&ref_topic=1638123.\n"
             u"\n"
-            u"Więcej o ochronie prywatności w internecie dowiesz się tu: https://panoptykon.org/ i tu: "
+            u"Więcej o ochronie prywatności w Internecie dowiesz się tu: https://panoptykon.org/ i tu: "
             u"http://www.saferinternet.pl/pl/ochrona-prywatnosci.",
 
             u"Kompleksowe stosowanie różnych metod ochrony swojej prywatności pozwala nam na zachowanie prywatności w "
-            u"internecie. Pamiętanie o tym, że komputer odnotowuje nasze działania na różne sposoby – historia "
+            u"Internecie. Pamiętanie o tym, że komputer odnotowuje nasze działania na różne sposoby – historia "
             u"odwiedzanych stron to tylko jeden z nich – to istotny element skutecznej ochrony. Dane zapisane w "
             u"formularzach, „ciasteczka” (niewielkie informacje, wysyłane przez serwis internetowy, który odwiedzamy i "
             u"zapisywane na urządzeniu końcowym – komputerze, laptopie, smartfonie – z którego korzystamy podczas "
@@ -1091,11 +1091,11 @@ class SciezkiKopernikaTestForm(ContactForm):
             u"https://support.google.com/websearch/answer/54068?hl=pl&ref_topic=1638123.\n"
             u"\n"
             u"\n"
-            u"Więcej o ochronie prywatności w internecie dowiesz się tu:\n"
+            u"Więcej o ochronie prywatności w Internecie dowiesz się tu:\n"
             u"http://www.saferinternet.pl/pl/ochrona-prywatnosci.",
 
             u"Kompleksowe stosowanie różnych metod ochrony swojej prywatności pozwala nam na zachowanie prywatności "
-            u"w internecie. Pamiętanie o tym, że komputer odnotowuje nasze działania na różne sposoby – historia "
+            u"w Internecie. Pamiętanie o tym, że komputer odnotowuje nasze działania na różne sposoby – historia "
             u"odwiedzanych stron to tylko jeden z nich – to istotny element skutecznej ochrony. Dane zapisane "
             u"w formularzach, „ciasteczka” (niewielkie informacje, wysyłane przez serwis internetowy, który odwiedzamy "
             u"i zapisywane na urządzeniu końcowym – komputerze, laptopie, smartfonie – z którego korzystamy podczas "
@@ -1109,14 +1109,14 @@ class SciezkiKopernikaTestForm(ContactForm):
             u"tworzy synchronizowaną historię aktywności. Jak ją usunąć, dowiesz się tu:\n"
             u"https://support.google.com/websearch/answer/54068?hl=pl&ref_topic=1638123.\n"
             u"\n"
-            u"Więcej o ochronie prywatności w internecie dowiesz się tu:\n"
+            u"Więcej o ochronie prywatności w Internecie dowiesz się tu:\n"
             u"http://www.saferinternet.pl/pl/ochrona-prywatnosci."),
         (
             u"Wolność słowa oznacza przede wszystkim nasze prawo do wyrażania swoich własnych poglądów i w przypadku "
             u"skorzystania z tej wolności nie ma większego znaczenia czy swoje poglądy wyrażamy anonimowo, "
             u"czy też podpisujemy się pod nimi imieniem i nazwiskiem. Wolność słowa nie ma związku z wartością "
-            u"komentarzy w internecie. Z drugiej strony jednak należy pamiętać, że korzystanie z wolności słowa "
-            u"nie oznacza, że nie możemy czuć się odpowiedzialni za swoje opinie wyrażane w internecie i publikować "
+            u"komentarzy w Internecie. Z drugiej strony jednak należy pamiętać, że korzystanie z wolności słowa "
+            u"nie oznacza, że nie możemy czuć się odpowiedzialni za swoje opinie wyrażane w Internecie i publikować "
             u"na przykład obraźliwe komentarze. Poza tym pełna anonimowość w sieci nie istnieje – jeśli zrobimy coś "
             u"złego w Internecie, to łatwo będzie można nas namierzyć.\n"
             u"\n"
@@ -1124,32 +1124,32 @@ class SciezkiKopernikaTestForm(ContactForm):
             u"pt. „Problem wolności w Internecie”: "
             u"http://www.ujk.edu.pl/infotezy/ojs/index.php/infotezy/about/submissions#authorGuidelines.",
 
-            u"To, czy wartość komentarza opublikowanego w internecie zależy od jego podpisania przez autora, wynika "
+            u"To, czy wartość komentarza opublikowanego w Internecie zależy od jego podpisania przez autora, wynika "
             u"z kontekstu, treści i często miejsca, w którym się ten komentarz znajduje. Wartość komentarza możemy "
             u"na przykład łatwo ocenić wtedy, kiedy jesteśmy w stanie zidentyfikować osobę, która go umieszcza w "
             u"Internecie. Ma to szczególne znaczenie, jeśli dana osoba jest uznanym ekspertem w dziedzinie, w której "
             u"się wypowiada. Bywają jednak sytuacje, w których anonimowe komentarze bywają również wartościowe. "
             u"Można to zaobserwować w sytuacjach, w których anonimowy komentarz dostarcza nam informacji, które "
             u"nie mogłyby zostać rozpowszechnione w inny sposób, jak tylko właśnie anonimowo – na przykład "
-            u"udostępnienie informacji w internecie o trudnych warunkach pracy w pewnej firmie pod imieniem "
+            u"udostępnienie informacji w Internecie o trudnych warunkach pracy w pewnej firmie pod imieniem "
             u"i nazwiskiem mogłoby zaszkodzić autorowi, który prawdopodobnie straciłby pracę. Pamiętajmy jednak "
-            u"o tym, aby każdy komentarz w internecie weryfikować we własnym zakresie i że nigdy nie istnieje pełna "
+            u"o tym, aby każdy komentarz w Internecie weryfikować we własnym zakresie i że nigdy nie istnieje pełna "
             u"anonimowość w sieci.\n"
             u"\n"
-            u"Z tematem problematyki wolności w internecie można zapoznać się w artykule "
+            u"Z tematem problematyki wolności w Internecie można zapoznać się w artykule "
             u"pt. „Problem wolności w Internecie”: "
             u"http://www.ujk.edu.pl/infotezy/ojs/index.php/infotezy/about/submissions#authorGuidelines.",
 
             u"Odpowiedzialność prawna to konsekwencje, jakie możemy ponieść w wyniku złamania prawa. Z punktu widzenia "
-            u"odpowiedzialności prawnej nie ma znaczenia czy komentarz w internecie jest anonimowy, czy też podpisany "
-            u"imieniem i nazwiskiem. Na przykład za pomówienie kogoś w internecie kodeks karny przewiduje różnego "
+            u"odpowiedzialności prawnej nie ma znaczenia czy komentarz w Internecie jest anonimowy, czy też podpisany "
+            u"imieniem i nazwiskiem. Na przykład za pomówienie kogoś w Internecie kodeks karny przewiduje różnego "
             u"rodzaju kary, w tym więzienie. Jeśli osoba pomawiająca dokonała tego czynu używając anonimowych danych, "
             u"to i tak na wniosek prokuratury prowadzącej śledztwo administrator strony, na której doszło do "
             u"pomówienia ma obowiązek udostępnić adres IP użytkownika (numer służący identyfikacji komputerów i innych "
             u"urządzeń w sieci). A stąd już prosta droga do uzyskania dokładnych danych adresowych osoby pomawiającej."
             u"\n"
             u"\n"
-            u"Na temat odpowiedzialności prawnej za komentarze umieszczane w internecie można przeczytać w artykule "
+            u"Na temat odpowiedzialności prawnej za komentarze umieszczane w Internecie można przeczytać w artykule "
             u"pt. „Ten komentarz mnie obraża. Co mam zrobić?” "
             u"https://panoptykon.org/wiadomosc/ten-komentarz-mnie-obraza-co-mam-zrobic."),
         (
@@ -1205,9 +1205,9 @@ class SciezkiKopernikaTestForm(ContactForm):
             u"https://edukacjamedialna.edu.pl/lekcje/sieciowa-wspolpraca/ i tutaj: "
             u"https://edukacjamedialna.edu.pl/lekcje/dokumentacja-i-narracje-cyfrowe/."),
         (
-            u"Korzystając z internetu i komunikując się z innymi użytkownikami możemy odnieść wrażenie, że użytkownicy "
+            u"Korzystając z Internetu i komunikując się z innymi użytkownikami możemy odnieść wrażenie, że użytkownicy "
             u"zwracają się do siebie w bardzo bezpośredni sposób. Nie można jednak nikogo zmuszać do zaakceptowania "
-            u"powszechnych reguł komunikacji w internecie, jeśli w rzeczywistości na co dzień dana osoba nie stosuje "
+            u"powszechnych reguł komunikacji w Internecie, jeśli w rzeczywistości na co dzień dana osoba nie stosuje "
             u"nieformalnej komunikacji w kontaktach z nieznajomymi, w tym również przedstawicielami różnych firm "
             u"i organizacji. Trudno nam sobie w rzeczywistości niewirtualnej wyobrazić pracownika jakiejś firmy, "
             u"który po imieniu odpowiada nam na zadane przez nas pytania. Najlepszą reakcja firmy na zaistniały "
@@ -1215,29 +1215,29 @@ class SciezkiKopernikaTestForm(ContactForm):
             u"\n"
             u"Prof. Jerzy Bralczyk o netykiecie: https://www.youtube.com/watch?v=thwUHPXbBoo.\n"
             u"\n"
-            u"O zwracaniu się w internecie do innych użytkowników per „pani” / „pan” można posłuchać na kanale "
+            u"O zwracaniu się w Internecie do innych użytkowników per „pani” / „pan” można posłuchać na kanale "
             u"„Czas Gentelmanów”: https://www.youtube.com/watch?v=A8qznS7LjQY.",
 
-            u"Korzystając z internetu i komunikując się z innymi użytkownikami możemy odnieść wrażenie, że użytkownicy "
+            u"Korzystając z Internetu i komunikując się z innymi użytkownikami możemy odnieść wrażenie, że użytkownicy "
             u"zwracają się do siebie w bardzo bezpośredni sposób. Nie można jednak nikogo zmuszać do zaakceptowania "
-            u"powszechnych reguł komunikacji w internecie, zwłaszcza, jeśli w rzeczywistości na co dzień dana osoba "
+            u"powszechnych reguł komunikacji w Internecie, zwłaszcza, jeśli w rzeczywistości na co dzień dana osoba "
             u"nie stosuje nieformalnej komunikacji w kontaktach z nieznajomymi, w tym również przedstawicielami "
             u"różnych firm i organizacji. Trudno nam w rzeczywistości niewirtualnej wyobrazić sobie pracownika "
             u"jakiejś firmy, który po imieniu odpowiada nam na zadane przez nas pytania. Najlepszą reakcją firmy "
             u"na zaistniały problem jest więc przeproszenie użytkownika za bezpośredni formalny zwrot po imieniu. "
             u"Pod żadnym pozorem nie powinna ignorować użytkownika odwołując się do zasady netykiety, czyli zbioru "
-            u"zasad porozumiewania się w internecie. Chociaż zgodnie z jej zasadami, przyjęte jest zwracanie się "
+            u"zasad porozumiewania się w Internecie. Chociaż zgodnie z jej zasadami, przyjęte jest zwracanie się "
             u"do siebie po imieniu, to nie możemy innym narzucać własnych reguł komunikacji. Dotyczy to przede "
-            u"wszystkim firm, które komunikują się w internecie ze swoimi klientami.\n"
+            u"wszystkim firm, które komunikują się w Internecie ze swoimi klientami.\n"
             u"\n"
             u"Prof. Jerzy Bralczyk o netykiecie: https://www.youtube.com/watch?v=thwUHPXbBoo.\n"
             u"\n"
-            u"O zwracaniu się w internecie do innych użytkowników per „pani” / „pan” można posłuchać na kanale "
+            u"O zwracaniu się w Internecie do innych użytkowników per „pani” / „pan” można posłuchać na kanale "
             u"„Czas Gentelmanów”: https://www.youtube.com/watch?v=A8qznS7LjQY.",
 
-            u"Korzystając z internetu i komunikując się z innymi użytkownikami możemy odnieść wrażenie, że użytkownicy "
+            u"Korzystając z Internetu i komunikując się z innymi użytkownikami możemy odnieść wrażenie, że użytkownicy "
             u"zwracają się do siebie w bardzo bezpośredni sposób. Nie można jednak nikogo zmuszać do zaakceptowania "
-            u"powszechnych reguł komunikacji w internecie, jeśli w rzeczywistości na co dzień dana osoba stosuje "
+            u"powszechnych reguł komunikacji w Internecie, jeśli w rzeczywistości na co dzień dana osoba stosuje "
             u"formalna komunikację w kontaktach z osobami nieznajomymi, w tym również przedstawicielami różnych firm "
             u"i organizacji. Trudno nam sobie w rzeczywistości niewirtualnej wyobrazić pracownika jakiejś firmy, "
             u"który po imieniu odpowiada nam na zadane przez nas pytania. Poprawną reakcją firmy na zaistniały problem "
@@ -1260,7 +1260,7 @@ class SciezkiKopernikaTestForm(ContactForm):
             u"Więcej o tym, dlaczego warto weryfikować informacje, dowiesz się tu:\n"
             u"https://www.youtube.com/watch?v=ZHHmEi9VAbY.\n"
             u"\n"
-            u"Więcej o weryfikacji informacji w internecie dowiesz się stąd:\n"
+            u"Więcej o weryfikacji informacji w Internecie dowiesz się stąd:\n"
             u"http://www.heuristic.pl/blog/internet/Wiarygodnosc-informacji-zamieszczanych-w-Internecie;204.html.",
 
             u"Krytyczne podejście do informacji to jedna z najważniejszych umiejętności we współczesnym świecie, "
@@ -1287,7 +1287,7 @@ class SciezkiKopernikaTestForm(ContactForm):
             u"Więcej o tym, dlaczego warto weryfikować informacje dowiesz się tu:\n"
             u"https://www.youtube.com/watch?v=ZHHmEi9VAbY.\n"
             u"\n"
-            u"Więcej o weryfikacji informacji w internecie dowiesz się tu:\n"
+            u"Więcej o weryfikacji informacji w Internecie dowiesz się tu:\n"
             u"http://www.heuristic.pl/blog/internet/Wiarygodnosc-informacji-zamieszczanych-w-Internecie;204.html."),
         (
             u"Niewidzialna praca to między innymi praca wykonywana na rzecz swojej rodziny / wolontariat. Chociaż "
@@ -1565,49 +1565,49 @@ class SciezkiKopernikaTestForm(ContactForm):
             u"licencji, na jakiej zostały udostępnione materiały. Opcję tę znajdziesz w zakładce Narzędzia – Prawa do "
             u"użytkowania."),
         (
-            u"Podczas wyszukiwaniu w internecie obiektów takich jak zdjęcia lub grafiki istotna jest nie tyle liczba "
+            u"Podczas wyszukiwaniu w Internecie obiektów takich jak zdjęcia lub grafiki istotna jest nie tyle liczba "
             u"słów kluczowych, co ich trafność. Wybrane przez Ciebie słowa kluczowe zawierają odniesienie do "
             u"wydarzenia historycznego, miejsca, formy przekazu – są więc one wyczerpujące i pozwolą otrzymać "
             u"najlepsze rezultaty odnoszące się do poszukiwanego przez nas obiektu.",
 
-            u"Podczas wyszukiwaniu w internecie obiektów takich jak zdjęcia lub grafiki istotna jest nie tyle liczba "
+            u"Podczas wyszukiwaniu w Internecie obiektów takich jak zdjęcia lub grafiki istotna jest nie tyle liczba "
             u"słów kluczowych, co ich trafność. Wybrane przez Ciebie słowa kluczowe zawierają odniesienia wyłącznie "
             u"do miejsca związanego z wydarzeniem oraz jego zawartości wizualnej – są więc one niewyczerpujące i "
             u"nie pozwolą uzyskać najlepszych rezultatów odnoszących się do poszukiwanego przez nas obiektu. Brakuje "
             u"przede wszystkim odniesienia do samego wydarzenia, czyli angielskiej wojny domowej w latach 1642-1651.",
 
-            u"Podczas wyszukiwaniu w internecie obiektów takich jak zdjęcia lub grafiki istotna jest nie tyle liczba "
+            u"Podczas wyszukiwaniu w Internecie obiektów takich jak zdjęcia lub grafiki istotna jest nie tyle liczba "
             u"słów kluczowych, co ich trafność. Wybrane przez Ciebie słowa kluczowe zawierają odniesienia do miejsca "
             u"związanego z wydarzeniem, okresu oraz jego formy – są one trafne, a co za tym idzie powinniśmy uzyskać "
             u"rezultat odnoszący się do poszukiwanego przez nas obiektu. Warto jednak poszerzyć zakres słów kluczowych "
             u"o dodatkowe informacje, na przykład użyć hasła „karykatura”. Dodatkowe słowa mogą zwiększyć skuteczność "
             u"naszych poszukiwań."),
         (
-            u"Ochrona praw jednostki w internecie dotyczy różnych aspektów naszego funkcjonowania w przestrzeni "
+            u"Ochrona praw jednostki w Internecie dotyczy różnych aspektów naszego funkcjonowania w przestrzeni "
             u"cyfrowej. Jedną z nich jest ochrona naszych praw do stworzonego dzieła, a zatem naszych praw autorskich. "
             u"Nie można zatem wykorzystywać bez pozwolenia niczyich zdjęć do tworzenia własnej relacji z wydarzeń, "
             u"nawet organizowanych i przeżytych wspólnie.\n"
             u"\n"
             u"Co więcej, ludzie mają prawo do samodzielnego decydowania o tym, w jaki sposób ich wizerunek będzie "
             u"upubliczniony. Dlatego zanim zamieścisz zdjęcie innej osoby, nawet wspólne selfie, upewnij się, "
-            u"że sfotografowana osoba wyraża zgodę na zamieszczenie zdjęcia w internecie.\n"
+            u"że sfotografowana osoba wyraża zgodę na zamieszczenie zdjęcia w Internecie.\n"
             u"\n"
             u"Więcej o ochronie wizerunku dowiesz się tu:\n"
             u"https://portal.uw.edu.pl/web/ado/ochrona-wizerunku.",
 
-            u"Ochrona praw jednostki w internecie dotyczy różnych aspektów naszego funkcjonowania w przestrzeni "
+            u"Ochrona praw jednostki w Internecie dotyczy różnych aspektów naszego funkcjonowania w przestrzeni "
             u"cyfrowej. Jedną z nich jest ochrona naszych praw do stworzonego dzieła, a zatem naszych praw autorskich. "
             u"Nie można zatem wykorzystywać bez pozwolenia niczyich zdjęć do tworzenia własnej relacji z wydarzeń, "
             u"nawet organizowanych i przeżytych wspólnie. Zanim wykorzystasz czyjeś zdjęcie – nawet takie, na którym "
             u"jesteś – zapytaj o zgodę jego autorkę / autora o możliwość jego wykorzystania.",
 
-            u"Ochrona praw jednostki w internecie dotyczy różnych aspektów naszego funkcjonowania w przestrzeni "
+            u"Ochrona praw jednostki w Internecie dotyczy różnych aspektów naszego funkcjonowania w przestrzeni "
             u"cyfrowej. Jedną z nich jest ochrona naszych praw do stworzonego dzieła, a zatem naszych praw autorskich. "
             u"Nie można zatem wykorzystywać bez pozwolenia niczyich zdjęć do tworzenia własnej relacji z wydarzeń, "
             u"nawet organizowanych i przeżytych wspólnie. Jeśli jednak uzyskałeś zgodę autorki / autora na "
             u"publikowanie zdjęć, możesz to bez wahania zrobić. Co więcej, ludzie mają prawo do samodzielnego "
             u"decydowania o tym, w jaki sposób ich wizerunek będzie upubliczniony. Jeśli jednak przed publikacją "
-            u"zdjęcia upewniłeś się, że sfotografowana osoba wyraża na zamieszczenie zdjęcia w internecie zgodę, "
+            u"zdjęcia upewniłeś się, że sfotografowana osoba wyraża na zamieszczenie zdjęcia w Internecie zgodę, "
             u"również możesz bez wątpliwości zamieścić zdjęcie.\n"
             u"\n"
             u"Więcej o ochronie wizerunku dowiesz się tu:\n"
