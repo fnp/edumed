@@ -1,0 +1,27 @@
+{% extends "contact/thanks.html" %}
+
+{% block body %}
+    {% include "sciezki_logos.html" %}
+    {{ block.super }}
+{% endblock %}
+
+{% block contact_form_description %}
+    <p>Dziękujemy za przesłanie zgłoszenia do udziału w warsztatach z zakresu edukacji medialnej i cyfrowej prowadzonych przez Collegium Civitas i Fundację Nowoczesna Polska w ramach projektu „Collegium Młodych – media i technologie”.</p>
+
+    <p>Pamiętaj, że aby zaakceptować Twoje zgłoszenie, musimy otrzymać komplet dokumentów rekrutacyjnych w formie papierowej, opatrzonych wymaganymi podpisami, oraz potwierdzić dane w nich zawarte. O ostatecznej decyzji powiadomimy Ciebie i Twojego rodzica / opiekuna prawnego w późniejszym terminie.</p>
+
+    <p class="box-button"><a href="/media/chunks/attachment/dokumenty_rekrutacyjne.zip" class="dl-button">Pobierz wzory dokumentów rekrutacyjnych</a></p>
+
+    <p>Po wypełnieniu i podpisaniu dokumentów, odeślij je na adres:</p>
+
+    <p>Fundacja Nowoczesna Polska<br>
+    ul. Marszałkowska 84/92 lok. 125<br>
+    00-514 Warszawa<br>
+    z dopiskiem: Warsztaty – Ścieżki Kopernika</p>
+
+    <p>Jeśli masz jakieś pytania, napisz do nas:
+    <a href="mailto:warsztaty@nowoczesnapolska.org.pl">warsztaty@nowoczesnapolska.org.pl</a> lub zadzwoń: (22) 621-30-17.</p>
+
+    <p>Pozdrawiamy,<br>
+    fundacja Nowoczesna Polska</p>
+{% endblock %}
