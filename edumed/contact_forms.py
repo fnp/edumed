@@ -683,7 +683,7 @@ class SciezkiKopernikaForm(ContactForm):
         choices=[('tak', 'tak'), ('nie', 'nie')], widget=forms.RadioSelect)
     zgoda_regulamin = forms.BooleanField(
         label=mark_safe(
-            u'Oświadczam, że zapoznałem/-am się z <a href="/media/chunks/attachment/Regulamin.pdf">'
+            u'Oświadczam, że zapoznałem/am się z <a href="/media/chunks/attachment/Regulamin.pdf" target="_blank">'
             u'Regulaminem udziału w projekcie</a> '
             u'i spełniam kryteria kwalifikowalności do udziału w projekcie.'))
 
@@ -762,8 +762,8 @@ class SciezkiKopernikaTestForm(ContactForm):
                 u'zmontować narrację z części przygotowanych przez uczestników zespołu.')])
     pyt7 = quiz_question(
         label=u'7. Firma telekomunikacyjna wykorzystuje boty do automatycznego odpowiadania na pytania klientów '
-              u'zadawane przez Facebooka. Boty zwracają się do wszystkich po imieniu. Kiedy użytkownik, który '
-              u'sobie tego nie życzy, wyraża swoje niezadowolenie z takiej formy rozmowy, firma powinna:',
+              u'zadawane w serwisie społecznościowym. Boty zwracają się do wszystkich po imieniu. Kiedy użytkownik, '
+              u'który sobie tego nie życzy, wyraża swoje niezadowolenie z takiej formy rozmowy, firma powinna:',
         choices=[
             (2, u'przeprosić użytkownika, szanując preferowane przez niego reguły komunikacji,'),
             (0, u'zignorować użytkownika odwołując się do zasad netykiety,'),
@@ -809,9 +809,9 @@ class SciezkiKopernikaTestForm(ContactForm):
     pyt12 = quiz_question(
         label=u'12. Dołączyłeś/aś do grupy, która zbiera informacje o problemach dotyczących młodych ludzi '
               u'w Twojej okolicy. Zamierzacie zaprezentować zgromadzone informacje w interesujący sposób, '
-              u'tak by zainteresować lokalne media, służby miejskie, zwykłych obywateli i waszych rówieśników. '
+              u'tak by zainteresować lokalne media, służby miejskie, zwykłych obywateli i Waszych rówieśników. '
               u'Grupa nie ma możliwości regularnego spotykania się, dlatego wybraliście pracę wyłącznie '
-              u'przez Internet. Który zestaw narzędzi pozwoli wam na jak najlepszą, wspólną pracę?',
+              u'przez Internet. Który zestaw narzędzi pozwoli Wam na jak najlepszą, wspólną pracę?',
         choices=[
             (0, u'mail grupowy, komunikator tekstowy (np. Messenger), oprogramowanie do tworzenia podcastów, '
                 u'stacjonarne narzędzie do tworzenia prezentacji (np. Power Point),'),
@@ -835,11 +835,11 @@ class SciezkiKopernikaTestForm(ContactForm):
         label=u'14. Na przeglądanej stronie internetowej znalazłeś/aś interesującą grafikę, którą chciał(a)byś '
               u'wykorzystać w przygotowywanej cyfrowej narracji. Nie jest ona jednak podpisana. Co robisz?',
         choices=[
-            (0, u'podpisuję grafikę adresem strony, na której ją znalazłem/-am,'),
+            (0, u'podpisuję grafikę adresem strony, na której ją znalazłem/am,'),
             (1, u'korzystam z opcji wyszukiwania obrazem w wyszukiwarce grafiki, chcąc znaleźć inne strony, '
                 u'gdzie pojawiła się grafika,'),
             (2, u'korzystam z opcji wyszukiwania obrazem, a jeśli to się nie powiedzie, skontaktuję się '
-                u'z administratorem strony, na której znalazłem/-am grafikę, pytając o autora; przeglądam także '
+                u'z administratorem strony, na której znalazłem/am grafikę, pytając o autora; przeglądam także '
                 u'informacje o stronie, szukając ewentualnych informacji o zasadach publikacji treści; być może '
                 u'autor informuje, że wszystkie grafiki są jego autorstwa.')])
     pyt15 = quiz_question(
@@ -854,23 +854,23 @@ class SciezkiKopernikaTestForm(ContactForm):
             (1, u'b będącego dowolną liczbą,'),
             (0, u'f.')])
     pyt16 = quiz_question(
-        label=u'16. Przygotowujesz teledysk do utworu nagranego przez twój zespół. Efekt swojej pracy opublikujesz '
+        label=u'16. Przygotowujesz teledysk do utworu nagranego przez Twój zespół. Efekt swojej pracy opublikujesz '
               u'na kanale zespołu na YouTube. Teledysk nie może łamać praw autorskich, w przeciwnym razie zostanie '
               u'usunięty z serwisu. W teledysku możesz wykorzystać zdjęcia, ikony, fragmenty filmów:',
         choices=[
             (1, mark_safe(
-                u'znalezionych w wyszukiwarce serwisu Flickr na licencji %s, przygotowanych przez ciebie, '
+                u'znalezionych w wyszukiwarce serwisu Flickr na licencji %s, przygotowanych przez Ciebie, '
                 u'ściągniętych z serwisu %s,' % (
                     make_link(u'CC BY-SA', 'https://www.flickr.com/creativecommons/by-sa-2.0/'),
                     make_link(u'The Noun Project', 'https://thenounproject.com')))),
             (2, mark_safe(
-                u'znalezionych w wyszukiwarce serwisu Flickr na licencji %s, przygotowanych przez ciebie, '
+                u'znalezionych w wyszukiwarce serwisu Flickr na licencji %s, przygotowanych przez Ciebie, '
                 u'ściągniętych z %s,' % (
                     make_link(u'CC-BY', 'https://www.flickr.com/creativecommons/by-2.0/'),
                     make_link(u'serwisu ze zdjęciami NASA',
                               'https://www.nasa.gov/multimedia/imagegallery/index.html')))),
             (0, mark_safe(
-                u'znalezionych w wyszukiwarce serwisu Flickr na licencji %s, przygotowanych przez ciebie, '
+                u'znalezionych w wyszukiwarce serwisu Flickr na licencji %s, przygotowanych przez Ciebie, '
                 u'ściągniętych z wyszukiwarki grafiki Google.' %
                 make_link('CC-BY-NC', 'https://www.flickr.com/creativecommons/by-nc-2.0/')))])
     pyt17 = quiz_question(
@@ -891,18 +891,18 @@ class SciezkiKopernikaTestForm(ContactForm):
             (1, u'Angielska Wojna Domowa 1642-1651, propaganda.')])
     pyt18 = quiz_question(
         label=u'18. Podczas wycieczki szkolnej zrobiłaś/eś sporo zdjęć znajomym, w różnych sytuacjach. '
-              u'Masz również dostęp do wielu fotografii, które przygotowali twoi koledzy i koleżanki. '
+              u'Masz również dostęp do wielu fotografii, które przygotowali Twoi koledzy i koleżanki. '
               u'Zamierzasz niektóre z nich zamieścić na swoim kanale w serwisie społecznościowym. Możesz opublikować:',
         choices=[
             (0, u'zdjęcia prezentujące selfie (o ile nie przedstawiają więcej niż dwóch osób), '
-                u'zdjęcia grupy podczas zwiedzania, zdjęcia, które ktoś zrobił tobie na tle zwiedzanych obiektów, '
+                u'zdjęcia grupy podczas zwiedzania, zdjęcia, które ktoś zrobił Tobie na tle zwiedzanych obiektów, '
                 u'zdjęcia, na których ludzie się uśmiechają i cieszą, że robisz im zdjęcie,'),
-            (1, u'zdjęcia prezentujące selfie (ale tylko twoje), zdjęcia pokazujące w oddali grupę na tle '
-                u'zwiedzanych obiektów, zdjęcia, zdjęcia na których widać tylko ciebie, na tle zwiedzanych obiektów,'),
-            (2, u'zdjęcia prezentujące selfie (na których jesteś ty, ale również inne osoby, które potwierdziły, '
-                u'że możesz opublikować fotografie), zdjęcia na których widać tylko ciebie '
+            (1, u'zdjęcia prezentujące selfie (ale tylko Twoje), zdjęcia pokazujące w oddali grupę na tle '
+                u'zwiedzanych obiektów, zdjęcia, zdjęcia na których widać tylko Ciebie, na tle zwiedzanych obiektów,'),
+            (2, u'zdjęcia prezentujące selfie (na których jesteś Ty, ale również inne osoby, które potwierdziły, '
+                u'że możesz opublikować fotografie), zdjęcia na których widać tylko Ciebie '
                 u'i masz zgodę na ich publikację od osoby, która wykonała fotografię, '
-                u'wykonane przez ciebie zdjęcia zwiedzanych obiektów.')])
+                u'wykonane przez Ciebie zdjęcia zwiedzanych obiektów.')])
     pyt19 = quiz_question(
         label=u'19. Korzystając z sieci, natrafiamy na różne interesujące informacje. '
               u'Pojawiają się w wielu serwisach informacyjnych, społecznościowych, w postaci reklam '
@@ -970,6 +970,7 @@ class SciezkiKopernikaTestForm(ContactForm):
             u"pojawić się w różnych kontekstach politycznych i społecznych, a nie tylko religijnych. Zachowanie wpisu "
             u"zawierającego powyższą treść może wprowadzać w błąd jego czytelników, dlatego najlepszą opcją jest jego "
             u"usunięcie.\n"
+            u"\n"
             u"Jeśli chcesz pogłębić swoją wiedzę na temat „terroryzmu” możesz przeczytać artykuł "
             u"pt. „Zjawisko terroryzmu”: "
             u"http://www.ies.krakow.pl/wydawnictwo/prokuratura/pdf/2012/07-08/11resztak.pdf."),
