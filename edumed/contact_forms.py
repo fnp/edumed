@@ -604,7 +604,7 @@ class CybernauciAnkietaForm(ContactForm):
         super(CybernauciAnkietaForm, self).__init__(*args, **kwargs)
         self.label_suffix = ''
 
-    form_tag = 'cybernauci-ankieta-trenera'
+    form_tag = 'cybernauci-ankieta-trenera-2017'
     form_title = u"Cybernauci – ankieta trenerska"
     nazwisko = forms.CharField(label=u'Imię i nazwisko', max_length=128)
     contact = forms.CharField(label=u'Adres e-mail')
@@ -623,41 +623,28 @@ class CybernauciAnkietaForm(ContactForm):
     pyt5 = textarea_field(u'5. Nad jakimi elementami pracy trenerskiej chciałbyś/chciałabyś popracować?')
     pyt6 = textarea_field(u'6. Co jest dla Ciebie najważniejsze w pracy z grupą? '
                           u'Na co zwracasz uwagę w tym obszarze jako osoba prowadząca warsztaty?')
-    pyt7 = textarea_field(u'7. Opisz najtrudniejszą Twoim zdaniem sytuację, której doświadczyłeś/doświadczyłaś '
-                          u'podczas prowadzenia zajęć w grupie z młodzieżą, rodzicami lub nauczycielami?')
-    pyt8 = forms.MultipleChoiceField(
-        label=u'8. W jaki sposób poradzisz sobie z niespodziewaną sytuacją skrócenia czasu zajęć? '
-              u'Na które z poniższych punktów przeznaczysz w takiej sytuacji najmniej czasu?',
-        widget=forms.CheckboxSelectMultiple,
-        choices=simple_choices(
-            u'Przedstawienie się prowadzących i uczestników',
-            u'Poznanie oczekiwań i dostosowanie do nich programu zajęć',
-            u'Integracja',
-            u'Poprowadzenie kolejnych elementów zajęć (teoria-ćwiczenia)',
-            u'Podsumowanie - sprawdzenie efektów warsztatu',
-            u'Zaplanowanie dalszych prac',
-            u'Ewaluacja'))
-    pyt8a = textarea_field(label=u'Dlaczego?', max_length=1000)
+    pyt7 = textarea_field(
+        u'7. Jakie są Twoje największe obawy wobec realizacji szkoleń w placówkach oświatowych?')
+    pyt8a = ordered_textarea_field(
+        1, pre_label=u'8. Opisz szczegółowo doświadczenie z różnymi grupami:', label=u'rodzice')
+    pyt8b = ordered_textarea_field(2, label=u'nauczyciele')
+    pyt8c = ordered_textarea_field(3, label=u'młodzież ponadgimnazjalna')
+    pyt8d = ordered_textarea_field(4, label=u'młodzież gimnazjalna')
+    pyt8e = ordered_textarea_field(5, label=u'dzieci i młodzież szkół podstawowych')
     pyt9 = textarea_field(
-        label=u'9. Jeden z uczestników przeszkadza podczas warsztatów: '
-              u'głośno żartuje, nie wykonuje zleconych zadań. Co robisz?')
-    pyt10 = textarea_field(
-        u'10. Z całej grupy tylko trzy osoby odpowiadają na każde zadane przez Ciebie pytanie. '
-        u'Co robisz?')
-    pyt11 = textarea_field(
-        u'11. Jakie są Twoje największe obawy wobec realizacji szkoleń w placówkach oświatowych?')
-    pyt12a = ordered_textarea_field(
-        1, pre_label=u'12. Opisz szczegółowo doświadczenie z różnymi grupami:', label=u'rodzice')
-    pyt12b = ordered_textarea_field(2, label=u'nauczyciele')
-    pyt12c = ordered_textarea_field(3, label=u'młodzież ponadgimnazjalna')
-    pyt12d = ordered_textarea_field(4, label=u'młodzież gimnazjalna')
-    pyt12e = ordered_textarea_field(5, label=u'dzieci i młodzież szkół podstawowych')
-    pyt13 = textarea_field(
-        u'13. Z jakimi grupami wiekowymi najlepiej Ci się współpracuje? '
+        u'9. Z jakimi grupami wiekowymi najlepiej Ci się współpracuje? '
         u'Umiejętności w zakresie pracy z którą grupą najbardziej chciałabyś/chciałbyś zdobyć/doskonalić?')
-    pyt14 = textarea_field(
-        u'14. W jaki sposób na co dzień dbasz o swój rozwój jako trenera/trenerki, '
+    pyt10 = textarea_field(
+        u'10. W jaki sposób na co dzień dbasz o swój rozwój jako trenera/trenerki, '
         u'osoby prowadzącej warsztaty czy inne formy szkoleniowe?')
+    pyt11 = textarea_field(u'11. Jakie są Twoje potrzeby żywieniowe?')
+    pyt12 = forms.ChoiceField(
+        label=u'12. Jak przyjedziesz do Wilgi?',
+        widget=forms.RadioSelect,
+        choices=simple_choices(
+            u'publiczna komunikacja do/z Warszawy (a potem wesoły bus do Wilgi)',
+            u'publiczna komunikacja do/z Wilgi',
+            u'samochód prywatny'))
 
 
 class SciezkiKopernikaForm(ContactForm):
