@@ -642,7 +642,7 @@ class CybernauciAnkietaForm(ContactForm):
         label=u'12. Jak przyjedziesz do Wilgi?',
         widget=forms.RadioSelect,
         choices=simple_choices(
-            u'publiczna komunikacja do/z Warszawy (a potem wesoły bus do Wilgi)',
+            u'publiczna komunikacja do/z Warszawy (i wesoły bus do/z Wilgi)',
             u'publiczna komunikacja do/z Wilgi',
             u'samochód prywatny'))
 
