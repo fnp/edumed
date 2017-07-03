@@ -694,6 +694,9 @@ class SciezkiKopernikaTestForm(ContactForm):
     submit_label = u'Wyślij'
 
     contact = forms.EmailField(label=u'Adres e-mail, na który przyślemy informację o wynikach')
+    plec = forms.ChoiceField(
+        label=u'Płeć', widget=forms.RadioSelect,
+        choices=[('k', 'kobieta'), ('m', 'mężczyzna')])
     pyt1 = quiz_question(
         label=u'1. Na stronie portalu internetowego pod jednym z artykułów opublikowano komentarz o treści '
               u'„Nie wszyscy muzułmanie to terroryści, ale wszyscy terroryści to muzułmanie”. '
