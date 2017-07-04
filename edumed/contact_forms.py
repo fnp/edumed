@@ -1707,7 +1707,7 @@ class SciezkiKopernikaTestForm(ContactForm):
                 'comment': mark_safe(markdown.convert(cls.ANSWER_COMMENTS[i-1][chosen_idx])),
                 'answers': [(text, a_score == score, a_score == 2) for a_score, text in choices],
             }
-        question_count = len(fields) - 1
+        question_count = len(fields) - 2
         questions = [question_data(i) for i in xrange(1, question_count + 1)]
         points = sum(question['score'] for question in questions)
         return {'questions': questions, 'points': points/2., 'total': question_count}
