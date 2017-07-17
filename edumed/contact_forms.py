@@ -650,6 +650,7 @@ class CybernauciAnkietaForm(ContactForm):
 class SciezkiKopernikaForm(ContactForm):
     form_tag = 'sciezki-kopernika'
     form_title = u'Formularz zgłoszeniowy na warsztaty'
+    disabled = True
 
     nazwisko = forms.CharField(label=u'Imię i nazwisko uczestnika/uczestniczki', max_length=128)
     rok_urodzenia = forms.IntegerField(label=u'Rok urodzenia')
