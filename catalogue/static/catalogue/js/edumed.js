@@ -238,35 +238,35 @@
     }
 
     Wybor.prototype.check_question = function(question) {
-      var all, bad, good, solution,
-        _this = this;
-      all = 0;
-      good = 0;
-      bad = 0;
-      solution = this.get_value_list(question, 'solution');
+      var all = 0, bad = 0, good = 0, _this = this;
+      var single = $(question).closest('.exercise').attr('data-subtype') === 'single';
+
       $(".question-piece", question).each(function(i, qpiece) {
-        var is_checked, piece_name, piece_no, should_be_checked;
-        piece_no = $(qpiece).attr('data-no');
-        piece_name = $(qpiece).attr('data-name');
-        if (piece_name) {
-          should_be_checked = solution.indexOf(piece_name) >= 0;
-        } else {
-          should_be_checked = solution.indexOf(piece_no) >= 0;
-        }
+        var is_checked, should_be_checked;
+        should_be_checked = $(qpiece).attr('data-sol') === 'prawda';
         is_checked = $("input", qpiece).is(":checked");
-        if (should_be_checked) {
+        if (!single || should_be_checked)
           all += 1;
-        }
-        if (is_checked) {
-          if (should_be_checked) {
-            good += 1;
-            return _this.piece_correct(qpiece);
+        if (single) {
+          if (is_checked) {
+            if (should_be_checked) {
+              good += 1;
+              return _this.piece_correct(qpiece);
+            } else {
+              bad += 1;
+              return _this.piece_incorrect(qpiece);
+            }
           } else {
-            bad += 1;
-            return _this.piece_incorrect(qpiece);
+            return $(qpiece).removeClass("correct,incorrect");
           }
         } else {
-          return $(qpiece).removeClass("correct,incorrect");
+          if (is_checked !== should_be_checked) {
+            bad += 1;
+            return _this.piece_incorrect(qpiece);
+          } else {
+            good += 1;
+            return _this.piece_correct(qpiece);
+          }
         }
       });
       return [good, bad, all];
@@ -275,17 +275,9 @@
     Wybor.prototype.solve_question = function(question) {
       var solution,
         _this = this;
-      solution = this.get_value_list(question, 'solution');
       return $(".question-piece", question).each(function(i, qpiece) {
-        var piece_name, piece_no, should_be_checked;
-        piece_no = $(qpiece).attr('data-no');
-        piece_name = $(qpiece).attr('data-name');
-        if (piece_name) {
-          should_be_checked = solution.indexOf(piece_name) >= 0;
-        } else {
-          should_be_checked = solution.indexOf(piece_no) >= 0;
-        }
-        console.log("check " + $("input[type=checkbox]", qpiece).attr("id") + " -> " + should_be_checked);
+        var should_be_checked;
+        should_be_checked = $(qpiece).attr('data-sol') === 'prawda';
         return $("input[type=checkbox],input[type=radio]", qpiece).prop('checked', should_be_checked);
       });
     };
