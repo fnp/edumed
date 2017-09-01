@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import yaml
 from django.db import models
 from django.utils.encoding import smart_unicode
 from django.utils.translation import ugettext_lazy as _
@@ -17,6 +16,7 @@ class Contact(models.Model):
     @staticmethod
     def pretty_print(value, for_html=False):
         if type(value) in (tuple, list, dict):
+            import yaml
             value = yaml.safe_dump(value, allow_unicode=True, default_flow_style=False)
             if for_html:
                 value = smart_unicode(value).replace(u" ", unichr(160))

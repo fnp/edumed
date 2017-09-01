@@ -22,7 +22,7 @@
     <form method="POST" action="." enctype="multipart/form-data" class="submit-form">
     {% csrf_token %}
     {% render_honeypot_field %}
-    <h3>Dane Przewodniczącego i szkoły zgłaszającej Uczestników:</h3>
+    <h3>Dane Przewodniczącego Komisji Szkolnej i szkoły zgłaszającej Uczestników:</h3>
     <table>
         {{ form.as_table }}
     </table>

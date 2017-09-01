@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import patterns, url
-from .views import form, form_during
+from . import views
 
 urlpatterns = patterns(
     '',
-    url(r'^_test/(?P<key>.*)/$', form_during),
-    url(r'^(?P<key>.*)/$', form, name='wtem_form')
+    url(r'^potwierdzenie/(?P<id>.*)/(?P<key>.*)/$', views.confirmation, name='student_confirmation'),
+    url(r'^_test/(?P<key>.*)/$', views.form_during),
+    url(r'^(?P<key>.*)/$', views.form, name='wtem_form'),
 )

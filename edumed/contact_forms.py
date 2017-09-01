@@ -10,6 +10,7 @@ from django.core.validators import validate_email
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
+from wtem.models import Confirmation
 
 WOJEWODZTWA = (
     u'dolnośląskie',
@@ -227,7 +228,7 @@ class WTEMForm(ContactForm):
                 except ValidationError:
                     pass
                 else:
-                    send_mail(mail_subject, mail_body, 'edukacjamedialna@nowoczesnapolska.org.pl', [email],
+                    send_mail(mail_subject, mail_body, 'olimpiada@nowoczesnapolska.org.pl', [email],
                               fail_silently=True)
 
         return contact
@@ -239,7 +240,7 @@ class CommissionForm(forms.Form):
 
 
 class OlimpiadaForm(ContactForm):
-    disabled = True
+    disabled = False
     disabled_template = 'wtem/disabled_contact_form.html'
     form_tag = "olimpiada"
     form_title = u"Olimpiada Cyfrowa - Elektroniczny System Zgłoszeń"
@@ -254,6 +255,7 @@ class OlimpiadaForm(ContactForm):
     przewodniczacy = forms.CharField(label=u'Imię i nazwisko Przewodniczącego/Przewodniczącej', max_length=128)
     school = forms.CharField(label=u'Nazwa szkoły', max_length=255)
     school_address = forms.CharField(label=u'Adres szkoły', widget=forms.Textarea, max_length=1000)
+    school_wojewodztwo = forms.ChoiceField(label=u'Województwo', choices=WOJEWODZTWO_CHOICES)
     school_email = forms.EmailField(label=u'Adres e-mail szkoły', max_length=128)
     school_phone = forms.CharField(label=u'Numer telefonu szkoły', max_length=32)
     school_www = forms.URLField(label=u'Strona WWW szkoły', max_length=255, required=False)
@@ -307,17 +309,25 @@ class OlimpiadaForm(ContactForm):
         contact = super(OlimpiadaForm, self).save(request, formsets)
 
         mail_subject = render_to_string('contact/olimpiada/student_mail_subject.html').strip()
-        mail_body = render_to_string('contact/olimpiada/student_mail_body.html')
         for formset in formsets or []:
             if formset.prefix == 'student':
                 for f in formset.forms:
                     email = f.cleaned_data.get('email', None)
                     try:
+                        confirmation = Confirmation.objects.get(email=email)
+                    except Confirmation.DoesNotExist:
+                        first_name = f.cleaned_data.get('first_name', None)
+                        last_name = f.cleaned_data.get('last_name', None)
+                        confirmation = Confirmation.create(
+                            first_name=first_name, last_name=last_name, email=email, contact=contact)
+                    mail_body = render_to_string(
+                        'contact/olimpiada/student_mail_body.html', {'confirmation': confirmation})
+                    try:
                         validate_email(email)
                     except ValidationError:
                         pass
                     else:
-                        send_mail(mail_subject, mail_body, 'edukacjamedialna@nowoczesnapolska.org.pl', [email],
+                        send_mail(mail_subject, mail_body, 'olimpiada@nowoczesnapolska.org.pl', [email],
                                   fail_silently=True)
 
         return contact

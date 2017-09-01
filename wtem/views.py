@@ -4,10 +4,11 @@ from copy import deepcopy
 
 from django.conf import settings
 from django.http import HttpResponseForbidden
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
+from wtem.models import Confirmation
 from .forms import WTEMForm
 from .models import Submission, DEBUG_KEY, exercises
 
@@ -68,3 +69,12 @@ def form_during(request, key):
             return render(request, 'wtem/thanks.html', dict(end_time=submission.end_time))
         else:
             raise Exception
+
+
+def confirmation(request, id, key):
+    conf = get_object_or_404(Confirmation, id=id, key=key)
+    was_confirmed = conf.confirmed
+    if not was_confirmed:
+        conf.confirmed = True
+        conf.save()
+    return render(request, 'wtem/confirmed.html', {'confirmation': conf, 'was_confirmed': was_confirmed})

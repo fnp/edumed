@@ -7,6 +7,7 @@ import json
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 from jsonfield import JSONField
 
@@ -17,6 +18,12 @@ exercises = json.loads(f.read())
 f.close()
 
 DEBUG_KEY = 'smerfetka159'
+
+
+def make_key(length):
+    return ''.join(
+        random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits)
+        for i in range(length))
 
 
 class Submission(models.Model):
@@ -38,8 +45,7 @@ class Submission(models.Model):
     def generate_key(cls):
         key = ''
         while not key or key in [record['key'] for record in cls.objects.values('key')]:
-            key = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits)
-                          for i in range(30))
+            key = make_key(30)
         return key
 
     @classmethod
@@ -175,6 +181,31 @@ class Assignment(models.Model):
 
     def __unicode__(self):
         return self.user.username + ': ' + ','.join(map(str, self.exercises))
+
+
+class Confirmation(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100, unique=True)
+    contact = models.ForeignKey(Contact, null=True)
+    key = models.CharField(max_length=30)
+    confirmed = models.BooleanField(default=False)
+
+    @classmethod
+    def create(cls, first_name, last_name, email, contact=None, key=None):
+        confirmation = cls(
+            contact=contact,
+            key=key if key else make_key(30),
+            first_name=first_name,
+            last_name=last_name,
+            email=email
+        )
+
+        confirmation.save()
+        return confirmation
+
+    def absolute_url(self):
+        return reverse('student_confirmation', args=(self.id, self.key))
 
 
 def exercise_checked_manually(exercise):
