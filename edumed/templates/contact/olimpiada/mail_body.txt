@@ -9,7 +9,7 @@ ze zgłoszonych uczniów. W ten sposób zweryfikujemy, czy podane adresy
 są prawidłowe.
 
 Pierwszy etap Olimpiady (test on-line) odbędzie się
-23 listopada 2017 r. godz. 10:00 i potrwa 90 minut.
+23 listopada 2017 r. godz. 10:00 i potrwa 60 minut.
 
 Wszystkie ogłoszenia związane z Olimpiadą będą publikowane na stronie https://olimpiadacyfrowa.pl.
 W razie pytań lub wątpliwości można kontaktować się z nami, pisząc na adres: olimpiada@nowoczesnapolska.org.pl.
