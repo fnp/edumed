@@ -192,13 +192,14 @@ class Curriculum(models.Model):
     """Official curriculum."""
     TYPES = {'c': u'Cele kształcenia', 't': u'Treści nauczania'}
 
-    identifier = models.CharField(max_length=255, db_index=True)
+    identifier = models.CharField(max_length=255, db_index=True, unique=True)
     title = models.CharField(max_length=255)
     course = models.ForeignKey(CurriculumCourse)
     level = models.ForeignKey(CurriculumLevel)
     type = models.CharField(max_length=16, choices=TYPES.items())
 
     class Meta:
+        ordering = ['identifier']
         verbose_name = _("curriculum item")
         verbose_name_plural = _("curriculum items")
 
