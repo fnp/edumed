@@ -11,6 +11,7 @@ from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
+from django.utils import timezone
 from django.utils.translation import ugettext as _
 from jsonfield import JSONField
 
@@ -215,6 +216,13 @@ class Confirmation(models.Model):
 
     def readable_contact(self):
         return '%s <%s>' % (self.contact.body.get('przewodniczacy'), self.contact.contact)
+
+    def age(self):
+        return timezone.now() - self.contact.created_at
+
+    def readable_age(self):
+        td = self.age()
+        return '%s dni, %s godzin' % (td.days, td.seconds/3600)
 
     def send_mail(self):
         mail_subject = render_to_string('contact/olimpiada/student_mail_subject.html').strip()
