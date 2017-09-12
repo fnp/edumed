@@ -308,28 +308,18 @@ class OlimpiadaForm(ContactForm):
     def save(self, request, formsets=None):
         contact = super(OlimpiadaForm, self).save(request, formsets)
 
-        mail_subject = render_to_string('contact/olimpiada/student_mail_subject.html').strip()
         for formset in formsets or []:
             if formset.prefix == 'student':
                 for f in formset.forms:
                     email = f.cleaned_data.get('email', None)
                     try:
-                        confirmation = Confirmation.objects.get(email=email)
+                        Confirmation.objects.get(email=email)
                     except Confirmation.DoesNotExist:
                         first_name = f.cleaned_data.get('first_name', None)
                         last_name = f.cleaned_data.get('last_name', None)
                         confirmation = Confirmation.create(
                             first_name=first_name, last_name=last_name, email=email, contact=contact)
-                    mail_body = render_to_string(
-                        'contact/olimpiada/student_mail_body.html', {'confirmation': confirmation})
-                    try:
-                        validate_email(email)
-                    except ValidationError:
-                        pass
-                    else:
-                        send_mail(mail_subject, mail_body, 'olimpiada@nowoczesnapolska.org.pl', [email],
-                                  fail_silently=True)
-
+                        confirmation.send_mail()
         return contact
 
 

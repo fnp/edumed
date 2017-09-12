@@ -4,10 +4,13 @@ import string
 import os
 import json
 
+from django.core.validators import validate_email
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
+from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
 from jsonfield import JSONField
 
@@ -191,6 +194,9 @@ class Confirmation(models.Model):
     key = models.CharField(max_length=30)
     confirmed = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ['email']
+
     @classmethod
     def create(cls, first_name, last_name, email, contact=None, key=None):
         confirmation = cls(
@@ -206,6 +212,21 @@ class Confirmation(models.Model):
 
     def absolute_url(self):
         return reverse('student_confirmation', args=(self.id, self.key))
+
+    def readable_contact(self):
+        return '%s <%s>' % (self.contact.body.get('przewodniczacy'), self.contact.contact)
+
+    def send_mail(self):
+        mail_subject = render_to_string('contact/olimpiada/student_mail_subject.html').strip()
+        mail_body = render_to_string(
+            'contact/olimpiada/student_mail_body.html', {'confirmation': self})
+        try:
+            validate_email(self.email)
+        except ValidationError:
+            pass
+        else:
+            send_mail(mail_subject, mail_body, 'olimpiada@nowoczesnapolska.org.pl', [self.email],
+                      fail_silently=True)
 
 
 def exercise_checked_manually(exercise):

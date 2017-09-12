@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 
+from wtem.models import Confirmation
 from .middleware import get_current_request
 from .models import Submission, Assignment, Attachment, exercises
 
@@ -206,7 +207,6 @@ class SubmissionAdmin(admin.ModelAdmin):
         return qs
 
     def get_urls(self):
-        urls = super(SubmissionAdmin, self).get_urls()
         return patterns(
             '',
             url(r'^report/$', self.admin_site.admin_view(report_view), name='wtem_admin_report')
@@ -238,5 +238,18 @@ def report_view(request):
     response['Content-Disposition'] = 'attachment; filename="wyniki.csv"'
     return response
 
+
+class ConfirmationAdmin(admin.ModelAdmin):
+    list_display = ('email', 'first_name', 'last_name', 'confirmed')
+    readonly_fields = ('contact', 'readable_contact', 'key', 'confirmed')
+
+    def resend_mail(self, request, queryset):
+        for confirmation in queryset:
+            confirmation.send_mail()
+    resend_mail.short_description = "Wyślij kod ponownie"
+
+    actions = [resend_mail]
+
 admin.site.register(Submission, SubmissionAdmin)
 admin.site.register(Assignment)
+admin.site.register(Confirmation, ConfirmationAdmin)
