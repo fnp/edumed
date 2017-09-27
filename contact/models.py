@@ -19,6 +19,7 @@ class Contact(models.Model):
             import yaml
             value = yaml.safe_dump(value, allow_unicode=True, default_flow_style=False)
             if for_html:
+                from django.utils.encoding import smart_unicode
                 value = smart_unicode(value).replace(u" ", unichr(160))
         return value
 
