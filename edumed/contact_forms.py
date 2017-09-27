@@ -272,6 +272,8 @@ class OlimpiadaForm(ContactForm):
               u'oświadczam, że zostałam/em poinformowana/y o tym, że mam prawo wglądu w treść swoich danych '
               u'i możliwość ich poprawiania oraz że ich podanie jest dobrowolne, ale niezbędne do dokonania '
               u'zgłoszenia.')
+    zgoda_newsletter = forms.BooleanField(
+        label=u'Chcę otrzymywać newsletter: Edukacja medialna')
 
     extract_types = (dict(slug='extended', label=_('extended')),)
 
