@@ -312,14 +312,16 @@ class OlimpiadaForm(ContactForm):
             if formset.prefix == 'student':
                 for f in formset.forms:
                     email = f.cleaned_data.get('email', None)
-                    try:
-                        Confirmation.objects.get(email=email)
-                    except Confirmation.DoesNotExist:
-                        first_name = f.cleaned_data.get('first_name', None)
-                        last_name = f.cleaned_data.get('last_name', None)
-                        confirmation = Confirmation.create(
-                            first_name=first_name, last_name=last_name, email=email, contact=contact)
-                        confirmation.send_mail()
+                    if email:
+                        try:
+                            Confirmation.objects.get(email=email)
+                        except Confirmation.DoesNotExist:
+                            first_name = f.cleaned_data.get('first_name', None)
+                            last_name = f.cleaned_data.get('last_name', None)
+                            if first_name and last_name:
+                                confirmation = Confirmation.create(
+                                    first_name=first_name, last_name=last_name, email=email, contact=contact)
+                                confirmation.send_mail()
         return contact
 
 
