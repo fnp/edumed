@@ -196,7 +196,7 @@ class Confirmation(models.Model):
     confirmed = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['email']
+        ordering = ['contact__contact']
 
     @classmethod
     def create(cls, first_name, last_name, email, contact=None, key=None):
