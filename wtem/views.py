@@ -3,14 +3,16 @@ import json
 from copy import deepcopy
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseForbidden
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 from wtem.models import Confirmation
-from .forms import WTEMForm
-from .models import Submission, DEBUG_KEY, exercises
+from .forms import WTEMForm, WTEMSingleForm
+from .models import Submission, DEBUG_KEY, exercises, CompetitionState
 
 WTEM_CONTEST_STAGE = getattr(settings, 'WTEM_CONTEST_STAGE', 'before')
 
@@ -67,6 +69,33 @@ def form_during(request, key):
         if form.is_valid():
             form.save()
             return render(request, 'wtem/thanks.html', dict(end_time=submission.end_time))
+        else:
+            raise Exception
+
+
+@never_cache
+@csrf_exempt
+def form_single(request, submission_id, key):
+    if CompetitionState.get_state() != CompetitionState.DURING:
+        if request.META['REMOTE_ADDR'] not in getattr(settings, 'WTEM_CONTEST_IP_ALLOW', []):
+            return HttpResponseForbidden('Not allowed')
+
+    submission = Submission.objects.get(id=submission_id)
+    if submission.key != key:
+        return render(request, 'wtem/key_not_found.html')
+
+    i, exercise = submission.current_exercise()
+
+    if not exercise:
+        return render(request, 'wtem/thanks_single.html')
+
+    if request.method == 'GET':
+        return render(request, 'wtem/single.html', {'exercise': exercise, 'no': i})
+    elif request.method == 'POST':
+        form = WTEMSingleForm(request.POST, request.FILES, instance=submission)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('form_single', kwargs={'submission_id': submission_id, 'key': key}))
         else:
             raise Exception
 

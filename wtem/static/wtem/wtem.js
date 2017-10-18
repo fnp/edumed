@@ -2,7 +2,7 @@ $(function() {
 
     var to_submit;
 
-    $('form').submit(function(e) {
+    $('form').submit(function() {
         //e.preventDefault();
         to_submit = {};
         spinner.show();
@@ -33,7 +33,7 @@ $(function() {
             if(exercise.get_answers) {
                 to_push.closed_part = exercise.get_answers()[0];
             }
-            open_part = el.find('.open_part')
+            open_part = el.find('.open_part');
             if(open_part.length) {
                 to_push.open_part = open_part.find('textarea').val();
             }
@@ -55,12 +55,12 @@ $(function() {
             }
             push_answer(el, to_push);
         }
-    }
+    };
 
     var sms_handler = function() {
         var textarea = $(this),
             label_suffix = textarea.parent().find('.label_suffix'),
-            left = 140 - textarea.val().length;
+            left = 140 - textarea.val().length,
             to_insert = '(pozostało: ' + left + ')';
         if(left < 0) {
             to_insert = '<span style="color:red">' + to_insert + '</span>';

@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 
-from wtem.models import Confirmation
+from wtem.models import Confirmation, CompetitionState
 from .middleware import get_current_request
 from .models import Submission, Assignment, Attachment, exercises
 
@@ -253,3 +253,4 @@ class ConfirmationAdmin(admin.ModelAdmin):
 admin.site.register(Submission, SubmissionAdmin)
 admin.site.register(Assignment)
 admin.site.register(Confirmation, ConfirmationAdmin)
+admin.site.register(CompetitionState)

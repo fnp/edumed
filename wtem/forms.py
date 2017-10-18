@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import re
 
 from django import forms
@@ -14,9 +15,8 @@ class WTEMForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(WTEMForm, self).__init__(*args, **kwargs)
         for exercise in exercises:
-            if exercise['type'] != 'file_upload':
-                continue
-            self.fields['attachment_for_' + str(exercise['id'])] = forms.FileField(required=False)
+            if exercise['type'] == 'file_upload':
+                self.fields['attachment_for_' + str(exercise['id'])] = forms.FileField(required=False)
 
     def save(self, commit=True):
         submission = super(WTEMForm, self).save(commit=commit)
@@ -28,5 +28,40 @@ class WTEMForm(forms.ModelForm):
                 attachment = Attachment.objects.get(submission=submission, exercise_id=exercise_id, tag=tag)
             except Attachment.DoesNotExist:
                 attachment = Attachment(submission=submission, exercise_id=exercise_id, tag=tag)
+            attachment.file = attachment_file
+            attachment.save()
+
+
+class WTEMSingleForm(forms.ModelForm):
+    answers = forms.CharField()
+
+    class Meta:
+        model = Submission
+        fields = []
+
+    def __init__(self, *args, **kwargs):
+        super(WTEMSingleForm, self).__init__(*args, **kwargs)
+        i, exercise = self.instance.current_exercise()
+        if exercise and exercise['type'] == 'file_upload':
+            self.fields['attachment'] = forms.FileField(required=False)
+
+    def save(self, commit=True):
+        submission = self.instance
+        answers = submission.get_answers()
+        posted_answers = json.loads(self.cleaned_data['answers'])
+        assert type(posted_answers) == dict, 'answers not dict'
+        assert len(posted_answers) == 1, 'answers not single'
+        exercise_id = posted_answers.keys()[0]
+        i, exercise = submission.current_exercise()
+        assert exercise_id == str(exercise['id']), 'wrong exercise id'
+        for answer in posted_answers.values():
+            answers[exercise_id] = answer
+        submission.answers = json.dumps(answers)
+        submission.save()
+        for name, attachment_file in self.files.items():
+            m = re.match(r'attachment(?:__(.*))?', name)
+            tag = m.group(1) or None
+            attachment, created = Attachment.objects.get_or_create(
+                submission=submission, exercise_id=exercise_id, tag=tag)
             attachment.file = attachment_file
             attachment.save()

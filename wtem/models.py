@@ -24,10 +24,31 @@ f.close()
 DEBUG_KEY = 'smerfetka159'
 
 
+def get_exercise_by_id(exercise_id):
+    return [e for e in exercises if str(e['id']) == str(exercise_id)][0]
+
+
 def make_key(length):
     return ''.join(
         random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits)
         for i in range(length))
+
+
+class CompetitionState(models.Model):
+    """singleton"""
+    BEFORE = 'before'
+    DURING = 'during'
+    AFTER = 'after'
+    STATE_CHOICES = (
+        (BEFORE, u'przed rozpoczęciem'),
+        (DURING, u'w trakcie'),
+        (AFTER, u'po zakończeniu'),
+    )
+    state = models.CharField(choices=STATE_CHOICES, max_length=16)
+
+    @classmethod
+    def get_state(cls):
+        return cls.objects.get().state
 
 
 class Submission(models.Model):
@@ -41,6 +62,7 @@ class Submission(models.Model):
     marks = JSONField(default={})
     examiners = models.ManyToManyField(User, null=True, blank=True)
     end_time = models.CharField(max_length=5, null=True, blank=True)
+    random_seed = models.IntegerField()
 
     def __unicode__(self):
         return ', '.join((self.last_name, self.first_name, self.email))
@@ -59,11 +81,31 @@ class Submission(models.Model):
             key=key if key else Submission.generate_key(),
             first_name=first_name,
             last_name=last_name,
-            email=email
+            email=email,
+            random_seed=random.randint(-2147483648, 2147483647)
         )
 
         submission.save()
         return submission
+
+    def competition_link(self):
+        return reverse('form_single', kwargs={'submission_id': self.id, 'key': self.key})
+
+    def get_answers(self):
+        return json.loads(self.answers) if self.answers else {}
+
+    def shuffled_exercise_ids(self):
+        exercise_ids = [e['id'] for e in exercises]
+        random.seed(self.random_seed)
+        random.shuffle(exercise_ids)
+        return exercise_ids
+
+    def current_exercise(self):
+        answers = self.get_answers()
+        for i, id in enumerate(self.shuffled_exercise_ids(), 1):
+            if str(id) not in answers:
+                return i, get_exercise_by_id(id)
+        return None, None
 
     def get_mark(self, user_id, exercise_id):
         mark = None
@@ -92,8 +134,7 @@ class Submission(models.Model):
         return marks
 
     def get_final_exercise_mark(self, exercise_id):
-        # exercise = exercises[int(exercise_id)-1]
-        exercise = [e for e in exercises if str(e['id']) == str(exercise_id)][0]
+        exercise = get_exercise_by_id(exercise_id)
         if exercise_checked_manually(exercise):
             marks_by_examiner = self.get_exercise_marks_by_examiner(exercise_id)
             if len(marks_by_examiner):
