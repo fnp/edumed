@@ -10,8 +10,6 @@ from django.core.validators import validate_email
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
-from wtem.models import Confirmation
-
 WOJEWODZTWA = (
     u'dolnośląskie',
     u'kujawsko-pomorskie',
@@ -308,6 +306,7 @@ class OlimpiadaForm(ContactForm):
         return toret
 
     def save(self, request, formsets=None):
+        from wtem.models import Confirmation
         contact = super(OlimpiadaForm, self).save(request, formsets)
 
         for formset in formsets or []:

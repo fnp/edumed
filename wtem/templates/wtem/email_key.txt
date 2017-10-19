@@ -1,6 +1,6 @@
 Poniżej znajduje się wygenerowany specjalnie dla Ciebie link, pod którym będziesz mógł/mogła rozwiązać zadania I etapu Olimpiady Cyfrowej:
 
-https://olimpiadacyfrowa.pl{% url 'wtem_form' key=submission.key %}
+https://olimpiadacyfrowa.pl{% url 'form_single' submission_id=submission.id key=submission.key %}
 
 I etap Olimpiady odbędzie się we wtorek 15 listopada o godz. 10:00 w sali wyznaczonej przez Komisję Szkolną. Na rozwiązanie testu będziesz mieć ok. 90 min. Aby rozwiązać test, potrzebny Ci będzie komputer ze stabilnym łączem internetowym oraz zainstalowaną i zaktualizowaną przeglądarką.
 
