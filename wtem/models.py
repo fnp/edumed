@@ -96,8 +96,8 @@ class Submission(models.Model):
 
     def shuffled_exercise_ids(self):
         exercise_ids = [e['id'] for e in exercises]
-        random.seed(self.random_seed)
-        random.shuffle(exercise_ids)
+        seeded_random = random.Random(self.random_seed)
+        seeded_random.shuffle(exercise_ids)
         return exercise_ids
 
     def current_exercise(self):
