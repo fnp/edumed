@@ -1,0 +1,476 @@
+[
+{
+    "id": 1,
+    "type": "edumed_wybor",
+    "description": ["Booksprint to:"],
+    "options": [
+        {"id": 1, "text": "publikacja elektroniczna, książka elektroniczna,"},
+        {"id": 2, "text": "zapis aktualnego obrazu wyświetlanego na monitorze,"},
+        {"id": 3, "text": "pisanie książki metodą medialabową,"},
+        {"id": 4, "text": "nagranie dźwiękowe zawierające odczytany przez lektora tekst publikacji książkowej."}
+    ],
+    "answer": [3],
+    "points": 1
+},
+
+{
+    "id": 2,
+    "type": "edumed_wybor",
+    "description": ["Emotikony to rodzaj języka/pisma:"],
+    "options": [
+        {"id": 1, "text": "obrazkowego,"},
+        {"id": 2, "text": "migowego,"},
+        {"id": 3, "text": "służbowego,"},
+        {"id": 4, "text": "urzędowego."}
+    ],
+    "answer": [1],
+    "points": 1
+},
+
+{
+    "id": 3,
+    "type": "edumed_wybor",
+    "description": ["Śledzenie zmian w programie Word znajduje się w zakładce:"],
+    "options": [
+        {"id": 1, "text": "widok,"},
+        {"id": 2, "text": "korespondencja,"},
+        {"id": 3, "text": "recenzja,"},
+        {"id": 4, "text": "wstawianie."}
+    ],
+    "answer": [3],
+    "points": 1
+},
+
+{
+    "id": 4,
+    "type": "edumed_wybor",
+    "description": ["Przepustowość łącza podawana jest w:"],
+    "options": [
+        {"id": 1, "text": "bajtach na sekundę i jego wielokrotnościach,"},
+        {"id": 2, "text": "megabajtach i jego wielokrotnościach,"},
+        {"id": 3, "text": "kilobajtach i jego wielokrotnościach,"},
+        {"id": 4, "text": "bitach na sekundę i jego wielokrotnościach."}
+    ],
+    "answer": [4],
+    "points": 1
+},
+
+{
+    "id": 5,
+    "type": "edumed_przyporzadkuj",
+    "description": ["Dopasuj definicje do pojęć:"],
+    "buckets": [
+        {"id": 1, "title": "protokół HTTPS"},
+        {"id": 2, "title": "LAN"},
+        {"id": 3, "title": "serwer pośredniczący (proxy)"},
+        {"id": 4, "title": "router"},
+        {"id": 5, "title": "adres IP"}
+    ],
+    "buckets_name": "pojęcia",
+    "items": [
+        {"id": 1, "text": "1", "desc": "Jeden z protokołów umożliwiający przesyłanie w sieci zaszyfrowanych informacji, dzięki czemu dostęp do treści mają jedynie nadawca oraz odbiorca komunikatu."},
+        {"id": 2, "text": "2", "desc": "Liczba nadawana interfejsowi sieciowemu, grupie interfejsów, bądź całej sieci komputerowej w protokole IP, służąca identyfikacji elementów sieci."},
+        {"id": 3, "text": "3", "desc": "Oprogramowanie lub serwer z odpowiednim oprogramowaniem, które dokonuje pewnych operacji (zwykle nawiązuje połączenia) w imieniu użytkownika."},
+        {"id": 4, "text": "4", "desc": "Sieć komputerowa łącząca komputery na określonym obszarze takim jak blok, szkoła, biuro."},
+        {"id": 5, "text": "5", "desc": "Urządzenie sieciowe służące do łączenia różnych sieci komputerowych, pełni rolę węzła komunikacyjnego."}
+    ],
+    "items_name": "definicje",
+    "answer": {
+        "1": [1],
+        "2": [4],
+        "3": [3],
+        "4": [5],
+        "5": [2]
+    },
+    "points_per_hit": 0.5
+},
+
+{
+    "id": 6,
+    "type": "edumed_prawdafalsz",
+    "description": ["Oznacz poniższe zdania jako prawdziwe lub fałszywe."],
+    "statements": [
+        ["Algorytmy przewidują reakcje emocjonalne człowieka.", false],
+        ["Algorytm to sposób przetworzenia danych wyjściowych tak, aby otrzymać określone dane wyjściowe.", "ignore"],
+        ["Algorytmy mają zastosowanie na portalach społecznościowych i w wyszukiwarkach połączeń tramwajowych.", true],
+        ["Algorytm to skończony ciąg jasno zdefiniowanych czynności.", true],
+        ["Algorytm nie może zostać zaimplementowany w postaci programu komputerowego.", false]
+    ],
+    "points_per_hit": 0.5
+},
+
+{
+    "id": 7,
+    "type": "edumed_przyporzadkuj",
+    "description": ["Dopasuj nazwę wtyczki do jej działania."],
+    "buckets": [
+        {"id": 1, "title": "Adobe Flash Player"},
+        {"id": 2, "title": "Adblock"},
+        {"id": 3, "title": "Java"},
+        {"id": 4, "title": "Quicktime"}
+    ],
+    "buckets_name": "wtyczki",
+    "items": [
+        {"id": 1, "text": "1", "desc": "Odtwarzacz multimedialny do odgrywania muzyki i pokazywania filmów, grafik jak i VR."},
+        {"id": 2, "text": "2", "desc": "Niezbędna do uruchamiania aplikacji i apletów (na przykład gier, czatów itp.)"},
+        {"id": 3, "text": "3", "desc": "Wtyczka multimedialna przeznaczona do instalacji w przeglądarkach internetowych (m.in. Chrome, Firefox, Internet Explorer i Opera), która służy do wyświetlania animacji i filmów wykonanych w tej technologii."},
+        {"id": 4, "text": "4", "desc": "Dodatek po zainstalowaniu i skonfigurowaniu usunie z witryn internetowych uporczywe reklamy (ang. ads) spowalniające pracę komputera i przeglądarki oraz blokujące wygodny dostęp do pożądanej przez użytkownika treści."}
+    ],
+    "items_name": "działania",
+    "answer": {
+        "1": [3],
+        "2": [4],
+        "3": [2],
+        "4": [1]
+    },
+    "points_per_hit": 0.5
+},
+
+{
+    "id": 8,
+    "type": "edumed_wybor",
+    "description": ["Nawyki higieny informacyjnej to:"],
+    "options": [
+        {"id": 1, "text": "blokowanie reklam i skryptów w czasie korzystania z sieci,"},
+        {"id": 2, "text": "czyszczenie regularne komputera z kurzu,"},
+        {"id": 3, "text": "blokowanie albo regularne kasowanie „ciasteczek” w przeglądarkach internetowych,"},
+        {"id": 4, "text": "ograniczenie korzystania z „usług w chmurze”,"},
+        {"id": 5, "text": "porządkowanie danych w plikach i folderach,"},
+        {"id": 6, "text": "tworzenie kopii zapasowych informacji, na których nam zależy."}
+    ],
+    "answer": [1, 3, 4, 5, 6],
+    "answer_mode": "all_or_nothing",
+    "points": 2
+},
+
+{
+    "id": 9,
+    "type": "edumed_wybor",
+    "description": ["Wskaż prawidłowe zasady ergonomii pracy z komputerem"],
+    "options": [
+        {"id": 1, "text": "Blat biurka powinien znajdować się na takiej wysokości, aby oparte o niego przedramiona tworzyły względem ramion kąt 120°."},
+        {"id": 2, "text": "Górna krawędź monitora powinna znajdować się na poziomie twojego wzroku."},
+        {"id": 3, "text": "Krzesło powinno pozwalać ci na wygodne oparcie stóp o podłogę i utrzymanie kąta 90° pomiędzy łydkami a udami."},
+        {"id": 4, "text": "Światło powinno padać z tyłu, aby zminimalizować odblaski na monitorze."},
+        {"id": 5, "text": "Monitor powinien być oddalony od ciebie na odległość wyciągniętej dłoni."},
+        {"id": 6, "text": "Plecy powinny wygodnie przylegać do oparcia krzesła."}
+    ],
+    "answer": [2, 3, 6],
+    "answer_mode": "all_or_nothing",
+    "points": 2
+},
+
+{
+    "id": 10,
+    "type": "edumed_wybor",
+    "description": ["Pluralizm mediów sprzyja:"],
+    "options": [
+        {"id": 1, "text": "brakowi konkurencji między mediami,"},
+        {"id": 2, "text": "koncentracji mediów,"},
+        {"id": 3, "text": "monopolizacji informacji,"},
+        {"id": 4, "text": "wolności słowa."}
+    ],
+    "answer": [4],
+    "points": 1
+},
+
+{
+    "id": 11,
+    "type": "edumed_wybor",
+    "description": ["Śledzone przez firmę  zachowanie internauty w internecie:"],
+    "options": [
+        {"id": 1, "text": "zdradzać może preferencje internauty,"},
+        {"id": 2, "text": "zdradzać może cechy osobowości internauty,"},
+        {"id": 3, "text": "możliwe jest dzięki programom komputerowym,"},
+        {"id": 4, "text": "pozwala emitować wstępnie dopasowane oferty na ekranie komputera internauty,"},
+        {"id": 5, "text": "pozwala badać reakcję na reklamy,"},
+        {"id": 6, "text": "żadna z powyższych odpowiedzi nie jest prawdziwa."}
+    ],
+    "answer": [1, 2, 3, 4, 5],
+    "answer_mode": "all_or_nothing",
+    "points": 2
+},
+
+{
+    "id": 12,
+    "type": "edumed_wybor",
+    "description": ["W przypadku, gdy informacje o sprzęcie w sklepie internetowym są niepełne, a sprzedawca konsekwentnie wprowadza klientów indywidualnych w błąd, gdzie warto kierować się po pomoc?"],
+    "options": [
+        {"id": 1, "text": "Urząd Ochrony Konkurencji i Konsumentów,"},
+        {"id": 2, "text": "Urząd Kontroli Skarbowej,"},
+        {"id": 3, "text": "Rzecznik Praw Obywatelskich,"},
+        {"id": 4, "text": "Agencja Bezpieczeństwa Wewnętrznego."}
+    ],
+    "answer": [1],
+    "points": 1
+},
+
+{
+    "id": 13,
+    "type": "edumed_wybor",
+    "description": ["Kolega, który nie ma własnego komputera, poprosił Cię o przysłanie e-mailem dwudziestu zdjęć z wakacji w jednym pliku. Jakimi sposobami możesz tego efektywnie dokonać?"],
+    "options": [
+        {"id": 1, "text": "spakuję obrazki do pliku w formacie zip,"},
+        {"id": 2, "text": "spakuję obrazki do pliku w formacie rar,"},
+        {"id": 3, "text": "spakuję obrazki do pliku w formacie jpg,"},
+        {"id": 4, "text": "spakuję obrazki do pliku w formacie xls,"},
+        {"id": 5, "text": "spakuję obrazki do pliku w formacie mp4,"},
+        {"id": 6, "text": "spakuję obrazki do pliku w formacie sav."}
+    ],
+    "answer": [1, 2],
+    "answer_mode": "all_or_nothing",
+    "points": 2
+},
+
+{
+    "id": 14,
+    "type": "edumed_wybor",
+    "description": ["W ostatnich miesiącach urodziła się Twoja nowa siostrzyczka. Bardzo się z tego cieszysz i chciałbyś zamieścić jej zdjęcie na swoim profilu w portalu społecznościowym. Co powinieneś koniecznie zrobić zanim opublikujesz zdjęcie?"],
+    "options": [
+        {"id": 1, "text": "Zapytać rodziców, czy wyrażają zgodę na umieszczenia zdjęcia siostry na portalu społecznościowym."},
+        {"id": 2, "text": "Przerobić zdjęcie siostry na zabawny mem."},
+        {"id": 3, "text": "Napisać z prośbą o pisemną zgodę do administratorów portalu."},
+        {"id": 4, "text": "Wybrać zdjęcie, na którym siostra nie znajduje się w sytuacjach naruszających jej intymność (np. podczas karmienia)."},
+        {"id": 5, "text": "Namówić rodziców, aby cała rodzina wybrała się do profesjonalnego fotografa."},
+        {"id": 6, "text": "Wybrać zdjęcie, na którym siostra nie jest nago (np. podczas kąpieli)."}
+    ],
+    "answer": [1, 4, 6],
+    "answer_mode": "all_or_nothing",
+    "points": 2
+},
+
+{
+    "id": 15,
+    "type": "edumed_wybor",
+    "description": ["Który adres mailowy jest najbardziej odpowiedni w komunikacji ucznia z nauczycielem lub pracownika z pracodawcą?"],
+    "options": [
+        {"id": 1, "text": "hotkicia@hotmail.com,"},
+        {"id": 2, "text": "olazczwartejlawkipodoknemwsali3nadrugimpietrze@gmail.com,"},
+        {"id": 3, "text": "xxx666@portal.pl,"},
+        {"id": 4, "text": "adam.kowalski@net.pl."}
+    ],
+    "answer": [4],
+    "points": 1
+},
+
+{
+    "id": 16,
+    "type": "edumed_wybor",
+    "description": [
+        "Twoja ciocia jest początkującym użytkownikiem internetu. Wraz z koleżanką wybiera się na wycieczkę do Krakowa. Nocleg chciałyby zamówić na portalu booking.com.",
+        "Twoim zadaniem jest doradzenie cioci, co podnosi wiarygodność oferenta usługi turystycznej i na jakie elementy powinna zwrócić uwagę. Z poniższych elementów wybierz ten, który NIE wiąże się bezpośrednio z wiarygodnością oferenta."],
+    "options": [
+        {"id": 1, "text": "Średnia ocen innych użytkowników/gości w obiekcie."},
+        {"id": 2, "text": "Liczba wystawionych ocen przez dotychczasowych użytkowników/gości w obiekcie."},
+        {"id": 3, "text": "Zdjęcia obiektu i oferowanego pokoju."},
+        {"id": 4, "text": "Odległość obiektu od centrum miasta."}
+    ],
+    "answer": [4],
+    "points": 1
+},
+
+{
+    "id": 17,
+    "type": "edumed_wybor",
+    "description": ["Chcesz wyszukać w wyszukiwarce internetowej Google.com informacje na temat wizyty papieża Franciszka w Częstochowie w 2016 r. Która z poniższych instrukcji wyszukiwania NIE jest prawidłowa?"],
+    "options": [
+        {"id": 1, "text": "Franciszek AND (Częstochowa OR 2016),"},
+        {"id": 2, "text": "papież* AND Franciszek* AND Częstochowa,"},
+        {"id": 3, "text": "papież* AND Franciszek* AND (Częstochowa OR „Światowe Dni Młodzieży”),"},
+        {"id": 4, "text": "papież* AND Franciszek* OR (Częstochowa AND „Światowe Dni Młodzieży”),"},
+        {"id": 5, "text": "papież* OR Franciszek* OR (Częstochowa AND „Światowe Dni Młodzieży”)."}
+    ],
+    "answer": [1, 4, 5],
+    "answer_mode": "all_or_nothing",
+    "points": 2
+},
+
+{
+    "id": 18,
+    "type": "edumed_wybor",
+    "description": ["Jaki jest symbol klasyfikacji bibliotecznej książki Jana van Dijka “Społeczne aspekty nowych mediów : analiza społeczeństwa sieci” wydanej w 2010 przez PWN w zbiorach Biblioteki Uniwersyteckiej w Warszawie?"],
+    "options": [
+        {"id": 1, "text": "P96.T42 D55165 2010,"},
+        {"id": 2, "text": "HD6053 .W6684 2010,"},
+        {"id": 3, "text": "DT73.M5 D55 1993,"},
+        {"id": 4, "text": "HF5415 .H85165 2010."}
+    ],
+    "answer": [1],
+    "points": 1
+},
+
+{
+    "id": 19,
+    "type": "edumed_wybor",
+    "description": ["W jakim mieście możesz dojechać tramwajem linii nr 5 z Dworca Zachodniego do Ronda Kaponiera?"],
+    "options": [
+        {"id": 1, "text": "Poznaniu,"},
+        {"id": 2, "text": "Krakowie,"},
+        {"id": 3, "text": "Warszawie,"},
+        {"id": 4, "text": "Łodzi."}
+    ],
+    "answer": [1],
+    "points": 1
+},
+
+{
+    "id": 20,
+    "type": "edumed_wybor",
+    "description": ["Zostałeś/aś poproszony/a o pomoc przy budowie strony internetowej twojej szkoły, którą mają odwiedzać nie tylko jej uczniowie, ale również rodzice, potencjalni kandydaci i inne osoby. W jaki sposób zadbasz o to, by strona była dostępna technologicznie dla osób z zaburzeniami wzroku, słuchu lub chorych na epilepsję?"],
+    "options": [
+        {"id": 1, "text": "Użyjesz dużo filmów i dźwięku, które zastąpią tekst."},
+        {"id": 2, "text": "Użyjesz automatycznie uruchamiających się animacji, o szybko zmieniających się kolorach."},
+        {"id": 3, "text": "Opiszesz wszystkie elementy strony za pomocą tekstu, również nawigację i multimedia, oraz umożliwisz łatwą zmianę wielkości czcionki i kontrastu."},
+        {"id": 4, "text": "Umieścisz na stronie zeskanowane dokumenty szkoły w formie zdjęć."}
+    ],
+    "answer": [3],
+    "points": 1
+},
+
+{
+    "id": 21,
+    "type": "edumed_wybor",
+    "description": ["Natrafiasz w sieci na wideo na mało znane wideo, w którym ktoś nęka i wyśmiewa osobę niepełnosprawną intelektualnie, nieświadomą bycia nagrywaną. Która z czynności nie będzie pogarszać sytuacji osoby na wideo?"],
+    "options": [
+        {"id": 1, "text": "Zgłoszenie wideo administratorom portalu."},
+        {"id": 2, "text": "Przesłanie linku znajomym."},
+        {"id": 3, "text": "Podanie danych osobowych bohatera filmu w komentarzu, jeśli są ci znane."},
+        {"id": 4, "text": "Pobranie wideo i umieszczenie go ponownie z krytycznym komentarzem."}
+    ],
+    "answer": [1],
+    "points": 1
+},
+
+{
+    "id": 22,
+    "type": "edumed_wybor",
+    "description": ["Hasła przestają być wystarczającym zabezpieczeniem dostępu do stron i usług cyfrowych. Wskaż przyczyny:"],
+    "options": [
+        {"id": 1, "text": "Takie same hasła są powszechnie używane w wielu miejscach w sieci."},
+        {"id": 2, "text": "Nie jest możliwe skuteczne zaszyfrowanie i przesłanie hasła."},
+        {"id": 3, "text": "Coraz powszechniejsze są wycieki baz danych z hasłami do serwisów i usług w sieci."},
+        {"id": 4, "text": "Złośliwe oprogramowanie, tzw. keylogger, może zarejestrować nasze hasło podczas wpisywania go na klawiaturze."},
+        {"id": 5, "text": "Powszechnie używane w hasłach słowa i nazwy własne komputer może złamać za pomocą tzw. ataku słownikowego."},
+        {"id": 6, "text": "Każde hasło można odgadnąć."}
+    ],
+    "answer": [1, 3, 4, 5],
+    "answer_mode": "all_or_nothing",
+    "points": 2
+},
+
+{
+    "id": 23,
+    "type": "edumed_wybor",
+    "description": ["Przed czym może uchronić cię szyfrowanie dysku twojego smartphone’a?"],
+    "options": [
+        {"id": 1, "text": "Przed śledzeniem jego lokalizacji."},
+        {"id": 2, "text": "Przed niepożądanym dostępem aplikacji do treści na dysku, np. zrobionych zdjęć?"},
+        {"id": 3, "text": "Przed niepożądanym odtworzeniem danych w przypadku utraty urządzenia."},
+        {"id": 4, "text": "Przed złośliwym oprogramowaniem."}
+    ],
+    "answer": [3],
+    "points": 1
+},
+
+{
+    "id": 24,
+    "type": "edumed_wybor",
+    "description": ["Statystyki stron fanowskich na Facebooku lub narzędzia w rodzaju Google Analytics:"],
+    "options": [
+        {"id": 1, "text": "przyczyniają się do lepszego zrozumienia prezentowanych tekstów przez odbiorców,"},
+        {"id": 2, "text": "ułatwiają śledzenie losów odbioru prezentowanych treści,"},
+        {"id": 3, "text": "ułatwiają publikację treści z blogów w serwisach z plikami wideo,"},
+        {"id": 4, "text": "pozwalają autorom na awans w hierarchii wspólnoty blogerskiej."}
+    ],
+    "answer": [2],
+    "points": 1
+},
+
+{
+    "id": 25,
+    "type": "edumed_wybor",
+    "description": ["Aby przygotować dopracowaną i interesującą dla odbiorców prezentację multimedialną, warto:"],
+    "options": [
+        {"id": 1, "text": "wykorzystać jak najwięcej gifów i zrezygnować w prezentacji z jakiegokolwiek tekstu,"},
+        {"id": 2, "text": "tworzyć slajdy w oparciu o przygotowany wcześniej scenariusz i dobrej jakości zasoby wizualne (zdjęcia, grafiki, gify, memy itp.),"},
+        {"id": 3, "text": "używać w prezentacji jak najwięcej tekstu, dzięki czemu w trakcie wystąpienia będzie można czytać z ekranu,"},
+        {"id": 4, "text": "tworzyć prezentację składającą się tylko z zdjęć, grafik, gifów, ewentualnie uzupełnić slajdy o podkład dźwiękowy."}
+    ],
+    "answer": [2],
+    "points": 1
+},
+
+{
+    "id": 26,
+    "type": "edumed_wybor",
+    "description": ["Które z wymienionych narzędzi można użyć do digitalizacji?"],
+    "options": [
+        {"id": 1, "text": "aparat cyfrowy, skaner, aplikacje w smartfonie (np. aparat fotograficzny, skaner itp.),"},
+        {"id": 2, "text": "kserokopiarka, magnetofon kasetowy,"},
+        {"id": 3, "text": "odtwarzacz płyt CD lub DVD,"},
+        {"id": 4, "text": "konsola do gier, do której podłączone są gogle VR."}
+    ],
+    "answer": [1],
+    "points": 1
+},
+
+{
+    "id": 27,
+    "type": "edumed_wybor",
+    "description": ["Podczas wspólnej pracy zapośredniczonej przez cyfrowe narzędzia warto:"],
+    "options": [
+        {"id": 1, "text": "dzielić się obowiązkami,"},
+        {"id": 2, "text": "ustalić, kto będzie liderem projektu i będzie koordynował działania,"},
+        {"id": 3, "text": "zebrać pieniądze na zakup profesjonalnego oprogramowania,"},
+        {"id": 4, "text": "pracować spontanicznie, bez jasno określonego celu (ten wyłoni się sam w trakcie pracy),"},
+        {"id": 5, "text": "ustalić, za pomocą jakiej platformy grupa będzie się komunikować i gdzie gromadzić wspólne pliki,"},
+        {"id": 6, "text": "zrezygnować z dyskusji na trudne tematy i ustalić, kto ma decydujący i ostateczny głos w trakcie sporu, bez względu na argumenty stron."}
+    ],
+    "answer": [1, 2, 5],
+    "answer_mode": "all_or_nothing",
+    "points": 2
+},
+
+{
+    "id": 28,
+    "type": "edumed_wybor",
+    "description": ["Jesteś dziennikarzem dużej gazety. Pewnego dnia na twoją skrzynkę e-mail docierają z anonimowego źródła kopie dokumentów kompromitujących wysoko postawionego polityka. Przygotowujesz artykuł do publikacji."],
+    "options": [
+        {"id": 1, "text": "Publikujesz wszystkie otrzymane dokumenty opisując sposób ich pozyskania zgodnie z zasadą pełnej jawności warsztatu."},
+        {"id": 2, "text": "Usiłujesz ustalić, czy dokumenty są prawdziwe. Jeśli nie udaje ci się tego potwierdzić, wstrzymujesz publikację, żeby nie zrobić krzywdy potencjalnie niewinnej osobie."},
+        {"id": 3, "text": "Piszesz felieton, w którym wspominasz o posiadaniu kompromitujących dokumentów, ale nie ujawniasz ich treści."},
+        {"id": 4, "text": "Wysyłasz do polityka pytania dotyczące sprawy opisanej w dokumentach z prośbą o odniesienie się do tych informacji."}
+    ],
+    "answer": [2, 4],
+    "answer_mode": "all_or_nothing",
+    "points": 2
+},
+
+{
+    "id": 29,
+    "type": "edumed_wybor",
+    "description": ["Kultura hakerska to:"],
+    "options": [
+        {"id": 1, "text": "p154n13 l3375p34k13m,"},
+        {"id": 2, "text": "zbiór wartości i norm, które ukształtowały się w grupie programistów komputerowych,"},
+        {"id": 3, "text": "włamywanie się na cudze komputery,"},
+        {"id": 4, "text": "nowy gatunek bakterii wykrytych po raz pierwszy na układach scalonych."}
+    ],
+    "answer": [2],
+    "points": 1
+},
+
+{
+    "id": 30,
+    "type": "edumed_wybor",
+    "description": ["Napisałeś wiersz, który opublikowała lokalna gazeta. Twoi koledzy stworzyli zabawną parodię tego wiersza i także wysłali swój tekst do gazety. Na gruncie prawa autorskiego:"],
+    "options": [
+        {"id": 1, "text": "ze względu na naruszenie twoich praw autorskich możesz zażądać od wydawcy gazety odrzucenia tego tekstu, wolność słowa nie sięga tak daleko,"},
+        {"id": 2, "text": "prawo autorskie chroni wolność słowa, ale możesz zażądać zapłaty należnego ci wynagrodzenia w przypadku publikacji parodii twojego tekstu,"},
+        {"id": 3, "text": "prawo autorskie chroni integralność dzieła, więc możesz zażądać wprowadzenia zmian i poprawek do tekstu parodii,"},
+        {"id": 4, "text": "nic nie możesz w tej sprawie zrobić, prawo autorskie chroni wolność słowa w przypadku parodii."}
+    ],
+    "answer": [4],
+    "points": 1
+}
+]
