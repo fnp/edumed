@@ -3,6 +3,7 @@ import json
 from copy import deepcopy
 
 from django.conf import settings
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseForbidden
 from django.http.response import HttpResponseRedirect
@@ -14,24 +15,24 @@ from wtem.models import Confirmation
 from .forms import WTEMForm, WTEMSingleForm
 from .models import Submission, DEBUG_KEY, exercises, CompetitionState
 
-WTEM_CONTEST_STAGE = getattr(settings, 'WTEM_CONTEST_STAGE', 'before')
-
 
 @csrf_exempt
-def form(request, key):
-    return globals()['form_' + WTEM_CONTEST_STAGE](request, key)
+def form(request, submission_id, key):
+    state = CompetitionState.get_state()
+    if state == CompetitionState.DURING:
+        state = 'single'
+    return globals()['form_' + state](request, submission_id, key)
 
 
-def form_before(request, key):
-    try:
-        Submission.objects.get(key=key)
-    except Submission.DoesNotExist:
+def form_before(request, submission_id, key):
+    submission = Submission.objects.get(id=submission_id)
+    if submission.key != key:
         return render(request, 'wtem/key_not_found_before.html')
     else:
         return render(request, 'wtem/main_before.html')
 
 
-def form_after(request, key):
+def form_after(request, submission_id, key):
     return render(request, 'wtem/main_after.html')
 
 
@@ -39,7 +40,7 @@ def form_after(request, key):
 @csrf_exempt
 def form_during(request, key):
 
-    if WTEM_CONTEST_STAGE != 'during':
+    if CompetitionState.get_state() != CompetitionState.DURING:
         if request.META['REMOTE_ADDR'] not in getattr(settings, 'WTEM_CONTEST_IP_ALLOW', []):
             return HttpResponseForbidden('Not allowed')
 
@@ -86,18 +87,43 @@ def form_single(request, submission_id, key):
 
     i, exercise = submission.current_exercise()
 
+    exercise_count = len(exercises)
+
     if not exercise:
         return render(request, 'wtem/thanks_single.html')
 
     if request.method == 'GET':
-        return render(request, 'wtem/single.html', {'exercise': exercise, 'no': i})
+        return render(request, 'wtem/single.html', {'exercise': exercise, 'no': i, 'exercise_count': exercise_count})
     elif request.method == 'POST':
         form = WTEMSingleForm(request.POST, request.FILES, instance=submission)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('form_single', kwargs={'submission_id': submission_id, 'key': key}))
+            try:
+                form.save()
+            except ValueError as e:
+                if e.message == 'wrong exercise id':
+                    messages.error(request, u'Próba wysłania odpowiedzi ponownie lub poza kolejnością')
+            print 'wysyłam redirect', i
+            return HttpResponseRedirect(reverse('wtem_form', kwargs={'submission_id': submission_id, 'key': key}))
         else:
             raise Exception
+
+
+@never_cache
+@csrf_exempt
+def start(request, submission_id, key):
+    state = CompetitionState.get_state()
+    if state in (CompetitionState.BEFORE, CompetitionState.AFTER):
+        return globals()['form_' + state](request, submission_id, key)
+
+    submission = Submission.objects.get(id=submission_id)
+    if submission.key != key:
+        return render(request, 'wtem/key_not_found.html')
+
+    i, exercise = submission.current_exercise()
+    if not exercise:
+        return render(request, 'wtem/thanks_single.html')
+
+    return render(request, 'wtem/start.html', {'exercise_count': len(exercises), 'submission': submission})
 
 
 def confirmation(request, id, key):

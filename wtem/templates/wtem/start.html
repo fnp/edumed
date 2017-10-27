@@ -1,0 +1,20 @@
+{% extends 'base_super.html' %}
+
+{% block body %}
+
+    <h1>{% include "wtem/title.html" %}</h1>
+
+    <p>Witamy w I etapie Olimpiady Cyfrowej.</p>
+
+    <p>Test składa z {{ exercise_count }} pytań, które otrzymasz w losowej kolejności.
+        Po udzieleniu odpowiedzi na dane pytanie nie ma możliwości powrotu do niego i zmiany odpowiedzi.
+        Uwaga: część pytań ma jedną, a część kilka poprawnych odpowiedzi.</p>
+    <p>Test rozpoczyna się o godzinie 10:00 i trwa do 11:00.</p>
+
+    <p>Powodzenia!</p>
+    <p>Zespół Olimpiady Cyfrowej<br>
+    Fundacja Nowoczesna Polska</p>
+
+    <p class="box-button" style="max-width: 10em;"><a href="{% url 'wtem_form' submission_id=submission.id key=submission.key %}" class="nice-button">Start</a></p>
+
+{% endblock %}

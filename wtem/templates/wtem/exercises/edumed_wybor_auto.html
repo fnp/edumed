@@ -8,16 +8,22 @@
                 {{para}}
             </p>
         {% endfor %}
-        <span class="instruction">
-            Zaznacz każdą prawidłową odpowiedź (jedną lub więcej).
-        </span>
+        {% if exercise.points %}
+            <span class="instruction">
+                {% if exercise.answer|length == 1 %}
+                    Tylko jedna odpowiedź jest prawidłowa.
+                {% else %}
+                    Zaznacz wszystkie prawidłowe odpowiedzi.
+                {% endif %}
+            </span>
+        {% endif %}
     </div>
     {% endautoescape %}
     <div class="question" data-no="1">
         <ol class="lista num">
             {% for option in exercise.options %}
                 <li class="question-piece" data-name="{{option.id}}">
-                    <input type="checkbox" name="e{{no}}_{{option.id}}" id="e{{no}}_{{option.id}}"{% if option.id|stringformat:"s" in exercise.saved_answer.closed_part %} checked="checked"{% endif %}>
+                    <input type="{% if exercise.answer|length == 1 %}radio{% else %}checkbox{% endif %}" name="{% if exercise.answer|length == 1 %}e{{no}}{% else %}e{{no}}_{{option.id}}{% endif %}" id="e{{no}}_{{option.id}}"{% if option.id|stringformat:"s" in exercise.saved_answer.closed_part %} checked="checked"{% endif %}>
                     <label for="e{{no}}_{{option.id}}">{{option.text}}</label>
                 </li>
             {% endfor %}

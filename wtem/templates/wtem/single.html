@@ -8,7 +8,6 @@
 {% endblock %}
 
 
-
 {% block body %}
 <style>
     .wtem-open-field {
@@ -16,17 +15,6 @@
     }
     .wtem-open-field textarea {
         margin-top:0;
-    }
-    .wtem-fixed-info {
-        top: 20px;
-        left: 20px;
-        border: 1px solid black;
-        background: #16a487;
-        border-radius: 0.938em;
-        padding: 5px 2px;
-        color: white;
-        text-align: center;
-        font-weight: bold;
     }
     .wtem-items-inline li {
         display: inline-block;
@@ -38,20 +26,19 @@
         font-style: italic;
         font-size: .9em;
     }
-
 </style>
 
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <h1>{% include "wtem/title.html" %}</h1>
-<div class="wtem-fixed-info">Rozwiązania można wysyłać do godziny {{end_time|default:"11:30"}}. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
 
-<p>Witamy w I etapie Olimpiady Cyfrowej. Na rozwiązanie zadań masz czas do godz. {{end_time|default:"11:30"}}. Test składa się z 30 pytań.</p>
-
-<p>Wszelkie aktualności dotyczące Olimpiady możesz znaleźć <a href="/" target="_info">tutaj</a>.</p>
-
-<p>Powodzenia!<br/>
-Zespół Olimpiady Cyfrowej, fundacja Nowoczesna Polska</p>
-
-<form method="post" enctype="multipart/form-data">
+<form method="post">
 
 {% cache 300 wtem exercise.id %}
 {% with 'wtem/exercises/'|add:exercise.type|add:'.html' as template_name %}
@@ -63,17 +50,15 @@ Zespół Olimpiady Cyfrowej, fundacja Nowoczesna Polska</p>
 <hr/>
 <input type="hidden" name="answers" value=""/>
 
-<p style="text-align:center; margin-top:20px;">Sprawdź jeszcze raz wszystkie swoje odpowiedzi, a następnie wyślij je do nas, klikając w poniższy przycisk:<br/><br/>
-<input type="submit" value="Wyślij moje odpowiedzi" style="display: block; margin: auto;"/>
+<p style="text-align:center; margin-top:20px;">
+<input type="submit" value="{% if no < exercise_count %}Kolejne pytanie{% else %}Zakończ test{% endif %}" style="display: block; margin: auto;"/>
 <br/>
 <span class="wtem_spinner">
-    <span>Wysyłanie rozwiązań w toku...</span>
+    <span>Wysyłanie rozwiązania w toku...</span>
     <img src="{% static 'wtem/spinner.gif' %}"/>
-    <span>Spróbuj jeszcze raz, jeśli wysyłanie trwa dłużej niż kilka minut.</span>
+    <span>Spróbuj jeszcze raz, jeśli wysyłanie trwa dłużej niż kilka chwil.</span>
 </span>
 </p>
-
-<div class="wtem-fixed-info" style="margin-top:15px;">Rozwiązania można wysyłać do godziny {{end_time|default:"11:30"}}. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
 
 </form>
 

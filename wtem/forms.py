@@ -49,11 +49,17 @@ class WTEMSingleForm(forms.ModelForm):
         submission = self.instance
         answers = submission.get_answers()
         posted_answers = json.loads(self.cleaned_data['answers'])
-        assert type(posted_answers) == dict, 'answers not dict'
-        assert len(posted_answers) == 1, 'answers not single'
-        exercise_id = posted_answers.keys()[0]
+        if type(posted_answers) != dict:
+            raise ValueError('answers not dict')
+        if len(posted_answers) != 1:
+            raise ValueError('answers not single')
+        exercise_id, answer = posted_answers.items()[0]
+        # multipost
+        if answers.get(exercise_id) == answer:
+            return
         i, exercise = submission.current_exercise()
-        assert exercise_id == str(exercise['id']), 'wrong exercise id'
+        if exercise_id != str(exercise['id']):
+            raise ValueError('wrong exercise id')
         for answer in posted_answers.values():
             answers[exercise_id] = answer
         submission.answers = json.dumps(answers)

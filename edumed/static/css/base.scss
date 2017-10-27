@@ -279,3 +279,19 @@ footer.main {
         margin: 1.3em;
     }
 }
+
+ul.messages {
+    list-style: none;
+}
+
+.messages .error {
+    top: 20px;
+    left: 20px;
+    border: 1px solid black;
+    background: red;
+    border-radius: 0.938em;
+    padding: 5px 2px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
