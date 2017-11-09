@@ -4,6 +4,10 @@ import string
 import os
 import json
 
+from datetime import datetime
+
+import pytz as pytz
+from django.conf import settings
 from django.core.validators import validate_email
 from django.db import models
 from django.contrib.auth.models import User
@@ -23,6 +27,8 @@ f.close()
 
 DEBUG_KEY = 'smerfetka159'
 
+tz = pytz.timezone(settings.TIME_ZONE)
+
 
 def get_exercise_by_id(exercise_id):
     return [e for e in exercises if str(e['id']) == str(exercise_id)][0]
@@ -32,6 +38,10 @@ def make_key(length):
     return ''.join(
         random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits)
         for i in range(length))
+
+
+def tuple2dt(time_tuple):
+    return tz.localize(datetime(*time_tuple))
 
 
 class CompetitionState(models.Model):
@@ -46,9 +56,19 @@ class CompetitionState(models.Model):
     )
     state = models.CharField(choices=STATE_CHOICES, max_length=16)
 
+    start = tuple2dt(settings.OLIMPIADA_START)
+    end = tuple2dt(settings.OLIMPIADA_END)
+
     @classmethod
     def get_state(cls):
-        return cls.objects.get().state
+        now = timezone.now()
+        if now < cls.start:
+            return cls.BEFORE
+        elif now < cls.end:
+            return cls.DURING
+        else:
+            return cls.AFTER
+        # return cls.objects.get().state
 
 
 class Submission(models.Model):

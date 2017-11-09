@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 from copy import deepcopy
+from functools import wraps
 
 from django.conf import settings
 from django.contrib import messages
@@ -8,12 +9,28 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseForbidden
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.utils import timezone
+from django.utils.cache import patch_cache_control, add_never_cache_headers
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 from wtem.models import Confirmation
 from .forms import WTEMForm, WTEMSingleForm
 from .models import Submission, DEBUG_KEY, exercises, CompetitionState
+
+
+def cache_until_start(view_func):
+    @wraps(view_func)
+    def _wrapped_view_func(request, *args, **kwargs):
+        response = view_func(request, *args, **kwargs)
+        max_age = max(int((CompetitionState.start - timezone.now()).total_seconds()) + 1, 0)
+        if max_age:
+            patch_cache_control(response, max_age=max_age)
+        else:
+            add_never_cache_headers(response)
+        return response
+
+    return _wrapped_view_func
 
 
 @csrf_exempt
@@ -24,6 +41,7 @@ def form(request, submission_id, key):
     return globals()['form_' + state](request, submission_id, key)
 
 
+@cache_until_start
 def form_before(request, submission_id, key):
     submission = Submission.objects.get(id=submission_id)
     if submission.key != key:
@@ -108,7 +126,7 @@ def form_single(request, submission_id, key):
             raise Exception
 
 
-@never_cache
+@cache_until_start
 @csrf_exempt
 def start(request, submission_id, key):
     state = CompetitionState.get_state()

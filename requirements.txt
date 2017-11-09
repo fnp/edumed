@@ -40,3 +40,5 @@ pyyaml
 django-subdomains>=2.0.4,<2.1
 
 unidecode
+
+pytz
