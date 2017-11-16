@@ -1,6 +1,8 @@
 <div class="exercise exercise-wtem wybor" data-type="wybor" data-id="{{exercise.id}}">
 
-    {% include "wtem/exercises/exercise_no.html" %}
+    {% if no %}
+        {% include "wtem/exercises/exercise_no.html" %}
+    {% endif %}
     {% autoescape off %}
     <div class="description">
         {% for para in exercise.description %}

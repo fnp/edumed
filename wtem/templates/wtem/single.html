@@ -40,9 +40,10 @@
 
 <form method="post">
 
+{% include 'wtem/exercises/exercise_no.html' %}
 {% cache 300 wtem exercise.id %}
 {% with 'wtem/exercises/'|add:exercise.type|add:'.html' as template_name %}
-{% include  template_name with exercise=exercise %}
+{% include template_name with exercise=exercise no='' %}
 {% endwith %}
 {% endcache %}
 

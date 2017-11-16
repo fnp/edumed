@@ -1,6 +1,8 @@
 <div class="exercise-wtem" data-type="open" data-id="{{exercise.id}}">
 
-    {% include "wtem/exercises/exercise_no.html" %}
+    {% if no %}
+        {% include "wtem/exercises/exercise_no.html" %}
+    {% endif %}
 
     <div class="description">
         {% autoescape off %}
