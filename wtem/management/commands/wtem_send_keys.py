@@ -64,6 +64,6 @@ class Command(BaseCommand):
     def send_key(self, submission):
         self.stdout.write('>>> sending to ' + submission.email)
         send_mail(
-            subject="Olimpiada Cyfrowa - Twój link do egzaminu",
+            subject="Olimpiada Cyfrowa - Twój link do zadań I etapu",
             body=render_to_string('wtem/email_key.txt', dict(submission=submission)),
             to=[submission.email])
