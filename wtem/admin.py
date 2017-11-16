@@ -240,8 +240,10 @@ def report_view(request):
 
 
 class ConfirmationAdmin(admin.ModelAdmin):
-    list_display = ('email', 'first_name', 'last_name', 'readable_contact', 'readable_age', 'confirmed')
-    readonly_fields = ('contact', 'readable_contact', 'readable_age', 'key', 'confirmed')
+    list_display = ('email', 'first_name', 'last_name', 'readable_contact', 'school_phone', 'readable_age', 'confirmed')
+    readonly_fields = ('contact', 'readable_contact', 'readable_age', 'school_phone', 'key', 'confirmed')
+    list_filter = ('confirmed',)
+    list_select_related = ('contact',)
 
     def resend_mail(self, request, queryset):
         for confirmation in queryset:

@@ -278,6 +278,9 @@ class Confirmation(models.Model):
     def readable_contact(self):
         return '%s <%s>' % (self.contact.body.get('przewodniczacy'), self.contact.contact)
 
+    def school_phone(self):
+        return '%s, tel. %s' % (self.contact.body.get('school'), self.contact.body.get('school_phone'))
+
     def age(self):
         return timezone.now() - self.contact.created_at
 
