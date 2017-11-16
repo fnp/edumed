@@ -3,6 +3,10 @@ import codecs
 import csv
 import cStringIO
 
+import pytz
+from django.conf import settings
+from django.utils import timezone
+
 from settings.apps import INSTALLED_APPS
 
 
@@ -42,3 +46,10 @@ def process_app_deps(list_with_deps):
         (x[0] if type(x) == tuple else x)
         for x in list_with_deps
         if type(x) != tuple or x[1] in INSTALLED_APPS)
+
+
+def localtime_to_utc(localtime):
+    tz = pytz.timezone(settings.TIME_ZONE)
+    return timezone.utc.normalize(
+        tz.localize(localtime)
+    )

@@ -51,7 +51,7 @@ class CommissionForm(forms.Form):
 
 
 class OlimpiadaForm(ContactForm):
-    disabled = False
+    ends_on = (2017, 11, 17, 0, 5)
     disabled_template = 'wtem/disabled_contact_form.html'
     form_tag = "olimpiada"
     form_title = u"Olimpiada Cyfrowa - Elektroniczny System Zgłoszeń"
