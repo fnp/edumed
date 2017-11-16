@@ -79,6 +79,7 @@ class Submission(models.Model):
     email = models.EmailField(max_length=100, unique=True)
     answers = models.CharField(max_length=65536, null=True, blank=True)
     key_sent = models.BooleanField(default=False)
+    opened_link = models.BooleanField(default=False)
     marks = JSONField(default={})
     examiners = models.ManyToManyField(User, null=True, blank=True)
     end_time = models.CharField(max_length=5, null=True, blank=True)

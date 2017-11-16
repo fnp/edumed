@@ -47,6 +47,8 @@ def form_before(request, submission_id, key):
     if submission.key != key:
         return render(request, 'wtem/key_not_found_before.html')
     else:
+        submission.opened_link = True
+        submission.save()
         return render(request, 'wtem/main_before.html')
 
 
@@ -136,6 +138,9 @@ def start(request, submission_id, key):
     submission = Submission.objects.get(id=submission_id)
     if submission.key != key:
         return render(request, 'wtem/key_not_found.html')
+
+    submission.opened_link = True
+    submission.save()
 
     i, exercise = submission.current_exercise()
     if not exercise:
