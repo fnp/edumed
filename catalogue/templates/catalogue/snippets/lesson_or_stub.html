@@ -1,9 +1,0 @@
-{% if lesson.slug %}
-    <a href="{{ lesson.get_absolute_url }}" title="{{ lesson.description }}">
-{% endif %}
-{{ lesson }}
-{% if lesson.slug %}
-    </a>
-{% else %}
-(w przygotowaniu)
-{% endif %}

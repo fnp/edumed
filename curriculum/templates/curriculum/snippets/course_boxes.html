@@ -1,8 +1,0 @@
-{% load course_box from curriculum_tags %}
-{% for course in object_list %}
-    <div class="section-links">
-        <a href="#top">wróć do spisu treści</a>
-    </div>
-    <h3 id='{{ course.slug }}'>{{ course }}</h3>
-    {% course_box course %}
-{% endfor %}

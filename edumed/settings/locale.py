@@ -33,7 +33,6 @@ USE_L10N = True
 USE_TZ = True
 
 CONTRIB_LOCALE_APPS = (
-    'pybb',
 )
 LOCALE_PATHS = (
     os.path.join(PROJECT_DIR, 'edumed/locale-contrib'),

@@ -10,6 +10,4 @@ TEMPLATE_CONTEXT_PROCESSORS = process_app_deps((
     "django.core.context_processors.tz",
     ("django.contrib.messages.context_processors.messages", 'django.contrib.messages'),
     "django.core.context_processors.request",
-    'pybb.context_processors.processor',
-    'edumed.context_processors.base_template',
 ))

@@ -2,13 +2,8 @@
 
 INSTALLED_APPS = (
     'edumed',
-    # 'curriculum',
-    # 'catalogue',
-    # 'comment',
     'wtem',
     'stage2',
-    # 'publishers',
-    # 'api',
 
     'fnpdjango',
     'south',
@@ -23,12 +18,9 @@ INSTALLED_APPS = (
     'haystack',
     'chunks',
     'contact',
-    # 'forum',
-    # 'pybb',
     'django_libravatar',
     'sorl.thumbnail',
     'subdomains',
-    # 'piston',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
