@@ -25,7 +25,7 @@ class Command(BaseCommand):
             unconfirmed = []
             for similar_contact in Contact.objects.filter(contact=contact.contact):
                 unconfirmed += list(Confirmation.objects.filter(
-                    contact=similar_contact, confirmed=False, contact__created_at__lt=threshold))
+                    contact=similar_contact, confirmed=False))  # contact__created_at__lt=threshold))
             if not unconfirmed:
                 continue
             message = render_to_string(message_template, {'unconfirmed': unconfirmed})
