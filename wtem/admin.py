@@ -244,6 +244,7 @@ class ConfirmationAdmin(admin.ModelAdmin):
     readonly_fields = ('contact', 'readable_contact', 'readable_age', 'school_phone', 'key', 'confirmed')
     list_filter = ('confirmed',)
     list_select_related = ('contact',)
+    search_fields = ('last_name', 'email', 'contact__contact')
 
     def resend_mail(self, request, queryset):
         for confirmation in queryset:

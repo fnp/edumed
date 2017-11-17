@@ -28,6 +28,7 @@ class ContactAdmin(admin.ModelAdmin):
     fields = ['form_tag', 'created_at', 'contact', 'ip']
     readonly_fields = ['form_tag', 'created_at', 'contact', 'ip']
     list_filter = ['form_tag']
+    search_fields = ['contact', 'body']
 
     @staticmethod
     def admin_list(obj, nr):
