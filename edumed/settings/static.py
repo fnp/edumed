@@ -36,6 +36,7 @@ PIPELINE_JS = {
         'source_filenames': (
             'jquery/colorbox/jquery.colorbox-min.js',
             'jquery/colorbox/jquery.colorbox-pl.js',
+            'jquery/jquery.cycle.all.js',
             'catalogue/js/edumed.js',
             'sponsors/js/sponsors.js',
             'js/formset.js',
