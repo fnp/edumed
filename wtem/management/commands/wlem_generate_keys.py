@@ -8,6 +8,7 @@ from wtem.models import Submission
 class Command(BaseCommand):
 
     def handle(self, *ids, **options):
+        return  # typo would be disastrous
         new = 0
         skipped = 0
 

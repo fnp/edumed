@@ -36,7 +36,6 @@ class Command(BaseCommand):
 
     def send_keys(self, *args, **options):
         sent = 0
-        skipped = 0
         failed = 0
 
         submissions = Submission.objects.all()
@@ -52,7 +51,7 @@ class Command(BaseCommand):
                 self.send_key(submission)
             except Exception as e:
                 failed += 1
-                self.stdout.write('failed sending to: ' + submission.email + ' - ' + str(e))
+                self.stdout.write('failed sending to: ' + submission.email + ' - ' + repr(e))
             else:
                 submission.key_sent = True
                 submission.save()
