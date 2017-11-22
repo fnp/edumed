@@ -10,7 +10,8 @@ class Command(BaseCommand):
         new = 0
         skipped = 0
 
-        for confirmation in Confirmation.objects.all():
+        emails = list(Submission.objects.values_list('email', flat=True))
+        for confirmation in Confirmation.objects.exclude(email__in=emails):
             if not Submission.objects.filter(email=confirmation.email).exists():
                 args = {}
                 for attr in ['first_name', 'last_name', 'email', 'contact']:
