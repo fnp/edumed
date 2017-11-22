@@ -12,17 +12,20 @@ class Command(BaseCommand):
         sent = 0
         failed = 0
 
-        query = Contact.objects.filter(form_tag='olimpiada').order_by('contact').distinct('contact')
+        contacts = Contact.objects.filter(form_tag='olimpiada').order_by('contact').distinct('contact')
         template_name = args[0]
+        emails = args[1:]
+        if emails:
+            contacts = contacts.filter(contact__in=emails)
         message = render_to_string('wtem/' + template_name + '.txt')
         subject = render_to_string('wtem/' + template_name + '_subject.txt')
         
         answer = raw_input(
-            'Send the following to %d teachers with subject "%s"\n\n %s\n\n?' %
-            (query.count(), subject.encode('utf8'), message.encode('utf8')))
+            'Send the following to %d teachers with subject "%s"\n\n%s\n\n?' %
+            (contacts.count(), subject.encode('utf8'), message.encode('utf8')))
 
         if answer == 'yes':
-            for contact in query:
+            for contact in contacts:
                 try:
                     self.send_message(message, subject, contact.contact)
                 except Exception as e:
