@@ -165,52 +165,56 @@ class Submission(models.Model):
         else:
             if not self.answers:
                 return None
-            answer = json.loads(self.answers)[exercise_id]['closed_part']
-            t = exercise['type']
-            if t == 'edumed_uporzadkuj':
-                return exercise['points'] if map(int, answer) == exercise['answer'] else 0
-            if t == 'edumed_przyporzadkuj':
-                toret = 0
-                for bucket_id, items in answer.items():
-                    for item_id in items:
-                        is_corect = False
-                        if exercise.get('answer_mode', None) == 'possible_buckets_for_item':
-                            is_correct = int(bucket_id) in exercise['answer'].get(item_id)
-                        else:
-                            is_correct = int(item_id) in exercise['answer'].get(bucket_id, [])
-                        if is_correct:
-                            toret += exercise['points_per_hit']
-                return toret
-            if t == 'edumed_wybor':
-                if len(exercise['answer']) == 1:
-                    if len(answer) and int(answer[0]) == exercise['answer'][0]:
-                        return exercise['points']
-                    else:
-                        return 0
-                else:
+            answers = json.loads(self.answers)
+            if exercise_id not in answers:
+                return 0
+            else:
+                answer = answers[exercise_id]['closed_part']
+                t = exercise['type']
+                if t == 'edumed_uporzadkuj':
+                    return exercise['points'] if map(int, answer) == exercise['answer'] else 0
+                if t == 'edumed_przyporzadkuj':
                     toret = 0
-                    if exercise.get('answer_mode', None) == 'all_or_nothing':
-                        toret = exercise['points'] if map(int, answer) == exercise['answer'] else 0
-                    else:
-                        for answer_id in map(int, answer):
-                            if answer_id in exercise['answer']:
+                    for bucket_id, items in answer.items():
+                        for item_id in items:
+                            is_corect = False
+                            if exercise.get('answer_mode', None) == 'possible_buckets_for_item':
+                                is_correct = int(bucket_id) in exercise['answer'].get(item_id)
+                            else:
+                                is_correct = int(item_id) in exercise['answer'].get(bucket_id, [])
+                            if is_correct:
                                 toret += exercise['points_per_hit']
                     return toret
-            if t == 'edumed_prawdafalsz':
-                toret = 0
-                for idx, statement in enumerate(exercise['statements']):
-                    if statement[1] == 'ignore':
-                        continue
-                    if answer[idx] == 'true':
-                        given = True
-                    elif answer[idx] == 'false':
-                        given = False
+                if t == 'edumed_wybor':
+                    if len(exercise['answer']) == 1:
+                        if len(answer) and int(answer[0]) == exercise['answer'][0]:
+                            return exercise['points']
+                        else:
+                            return 0
                     else:
-                        given = None
-                    if given == statement[1]:
-                        toret += exercise['points_per_hit']
-                return toret
-            raise NotImplementedError
+                        toret = 0
+                        if exercise.get('answer_mode', None) == 'all_or_nothing':
+                            toret = exercise['points'] if map(int, answer) == exercise['answer'] else 0
+                        else:
+                            for answer_id in map(int, answer):
+                                if answer_id in exercise['answer']:
+                                    toret += exercise['points_per_hit']
+                        return toret
+                if t == 'edumed_prawdafalsz':
+                    toret = 0
+                    for idx, statement in enumerate(exercise['statements']):
+                        if statement[1] == 'ignore':
+                            continue
+                        if answer[idx] == 'true':
+                            given = True
+                        elif answer[idx] == 'false':
+                            given = False
+                        else:
+                            given = None
+                        if given == statement[1]:
+                            toret += exercise['points_per_hit']
+                    return toret
+                raise NotImplementedError
 
     @property
     def final_result(self):
