@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseForbidden
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.utils.cache import patch_cache_control, add_never_cache_headers
@@ -33,6 +33,14 @@ def cache_until_start(view_func):
     return _wrapped_view_func
 
 
+def get_submission(submission_id):
+    try:
+        submission_id = int(submission_id)
+    except ValueError:
+        raise Http404
+    return get_object_or_404(Submission, id=submission_id)
+
+
 @csrf_exempt
 def form(request, submission_id, key):
     state = CompetitionState.get_state()
@@ -43,7 +51,7 @@ def form(request, submission_id, key):
 
 @cache_until_start
 def form_before(request, submission_id, key):
-    submission = Submission.objects.get(id=submission_id)
+    submission = get_submission(submission_id)
     if submission.key != key:
         return render(request, 'wtem/key_not_found_before.html')
     else:
@@ -101,7 +109,7 @@ def form_single(request, submission_id, key):
         if request.META['REMOTE_ADDR'] not in getattr(settings, 'WTEM_CONTEST_IP_ALLOW', []):
             return HttpResponseForbidden('Not allowed')
 
-    submission = Submission.objects.get(id=submission_id)
+    submission = get_submission(submission_id)
     if submission.key != key:
         return render(request, 'wtem/key_not_found.html')
 
@@ -122,7 +130,6 @@ def form_single(request, submission_id, key):
             except ValueError as e:
                 if e.message == 'wrong exercise id':
                     messages.error(request, u'Próba wysłania odpowiedzi ponownie lub poza kolejnością')
-            print 'wysyłam redirect', i
             return HttpResponseRedirect(reverse('wtem_form', kwargs={'submission_id': submission_id, 'key': key}))
         else:
             raise Exception
@@ -135,7 +142,7 @@ def start(request, submission_id, key):
     if state in (CompetitionState.BEFORE, CompetitionState.AFTER):
         return globals()['form_' + state](request, submission_id, key)
 
-    submission = Submission.objects.get(id=submission_id)
+    submission = get_submission(submission_id)
     if submission.key != key:
         return render(request, 'wtem/key_not_found.html')
 
