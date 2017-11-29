@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _, get_language
 from fnpdjango.storage import BofhFileSystemStorage
 from fnpdjango.utils.models.translation import add_translatable
+from fnpdjango.utils.text.slughifi import slughifi as slugify
 
 bofh_storage = BofhFileSystemStorage()
 
@@ -190,10 +191,10 @@ class CurriculumCourse(models.Model):
 
 class Curriculum(models.Model):
     """Official curriculum."""
-    TYPES = {'c': u'Cele kształcenia', 't': u'Treści nauczania'}
+    TYPES = {'c': u'Cele kształcenia', 't': u'Treści nauczania', 'o': u'Osiągnięcia'}
 
     identifier = models.CharField(max_length=255, db_index=True, unique=True)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=1024)
     course = models.ForeignKey(CurriculumCourse)
     level = models.ForeignKey(CurriculumLevel)
     type = models.CharField(max_length=16, choices=TYPES.items())
@@ -213,9 +214,9 @@ class Curriculum(models.Model):
         assert m is not None, "Curriculum identifier doesn't match template."
         level, created = CurriculumLevel.objects.get_or_create(
                                        title=m.group('level'))
-        def_title = m.group('course').title()
+        def_title = m.group('course').capitalize()
         course, created = CurriculumCourse.objects.get_or_create(
-                                        slug=m.group('course').lower(),
+                                        slug=slugify(m.group('course')),
                                         defaults={
                                             'title': def_title,
                                             'accusative': def_title,
