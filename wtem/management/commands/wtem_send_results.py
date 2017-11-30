@@ -72,7 +72,7 @@ class Command(BaseCommand):
                 template = 'results_student_failed.txt'
             else:
                 template = 'results_student_passed.txt'
-            message = render_to_string('wtem/' + template, dict(final_result=round(submission.final_result, 2)))
+            message = render_to_string('wtem/' + template, dict(final_result=submission.final_result))
             self.send_message(message, subject, submission.email)
 
         self.sum_up()
@@ -94,7 +94,7 @@ class Command(BaseCommand):
 
         self.sum_up()
 
-    def sum_up(self):        
+    def sum_up(self):
         self.stdout.write('sent: %s, failed: %s' % (self.sent, self.failed))
 
     def send_message(self, message, subject, email):

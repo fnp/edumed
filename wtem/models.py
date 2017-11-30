@@ -236,7 +236,7 @@ class Submission(models.Model):
             mark = self.get_final_exercise_mark(exercise_id)
             if mark is not None:
                 final += mark
-        return final
+        return round(final, 2)
 
     @property
     def final_result_as_string(self):
