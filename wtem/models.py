@@ -167,17 +167,16 @@ class Submission(models.Model):
                 return None
             answers = json.loads(self.answers)
             if exercise_id not in answers:
-                return 0
+                return None
             else:
                 answer = answers[exercise_id]['closed_part']
                 t = exercise['type']
                 if t == 'edumed_uporzadkuj':
                     return exercise['points'] if map(int, answer) == exercise['answer'] else 0
-                if t == 'edumed_przyporzadkuj':
+                elif t == 'edumed_przyporzadkuj':
                     toret = 0
                     for bucket_id, items in answer.items():
                         for item_id in items:
-                            is_corect = False
                             if exercise.get('answer_mode', None) == 'possible_buckets_for_item':
                                 is_correct = int(bucket_id) in exercise['answer'].get(item_id)
                             else:
@@ -185,8 +184,19 @@ class Submission(models.Model):
                             if is_correct:
                                 toret += exercise['points_per_hit']
                     return toret
-                if t == 'edumed_wybor':
-                    if len(exercise['answer']) == 1:
+                elif t == 'edumed_wybor':
+                    if exercise.get('answer_mode', None) == 'multi':
+                        if not answer:
+                            return None
+                        # return exercise['points'] if map(int, answer) == exercise['answer'] else 0
+                        correct = 0.
+                        for i in xrange(1, len(exercise['options']) + 1):
+                            if (str(i) in answer) == (i in exercise['answer']):
+                                correct += 1
+                        points1 = exercise['points'] * correct/len(exercise['options'])
+                        points2 = exercise['points'] if map(int, answer) == exercise['answer'] else 0
+                        return points1 + points2
+                    elif len(exercise['answer']) == 1:
                         if len(answer) and int(answer[0]) == exercise['answer'][0]:
                             return exercise['points']
                         else:
@@ -196,11 +206,12 @@ class Submission(models.Model):
                         if exercise.get('answer_mode', None) == 'all_or_nothing':
                             toret = exercise['points'] if map(int, answer) == exercise['answer'] else 0
                         else:
+                            # głupie i szkodliwe
                             for answer_id in map(int, answer):
                                 if answer_id in exercise['answer']:
                                     toret += exercise['points_per_hit']
                         return toret
-                if t == 'edumed_prawdafalsz':
+                elif t == 'edumed_prawdafalsz':
                     toret = 0
                     for idx, statement in enumerate(exercise['statements']):
                         if statement[1] == 'ignore':
@@ -214,7 +225,8 @@ class Submission(models.Model):
                         if given == statement[1]:
                             toret += exercise['points_per_hit']
                     return toret
-                raise NotImplementedError
+                else:
+                    raise NotImplementedError
 
     @property
     def final_result(self):
