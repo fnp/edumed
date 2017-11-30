@@ -1,23 +1,21 @@
 Dzień dobry,
 
-Z radością informujemy, że wszystkie testy rozwiązane w ramach zawodów I stopnia I edycji Olimpiady Cyfrowej zostały ocenione, a nazwiska osób, które awansowały do II etapu, są już znane. 
+Informujemy, że wszystkie testy rozwiązane w ramach zawodów I stopnia II edycji Olimpiady Cyfrowej zostały ocenione, a nazwiska osób, które awansowały do II etapu, są już znane.
 
-W pierwszym etapie Olimpiady Cyfrowej test rozwiązało i uzyskało powyżej 0 punktów aż 1725 osób. Ten sukces Olimpiady ogromnie nas cieszy. Ze względu na tak wysoką liczbę Uczestników i Uczestniczek oraz wysoki poziom współzawodnictwa Komitet postanowił – zgodnie z punktem 4.4.11. Regulaminu Olimpiady – podnieść próg punktowy pozwalający na awans do II etapu do 80% możliwych do uzyskanych punktów. 
+W I etapie Olimpiady Cyfrowej do testu przystąpiło 2 346 osób z 242 szkół z całej Polski. Ten sukces Olimpiady ogromnie nas cieszy. Ze względu na tak dużą liczbę Uczestników i Uczestniczek oraz wysoki poziom współzawodnictwa Komitet Główny postanowił – zgodnie z punktem 4.4.11. Regulaminu Olimpiady – przyjąć do II etapu 299 osób, które otrzymały co najmniej 63,07 pkt.
 
-Oznacza to, że Uczestnicy i Uczestniczki zakwalifikowani do II etapu musieli uzyskać na teście minimum 34 punkty. Udało się to 383 osobom, którym serdecznie gratulujemy! 
+Jednocześnie informujemy, że łączna liczba punktów do zdobycia wyniosła 100. Za każde zadanie można było otrzymać maksymalnie 2 punkty.
 
-Jednocześnie informujemy, że łączna liczba punktów do zdobycia wyniosła 42,5 pkt. Ze względu na błąd w zapisie w jednym ze zdań w zad. 6 dotyczącym algorytmów, który został zauważony przez uczestników podczas rozwiązywania testu, Komitet postanowił nie uwzględniać go podczas oceny zadania i zmniejszyć liczbę punktów do zdobycia za zad. 6 o pół punktu. 
+Temat projektu do realizacji w zawodach II stopnia oraz dodatkowe wytyczne zostaną podane do wiadomości zakwalifikowanych Uczestników i Uczestniczek w wiadomościach mailowych i na stronie Olimpiady Cyfrowej dn. 2 stycznia 2018 r.
 
-Temat projektu do realizacji w zawodach II stopnia oraz dodatkowe wytyczne zostaną podane do wiadomości zakwalifikowanych Uczestników i Uczestniczek w wiadomościach mailowych i na stronie Olimpiady Cyfrowej dn. 2 stycznia 2016 r.
-
-Wyniki uzyskane przez Pani/Pana podopiecznych:
+Wyniki uzyskane przez Pani/Pana uczniów/uczennice:
 
 {% for submission in submissions %}{{submission.first_name.strip}} {{submission.last_name.strip}}: {{submission.final_result}}
 {% endfor %}
 
-Informacje o wynikach zostały przesłane również Uczestnikom i Uczestniczkom. Prosimy upewnić się, że wszyscy otrzymali wiadomość. Jeśli jednak do nich nie dotarła, prosimy o podanie danych kontaktowych tych osób (imię i nazwisko, adres e-mail).
+Informacje o wynikach zostały przesłane również Uczestnikom i Uczestniczkom. Prosimy upewnić się, że wszyscy otrzymali wiadomość. Jeśli nie dotarła do nich, prosimy o podanie danych kontaktowych tych osób (imię i nazwisko, adres e-mail).
 
-W razie jakichkolwiek pytań prosimy o kontakt.
+W razie pytań prosimy o kontakt.
 
 Pozdrawiamy,
 Zespół Olimpiady Cyfrowej
