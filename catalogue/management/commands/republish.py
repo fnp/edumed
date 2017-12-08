@@ -39,7 +39,8 @@ class Command(BaseCommand):
                 print '!!!!!! PARSE ERROR !!!!!!'
                 print e
 
-        print 'Rebuilding levels...'
-        for level in Level.objects.all():
-            print level.name
-            level.build_packages()
+        if options.get('repackage'):
+            print 'Rebuilding levels...'
+            for level in Level.objects.all():
+                print level.name
+                level.build_packages()
