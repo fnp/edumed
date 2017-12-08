@@ -182,6 +182,14 @@ em.person {
 .verse:after {
   content: "\feff"; }
 
+table.framed {
+  border-collapse: collapse;
+}
+
+table.framed td, table.framed.th {
+  border: 1px #888 solid;
+}
+
 /* =================================== */
 /* = Hide some elements for printing = */
 /* =================================== */
