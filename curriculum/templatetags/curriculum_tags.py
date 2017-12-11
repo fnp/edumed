@@ -21,7 +21,7 @@ def competence(texts, level):
 
 
 @register.inclusion_tag("curriculum/snippets/curriculum.html")
-def curriculum(identifiers):
+def curriculum(identifiers, new=False):
     # shouldn't be needed, but is
     identifiers = [id for id in identifiers if id]
     try:
@@ -42,6 +42,7 @@ def curriculum(identifiers):
 
     return {
         'currset': currset,
+        'new': new,
     }
     
 
