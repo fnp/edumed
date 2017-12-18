@@ -690,6 +690,11 @@ ODMOWA_CHOICES = [
     ('odmowa', u'Odmowa odpowiedzi'),
 ]
 
+YESNO_CHOICES = [
+    ('nie', u'Nie'),
+    ('tak', u'Tak'),
+]
+
 
 class SciezkiKopernikaTestForm(ContactForm):
     def __init__(self, *args, **kwargs):
@@ -960,16 +965,21 @@ class SciezkiKopernikaTestForm(ContactForm):
     mniejszosc = forms.ChoiceField(
         label=u'Osoba należąca do mniejszości narodowej lub etnicznej, migrant, osoba obcego pochodzenia',
         choices=ODMOWA_CHOICES)
-    bezdomna = forms.BooleanField(
-        label=u'Osoba bezdomna lub dotknięta wykluczeniem z dostępu do mieszkań')
+    bezdomna = forms.ChoiceField(
+        label=u'Osoba bezdomna lub dotknięta wykluczeniem z dostępu do mieszkań', choices=YESNO_CHOICES)
     niepelnosprawna = forms.ChoiceField(
         label=u'Osoba z niepełnosprawnościami',
         choices=ODMOWA_CHOICES)
-    pytanie4 = forms.BooleanField(label=u'Osoba przebywająca w gospodarstwie domowym bez osób pracujących')
-    pytanie5 = forms.BooleanField(
-        label=u'Osoba przebywająca w gospodarstwie domowym z dziećmi pozostającymi na utrzymaniu')
-    pytanie6 = forms.BooleanField(
-        label=u'Osoba żyjąca w gospodarstwie składającym się z jednej osoby dorosłej i dzieci pozostających na utrzymaniu')
+    pytanie4 = forms.ChoiceField(
+        label=u'Osoba przebywająca w gospodarstwie domowym bez osób pracujących',
+        choices=YESNO_CHOICES)
+    pytanie5 = forms.ChoiceField(
+        label=u'Osoba przebywająca w gospodarstwie domowym z dziećmi pozostającymi na utrzymaniu',
+        choices=YESNO_CHOICES)
+    pytanie6 = forms.ChoiceField(
+        label=u'Osoba żyjąca w gospodarstwie składającym się z jednej osoby dorosłej i dzieci '
+              u'pozostających na utrzymaniu',
+        choices=YESNO_CHOICES)
     pytanie7 = forms.ChoiceField(
         label=u'Osoba żyjąca w innej niekorzystnej sytuacji społecznej (inne niż wymienione powyżej)',
         choices=ODMOWA_CHOICES)
@@ -1765,7 +1775,7 @@ class SciezkiKopernikaTestForm(ContactForm):
                 'comment': mark_safe(markdown.convert(cls.ANSWER_COMMENTS[i-1][chosen_idx])),
                 'answers': [(text, a_score == score, a_score == 2) for a_score, text in choices],
             }
-        question_count = len(fields) - 2
+        question_count = 20
         questions = [question_data(i) for i in xrange(1, question_count + 1)]
         points = sum(question['score'] for question in questions)
         return {'questions': questions, 'points': points/2., 'total': question_count}
