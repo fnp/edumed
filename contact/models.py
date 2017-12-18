@@ -2,7 +2,7 @@
 import yaml
 from hashlib import sha1
 from django.db import models
-from django.utils.encoding import smart_unicode
+from django.utils.encoding import smart_unicode, force_str
 from django.utils.translation import ugettext_lazy as _
 from jsonfield import JSONField
 from . import app_settings
@@ -34,6 +34,7 @@ class Contact(models.Model):
     def digest(self):
         serialized_body = ';'.join(sorted('%s:%s' % item for item in self.body.iteritems()))
         data = '%s%s%s%s%s' % (self.id, self.contact, serialized_body, self.ip, self.form_tag)
+        data = force_str(data)
         return sha1(data).hexdigest()
 
 
