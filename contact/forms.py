@@ -37,7 +37,7 @@ class ContactForm(forms.Form):
     result_page = False
 
     required_css_class = 'required'
-    contact = forms.CharField(max_length=128)
+    contact = NotImplemented
 
     def save(self, request, formsets=None):
         from .models import Attachment, Contact

@@ -684,6 +684,13 @@ def make_link(text, url):
     return u'<a href="%s">%s</a>' % (url, text)
 
 
+ODMOWA_CHOICES = [
+    ('nie', u'Nie'),
+    ('tak', u'Tak'),
+    ('odmowa', u'Odmowa odpowiedzi'),
+]
+
+
 class SciezkiKopernikaTestForm(ContactForm):
     def __init__(self, *args, **kwargs):
         super(SciezkiKopernikaTestForm, self).__init__(*args, **kwargs)
@@ -694,10 +701,6 @@ class SciezkiKopernikaTestForm(ContactForm):
     form_title = u'Test'
     submit_label = u'Wyślij'
 
-    contact = forms.EmailField(label=u'Adres e-mail, na który przyślemy informację o wynikach')
-    plec = forms.ChoiceField(
-        label=u'Płeć', widget=forms.RadioSelect,
-        choices=[('k', 'kobieta'), ('m', 'mężczyzna')])
     pyt1 = quiz_question(
         label=u'1. Na stronie portalu internetowego pod jednym z artykułów opublikowano komentarz o treści '
               u'„Nie wszyscy muzułmanie to terroryści, ale wszyscy terroryści to muzułmanie”. '
@@ -916,6 +919,60 @@ class SciezkiKopernikaTestForm(ContactForm):
             (0, u'analizuje treść tekstów oraz obrazków i blokuje te, które zawierają reklamy,'),
             (1, u'blokuje wyświetlanie plików reklam zanim wyświetli je przeglądarka,'),
             (2, u'blokuje komunikację przeglądarki z serwerami publikującymi reklamy.')])
+    contact = forms.EmailField(label=u'Adres e-mail, na który przyślemy informację o wynikach')
+    imie = forms.CharField(label=u'Imię')
+    nazwisko = forms.CharField(label=u'Nazwisko')
+    PESEL = forms.CharField(label=u'PESEL', required=False, help_text=u'zostawić pusty w przypadku braku')
+    plec = forms.ChoiceField(
+        label=u'Płeć', widget=forms.RadioSelect,
+        choices=[('k', u'kobieta'), ('m', u'mężczyzna')])
+    wiek = forms.IntegerField(label='Wiek')
+    wyksztalcenie = forms.ChoiceField(
+        label=u'Wykształcenie',
+        choices=[
+            (u'Niższe niż podstawowe', u'Niższe niż podstawowe'),
+            (u'Podstawowe', u'Podstawowe'),
+            (u'Gimnazjalne', u'Gimnazjalne'),
+            (u'Ponadgimnazjalne', u'Ponadgimnazjalne'),
+            (u'Policealne', u'Policealne'),
+            (u'Wyższe', u'Wyższe'),
+        ])
+    wojewodztwo = forms.ChoiceField(label=u'Województwo', choices=WOJEWODZTWO_CHOICES)
+    powiat = forms.CharField(label=u'Powiat')
+    gmina = forms.CharField(label=u'Gmina')
+    miejscowosc = forms.CharField(label=u'Miejscowość')
+    ulica = forms.CharField(label=u'Ulica', required=False)
+    numer = forms.CharField(label=u'Nr budynku')
+    lokal = forms.CharField(label=u'Nr lokalu', required=False)
+    kod = forms.CharField(label=u'Kod pocztowy')
+    telefon = forms.CharField(label=u'Telefon kontaktowy')
+    status = forms.ChoiceField(
+        label=u'Status na rynku pracy',
+        choices=[
+            (u'uczeń', u'osoba bierna zawodowo ucząca się'),
+            (u'nieuczeń', u'osoba bierna zawodowo nieuczestnicząca w kształceniu'),
+            (u'bezrobotna-up', u'Osoba bezrobotna zarejestrowana w ewidencji UP'),
+            (u'bezrobotna-nie-up', u'Osoba bezrobotna nie zarejestrowana w ewidencji UP'),
+            (u'pracująca', u'Osoba pracująca'),
+            (u'inne', u'inne'),
+        ])
+    typ_szkoly = forms.CharField(label=u'Typ szkoły (ponadgimnazjalna; inna, jaka?)', required=False)
+    mniejszosc = forms.ChoiceField(
+        label=u'Osoba należąca do mniejszości narodowej lub etnicznej, migrant, osoba obcego pochodzenia',
+        choices=ODMOWA_CHOICES)
+    bezdomna = forms.BooleanField(
+        label=u'Osoba bezdomna lub dotknięta wykluczeniem z dostępu do mieszkań')
+    niepelnosprawna = forms.ChoiceField(
+        label=u'Osoba z niepełnosprawnościami',
+        choices=ODMOWA_CHOICES)
+    pytanie4 = forms.BooleanField(label=u'Osoba przebywająca w gospodarstwie domowym bez osób pracujących')
+    pytanie5 = forms.BooleanField(
+        label=u'Osoba przebywająca w gospodarstwie domowym z dziećmi pozostającymi na utrzymaniu')
+    pytanie6 = forms.BooleanField(
+        label=u'Osoba żyjąca w gospodarstwie składającym się z jednej osoby dorosłej i dzieci pozostających na utrzymaniu')
+    pytanie7 = forms.ChoiceField(
+        label=u'Osoba żyjąca w innej niekorzystnej sytuacji społecznej (inne niż wymienione powyżej)',
+        choices=ODMOWA_CHOICES)
 
     ANSWER_COMMENTS = [
         (
