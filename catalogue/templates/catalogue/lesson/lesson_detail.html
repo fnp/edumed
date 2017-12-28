@@ -41,6 +41,11 @@
         <ul class="plain">
         {% curriculum object.dc.curriculum %}
         </ul>
+    </section>
+    {% endif %}
+
+    {% if object.dc.curriculum_new %}
+    <section class="section-minor">
         <h1>Podstawa programowa 2017:</h1>
         <ul class="plain">
         {% curriculum object.dc.curriculum_new new=True %}
