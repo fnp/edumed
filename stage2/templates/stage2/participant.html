@@ -12,10 +12,18 @@
   {% for assignment in assignments %}
     <h2>{{ assignment.title }} (do {{ assignment.deadline }})</h2>
     <a href="{{ assignment.content_url }}"><strong>Zobacz treść zadania</strong></a>
-    <form method="POST" action="{% url 'stage2_upload' assignment.id participant.id participant.key %}"
-          enctype="multipart/form-data">
+    <form method="POST" action="" enctype="multipart/form-data">
       {% csrf_token %}
-      {% for form, attachment in assignment.forms %}
+      {% for form in assignment.field_forms %}
+        {{ form.assignment_id }}
+        <p><strong>{{ form.value.label }}:</strong></p>
+        {{ form.value.errors }}
+        <p>
+          {% if assignment.is_active %}{{ form.value }}{% else %}{{ form.value.initial }}{% endif %}
+        </p>
+      {% endfor %}
+      {% for form, attachment in assignment.attachment_forms %}
+        {{ form.assignment_id }}
         <p><strong>{{ form.file.label }}:</strong></p>
         <p>
           {% if assignment.is_active %}{{ form.file }}{% endif %}

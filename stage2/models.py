@@ -69,7 +69,8 @@ class Assignment(models.Model):
         settings.AUTH_USER_MODEL, blank=True, verbose_name=_('arbiters'), related_name='stage2_arbitrated')
     supervisors = models.ManyToManyField(
         settings.AUTH_USER_MODEL, verbose_name=_('supervisors'), related_name='stage2_supervised')
-    file_descriptions = JSONField(_('file descriptions'))
+    file_descriptions = JSONField(_('file descriptions'), default=[], blank=True)
+    field_descriptions = JSONField(_('field descriptions'), default=[], blank=True)
 
     class Meta:
         ordering = ['deadline', 'title']
@@ -94,6 +95,7 @@ class Assignment(models.Model):
 class Answer(models.Model):
     participant = models.ForeignKey(Participant)
     assignment = models.ForeignKey(Assignment)
+    field_values = JSONField(_('field values'), default={})
     # useful redundancy
     complete = models.BooleanField(default=False)
     need_arbiter = models.BooleanField(default=False)
@@ -122,6 +124,38 @@ class Answer(models.Model):
         if len(marks) < 2:
             return None
         return self.mark_set.aggregate(avg=models.Avg('points'))['avg']
+
+
+class FieldOptionSet(models.Model):
+    name = models.CharField(verbose_name=_('nazwa'), max_length=32, db_index=True)
+
+    class Meta:
+        verbose_name = _('option set')
+        verbose_name_plural = _('option sets')
+
+    def __unicode__(self):
+        return self.name
+
+    def choices(self, answer):
+        return [('', '--------')] + [
+            (option.id, option.value)
+            for option in self.fieldoption_set.extra(
+                where=['answer_id is null or answer_id = %s'],
+                params=[answer.id])]
+
+
+class FieldOption(models.Model):
+    set = models.ForeignKey(FieldOptionSet, verbose_name=_('zestaw'))
+    value = models.CharField(verbose_name=_('value'), max_length=255)
+    answer = models.ForeignKey(Answer, verbose_name=_('answer'), null=True, blank=True)
+
+    class Meta:
+        ordering = ['set', 'value']
+        verbose_name = _('option')
+        verbose_name_plural = _('options')
+
+    def __unicode__(self):
+        return self.value
 
 
 def attachment_path(instance, filename):

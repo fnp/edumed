@@ -10,18 +10,29 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_POST
 from unidecode import unidecode
 
-from stage2.forms import AttachmentForm, MarkForm
+from stage2.forms import AttachmentForm, MarkForm, AssignmentFieldForm
 from stage2.models import Participant, Assignment, Answer, Attachment, Mark
 
 
-def all_assignments(participant):
+def all_assignments(participant, sent_forms):
     assignments = Assignment.objects.all()
+    if sent_forms:
+        sent_assignment, field_forms, attachment_forms = sent_forms
+    else:
+        sent_assignment = field_forms = attachment_forms = None
     for assignment in assignments:
-        assignment.answer = assignment.answer_set.filter(participant=participant).first()
-        assignment.forms = [
-            (AttachmentForm(assignment=assignment, file_no=i, label=label, extensions=ext),
-             assignment.answer.attachment_set.filter(file_no=i).first() if assignment.answer else None)
-            for i, (label, ext) in enumerate(assignment.file_descriptions, 1)]
+        assignment.answer, created = Answer.objects.get_or_create(participant=participant, assignment=assignment)
+        if assignment == sent_assignment:
+            assignment.field_forms = field_forms
+            assignment.attachment_forms = attachment_forms
+        else:
+            assignment.field_forms = [
+                AssignmentFieldForm(label=label, field_no=i, options=options, answer=assignment.answer)
+                for i, (label, options) in enumerate(assignment.field_descriptions, 1)]
+            assignment.attachment_forms = [
+                (AttachmentForm(assignment=assignment, file_no=i, label=label, extensions=ext),
+                 assignment.answer.attachment_set.filter(file_no=i).first() if assignment.answer else None)
+                for i, (label, ext) in enumerate(assignment.file_descriptions, 1)]
     return assignments
 
 
@@ -30,32 +41,52 @@ def participant_view(request, participant_id, key):
     participant = get_object_or_404(Participant, id=participant_id)
     if not participant.check(key):
         raise Http404
+    if request.POST:
+        # ugly :/
+        assignment_id = None
+        for post_key, value in request.POST.iteritems():
+            if post_key.endswith('assignment_id'):
+                assignment_id = int(value)
+        assert assignment_id
+
+        assignment = get_object_or_404(Assignment, id=assignment_id)
+        now = timezone.now()
+        if assignment.deadline < now:
+            raise Http404  # TODO za późno
+        all_valid = True
+        attachment_forms = []
+        field_forms = []
+        for i, (label, ext) in enumerate(assignment.file_descriptions, 1):
+            answer, created = Answer.objects.get_or_create(participant=participant, assignment=assignment)
+            attachment, created = Attachment.objects.get_or_create(answer=answer, file_no=i)
+            form = AttachmentForm(
+                data=request.POST, files=request.FILES,
+                assignment=assignment, file_no=i, label=label, instance=attachment, extensions=ext)
+            if form.is_valid():
+                form.save()
+            else:
+                all_valid = False
+            attachment_forms.append(form)
+        for i, (label, options) in enumerate(assignment.field_descriptions, 1):
+            answer = Answer.objects.get(participant=participant, assignment=assignment)
+            form = AssignmentFieldForm(data=request.POST, label=label, field_no=i, options=options, answer=answer)
+            if form.is_valid():
+                form.save()
+            else:
+                all_valid = False
+            field_forms.append(form)
+        if all_valid:
+            return HttpResponseRedirect(reverse('stage2_participant', args=(participant_id, key)))
+        else:
+            sent_forms = (assignment, field_forms, attachment_forms)
+    else:
+        sent_forms = None
     response = render(request, 'stage2/participant.html', {
         'participant': participant,
-        'assignments': all_assignments(participant)})
+        'assignments': all_assignments(participant, sent_forms)})
     # not needed in Django 1.8
     patch_cache_control(response, no_cache=True, no_store=True, must_revalidate=True)
     return response
-
-
-@require_POST
-def upload(request, assignment_id, participant_id, key):
-    participant = get_object_or_404(Participant, id=participant_id)
-    if not participant.check(key):
-        raise Http404
-    assignment = get_object_or_404(Assignment, id=assignment_id)
-    now = timezone.now()
-    if assignment.deadline < now:
-        raise Http404  # TODO za późno
-    for i, (label, ext) in enumerate(assignment.file_descriptions, 1):
-        answer, created = Answer.objects.get_or_create(participant=participant, assignment=assignment)
-        attachment, created = Attachment.objects.get_or_create(answer=answer, file_no=i)
-        form = AttachmentForm(
-            data=request.POST, files=request.FILES,
-            assignment=assignment, file_no=i, label=label, instance=attachment, extensions=ext)
-        if form.is_valid():
-            form.save()
-    return HttpResponseRedirect(reverse('stage2_participant', args=(participant_id, key)))
 
 
 def attachment_download(attachment):
