@@ -34,7 +34,7 @@ class AttachmentForm(forms.ModelForm):
 
 
 class AssignmentFieldForm(forms.Form):
-    value = forms.CharField()
+    value = forms.CharField(required=False)
     assignment_id = forms.CharField(widget=forms.HiddenInput)
 
     def __init__(self, label, field_no, options, answer, *args, **kwargs):
@@ -57,24 +57,31 @@ class AssignmentFieldForm(forms.Form):
 
     def clean_value(self):
         if self.type == 'options':
-            option = FieldOption.objects.get(id=int(self.cleaned_data['value']))
-            if option.answer != self.answer and option.answer is not None:
-                raise forms.ValidationError(u'Ta opcja została już wybrana przez kogoś innego.')
-            return option
+            value = self.cleaned_data['value']
+            if value:
+                option = FieldOption.objects.get(id=int(value))
+                if option.answer != self.answer and option.answer is not None:
+                    raise forms.ValidationError(u'Ta opcja została już wybrana przez kogoś innego.')
+                return option
         return self.cleaned_data['value']
 
     def save(self):
         value = self.cleaned_data['value']
         if self.type == 'options':
             option = value
-            if option.answer != self.answer:
-                # not thread-safe :/
-                assert not option.answer
+            if option:
+                if option.answer != self.answer:
+                    # not thread-safe :/
+                    assert not option.answer
+                    for opt in self.answer.fieldoption_set.all():
+                        opt.answer = None
+                        opt.save()
+                    option.answer = self.answer
+                    option.save()
+            else:
                 for opt in self.answer.fieldoption_set.all():
-                    opt.answer = None
-                    opt.save()
-                option.answer = self.answer
-                option.save()
+                        opt.answer = None
+                        opt.save()
         else:
             self.answer.field_values[self.label] = value
             self.answer.save()
