@@ -121,7 +121,7 @@ class Lesson(models.Model):
         return 'catalogue_lesson', [self.slug]
 
     @classmethod
-    def publish(cls, infile, ignore_incomplete=False):
+    def publish(cls, infile, ignore_incomplete=False, repackage_level=False):
         from librarian.parser import WLDocument
         from django.core.files.base import ContentFile
         wldoc = WLDocument(infile)
@@ -150,6 +150,8 @@ class Lesson(models.Model):
         if lesson.type != 'project':
             lesson.build_pdf(student=True)
             lesson.build_package(student=True)
+        if repackage_level:
+            lesson.level.build_packages()
         return lesson
 
     def republish(self, repackage_level=True, attachments=None):
@@ -163,9 +165,7 @@ class Lesson(models.Model):
                 f = IOFile.from_filename(full_name)
                 attachments['%s.%s' % (attachment.slug, attachment.ext)] = f
         infile = IOFile.from_filename(self.xml_file.path, attachments=attachments)
-        Lesson.publish(infile)
-        if repackage_level:
-            self.level.build_packages()
+        Lesson.publish(infile, repackage_level=repackage_level)
 
     def populate_dc(self):
         from librarian.parser import WLDocument
