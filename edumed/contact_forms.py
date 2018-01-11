@@ -703,7 +703,7 @@ class SciezkiKopernikaTestForm(ContactForm):
 
     result_page = True
     form_tag = 'sciezki-kopernika-test'
-    form_title = u'Test'
+    form_title = u'Test wiedzy w zakresie edukacji medialnej i cyfrowej'
     submit_label = u'Wyślij'
 
     pyt1 = quiz_question(
