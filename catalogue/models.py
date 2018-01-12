@@ -296,7 +296,7 @@ class Attachment(models.Model):
     slug = models.CharField(max_length=255)
     ext = models.CharField(max_length=15)
     lesson = models.ForeignKey(Lesson)
-    file = models.FileField(upload_to="catalogue/attachment", storage=bofh_storage)
+    file = models.FileField(upload_to="catalogue/attachment", storage=bofh_storage, max_length=255)
 
     class Meta:
         ordering = ['slug', 'ext']
