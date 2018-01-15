@@ -1,0 +1,1 @@
+for f in *.svg; do convert -background none "$f" -resize 44x34 -gravity center -extent 44x34 png/"`basename \"$f\" .svg`.png"; done

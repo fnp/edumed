@@ -78,43 +78,37 @@ header.main {
     background: url(../img/menu/lekcje.png) no-repeat 0 0;
     background-size: 100%; }
   header.main nav .menu-kompetencje:before {
-    background: url(../img/menu/katalog.png) no-repeat 0 0;
+    background: url(../img/menu/kompetencje.png) no-repeat 0 0;
     background-size: 100%; }
-  header.main nav .menu-wspolpraca:before {
-    background: url(../img/menu/wspolpraca.png) no-repeat 0 0;
+  header.main nav .menu-olimpiada:before {
+    background: url(../img/menu/olimpiada.png) no-repeat 0 0;
     background-size: 100%; }
-  header.main nav .menu-szkolenia:before {
-    background: url(../img/menu/szkolenia.png) no-repeat 0 0;
+  header.main nav .menu-trener:before {
+    background: url(../img/menu/dla-trenera.png) no-repeat 0 0;
     background-size: 100%; }
-  header.main nav .menu-wesprzyj:before {
-    background: url(../img/menu/wesprzyj.png) no-repeat 0 0;
+  header.main nav .menu-kurs:before {
+    background: url(../img/menu/dla-ucznia.png) no-repeat 0 0;
     background-size: 100%; }
   header.main nav .menu-o-nas:before {
     background: url(../img/menu/o-nas.png) no-repeat 0 0;
-    background-size: 100%; }
-  header.main nav .menu-kontakt:before {
-    background: url(../img/menu/kontakt.png) no-repeat 0 0;
     background-size: 100%; }
   header.main nav .menu-lekcje:hover:before {
     background: url(../img/menu/lekcje_active.png) no-repeat 0 0;
     background-size: 100%; }
   header.main nav .menu-kompetencje:hover:before {
-    background: url(../img/menu/katalog_active.png) no-repeat 0 0;
+    background: url(../img/menu/kompetencje_active.png) no-repeat 0 0;
     background-size: 100%; }
-  header.main nav .menu-wspolpraca:hover:before {
-    background: url(../img/menu/wspolpraca_active.png) no-repeat 0 0;
+  header.main nav .menu-olimpiada:hover:before {
+    background: url(../img/menu/olimpiada_active.png) no-repeat 0 0;
     background-size: 100%; }
-  header.main nav .menu-szkolenia:hover:before {
-    background: url(../img/menu/szkolenia_active.png) no-repeat 0 0;
+  header.main nav .menu-trener:hover:before {
+    background: url(../img/menu/dla-trenera_active.png) no-repeat 0 0;
     background-size: 100%; }
-  header.main nav .menu-wesprzyj:hover:before {
-    background: url(../img/menu/wesprzyj_active.png) no-repeat 0 0;
+  header.main nav .menu-kurs:hover:before {
+    background: url(../img/menu/dla-ucznia_active.png) no-repeat 0 0;
     background-size: 100%; }
   header.main nav .menu-o-nas:hover:before {
     background: url(../img/menu/o-nas_active.png) no-repeat 0 0;
-    background-size: 100%; }
-  header.main nav .menu-kontakt:hover:before {
-    background: url(../img/menu/kontakt_active.png) no-repeat 0 0;
     background-size: 100%; }
   header.main nav .menu-oc-program:before {
     background: url(../img/menu/olimpiada/program.png) no-repeat 0 0;
@@ -250,5 +244,7 @@ footer.main {
     margin: 1em 0; }
 
 .flatpage img {
-  border: 0.3125em solid #eeeeee;
+  border: 0.3125em solid #eee;
   margin: 1.3em; }
+
+/*# sourceMappingURL=base.css.map */

@@ -7,12 +7,11 @@
 
 {% block top_navigation %}
     <li><a class="menu-lekcje" href="{% url "catalogue_lessons" %}">Lekcje</a></li>
-    {% comment %}<li><a class="menu-wspolpraca" href="{% url "info" "wspolpraca/" %}">Współpraca</a></li>{% endcomment %}
     <li><a class="menu-kompetencje" href="{% url "curriculum" %}">Kompetencje</a></li>
-    <li><a class="menu-szkolenia" href="https://olimpiadacyfrowa.pl">Olimpiada</a></li>
-    <li><a class="menu-o-nas" href="{% url "info" "dlatrenera/" %}">Dla trenera</a></li>
-    <li><a class="menu-wesprzyj" href="{% url "info" "wesprzyj/" %}">Wesprzyj nas</a></li>
-    <li><a class="menu-kontakt" href="{% url "info" "o-nas/" %}">O projekcie</a></li>
+    <li><a class="menu-olimpiada" href="https://olimpiadacyfrowa.pl">Olimpiada</a></li>
+    <li><a class="menu-trener" href="{% url "info" "dlatrenera/" %}">Dla trenera</a></li>
+    <li><a class="menu-kurs" href="http://kurs.edukacjamedialna.edu.pl">Dla ucznia</a></li>
+    <li><a class="menu-o-nas" href="{% url "info" "o-nas/" %}">O projekcie</a></li>
 {% endblock %}
 
 {% block sponsors %}
@@ -21,4 +20,8 @@
 
 {% block extra_script %}
     {% compressed_js 'base' %}
+{% endblock %}
+
+{% block copyrights %}
+    <p>Ikonki w menu: <a href="http://www.flaticon.com/authors/freepik">Designed by Freepik and distributed by Flaticon</a></p>
 {% endblock %}
