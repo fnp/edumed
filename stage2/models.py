@@ -81,9 +81,13 @@ class Assignment(models.Model):
         return self.title
 
     def available_answers(self, expert):
-        answers = self.answer_set.exclude(mark__expert=expert).filter(participant__complete_set=True)
+        answers = self.answer_set.exclude(mark__expert=expert)
+        answers = answers.extra(where=[
+            "field_values::text ~ ': *\"[^\"]+\"' "
+            "OR EXISTS (SELECT id FROM stage2_attachment WHERE answer_id = stage2_answer.id) "
+            "OR EXISTS (SELECT id FROM stage2_fieldoption WHERE answer_id = stage2_answer.id)"])
         if expert not in self.supervisors.all():
-            answers = answers.exclude(complete=True)
+            answers = answers.exclude(complete=True).filter(participant__complete_set=True)
         if expert in self.arbiters.all():
             answers = answers.filter(need_arbiter=True)
         return answers
@@ -102,6 +106,15 @@ class Answer(models.Model):
 
     class Meta:
         unique_together = ['participant', 'assignment']
+
+    def fields(self):
+        for field_desc in self.assignment.field_descriptions:
+            field_name, params = field_desc
+            if params['type'] == 'text':
+                yield (field_name, self.field_values.get(field_name, ''))
+            else:  # options
+                option = self.fieldoption_set.filter(set__name=params['option_set'])
+                yield (field_name, option.get().value if option else '--------')
 
     def update_complete(self):
         marks = self.mark_set.all()

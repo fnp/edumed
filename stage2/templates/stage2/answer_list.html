@@ -4,8 +4,9 @@
 {% block body %}
   <h1>{% if marked %}Ocenione odpowiedzi{% else %}Odpowiedzi do oceny{% endif %}</h1>
   <h2>{{ assignment.title }} (max {{ assignment.max_points }} pkt)</h2>
-  <p><strong>{% if assignment.is_active %}Możliwość oceniania zostanie włączona po terminie wysyłania rozwiązań</strong>{% endif %}</p>
-  {% if not assignment.is_active %}
+  {% if assignment.is_active %}
+    <p><strong>Możliwość oceniania zostanie włączona po terminie wysyłania rozwiązań</strong></p>
+  {% else %}
     {% if marked %}
       <p><a href="{% url 'stage2_answer_list' assignment.id %}">Przejdź do odpowiedzi do oceny</a></p>
     {% else %}
@@ -13,8 +14,20 @@
     {% endif %}
   {% endif %}
   <p>{% if not marked and not assignment.is_active %}Pozostało {% endif %}{{ answers|length }} odpowiedzi</p>
+  {% if field_counts %}
+    <ul>
+      {% for field_name, count in field_counts %}
+        <li>{{ field_name }}: {{ count }} odpowiedzi</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
   {% for answer in answers %}
     <h3>{{ answer.participant }}</h3>
+    {% for label, value in answer.fields %}
+      <p>
+        <strong>{{ label }}</strong>: {{ value }}
+      </p>
+    {% endfor %}
     {% for label, attachment in answer.attachments %}
       <p>
         <strong>{{ label }}</strong>:

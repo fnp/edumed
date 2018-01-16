@@ -11,7 +11,7 @@ from django.views.decorators.http import require_POST
 from unidecode import unidecode
 
 from stage2.forms import AttachmentForm, MarkForm, AssignmentFieldForm
-from stage2.models import Participant, Assignment, Answer, Attachment, Mark
+from stage2.models import Participant, Assignment, Answer, Attachment, Mark, FieldOption
 
 
 def all_assignments(participant, sent_forms):
@@ -152,8 +152,11 @@ def answer_list(request, assignment_id):
     assignment = get_object_or_404(Assignment, id=assignment_id)
     if request.user not in assignment.experts.all():
         return HttpResponseForbidden('Not allowed')
-    return render(request, 'stage2/answer_list.html',
-                  {'answers': available_answers(assignment, request.user), 'assignment': assignment})
+    answers = available_answers(assignment, request.user)
+    return render(request, 'stage2/answer_list.html', {
+        'answers': answers,
+        'assignment': assignment,
+    })
 
 
 @login_required
