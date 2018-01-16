@@ -80,8 +80,8 @@ class AssignmentFieldForm(forms.Form):
                     option.save()
             else:
                 for opt in self.answer.fieldoption_set.all():
-                        opt.answer = None
-                        opt.save()
+                    opt.answer = None
+                    opt.save()
         else:
             self.answer.field_values[self.label] = value
             self.answer.save()

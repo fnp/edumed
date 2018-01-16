@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from jsonfield import JSONField
@@ -110,11 +111,14 @@ class Answer(models.Model):
     def fields(self):
         for field_desc in self.assignment.field_descriptions:
             field_name, params = field_desc
-            if params['type'] == 'text':
-                yield (field_name, self.field_values.get(field_name, ''))
-            else:  # options
+            if params['type'] == 'options':
                 option = self.fieldoption_set.filter(set__name=params['option_set'])
-                yield (field_name, option.get().value if option else '--------')
+                value = option.get().value if option else '--------'
+            else:  # text, link
+                value = self.field_values.get(field_name, '')
+            if params['type'] == 'link':
+                value = format_html(u'<a href="{url}">{url}</a>', url=value)
+            yield (field_name, value)
 
     def update_complete(self):
         marks = self.mark_set.all()
