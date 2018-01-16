@@ -93,6 +93,15 @@ class Assignment(models.Model):
             answers = answers.filter(need_arbiter=True)
         return answers
 
+    def field_counts(self, answers):
+        for field_desc in self.field_descriptions:
+            field_name, params = field_desc
+            if params['type'] == 'options':
+                field_count = FieldOption.objects.filter(answer__in=list(answers), set__name=params['option_set']).count()
+            else:  # text, link
+                field_count = sum(1 for answer in answers if answer.field_values.get(field_name))
+            yield field_name, field_count
+
     def is_active(self):
         return self.deadline >= timezone.now()
 
@@ -118,7 +127,7 @@ class Answer(models.Model):
                 value = self.field_values.get(field_name, '')
             if params['type'] == 'link':
                 value = format_html(u'<a href="{url}">{url}</a>', url=value)
-            yield (field_name, value)
+            yield field_name, value
 
     def update_complete(self):
         marks = self.mark_set.all()

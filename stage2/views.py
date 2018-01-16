@@ -156,6 +156,7 @@ def answer_list(request, assignment_id):
     return render(request, 'stage2/answer_list.html', {
         'answers': answers,
         'assignment': assignment,
+        'field_counts': assignment.field_counts(answers)
     })
 
 
