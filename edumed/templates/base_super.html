@@ -26,14 +26,14 @@
     </head>
     <body id="{% block body-id %}body{% endblock %}">
         {% load fnp_annoy %}{% annoy %}
-        {% comment %}
+        {#{% comment %}#}
         <div id="banners">
             <a href="https://nowoczesnapolska.org.pl/pomoz-nam/wesprzyj-nas/">
                 <img src="{% static 'img/banners/960x150_edukacjaMedialna.jpg' %}"
                      alt="Wesprzyj działalność Nowoczesnej Polski"/>
             </a>
         </div>
-        {% endcomment %}
+        {#{% endcomment %}#}
         <div id="header-wrapper">
         <header class="main {% block header_class %}{% endblock %}" style="position:relative;">
             <!--img
