@@ -162,6 +162,16 @@ class Answer(models.Model):
             return None
         return self.mark_set.aggregate(avg=models.Avg('points'))['avg']
 
+    # unrelated to `complete' attribute, but whatever
+    def is_complete(self):
+        file_count = len(self.assignment.file_descriptions)
+        field_count = len(self.assignment.field_descriptions)
+        if self.attachment_set.count() < file_count:
+            return False
+        if self.fieldoption_set.count() + sum(1 for k, v in self.field_values.iteritems() if v) < field_count:
+            return False
+        return True
+
 
 class FieldOptionSet(models.Model):
     name = models.CharField(verbose_name=_('nazwa'), max_length=32, db_index=True)
