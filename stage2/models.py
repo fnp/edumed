@@ -83,13 +83,22 @@ class Assignment(models.Model):
 
     def available_answers(self, expert):
         answers = self.answer_set.exclude(mark__expert=expert)
+        assigned_to_expert = self.answer_set.filter(expert=expert).exists()
+        is_supervisor = expert in self.supervisors.all()
+        is_arbiter = expert in self.arbiters.all()
+        if assigned_to_expert:
+            expert_answers = answers.filter(expert=expert)
+            if expert_answers or not is_arbiter:
+                answers = expert_answers
         answers = answers.extra(where=[
             "field_values::text ~ ': *\"[^\"]+\"' "
             "OR EXISTS (SELECT id FROM stage2_attachment WHERE answer_id = stage2_answer.id) "
             "OR EXISTS (SELECT id FROM stage2_fieldoption WHERE answer_id = stage2_answer.id)"])
-        if expert not in self.supervisors.all():
-            answers = answers.exclude(complete=True).filter(participant__complete_set=True)
-        if expert in self.arbiters.all():
+        if not is_supervisor:
+            answers = answers.exclude(complete=True)
+        if not is_supervisor or not self.is_active():
+            answers = answers.filter(participant__complete_set=True)
+        if is_arbiter:
             answers = answers.filter(need_arbiter=True)
         return answers
 
@@ -110,6 +119,8 @@ class Answer(models.Model):
     participant = models.ForeignKey(Participant)
     assignment = models.ForeignKey(Assignment)
     field_values = JSONField(_('field values'), default={})
+    experts = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, verbose_name=_('experts'), related_name='stage2_assigned_answers')
     # useful redundancy
     complete = models.BooleanField(default=False)
     need_arbiter = models.BooleanField(default=False)
