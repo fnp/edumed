@@ -83,11 +83,11 @@ class Assignment(models.Model):
 
     def available_answers(self, expert):
         answers = self.answer_set.exclude(mark__expert=expert)
-        assigned_to_expert = self.answer_set.filter(expert=expert).exists()
+        assigned_to_expert = self.answer_set.filter(experts=expert).exists()
         is_supervisor = expert in self.supervisors.all()
         is_arbiter = expert in self.arbiters.all()
         if assigned_to_expert:
-            expert_answers = answers.filter(expert=expert)
+            expert_answers = answers.filter(experts=expert)
             if expert_answers or not is_arbiter:
                 answers = expert_answers
         answers = answers.extra(where=[
