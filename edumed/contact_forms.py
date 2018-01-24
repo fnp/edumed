@@ -6,6 +6,7 @@ from django.forms.formsets import BaseFormSet
 from django.utils.safestring import mark_safe
 from markdown2 import Markdown
 
+from contact.fields import HeaderField
 from contact.forms import ContactForm
 from django.core.mail import send_mail
 from django.core.exceptions import ValidationError
@@ -925,6 +926,16 @@ class SciezkiKopernikaTestForm(ContactForm):
             (1, u'blokuje wyświetlanie plików reklam zanim wyświetli je przeglądarka,'),
             (2, u'blokuje komunikację przeglądarki z serwerami publikującymi reklamy.')])
     contact = forms.EmailField(label=u'Adres e-mail, na który przyślemy informację o wynikach')
+    head1 = HeaderField(
+        label=u'Test powstał w ramach projektu "Collegium Młodych - media i technologie" realizowany w ramach '
+              u'III Osi priorytetowej: Szkolnictwo wyższe dla gospodarki i rozwoju, Działanie 3.1 Kompetencje '
+              u'w szkolnictwie wyższym Programu Operacyjnego Wiedza Edukacja Rozwój, współfinansowanego przez '
+              u'Unię Europejską w ramach Europejskiego Funduszu Społecznego. Nr umowy POWR.03.01.00-00-C078/16-00.')
+    head2 = HeaderField(
+        label=u'Dane zbierane są wyłącznie na potrzeby realizacji projektu „Collegium Młodych – media i technologie”,'
+              u' w szczególności potwierdzenia kwalifikowalności wydatków, udzielenia wsparcia, monitoringu, '
+              u'ewaluacji, kontroli, audytu i sprawozdawczości oraz działań informacyjno-promocyjnych w ramach '
+              u'PO WER.')
     imie = forms.CharField(label=u'Imię')
     nazwisko = forms.CharField(label=u'Nazwisko')
     PESEL = forms.CharField(label=u'PESEL', required=False, help_text=u'zostawić pusty w przypadku braku')
