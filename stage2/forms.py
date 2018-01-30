@@ -59,7 +59,10 @@ class AssignmentFieldForm(forms.Form):
         if self.type == 'options':
             value = self.cleaned_data['value']
             if value:
-                option = FieldOption.objects.get(id=int(value))
+                try:
+                    option = FieldOption.objects.get(id=int(value))
+                except (FieldOption.DoesNotExist, ValueError):
+                    raise forms.ValidationError(u'Nieprawidłowa wartość.')
                 if option.answer != self.answer and option.answer is not None:
                     raise forms.ValidationError(u'Ta opcja została już wybrana przez kogoś innego.')
                 return option
