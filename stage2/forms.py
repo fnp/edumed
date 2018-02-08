@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+from decimal import Decimal
+
 from django import forms
 from django.conf import settings
 from django.template.defaultfilters import filesizeformat
+from django.utils.safestring import mark_safe
 
 from stage2.models import Attachment, Mark, FieldOptionSet, FieldOption
 
@@ -91,6 +94,8 @@ class AssignmentFieldForm(forms.Form):
 
 
 class MarkForm(forms.ModelForm):
+    answer_id = forms.CharField(widget=forms.HiddenInput)
+
     class Meta:
         model = Mark
         fields = ['points']
@@ -98,15 +103,12 @@ class MarkForm(forms.ModelForm):
             'points': forms.TextInput(attrs={'type': 'number', 'min': 0, 'step': '0.5'})
         }
 
-    def __init__(self, answer, *args, **kwargs):
+    def __init__(self, answer, criterion, *args, **kwargs):
         super(MarkForm, self).__init__(*args, **kwargs)
-        self.answer = answer
-        self.fields['points'].widget.attrs['max'] = answer.assignment.max_points
-
-    def clean_points(self):
-        points = self.cleaned_data['points']
-        if points > self.answer.assignment.max_points:
-            raise forms.ValidationError('Too many points for this assignment')
-        if points < 0:
-            raise forms.ValidationError('Points cannot be negative')
-        return points
+        self.fields['answer_id'].initial = answer.id
+        points_field = self.fields['points']
+        points_field.label = mark_safe(criterion.form_label())
+        points_field.help_text = '(max %s)' % criterion.max_points
+        points_field.min_value = Decimal(0)
+        points_field.max_value = Decimal(criterion.max_points)
+        points_field.widget.attrs['max'] = criterion.max_points

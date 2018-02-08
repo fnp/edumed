@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.utils.html import format_html
+from django.utils.html import format_html, strip_tags
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from jsonfield import JSONField
@@ -81,7 +81,9 @@ class Assignment(models.Model):
     def __unicode__(self):
         return self.title
 
-    def available_answers(self, expert):
+    def available_answers(self, expert, marked=False):
+        if marked:
+            return self.answer_set.filter(mark__expert=expert).order_by('id').distinct('id')
         answers = self.answer_set.exclude(mark__expert=expert)
         assigned_to_expert = self.answer_set.filter(experts=expert).exists()
         is_supervisor = expert in self.supervisors.all()
@@ -106,13 +108,44 @@ class Assignment(models.Model):
         for field_desc in self.field_descriptions:
             field_name, params = field_desc
             if params['type'] == 'options':
-                field_count = FieldOption.objects.filter(answer__in=list(answers), set__name=params['option_set']).count()
+                field_count = FieldOption.objects.filter(
+                    answer__in=list(answers), set__name=params['option_set']).count()
             else:  # text, link
                 field_count = sum(1 for answer in answers if answer.field_values.get(field_name))
             yield field_name, field_count
 
+    def expert_counts(self):
+        for expert in self.experts.all():
+            assigned_count = self.answer_set.filter(experts=expert).count()
+            marked_count = self.available_answers(expert, marked=True).count()
+            if assigned_count != 0 or marked_count != 0:
+                yield expert, marked_count, assigned_count
+
+    def complete_answers(self):
+        return self.answer_set.filter(complete=True)
+
+    def needing_arbiter(self):
+        return self.answer_set.filter(need_arbiter=True)
+
     def is_active(self):
         return self.deadline >= timezone.now()
+
+
+class MarkCriterion(models.Model):
+    assignment = models.ForeignKey(Assignment)
+    order = models.IntegerField()
+    label = models.CharField(max_length=1024)
+    max_points = models.IntegerField()
+
+    class Meta:
+        ordering = ['order']
+        unique_together = ['assignment', 'order']
+
+    def __unicode__(self):
+        return strip_tags(self.form_label())
+
+    def form_label(self):
+        return '%s. %s' % (self.order, self.label)
 
 
 class Answer(models.Model):
@@ -140,14 +173,21 @@ class Answer(models.Model):
                 value = format_html(u'<a href="{url}">{url}</a>', url=value)
             yield field_name, value
 
+    def total_points(self):
+        criterion_count = self.assignment.markcriterion_set.count()
+        for expert in self.experts.all():
+            marks = self.mark_set.filter(expert=expert)
+            if len(marks) == criterion_count:
+                yield sum(mark.points for mark in marks)
+
     def update_complete(self):
-        marks = self.mark_set.all()
-        if len(marks) < 2:
+        total_points = list(self.total_points())
+        if len(total_points) < 2:
             complete = False
             need_arbiter = False
-        elif len(marks) == 2:
-            mark1, mark2 = marks
-            complete = abs(mark1.points - mark2.points) < 0.2 * self.assignment.max_points
+        elif len(total_points) == 2:
+            points1, points2 = total_points
+            complete = abs(points1 - points2) < 0.2 * self.assignment.max_points
             need_arbiter = not complete
         else:
             complete = True
@@ -157,10 +197,10 @@ class Answer(models.Model):
         self.save()
 
     def score(self):
-        marks = self.mark_set.all()
-        if len(marks) < 2:
+        total_marks = list(self.total_points())
+        if len(total_marks) < 2:
             return None
-        return self.mark_set.aggregate(avg=models.Avg('points'))['avg']
+        return sum(total_marks) / len(total_marks)
 
     # unrelated to `complete' attribute, but whatever
     def is_complete(self):
@@ -234,10 +274,11 @@ class Attachment(models.Model):
 class Mark(models.Model):
     expert = models.ForeignKey(settings.AUTH_USER_MODEL)
     answer = models.ForeignKey(Answer)
+    criterion = models.ForeignKey(MarkCriterion)
     points = models.DecimalField(verbose_name=_('points'), max_digits=3, decimal_places=1)
 
     class Meta:
-        unique_together = ['expert', 'answer']
+        unique_together = ['expert', 'answer', 'criterion']
 
 
 @receiver(post_save, sender=Mark, dispatch_uid='update_answer')

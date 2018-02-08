@@ -21,8 +21,21 @@
       {% endfor %}
     </ul>
   {% endif %}
+  {% if supervisor %}
+    <ul>
+      {% for expert, expert_count, assigned_count in assignment.expert_counts %}
+          <li>{{ expert.username }}: {{ expert_count }}{% if assigned_count %} z {{ assigned_count }}{% endif %}</li>
+      {% endfor %}
+      <li>kompletnych: {{ assignment.complete_answers.count }}</li>
+      <li>do trzeciej oceny: {{ assignment.needing_arbiter.count }}</li>
+    </ul>
+  {% endif %}
   {% for answer in answers %}
-    <h3>{{ answer.participant }}</h3>
+    {% if supervisor %}
+      <h3>{{ answer.participant }}</h3>
+    {% else %}
+      <h3>Uczestnik {{ answer.participant.id }}</h3>
+    {% endif %}
     {% for label, value in answer.fields %}
       <p>
         <strong>{{ label }}</strong>: {{ value }}
@@ -40,10 +53,14 @@
       </p>
     {% endfor %}
     {% if not assignment.is_active %}
-      <form method="post" action="{% url 'stage2_mark_answer' answer.id %}">
+      <form method="post" action="" class="submit-form">
         {% csrf_token %}
-        {{ answer.form.as_p }}
-        <input type="submit" value="Zapisz"/>
+        <table>
+          {% for form in answer.forms %}
+            {{ form.as_table }}
+          {% endfor %}
+          <tr><td></td><td><button type="submit">Zapisz</button></td></tr>
+        </table>
       </form>
     {% endif %}
   {% endfor %}
