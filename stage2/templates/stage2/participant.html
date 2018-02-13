@@ -19,7 +19,7 @@
         <p><strong>{{ form.value.label }}:</strong></p>
         {{ form.value.errors }}
         <p>
-          {% if assignment.is_active %}{{ form.value }}{% else %}{{ form.value.initial }}{% endif %}
+          {% if assignment.is_active %}{{ form.value }}{% else %}{{ form.value.value }}{% endif %}
         </p>
       {% endfor %}
       {% for form, attachment in assignment.attachment_forms %}
