@@ -14,7 +14,7 @@
     {% endif %}
   {% endif %}
   <p>{% if not marked and not assignment.is_active %}Pozostało {% endif %}{{ answers|length }} odpowiedzi</p>
-  {% if field_counts %}
+  {% if field_counts and assignment.is_active %}
     <ul>
       {% for field_name, count in field_counts %}
         <li>{{ field_name }}: {{ count }} odpowiedzi</li>
