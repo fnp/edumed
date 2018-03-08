@@ -1,4 +1,5 @@
 # -*- coding: utf-8
+from django.conf import settings
 from django.core.files import File
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -108,6 +109,9 @@ class Lesson(models.Model):
         null=True, blank=True, max_length=255, storage=bofh_storage)
     student_pdf = models.FileField(
         upload_to="catalogue/lesson/student_pdf",
+        null=True, blank=True, max_length=255, storage=bofh_storage)
+    weasy_pdf = models.FileField(
+        upload_to="catalogue/lesson/weasy",
         null=True, blank=True, max_length=255, storage=bofh_storage)
 
     class Meta:
@@ -234,6 +238,12 @@ class Lesson(models.Model):
         else:
             pdf = PdfFormat(wldoc, teacher=True).build()
             self.pdf.save("%s.pdf" % self.slug, File(open(pdf.get_filename())))
+
+    def build_weasy_pdf(self):
+        from .publish import WeasyFormat
+        wldoc = self.wldocument()
+        pdf = WeasyFormat(wldoc, media_root=settings.MEDIA_ROOT).build()
+        self.weasy_pdf.save("%s.pdf" % self.slug, File(open(pdf.get_filename())))
 
     def add_to_zip(self, zipf, student=False, prefix=''):
         pdf = self.student_pdf if student else self.pdf

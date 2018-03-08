@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from librarian import DocProvider, IOFile
 from librarian.pyhtml import EduModuleFormat
 from librarian.pypdf import EduModulePDFFormat
+from librarian.weasy import EduModuleWeasyFormat
 from .models import Lesson, Attachment
 from fnpdjango.utils.text.slughifi import slughifi
 
@@ -117,6 +118,54 @@ class PdfFormat(EduModulePDFFormat):
             return IOFile.from_filename(img.storage.path(img))
         else:
             return src_img
+
+
+class WeasyFormat(EduModuleWeasyFormat):
+    IMAGE_FORMATS = ('PNG', 'JPEG', 'GIF')
+    DEFAULT_IMAGE_WIDTH = 1600
+
+    def find_attachment(self, slug, fmt):
+        lesson_slug = self.wldoc.book_info.url.slug
+        try:
+            # If already saved, use it.
+            att = Attachment.objects.get(lesson__slug=lesson_slug,
+                                         slug=slug, ext=fmt)
+        except Attachment.DoesNotExist, e:
+            # If attached to source IOFile, save now.
+            att_name = "%s.%s" % (slug, fmt)
+            try:
+                att_file = self.wldoc.source.attachments[att_name]
+            except KeyError:
+                print u"ATTACHMENT MISSING:", att_name
+                raise self.MaterialNotFound()
+            else:
+                lesson = Lesson.objects.get(slug=lesson_slug)
+                att = lesson.attachment_set.create(slug=slug, ext=fmt)
+                att.file.save(att_name, File(att_file.get_file()))
+                return att
+        else:
+            return att
+
+    def url_for_material(self, slug, fmt):
+        return self.find_attachment(slug, fmt).file.url
+
+    def image(self, slug, fmt, width=None):
+        try:
+            src_img = self.find_attachment(slug, fmt).file
+        except self.MaterialNotFound:
+            return None
+        img = get_image(src_img.path, width, self.DEFAULT_IMAGE_WIDTH, self.IMAGE_FORMATS)
+        return img or src_img
+
+    def url_for_image(self, slug, fmt, image=None, **kwargs):
+        img = image or self.image(slug, fmt, **kwargs)
+        if img:
+            return img.url
+        else:
+            return ''
+
+    def text_to_anchor(self, text):
+        return slughifi(text)
 
 
 class OrmDocProvider(DocProvider):
