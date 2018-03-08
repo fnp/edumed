@@ -74,6 +74,8 @@
 
         <footer class="main">
             {# chunks? #}
+            {% block sponsors %}
+            {% endblock %}
             {% block footer_contact %}
                 <div class="footer-item">
                     <p>
@@ -100,8 +102,6 @@
                 {% block copyrights %}{% endblock %}
                 </p>
             </div>
-            {% block sponsors %}
-            {% endblock %}
             <div class="clr"></div>
             <div class="footer-extra">{% block footer_extra %}{% endblock %}</div>
         </footer>

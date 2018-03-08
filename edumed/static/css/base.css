@@ -151,6 +151,8 @@ footer.main {
     width: 6.25em; }
     footer.main .sponsors-column p {
       font-size: .75em; }
+  footer.main .sponsors-column:first-child {
+    margin-left: 0; }
   footer.main .footer-extra p {
     margin-top: 0; }
 
