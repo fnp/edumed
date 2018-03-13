@@ -167,16 +167,22 @@ footer.main {
         margin-right: 20 * $px;
         width: 220 * $px;
     }
+    .sponsors-page {
+        margin-bottom: 20 * $px;
+    }
     .sponsors-column {
         float: left;
         margin-left: 20 * $px;
-        width: 100 * $px;
+        width: 147 * $px;
         p {
             font-size: .75em;
         }
     }
     .sponsors-column:first-child {
         margin-left: 0;
+    }
+    .sponsors-column:nth-last-child(2) {
+        width: 100 * $px;
     }
     .footer-extra p {
         margin-top: 0;
