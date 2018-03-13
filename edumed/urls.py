@@ -43,3 +43,8 @@ urlpatterns += (
     url(r'^(?P<url>[^/]*/|)$',
         lambda request, url: flatpage(request, 'turniej/' + url)),
 )
+
+if settings.DEBUG:
+    urlpatterns += (
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    )
