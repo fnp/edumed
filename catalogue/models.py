@@ -302,11 +302,15 @@ class Lesson(models.Model):
         return any(requirement in self.dc.get('requires', []) for requirement in ('internet', 'Internet'))
 
 
+def attachment_path(instance, filename):
+    return 'catalogue/attachment/%s/%s' % (instance.lesson.slug, filename)
+
+
 class Attachment(models.Model):
     slug = models.CharField(max_length=255)
     ext = models.CharField(max_length=15)
     lesson = models.ForeignKey(Lesson)
-    file = models.FileField(upload_to="catalogue/attachment", storage=bofh_storage, max_length=255)
+    file = models.FileField(upload_to=attachment_path, storage=bofh_storage, max_length=255)
 
     class Meta:
         ordering = ['slug', 'ext']
