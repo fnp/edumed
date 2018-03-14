@@ -175,8 +175,8 @@ class Answer(models.Model):
 
     def total_points(self):
         criterion_count = self.assignment.markcriterion_set.count()
-        for expert in self.experts.all():
-            marks = self.mark_set.filter(expert=expert)
+        for expert_id in self.mark_set.values_list('expert_id', flat=True).distinct():
+            marks = self.mark_set.filter(expert_id=expert_id)
             if len(marks) == criterion_count:
                 yield sum(mark.points for mark in marks)
 
