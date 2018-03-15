@@ -239,10 +239,10 @@ class Lesson(models.Model):
             pdf = PdfFormat(wldoc, teacher=True).build()
             self.pdf.save("%s.pdf" % self.slug, File(open(pdf.get_filename())))
 
-    def build_weasy_pdf(self):
+    def build_weasy_pdf(self, **kwargs):
         from .publish import WeasyFormat
         wldoc = self.wldocument()
-        pdf = WeasyFormat(wldoc, media_root=settings.MEDIA_ROOT).build()
+        pdf = WeasyFormat(wldoc, media_root=settings.MEDIA_ROOT, **kwargs).build()
         self.weasy_pdf.save("%s.pdf" % self.slug, File(open(pdf.get_filename())))
 
     def add_to_zip(self, zipf, student=False, prefix=''):
