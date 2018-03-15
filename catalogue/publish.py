@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from librarian import DocProvider, IOFile
 from librarian.pyhtml import EduModuleFormat
 from librarian.pypdf import EduModulePDFFormat
-from librarian.weasy import EduModuleWeasyFormat
+from librarian.pdf_from_html import EduModulePdfFromHtmlFormat
 from .models import Lesson, Attachment
 from fnpdjango.utils.text.slughifi import slughifi
 
@@ -120,7 +120,7 @@ class PdfFormat(EduModulePDFFormat):
             return src_img
 
 
-class WeasyFormat(EduModuleWeasyFormat):
+class PdfFromHtmlFormat(EduModulePdfFromHtmlFormat):
     IMAGE_FORMATS = ('PNG', 'JPEG', 'GIF')
     DEFAULT_IMAGE_WIDTH = 1600
 
