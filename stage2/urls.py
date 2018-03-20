@@ -13,4 +13,5 @@ urlpatterns = (
         kwargs={'marked': True}, name='stage2_marked_answers'),
     url(r'^plik/(?P<attachment_id>[0-9]*)/$', views.expert_download, name='stage2_expert_download'),
     url(r'^csv-results/', views.csv_results, name='stage2_csv_results'),
+    url(r'^csv-details/(?P<assignment_id>[0-9]*)/$', views.csv_details, name='stage2_csv_details'),
 )

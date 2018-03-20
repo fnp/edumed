@@ -234,6 +234,10 @@ def expert_download(request, attachment_id):
     return attachment_download(attachment)
 
 
+def write_row(row, writer):
+    writer.writerow([unicode(item).encode('utf-8') for item in row])
+
+
 @login_required
 def csv_results(request):
     import csv
@@ -250,7 +254,7 @@ def csv_results(request):
     for assignment in assignments:
         headers.append(u'%s - średnia' % assignment.title.encode('utf-8'))
     headers.append(u'ostateczny wynik')
-    writer.writerow([unicode(item).encode('utf-8') for item in headers])
+    write_row(headers, writer)
     for participant in participants:
         row = [
             participant.first_name,
@@ -267,6 +271,34 @@ def csv_results(request):
         for assignment in assignments:
             row.append('%.2f' % participant.answer_set.get(assignment=assignment).score())
         row.append('%.2f' % participant.score())
-        writer.writerow([unicode(item).encode('utf-8') for item in row])
+        write_row(row, writer)
     response['Content-Disposition'] = 'attachment; filename="wyniki.csv"'
+    return response
+
+
+@login_required
+def csv_details(request, assignment_id):
+    import csv
+    response = HttpResponse(content_type='text/csv')
+    writer = csv.writer(response)
+    assignment = get_object_or_404(Assignment, id=assignment_id)
+    criteria = tuple(assignment.markcriterion_set.all())
+    expert_headers = (u"ekspert",) + criteria
+    headers = (u"imię", u"nazwisko", u"numer", u"wynik") + expert_headers * 2
+    write_row(headers, writer)
+
+    for a in assignment.answer_set.filter(participant__complete_set=True).order_by('participant__last_name'):
+        row = (
+            a.participant.first_name,
+            a.participant.last_name,
+            str(a.participant.id),
+            '%.2f' % a.score(),
+        )
+        experts = a.mark_set.values_list('expert__username', flat=True).order_by().distinct()
+        for expert in experts:
+            row += (expert,)
+            marks = a.mark_set.filter(expert__username=expert).order_by('criterion__order')
+            row += tuple(marks.values_list('points', flat=True))
+        write_row(row, writer)
+    response['Content-Disposition'] = 'attachment; filename="%s.csv"' % assignment.title
     return response
