@@ -258,11 +258,10 @@ def csv_results(request):
             participant.contact.body['school'],
         ]
         for assignment, expert in assignments_experts:
-            try:
-                row.append(
-                    Mark.objects.get(
-                        expert=expert, answer__assignment=assignment, answer__participant=participant).points)
-            except Mark.DoesNotExist:
+            marks = expert.mark_set.filter(answer__assignment=assignment, answer__participant=participant)
+            if marks:
+                row.append(sum(mark.points for mark in marks))
+            else:
                 row.append('')
         for assignment in assignments:
             row.append('%.2f' % participant.answer_set.get(assignment=assignment).score())
