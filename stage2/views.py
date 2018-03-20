@@ -241,7 +241,7 @@ def csv_results(request):
     writer = csv.writer(response)
     assignments = Assignment.objects.all()
     participants = Participant.objects.filter(complete_set=True)
-    headers = [u'imię', u'nazwisko', u'szkoła']
+    headers = [u'imię', u'nazwisko', u'szkoła', u'adres szkoły']
     assignments_experts = []
     for assignment in assignments:
         for expert in assignment.experts.filter(mark__answer__assignment=assignment).distinct():
@@ -256,6 +256,7 @@ def csv_results(request):
             participant.first_name,
             participant.last_name,
             participant.contact.body['school'],
+            participant.contact.body['school_address'],
         ]
         for assignment, expert in assignments_experts:
             marks = expert.mark_set.filter(answer__assignment=assignment, answer__participant=participant)
