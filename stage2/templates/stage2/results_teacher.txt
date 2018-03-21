@@ -2,9 +2,9 @@ Dzień dobry,
 
 Informujemy, że wszystkie prace nadesłane w ramach II etapu Olimpiady Cyfrowej zostały ocenione. 
 
-Poniżej znajdują się wyniki uzyskane przez zgłoszonych przez Panią/Pana uczniów i uczennice, którzy przesłali komplet rozwiązań. Liczba punktów, która uprawnia do wzięcia udziału w zawodach finałowych to 55. Gratulujemy tym, którym się to udało. Zawody finałowe odbędą się 21 kwietnia. Jeśli Pania/Pana uczniowie i uczennice awansowali do finału, niebawem otrzyma Pani/Pan szczegółowe informacje na ten temat.
+Poniżej znajdują się wyniki uzyskane przez zgłoszonych przez Panią/Pana uczniów i uczennice, którzy przesłali komplet rozwiązań. Liczba punktów, która uprawnia do wzięcia udziału w zawodach finałowych to 73,33. Gratulujemy tym, którym się to udało. Zawody finałowe odbędą się w dniach 20-21 kwietnia. Jeśli Pani/Pana uczniowie i uczennice awansowali do finału, niebawem otrzyma Pani/Pan szczegółowe informacje na ten temat.
 
-Wyniki uzyskane przez Pani/Pana podopiecznych:
+Wyniki uzyskane przez Pani/Pana uczniów:
 
 {% for participant in participants %}{{participant.first_name.strip}} {{participant.last_name.strip}}: {{participant.score|floatformat:2}}
 {% endfor %}

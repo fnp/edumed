@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from collections import defaultdict
+from decimal import Decimal
 from optparse import make_option
 
 from django.core.management.base import BaseCommand
@@ -13,7 +14,7 @@ from stage2.models import Participant
 def get_participants():
     return sorted(Participant.objects.filter(complete_set=True), key=lambda s: -s.score())
 
-minimum = 55
+minimum = Decimal('73.33')
 
 
 class Command(BaseCommand):
