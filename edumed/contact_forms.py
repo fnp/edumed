@@ -60,6 +60,7 @@ class CooperateForm(ContactForm):
     form_tag = 'wspolpraca'
     form_title = u"Bądź z nami w kontakcie"
     admin_list = ['podpis', 'contact']
+    mailing_field = 'zgoda_dane'
 
     podpis = forms.CharField(label=u'Imię i nazwisko', max_length=128)
     contact = forms.EmailField(label=u'E-mail', max_length=128)
@@ -90,6 +91,7 @@ class ContestForm(ContactForm):
     form_tag = 'konkurs'
     form_title = u"Zgłoś się do konkursu"
     admin_list = ['nazwisko', 'instytucja', 'tytul']
+    mailing_field = 'zgoda_informacje'
 
     nazwisko = forms.CharField(label=u'Imię i nazwisko', max_length=128)
     contact = forms.EmailField(label=u'Adres e-mail', max_length=128)
@@ -157,6 +159,7 @@ class WTEMForm(ContactForm):
     disabled = True
     disabled_template = 'wtem/disabled_contact_form.html'
     form_tag = "wtem"
+    old_form_tags = ["wtem2013", "wtem2014"]
     form_title = u"WTEM - rejestracja uczestników"
     submit_label = u"Wyślij zgłoszenie"
     admin_list = ['imie', 'nazwisko', 'institution']
@@ -164,6 +167,7 @@ class WTEMForm(ContactForm):
         'student': forms.formsets.formset_factory(
             WTEMStudentForm, formset=NonEmptyBaseFormSet, max_num=5, validate_max=True, extra=5),
     }
+    mailing_field = 'zgoda_informacje'
 
     contact = forms.EmailField(label=u'Adres e-mail opiekuna/opiekunki', max_length=128)
     imie = forms.CharField(label=u'Imię', max_length=128)
@@ -254,6 +258,7 @@ class OlimpiadaForm(ContactForm):
     disabled = True
     disabled_template = 'wtem/disabled_contact_form.html'
     form_tag = "olimpiada"
+    old_form_tags = ["olimpiada-2016"]
     form_title = u"Olimpiada Cyfrowa - Elektroniczny System Zgłoszeń"
     submit_label = u"Wyślij zgłoszenie"
     admin_list = ['nazwisko', 'school']
@@ -376,6 +381,7 @@ class TEMForm(ContactForm):
     form_tag = 'tem'
     form_title = u"TEM - szkolenie dla trenerów edukacji medialnej"
     admin_list = ['imie', 'nazwisko', 'instytucja', 'contact']
+    mailing_field = 'zgoda_informacje'
 
     imie = forms.CharField(label=u'Imię', max_length=128)
     nazwisko = forms.CharField(label=u'Nazwisko', max_length=128)
@@ -485,9 +491,11 @@ class CybernauciForm(ContactForm):
     disabled = True
     disabled_template = 'contact/disabled_contact_form.html'
     form_tag = 'trenerzy-cybernauci2017'
+    old_form_tags = ['trenerzy-cybernauci']
     form_title = u"Cybernauci – szkolenie dla trenerów"
     admin_list = ['nazwisko', 'instytucja', 'contact']
     submit_label = u'Wyślij'
+    mailing_field = 'zgoda_newsletter'
 
     nazwisko = forms.CharField(label=u'Imię i nazwisko', max_length=1024)
     adres = forms.CharField(label=u'Adres zamieszkania')
@@ -558,6 +566,7 @@ class WLEMForm(ContactForm):
     form_title = u"WLEM - szkolenie dla warszawskich liderów edukacji medialnej"
     admin_list = ['nazwisko', 'instytucja', 'contact']
     submit_label = u'Wyślij'
+    mailing_field = 'zgoda_newsletter'
 
     nazwisko = forms.CharField(label=u'Imię i nazwisko', max_length=128)
     contact = forms.CharField(label=u'Adres e-mail')
@@ -608,6 +617,7 @@ class CybernauciAnkietaForm(ContactForm):
         self.label_suffix = ''
 
     form_tag = 'cybernauci-ankieta-trenera-2017'
+    old_form_tags = ['cybernauci-ankieta-trenera']
     form_title = u"Cybernauci – ankieta trenerska"
     nazwisko = forms.CharField(label=u'Imię i nazwisko', max_length=128)
     contact = forms.CharField(label=u'Adres e-mail')
