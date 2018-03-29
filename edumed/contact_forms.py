@@ -54,6 +54,7 @@ class OlimpiadaForm(ContactForm):
     ends_on = (2017, 11, 17, 0, 5)
     disabled_template = 'wtem/disabled_contact_form.html'
     form_tag = "olimpiada"
+    old_form_tags = ["olimpiada-2016"]
     form_title = u"Olimpiada Cyfrowa - Elektroniczny System Zgłoszeń"
     submit_label = u"Wyślij zgłoszenie"
     admin_list = ['nazwisko', 'school']
@@ -61,6 +62,7 @@ class OlimpiadaForm(ContactForm):
         'student': forms.formsets.formset_factory(WTEMStudentForm, formset=NonEmptyBaseFormSet),
         'commission': forms.formsets.formset_factory(CommissionForm),
     }
+    mailing_field = 'zgoda_newsletter'
 
     contact = forms.EmailField(label=u'Adres e-mail Przewodniczącego/Przewodniczącej', max_length=128)
     przewodniczacy = forms.CharField(label=u'Imię i nazwisko Przewodniczącego/Przewodniczącej', max_length=128)

@@ -9,6 +9,8 @@ from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 
+from . import mailing
+
 
 contact_forms = {}
 admin_list_width = 0
@@ -30,12 +32,15 @@ class ContactForm(forms.Form):
     __metaclass__ = ContactFormMeta
 
     form_tag = None
+    old_form_tags = []
     form_title = _('Contact form')
     submit_label = _('Submit')
     admin_list = None
+    result_page = False
+    mailing_field = None
 
     required_css_class = 'required'
-    contact = forms.CharField(max_length=128)
+    contact = NotImplemented
 
     def save(self, request, formsets=None):
         from .models import Attachment, Contact
@@ -52,7 +57,7 @@ class ContactForm(forms.Form):
                         sub_body[name] = value
                 if sub_body:
                     body.setdefault(f.form_tag, []).append(sub_body)
-                
+
         contact = Contact.objects.create(
             body=body,
             ip=request.META['REMOTE_ADDR'],
@@ -91,10 +96,21 @@ class ContactForm(forms.Form):
                     'contact/%s/mail_subject.txt' % self.form_tag,
                     'contact/mail_subject.txt', 
                 ], dictionary, context).strip()
-            mail_body = render_to_string([
-                    'contact/%s/mail_body.txt' % self.form_tag,
-                    'contact/mail_body.txt', 
-                ], dictionary, context)
+            if self.result_page:
+                mail_body = render_to_string(
+                    'contact/%s/results_email.txt' % contact.form_tag,
+                    {
+                        'contact': contact,
+                        'results': self.results(contact),
+                    }, context)
+            else:
+                mail_body = render_to_string([
+                        'contact/%s/mail_body.txt' % self.form_tag,
+                        'contact/mail_body.txt',
+                    ], dictionary, context)
             send_mail(mail_subject, mail_body, 'no-reply@%s' % site.domain, [contact.contact], fail_silently=True)
+            if self.mailing_field and self.cleaned_data[self.mailing_field]:
+                email = self.cleaned_data['contact']
+                mailing.subscribe(email)
 
         return contact
