@@ -808,3 +808,30 @@ class SciezkiKopernikaTestForm(TestForm):
         questions = [question_data(i) for i in xrange(1, question_count + 1)]
         points = sum(question['score'] for question in questions)
         return {'questions': questions, 'points': points/2., 'total': question_count}
+
+
+class ESEMWarszawaForm(ContactForm):
+    form_tag = 'emels-warszawa'
+    form_title = u"Ja i młodzież w cyfrowym świecie"
+    admin_list = ['imie', 'nazwisko', 'instytucja', 'contact']
+    submit_label = u'Wyślij'
+    mailing_field = 'zgoda_newsletter'
+
+    imie = forms.CharField(label=u'Imię', max_length=128)
+    nazwisko = forms.CharField(label=u'Nazwisko', max_length=128)
+    contact = forms.EmailField(label=u'Adres e-mail', max_length=128)
+    instytucja = forms.CharField(label=u'Organizacja/instytucja', max_length=255)
+    zgoda_dane = forms.BooleanField(
+        label=u'Oświadczam, że wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w niniejszym '
+              u'formularzu zgłoszeniowym przez Fundację Nowoczesna Polska (administratora danych) z siedzibą '
+              u'w Warszawie (00-514) przy ul. Marszałkowskiej 84/92 lok. 125 na potrzeby realizacji warsztatów '
+              u'EMELS. Jednocześnie oświadczam, że zostałam/em poinformowana/y o tym, że mam prawo wglądu '
+              u'w treść swoich danych i możliwość ich poprawiania oraz że ich podanie jest dobrowolne, '
+              u'ale niezbędne do dokonania zgłoszenia.')
+    zgoda_newsletter = forms.BooleanField(
+        required=False,
+        label=u'Chcę otrzymywać newsletter Edukacja medialna.')
+
+
+class ESEMGdanskForm(ESEMWarszawaForm):
+    form_tag = 'emels-gdansk'
