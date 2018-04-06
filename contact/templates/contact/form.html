@@ -23,6 +23,7 @@
             <tr><td></td><td><button>{% block contact_form_submit %}{{ form.submit_label }}{% endblock %}</button></td></tr>
         </table>
     {% endblock %}
+    <div class="form-footer">{% chunk "contact_form_footer__"|add:form.form_tag %}</div>
     </form>
 
 {% endblock %}

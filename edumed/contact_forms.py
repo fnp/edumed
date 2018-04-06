@@ -88,6 +88,7 @@ class CooperateForm(ContactForm):
 
 
 class ContestForm(ContactForm):
+    disabled = True
     form_tag = 'konkurs'
     form_title = u"Zgłoś się do konkursu"
     admin_list = ['nazwisko', 'instytucja', 'tytul']
@@ -125,6 +126,7 @@ class ContestForm(ContactForm):
 
 
 class UdzialForm(ContactForm):
+    disabled = True
     form_tag = 'udzial'
     form_title = u"Udział"
     admin_list = ['nazwisko', 'miejscowosc', 'instytucja']
@@ -378,6 +380,7 @@ class MILForm(ContactForm):
 
 
 class TEMForm(ContactForm):
+    disabled = True
     form_tag = 'tem'
     form_title = u"TEM - szkolenie dla trenerów edukacji medialnej"
     admin_list = ['imie', 'nazwisko', 'instytucja', 'contact']
@@ -409,6 +412,7 @@ class TEMForm(ContactForm):
 
 
 class SuperwizjaForm(ContactForm):
+    disabled = True
     form_tag = 'superwizja'
     form_title = u"Informacje o zajęciach"
     admin_list = ['nazwisko', 'contact', 'skype', 'temat']
@@ -616,6 +620,7 @@ class CybernauciAnkietaForm(ContactForm):
         super(CybernauciAnkietaForm, self).__init__(*args, **kwargs)
         self.label_suffix = ''
 
+    disabled = True
     form_tag = 'cybernauci-ankieta-trenera-2017'
     old_form_tags = ['cybernauci-ankieta-trenera']
     form_title = u"Cybernauci – ankieta trenerska"
@@ -819,15 +824,17 @@ class ESEMWarszawaForm(ContactForm):
 
     imie = forms.CharField(label=u'Imię', max_length=128)
     nazwisko = forms.CharField(label=u'Nazwisko', max_length=128)
-    contact = forms.EmailField(label=u'Adres e-mail', max_length=128)
+    contact = forms.EmailField(
+        label=u'Adres e-mail', max_length=128, help_text=u'Wyślemy na niego informacje organizacyjne.')
+    telefon = forms.CharField(
+        label=u'Numer telefonu', max_length=20,
+        help_text=u'Liczba miejsc na warsztatach jest ograniczona, będziemy telefonicznie potwierdzać '
+                  u'obecność, a w przypadku rezygnacji chcielibyśmy móc udostępnić miejsce kolejnej '
+                  u'zainteresowanej osobie.')
+    motywacja = forms.CharField(
+        label=u'W jaki sposób wykorzystasz wiedzę zdobytą na warsztatach?', max_length=1000,
+        widget=forms.Textarea)
     instytucja = forms.CharField(label=u'Organizacja/instytucja', max_length=255)
-    zgoda_dane = forms.BooleanField(
-        label=u'Oświadczam, że wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w niniejszym '
-              u'formularzu zgłoszeniowym przez Fundację Nowoczesna Polska (administratora danych) z siedzibą '
-              u'w Warszawie (00-514) przy ul. Marszałkowskiej 84/92 lok. 125 na potrzeby realizacji warsztatów '
-              u'EMELS. Jednocześnie oświadczam, że zostałam/em poinformowana/y o tym, że mam prawo wglądu '
-              u'w treść swoich danych i możliwość ich poprawiania oraz że ich podanie jest dobrowolne, '
-              u'ale niezbędne do dokonania zgłoszenia.')
     zgoda_newsletter = forms.BooleanField(
         required=False,
         label=u'Chcę otrzymywać newsletter Edukacja medialna.')
