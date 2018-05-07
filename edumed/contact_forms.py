@@ -821,6 +821,8 @@ class ESEMWarszawaForm(ContactForm):
     admin_list = ['imie', 'nazwisko', 'instytucja', 'contact']
     submit_label = u'Wyślij'
     mailing_field = 'zgoda_newsletter'
+    disabled = True
+    disabled_template = 'contact/disabled_contact_form.html'
 
     imie = forms.CharField(label=u'Imię', max_length=128)
     nazwisko = forms.CharField(label=u'Nazwisko', max_length=128)
