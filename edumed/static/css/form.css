@@ -7,6 +7,7 @@
   list-style: none;
   margin: 0; }
 .submit-form th {
+  min-width: 4em;
   max-width: 16em;
   font-weight: normal; }
 .submit-form .required th label:before, .submit-form .required > label:before {

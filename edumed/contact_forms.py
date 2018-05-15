@@ -45,10 +45,19 @@ WOJEWODZTWA = (
 WOJEWODZTWO_CHOICES = [(u'', u'(wybierz)')] + [(w, w) for w in WOJEWODZTWA]
 
 
-class RegistrationForm(ContactForm):
+def make_data_processing(middle_text):
+    return mark_safe(u'''\
+Administratorem danych osobowych jest Fundacja Nowoczesna Polska (ul. Marszałkowska 84/92 lok. 125, 00-514 Warszawa). \
+Podanie danych osobowych jest dobrowolne. %s Osobom, których dane są zbierane, przysługuje prawo dostępu do treści \
+swoich danych oraz ich poprawiania. Więcej informacji w <a href="https://nowoczesnapolska.org.pl/prywatnosc/">\
+polityce prywatności</a>.''' % middle_text)
+
+
+class SuggestionForm(ContactForm):
     form_tag = 'sugestie'
     form_title = u"Zgłoś sugestię"
     admin_list = ['podpis', 'contact', 'temat']
+    data_processing = make_data_processing(u'Dane są przetwarzane w zakresie niezbędnym do obsługi zgłoszenia.')
 
     contact = forms.EmailField(label=u'E-mail', max_length=128, required=False)
     podpis = forms.CharField(label=u'Podpis', max_length=128, required=False)
@@ -59,32 +68,13 @@ class RegistrationForm(ContactForm):
 class CooperateForm(ContactForm):
     form_tag = 'wspolpraca'
     form_title = u"Bądź z nami w kontakcie"
-    admin_list = ['podpis', 'contact']
-    mailing_field = 'zgoda_dane'
+    admin_list = ['contact']
+    mailing = True
+    data_processing = make_data_processing(
+        u'Dane są przetwarzane w zakresie niezbędnym do wysyłania newslettera odbiorcom.')
+    submit_label = u'Wyślij'
 
-    podpis = forms.CharField(label=u'Imię i nazwisko', max_length=128)
     contact = forms.EmailField(label=u'E-mail', max_length=128)
-    instytucja = forms.CharField(
-        label=u'Instytucja (nazwa, adres)', widget=forms.Textarea, max_length=1000, required=False)
-    uwagi = forms.CharField(label=u'Uwagi', widget=forms.Textarea, max_length=1800, required=False)
-        
-    zajecia_przedszkole = forms.BooleanField(label=u'Prowadzę zajęcia z dziećmi w wieku przedszkolnym', required=False)
-    zajecia_sp13 = forms.BooleanField(label=u'Prowadzę zajęcia z dziećmi z SP kl. 1-3', required=False)
-    zajecia_sp46 = forms.BooleanField(label=u'Prowadzę zajęcia z dziećmi z SP kl. 4-6', required=False)
-    zajecia_gimnazjum = forms.BooleanField(label=u'Prowadzę zajęcia z młodzieżą w wieku gimnazjalnym', required=False)
-    zajecia_ponadgimnazjalne = forms.BooleanField(
-        label=u'Prowadzę zajęcia z młodzieżą ze szkół ponadgimnazjalnych', required=False)
-    zajecia_wyzsze = forms.BooleanField(label=u'Prowadzę zajęcia w szkole wyższej', required=False)
-    zajecia_dorosli = forms.BooleanField(label=u'Prowadzę zajęcia dla dorosłych', required=False)
-    zajecia_seniorzy = forms.BooleanField(label=u'Prowadzę zajęcia dla seniorów', required=False)
-    zgoda_dane = forms.BooleanField(
-        label=u'Oświadczam, że wyrażam zgodę na przetwarzanie moich danych osobowych zawartych '
-              u'w niniejszym formularzu zgłoszeniowym przez Fundację Nowoczesna Polska '
-              u'(administratora danych) z siedzibą w Warszawie (00-514) przy ul. Marszałkowskiej 84/92 '
-              u'lok. 125 w celu otrzymywania newslettera Edukacja medialna. Jednocześnie oświadczam, '
-              u'że zostałam/em poinformowana/y o tym, że mam prawo wglądu w treść swoich danych '
-              u'i możliwość ich poprawiania oraz że ich podanie jest dobrowolne, ale niezbędne '
-              u'do dokonania zgłoszenia.')
 
 
 class ContestForm(ContactForm):
@@ -343,6 +333,7 @@ class OlimpiadaForm(ContactForm):
 
 
 class MILForm(ContactForm):
+    disabled = True
     form_tag = 'mil'
     form_title = _('Share your thoughts on the "Media and information literacy competencies catalogue"')
     submit_label = _('Submit')

@@ -38,6 +38,8 @@ class ContactForm(forms.Form):
     admin_list = None
     result_page = False
     mailing_field = None
+    mailing = False
+    data_processing = None
 
     required_css_class = 'required'
     contact = NotImplemented
@@ -109,7 +111,7 @@ class ContactForm(forms.Form):
                         'contact/mail_body.txt',
                     ], dictionary, context)
             send_mail(mail_subject, mail_body, 'no-reply@%s' % site.domain, [contact.contact], fail_silently=True)
-            if self.mailing_field and self.cleaned_data[self.mailing_field]:
+            if self.mailing or (self.mailing_field and self.cleaned_data[self.mailing_field]):
                 email = self.cleaned_data['contact']
                 mailing.subscribe(email)
 

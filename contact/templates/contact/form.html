@@ -20,6 +20,7 @@
     {% block form %}
         <table>
             {{ form.as_table }}
+            {% if form.data_processing %}<tr><td></td><td><div class="helptext">{{ form.data_processing }}</div></td></tr>{% endif %}
             <tr><td></td><td><button>{% block contact_form_submit %}{{ form.submit_label }}{% endblock %}</button></td></tr>
         </table>
     {% endblock %}
