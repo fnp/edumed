@@ -657,24 +657,20 @@ class CybernauciAnkietaForm(ContactForm):
 
 
 class SciezkiKopernikaForm(ContactForm):
-    form_tag = 'sciezki-kopernika'
+    form_tag = 'collegium-mlodych'
     form_title = u'Formularz zgłoszeniowy na warsztaty'
-    disabled = True
 
     nazwisko = forms.CharField(label=u'Imię i nazwisko uczestnika/uczestniczki', max_length=128)
-    rok_urodzenia = forms.IntegerField(label=u'Rok urodzenia')
+    pesel = forms.CharField(label=u'PESEL', max_length=11)
     adres_dom = forms.CharField(label=u'Adres zamieszkania – ulica i numer', max_length=128)
     adres_poczta = forms.CharField(label=u'Adres zamieszkania – kod pocztowy i miejscowość', max_length=128)
     contact = forms.EmailField(label=u'Adres e-mail')
     szkola = forms.CharField(label=u'Nazwa szkoły', max_length=128)
     adres_szkola = forms.CharField(label=u'Adres szkoły – ulica i numer', max_length=128)
     poczta_szkola = forms.CharField(label=u'Adres szkoły – kod pocztowy i miejscowość', max_length=128)
-    opiekun = forms.CharField(label=u'Imię i nazwisko rodzica/opiekuna', max_length=128)
-    adres_opiekun = forms.CharField(label=u'Adres zamieszkania rodzica/opiekuna – ulica i numer', max_length=128)
-    poczta_opiekun = forms.CharField(
-        label=u'Adres zamieszkania rodzica/opiekuna – kod pocztowy i miejscowość', max_length=128)
-    telefon_opiekun = forms.CharField(label=u'Numer telefonu rodzica/opiekuna', max_length=32)
-    email_opiekun = forms.EmailField(label=u'Adres e-mail rodzica/opiekuna', max_length=32)
+    opiekun = forms.CharField(label=u'Imię i nazwisko rodzica/opiekuna prawnego', max_length=128)
+    telefon_opiekun = forms.CharField(label=u'Numer telefonu rodzica/opiekuna prawnego', max_length=32)
+    email_opiekun = forms.EmailField(label=u'Adres e-mail rodzica/opiekuna prawnego', max_length=32)
     specjalne_potrzeby = forms.ChoiceField(
         label=u'Czy uczestnik/uczestniczka ma specjalne potrzeby wynikające z niepełnosprawności', required=True,
         choices=[('tak', 'tak'), ('nie', 'nie')], widget=forms.RadioSelect)
@@ -703,79 +699,11 @@ class SciezkiKopernikaTestForm(TestForm):
         self.label_suffix = ''
 
     result_page = True
-    form_tag = 'sciezki-kopernika-test'
+    form_tag = 'collegium-mlodych-test'
     form_title = u'Test wiedzy w zakresie edukacji medialnej i cyfrowej'
     submit_label = u'Wyślij'
 
     contact = forms.EmailField(label=u'Adres e-mail, na który przyślemy informację o wynikach')
-    head1 = HeaderField(
-        label=u'Test powstał w ramach projektu "Collegium Młodych - media i technologie" realizowany w ramach '
-              u'III Osi priorytetowej: Szkolnictwo wyższe dla gospodarki i rozwoju, Działanie 3.1 Kompetencje '
-              u'w szkolnictwie wyższym Programu Operacyjnego Wiedza Edukacja Rozwój, współfinansowanego przez '
-              u'Unię Europejską w ramach Europejskiego Funduszu Społecznego. Nr umowy POWR.03.01.00-00-C078/16-00.')
-    head2 = HeaderField(
-        label=u'Dane zbierane są wyłącznie na potrzeby realizacji projektu „Collegium Młodych – media i technologie”,'
-              u' w szczególności potwierdzenia kwalifikowalności wydatków, udzielenia wsparcia, monitoringu, '
-              u'ewaluacji, kontroli, audytu i sprawozdawczości oraz działań informacyjno-promocyjnych w ramach '
-              u'PO WER.')
-    imie = forms.CharField(label=u'Imię')
-    nazwisko = forms.CharField(label=u'Nazwisko')
-    PESEL = forms.CharField(label=u'PESEL', required=False, help_text=u'zostawić pusty w przypadku braku')
-    plec = forms.ChoiceField(
-        label=u'Płeć', widget=forms.RadioSelect,
-        choices=[('k', u'kobieta'), ('m', u'mężczyzna')])
-    wiek = forms.IntegerField(label='Wiek')
-    wyksztalcenie = forms.ChoiceField(
-        label=u'Wykształcenie',
-        choices=[
-            (u'Niższe niż podstawowe', u'Niższe niż podstawowe'),
-            (u'Podstawowe', u'Podstawowe'),
-            (u'Gimnazjalne', u'Gimnazjalne'),
-            (u'Ponadgimnazjalne', u'Ponadgimnazjalne'),
-            (u'Policealne', u'Policealne'),
-            (u'Wyższe', u'Wyższe'),
-        ])
-    wojewodztwo = forms.ChoiceField(label=u'Województwo', choices=WOJEWODZTWO_CHOICES)
-    powiat = forms.CharField(label=u'Powiat')
-    gmina = forms.CharField(label=u'Gmina')
-    miejscowosc = forms.CharField(label=u'Miejscowość')
-    ulica = forms.CharField(label=u'Ulica', required=False)
-    numer = forms.CharField(label=u'Nr budynku')
-    lokal = forms.CharField(label=u'Nr lokalu', required=False)
-    kod = forms.CharField(label=u'Kod pocztowy')
-    telefon = forms.CharField(label=u'Telefon kontaktowy')
-    status = forms.ChoiceField(
-        label=u'Status na rynku pracy',
-        choices=[
-            (u'uczeń', u'osoba bierna zawodowo ucząca się'),
-            (u'nieuczeń', u'osoba bierna zawodowo nieuczestnicząca w kształceniu'),
-            (u'bezrobotna-up', u'Osoba bezrobotna zarejestrowana w ewidencji UP'),
-            (u'bezrobotna-nie-up', u'Osoba bezrobotna nie zarejestrowana w ewidencji UP'),
-            (u'pracująca', u'Osoba pracująca'),
-            (u'inne', u'inne'),
-        ])
-    typ_szkoly = forms.CharField(label=u'Typ szkoły (ponadgimnazjalna; inna, jaka?)', required=False)
-    mniejszosc = forms.ChoiceField(
-        label=u'Osoba należąca do mniejszości narodowej lub etnicznej, migrant, osoba obcego pochodzenia',
-        choices=ODMOWA_CHOICES)
-    bezdomna = forms.ChoiceField(
-        label=u'Osoba bezdomna lub dotknięta wykluczeniem z dostępu do mieszkań', choices=YESNO_CHOICES)
-    niepelnosprawna = forms.ChoiceField(
-        label=u'Osoba z niepełnosprawnościami',
-        choices=ODMOWA_CHOICES)
-    pytanie4 = forms.ChoiceField(
-        label=u'Osoba przebywająca w gospodarstwie domowym bez osób pracujących',
-        choices=YESNO_CHOICES)
-    pytanie5 = forms.ChoiceField(
-        label=u'Osoba przebywająca w gospodarstwie domowym z dziećmi pozostającymi na utrzymaniu',
-        choices=YESNO_CHOICES)
-    pytanie6 = forms.ChoiceField(
-        label=u'Osoba żyjąca w gospodarstwie składającym się z jednej osoby dorosłej i dzieci '
-              u'pozostających na utrzymaniu',
-        choices=YESNO_CHOICES)
-    pytanie7 = forms.ChoiceField(
-        label=u'Osoba żyjąca w innej niekorzystnej sytuacji społecznej (inne niż wymienione powyżej)',
-        choices=ODMOWA_CHOICES)
 
     @classmethod
     def results(cls, contact):
@@ -787,23 +715,30 @@ class SciezkiKopernikaTestForm(TestForm):
         def question_data(i):
             field = 'pyt%s' % i
             choices = fields[field].choices
-            score = contact.body[field]
-            chosen_idx = get_idx(choices, score)
-            correct_idx = get_idx(choices, 2)
+            answers = contact.body[field]
+            answer_data = []
+            for answer in answers:
+                idx = answer // 10
+                answer_data.append(
+                    {
+                        'score': answer % 10,
+                        'index': idx,
+                        'letter': 'abcdef'[idx],
+                        'comment': mark_safe(markdown.convert(cls.ANSWER_COMMENTS[i-1][idx])),
+                    })
+            correct = [answer // 10 for answer, text in choices if answer % 10 == 1]
             return {
-                'score': score,
-                'chosen_idx': chosen_idx,
-                'correct_idx': correct_idx,
-                'chosen': 'abc'[chosen_idx],
-                'correct': 'abc'[correct_idx],
+                'answer_data': answer_data,
+                'correct': correct,
+                'correct_letters': ['abcdef'[idx] for idx in correct],
                 'label': fields[field].label,
-                'comment': mark_safe(markdown.convert(cls.ANSWER_COMMENTS[i-1][chosen_idx])),
-                'answers': [(text, a_score == score, a_score == 2) for a_score, text in choices],
+                'answers': [(text, a_score in answers, a_score % 10 == 1) for a_score, text in choices],
+                'full_match': set(answer['index'] for answer in answer_data) == set(correct)
             }
         question_count = 20
         questions = [question_data(i) for i in xrange(1, question_count + 1)]
-        points = sum(question['score'] for question in questions)
-        return {'questions': questions, 'points': points/2., 'total': question_count}
+        points = sum(1 for question in questions if question['full_match'])
+        return {'questions': questions, 'points': points, 'total': question_count}
 
 
 class ESEMWarszawaForm(ContactForm):

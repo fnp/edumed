@@ -1,0 +1,35 @@
+{% extends "contact/form.html" %}
+
+{% block body %}
+    {% include 'sciezki_logos.html' %}
+    {{ block.super }}
+{% endblock %}
+
+{% block form %}
+    {{ form.as_p }}
+    <p>
+      Test powstał w ramach projektu „Collegium Młodych – media i technologie” realizowanego w ramach
+      III Osi priorytetowej: Szkolnictwo wyższe dla gospodarki i rozwoju, Działanie 3.1 Kompetencje
+      w szkolnictwie wyższym Programu Operacyjnego Wiedza Edukacja Rozwój, współfinansowanego przez
+      Unię Europejską w ramach Europejskiego Funduszu Społecznego. Nr umowy POWR.03.01.00-00-C078/16-00.
+    </p>
+    <p>
+      Użytkowników, którzy wypełnili test kompetencji, zachęcamy do wypełnienia
+      <a href="/media/chunks/attachment/ZAKRES_DANYCH_OSOBOWYCH_DO_PRZETWARZANIA.pdf">FORMULARZU DANYCH OSOBOWYCH</a>
+      i przesłania go na adres fundacji. Pozwoli nam to na zaraportowanie naszych działań do
+      Narodowego Centrum Badań i Rozwoju.
+    </p>
+    <p>
+      Administratorem danych osobowych jest Fundacja Nowoczesna Polska (ul. Marszałkowska 84/92 lok. 125,
+      00-514 Warszawa). Podanie danych osobowych jest dobrowolne. Dane są przetwarzane w zakresie niezbędnym
+      do udziału w projekcie „Collegium Młodych - media i technologie”. Osobom, których dane są zbierane,
+      przysługuje prawo dostępu do treści swoich danych oraz ich poprawiania. Więcej informacji w
+      <a href="https://nowoczesnapolska.org.pl/prywatnosc/">polityce prywatności</a>.
+    </p>
+    <p>
+      Projekt „Collegium Młodych – media i technologie” jest finansowany ze środków
+      Narodowego Centrum Badań i Rozwoju. Dane zawarte w formularzu mogą być przekazane NCBiR
+      w ramach sprawozdawczości i kontroli realizacji projektu.
+    </p>
+    <p><button>{{ form.submit_label }}</button></p>
+{% endblock %}
