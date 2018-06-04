@@ -9,7 +9,7 @@ https://edukacjamedialna.edu.pl{% url 'contact_results' contact.id contact.diges
 
 {% comment %}
 Zgłoś się na warsztaty:
-https://edukacjamedialna.edu.pl{% url 'contact_form' 'sciezki-kopernika' %}
+https://edukacjamedialna.edu.pl{% url 'contact_form' 'collegium-mlodych' %}
 {% endcomment %}
 
 Z pozdrowieniami,
