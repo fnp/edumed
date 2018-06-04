@@ -14,7 +14,7 @@ from django.core.validators import validate_email
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
-from edumed.contact_forms_test import TestForm
+from edumed.contact_forms_test import TestForm, CollegiumTestForm
 
 LINK_PATTERNS = [
     (re.compile(r'((http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,;@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?)'),
@@ -657,6 +657,35 @@ class CybernauciAnkietaForm(ContactForm):
 
 
 class SciezkiKopernikaForm(ContactForm):
+    form_tag = 'sciezki-kopernika'
+    form_title = u'Formularz zgłoszeniowy na warsztaty'
+    disabled = True
+
+    nazwisko = forms.CharField(label=u'Imię i nazwisko uczestnika/uczestniczki', max_length=128)
+    rok_urodzenia = forms.IntegerField(label=u'Rok urodzenia')
+    adres_dom = forms.CharField(label=u'Adres zamieszkania – ulica i numer', max_length=128)
+    adres_poczta = forms.CharField(label=u'Adres zamieszkania – kod pocztowy i miejscowość', max_length=128)
+    contact = forms.EmailField(label=u'Adres e-mail')
+    szkola = forms.CharField(label=u'Nazwa szkoły', max_length=128)
+    adres_szkola = forms.CharField(label=u'Adres szkoły – ulica i numer', max_length=128)
+    poczta_szkola = forms.CharField(label=u'Adres szkoły – kod pocztowy i miejscowość', max_length=128)
+    opiekun = forms.CharField(label=u'Imię i nazwisko rodzica/opiekuna', max_length=128)
+    adres_opiekun = forms.CharField(label=u'Adres zamieszkania rodzica/opiekuna – ulica i numer', max_length=128)
+    poczta_opiekun = forms.CharField(
+        label=u'Adres zamieszkania rodzica/opiekuna – kod pocztowy i miejscowość', max_length=128)
+    telefon_opiekun = forms.CharField(label=u'Numer telefonu rodzica/opiekuna', max_length=32)
+    email_opiekun = forms.EmailField(label=u'Adres e-mail rodzica/opiekuna', max_length=32)
+    specjalne_potrzeby = forms.ChoiceField(
+        label=u'Czy uczestnik/uczestniczka ma specjalne potrzeby wynikające z niepełnosprawności', required=True,
+        choices=[('tak', 'tak'), ('nie', 'nie')], widget=forms.RadioSelect)
+    zgoda_regulamin = forms.BooleanField(
+        label=mark_safe(
+            u'Oświadczam, że zapoznałem/am się z <a href="/media/chunks/attachment/Regulamin.pdf" target="_blank">'
+            u'Regulaminem udziału w projekcie</a> '
+            u'i spełniam kryteria kwalifikowalności do udziału w projekcie.'))
+
+
+class CollegiumMlodychForm(ContactForm):
     form_tag = 'collegium-mlodych'
     form_title = u'Formularz zgłoszeniowy na warsztaty'
 
@@ -672,7 +701,7 @@ class SciezkiKopernikaForm(ContactForm):
     telefon_opiekun = forms.CharField(label=u'Numer telefonu rodzica/opiekuna prawnego', max_length=32)
     email_opiekun = forms.EmailField(label=u'Adres e-mail rodzica/opiekuna prawnego', max_length=32)
     specjalne_potrzeby = forms.ChoiceField(
-        label=u'Czy uczestnik/uczestniczka ma specjalne potrzeby wynikające z niepełnosprawności', required=True,
+        label=u'Czy uczestnik/uczestniczka ma specjalne potrzeby wynikające z niepełnosprawności',
         choices=[('tak', 'tak'), ('nie', 'nie')], widget=forms.RadioSelect)
     zgoda_regulamin = forms.BooleanField(
         label=mark_safe(
@@ -681,21 +710,55 @@ class SciezkiKopernikaForm(ContactForm):
             u'i spełniam kryteria kwalifikowalności do udziału w projekcie.'))
 
 
-ODMOWA_CHOICES = [
-    ('nie', u'Nie'),
-    ('tak', u'Tak'),
-    ('odmowa', u'Odmowa odpowiedzi'),
-]
-
-YESNO_CHOICES = [
-    ('nie', u'Nie'),
-    ('tak', u'Tak'),
-]
-
-
 class SciezkiKopernikaTestForm(TestForm):
     def __init__(self, *args, **kwargs):
         super(SciezkiKopernikaTestForm, self).__init__(*args, **kwargs)
+        self.label_suffix = ''
+
+    result_page = True
+    form_tag = 'sciezki-kopernika-test'
+    form_title = u'Test wiedzy w zakresie edukacji medialnej i cyfrowej'
+    submit_label = u'Wyślij'
+
+    contact = forms.EmailField(label=u'Adres e-mail, na który przyślemy informację o wynikach')
+    head1 = HeaderField(
+        label=u'Test powstał w ramach projektu "Collegium Młodych - media i technologie" realizowany w ramach '
+              u'III Osi priorytetowej: Szkolnictwo wyższe dla gospodarki i rozwoju, Działanie 3.1 Kompetencje '
+              u'w szkolnictwie wyższym Programu Operacyjnego Wiedza Edukacja Rozwój, współfinansowanego przez '
+              u'Unię Europejską w ramach Europejskiego Funduszu Społecznego. Nr umowy POWR.03.01.00-00-C078/16-00.')
+
+    @classmethod
+    def results(cls, contact):
+        fields = cls().fields
+
+        def get_idx(choices, answer):
+            return dict((score, i) for i, (score, text) in enumerate(choices))[answer]
+
+        def question_data(i):
+            field = 'pyt%s' % i
+            choices = fields[field].choices
+            score = contact.body[field]
+            chosen_idx = get_idx(choices, score)
+            correct_idx = get_idx(choices, 2)
+            return {
+                'score': score,
+                'chosen_idx': chosen_idx,
+                'correct_idx': correct_idx,
+                'chosen': 'abc'[chosen_idx],
+                'correct': 'abc'[correct_idx],
+                'label': fields[field].label,
+                'comment': mark_safe(markdown.convert(cls.ANSWER_COMMENTS[i-1][chosen_idx])),
+                'answers': [(text, a_score == score, a_score == 2) for a_score, text in choices],
+            }
+        question_count = 20
+        questions = [question_data(i) for i in xrange(1, question_count + 1)]
+        points = sum(question['score'] for question in questions)
+        return {'questions': questions, 'points': points/2., 'total': question_count}
+
+
+class CollegiumMlodychTestForm(CollegiumTestForm):
+    def __init__(self, *args, **kwargs):
+        super(CollegiumMlodychTestForm, self).__init__(*args, **kwargs)
         self.label_suffix = ''
 
     result_page = True
@@ -708,9 +771,6 @@ class SciezkiKopernikaTestForm(TestForm):
     @classmethod
     def results(cls, contact):
         fields = cls().fields
-
-        def get_idx(choices, answer):
-            return dict((score, i) for i, (score, text) in enumerate(choices))[answer]
 
         def question_data(i):
             field = 'pyt%s' % i
