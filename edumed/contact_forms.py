@@ -686,7 +686,6 @@ class SciezkiKopernikaForm(ContactForm):
 
 
 class CollegiumMlodychForm(ContactForm):
-    disabled = True
     form_tag = 'collegium-mlodych'
     form_title = u'Formularz zgłoszeniowy na warsztaty'
 
@@ -762,7 +761,6 @@ class CollegiumMlodychTestForm(CollegiumTestForm):
         super(CollegiumMlodychTestForm, self).__init__(*args, **kwargs)
         self.label_suffix = ''
 
-    disabled = True
     result_page = True
     form_tag = 'collegium-mlodych-test'
     form_title = u'Test wiedzy w zakresie edukacji medialnej i cyfrowej'
