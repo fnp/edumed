@@ -1098,7 +1098,7 @@ class CollegiumTestForm(ContactForm):
             (21, u'70 lat po śmierci twórcy (ze skutkiem na koniec roku kalendarzowego)'),
             (31, u'70 lat po pierwszym rozpowszechnieniu dzieła, jeśli miało ono miejsce po śmierci twórcy')])
     pyt12 = quiz_question_multiple(
-        label=u'12. Wszystkim twórcom przysługują autorskie prawa osobiste, które są – w przeciwieństwie '
+        label=u'12. Wszystkim twórcom przysługują autorskie prawa osobiste, które – w przeciwieństwie '
               u'do praw majątkowych – są wieczne i niezbywalne. Zaliczamy do nich:',
         choices=[
             (01, u'Prawo do rozpoznania autorstwa'),
