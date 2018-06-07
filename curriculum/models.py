@@ -166,6 +166,7 @@ add_translatable(CompetenceLevel, {
 
 class CurriculumLevel(models.Model):
     title = models.CharField(max_length=16, db_index=True)
+    verbose = models.CharField(max_length=32)
 
     class Meta:
         verbose_name = _("curriculum level")
@@ -214,6 +215,8 @@ class Curriculum(models.Model):
         assert m is not None, "Curriculum identifier doesn't match template."
         level, created = CurriculumLevel.objects.get_or_create(
                                        title=m.group('level'))
+        if created:
+            print 'created level:', m.group('level')
         def_title = m.group('course').capitalize()
         course, created = CurriculumCourse.objects.get_or_create(
                                         slug=slugify(m.group('course')),
@@ -221,6 +224,8 @@ class Curriculum(models.Model):
                                             'title': def_title,
                                             'accusative': def_title,
                                         })
+        if created:
+            print 'created course:', slugify(m.group('course')), def_title
         type_ = m.group('type')
         if m.group('roz'):
             title += " (zakres rozszerzony)"

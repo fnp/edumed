@@ -32,7 +32,7 @@ def curriculum(identifiers, new=False):
 
     currset = SortedDict()
     for curr in currs:
-        k = curr.course, curr.level
+        k = curr.course, curr.level.verbose
         if k not in currset:
             currset[k] = SortedDict()
         typename = Curriculum.TYPES[curr.type]

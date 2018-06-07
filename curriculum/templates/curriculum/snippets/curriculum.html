@@ -1,7 +1,7 @@
 {% if currset %}
     {% for what, types in currset.items %}
         <li>
-            {{ what.0 }}, {{ what.1 }} {% if new %}klasa{% else %}poziom edukacyjny{% endif %}<br/>
+            {{ what.0 }}, {{ what.1 }}<br/>
             {% for type, currs in types.items %}
                 {{ type }}:<br>
                 {% for curr in currs %}
