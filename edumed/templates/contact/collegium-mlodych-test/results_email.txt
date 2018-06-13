@@ -1,4 +1,4 @@
-Witaj,
+{% load contact_tags %}Witaj,
 
 Oto wyniki testu:
 
@@ -6,12 +6,10 @@ Suma uzyskanych punktów: {{ results.points|floatformat }} na {{ results.total }
 
 Pod poniższym adresem możesz obejrzeć swoje odpowiedzi z komentarzami:
 https://edukacjamedialna.edu.pl{% url 'contact_results' contact.id contact.digest %}
-
-{% comment %}
+{% if 'collegium-mlodych'|is_enabled %}
 Zgłoś się na warsztaty:
 https://edukacjamedialna.edu.pl{% url 'contact_form' 'collegium-mlodych' %}
-{% endcomment %}
-
+{% endif %}
 Z pozdrowieniami,
 fundacja Nowoczesna Polska
 

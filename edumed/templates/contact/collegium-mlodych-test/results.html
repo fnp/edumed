@@ -1,5 +1,6 @@
 {% extends base_template|default:"base.html" %}
 {% load i18n %}
+{% load contact_tags %}
 
 {% block title %}Wyniki{% endblock %}
 
@@ -9,7 +10,9 @@
 
     <p>Suma uzyskanych punktów: {{ results.points|floatformat }} na {{ results.total }} możliwych.</p>
 
-    {#<p class="box-button" style="max-width: 20em;"><a href="{% url 'contact_form' 'sciezki-kopernika' %}" class="nice-button">Zgłoś się na warsztaty</a></p>#}
+    {% if 'collegium-mlodych'|is_enabled %}
+        <p class="box-button" style="max-width: 20em;"><a href="{% url 'contact_form' 'collegium-mlodych' %}" class="nice-button">Zgłoś się na warsztaty</a></p>
+    {% endif %}
 
     {% for question in results.questions %}
         <strong>{{ question.label }}</strong>
@@ -24,7 +27,9 @@
             {{ answer.comment }}
         {% endfor %}
     {% endfor %}
-    {#<p class="box-button" style="max-width: 20em;"><a href="{% url 'contact_form' 'sciezki-kopernika' %}" class="nice-button">Zgłoś się na warsztaty</a></p>#}
+    {% if 'collegium-mlodych'|is_enabled %}
+        <p class="box-button" style="max-width: 20em;"><a href="{% url 'contact_form' 'collegium-mlodych' %}" class="nice-button">Zgłoś się na warsztaty</a></p>
+    {% endif %}
     <p>Pytania stworzyli: Grzegorz Stunża, Marcin Wilkowski.</p>
     <p>Komentarzami opatrzyli: Paulina Piasecka, Paweł Maranowski.</p>
     <p>
