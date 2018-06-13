@@ -699,13 +699,13 @@ class CollegiumMlodychForm(ContactForm):
     poczta_szkola = forms.CharField(label=u'Adres szkoły – kod pocztowy i miejscowość', max_length=128)
     opiekun = forms.CharField(label=u'Imię i nazwisko rodzica/opiekuna prawnego', max_length=128)
     telefon_opiekun = forms.CharField(label=u'Numer telefonu rodzica/opiekuna prawnego', max_length=32)
-    email_opiekun = forms.EmailField(label=u'Adres e-mail rodzica/opiekuna prawnego', max_length=32)
+    email_opiekun = forms.EmailField(label=u'Adres e-mail rodzica/opiekuna prawnego')
     specjalne_potrzeby = forms.ChoiceField(
         label=u'Czy uczestnik/uczestniczka ma specjalne potrzeby wynikające z niepełnosprawności',
         choices=[('tak', 'tak'), ('nie', 'nie')], widget=forms.RadioSelect)
     zgoda_regulamin = forms.BooleanField(
         label=mark_safe(
-            u'Oświadczam, że zapoznałem/am się z <a href="/media/chunks/attachment/Regulamin.pdf" target="_blank">'
+            u'Oświadczam, że zapoznałem/am się z <a href="/media/chunks/attachment/REGULAMIN-UCZESTNICTWA-W-PROJEKCIE_aktualizacja.pdf" target="_blank">'
             u'Regulaminem udziału w projekcie</a> '
             u'i spełniam kryteria kwalifikowalności do udziału w projekcie.'))
 
