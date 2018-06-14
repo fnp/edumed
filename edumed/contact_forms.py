@@ -703,6 +703,7 @@ class CollegiumMlodychForm(ContactForm):
     specjalne_potrzeby = forms.ChoiceField(
         label=u'Czy uczestnik/uczestniczka ma specjalne potrzeby wynikające z niepełnosprawności',
         choices=[('tak', 'tak'), ('nie', 'nie')], widget=forms.RadioSelect)
+    skad = forms.CharField(label=u'Skąd dowiedziałeś/aś się o warsztatach?')
     zgoda_regulamin = forms.BooleanField(
         label=mark_safe(
             u'Oświadczam, że zapoznałem/am się z <a href="/media/chunks/attachment/REGULAMIN-UCZESTNICTWA-W-PROJEKCIE_aktualizacja.pdf" target="_blank">'
