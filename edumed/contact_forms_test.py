@@ -1123,7 +1123,7 @@ class CollegiumTestForm(ContactForm):
             (01, u'Rzecznik Praw Obywatelskich'),
             (10, u'Minister Cyfryzacji'),
             (21, u'Rzecznik Praw Dziecka'),
-            (31, u'Generalny Inspektor Ochrony Danych Osobowych')])
+            (31, u'Urząd Ochrony Danych Osobowych')])
     pyt15 = quiz_question_multiple(
         label=u'15. W odniesieniu do internetu tak zwane prawo do zapomnienia to:',
         choices=[
@@ -1265,8 +1265,8 @@ class CollegiumTestForm(ContactForm):
         (
             u'Rzecznik Praw Obywatelskich stoi na straży wolności, praw człowieka i obywatela, niezależnie od tego do jakiego obszaru życia odnoszą się wspomniane prawa i wolności. Zatem również jeśli w mediach cyfrowych łamane są zagwarantowane w Konstytucji i innych aktach prawnych prawa i wolności Rzecznik Praw Obywatelskich powinien zareagować.',
             u'Minister Cyfryzacji i podlegające mu ministerstwo wprowadzają zmiany, które za zadanie mają pogłębiać rozwój cyfryzacji w Polsce. Choć wprowadzane przez Ministerstwo rozwiązania powinny być zgodne z Konstytucją i powinny chronić praw obywateli to Minister nie jest organem, przed którym można dociekać swoich praw w mediach cyfrowych.',
-            u'Rzecznik stoi na straży praw dziecka. Ponieważ osoby niepełnoletnie są ogromną grupą użytkowników internetu, również w mediach cyfrowych ich gwarantowane w Konstytucji i innych aktach prawnych prawa powinny być respektowane. O co dba Rzecznik Praw Dziecka.',
-            u'GIODO bardzo szczegółowo określa zasady związane z ochroną danych osobowych w ramach mediów cyfrowych. Dbając w ten sposób o prawa obywateli w określonym zakresie.',
+            u'Rzecznik stoi na straży praw dziecka. Ponieważ osoby niepełnoletnie są ogromną grupą użytkowników internetu, również w mediach cyfrowych ich gwarantowane w Konstytucji i innych aktach prawnych prawa powinny być respektowane, o co dba Rzecznik Praw Dziecka.',
+            u'UODO bardzo szczegółowo określa zasady związane z ochroną danych osobowych w ramach mediów cyfrowych, dbając w ten sposób o prawa obywateli w określonym zakresie.',
         ),
         (
             u'Mówi się, że internet nie zapomina. A jednak w ramach ochrony danych osobowych, w prawodawstwie funkcjonuje pojęcie takie jak Prawo do zapomnienia. Pozwala ono na zażądanie usunięcia imienia i nazwiska konkretnej osoby z wyszukiwarki internetowej. W maju 2016 roku Europejski Trybunał Praw Człowieka zmusił Google do respektowania tego prawa. Jednak nie każdy z wniosków, które wpływają do Google jest rozpatrywany pozytywnie, ponieważ samo Google kieruje się prawem do informacji i wolności słowa. Przez co prawo do zapomnienia, choć jest rozpatrywane, nie zawsze musi zakończyć się po myśli osoby składającej żądanie.',
