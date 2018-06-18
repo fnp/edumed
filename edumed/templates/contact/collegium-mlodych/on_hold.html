@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+    <h1>{{ title }}</h1>
+
+    {% block contact_form_description %}
+        <p class="notice">W związku z dużym zainteresowaniem warsztatami rekrutacja została wstrzymana na czas weryfikacji zgłoszeń uczestników.</p>
+    {% endblock %}
+
+{% endblock %}

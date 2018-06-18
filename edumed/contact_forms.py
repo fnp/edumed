@@ -688,6 +688,8 @@ class SciezkiKopernikaForm(ContactForm):
 class CollegiumMlodychForm(ContactForm):
     form_tag = 'collegium-mlodych'
     form_title = u'Formularz zgłoszeniowy na warsztaty'
+    disabled = True
+    disabled_template = 'contact/collegium-mlodych/on_hold.html'
 
     nazwisko = forms.CharField(label=u'Imię i nazwisko uczestnika/uczestniczki', max_length=128)
     pesel = forms.CharField(label=u'PESEL', max_length=11)
