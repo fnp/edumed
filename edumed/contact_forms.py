@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.forms.formsets import BaseFormSet
+from django.utils.safestring import mark_safe
 
 from contact.forms import ContactForm
 from django.utils.translation import ugettext_lazy as _
@@ -25,6 +26,23 @@ WOJEWODZTWA = (
 )
 
 WOJEWODZTWO_CHOICES = [(u'', u'(wybierz)')] + [(w, w) for w in WOJEWODZTWA]
+
+
+def make_data_processing(middle_text):
+    return mark_safe(u'''\
+Administratorem danych osobowych jest Fundacja Nowoczesna Polska (ul. Marszałkowska 84/92 lok. 125, 00-514 Warszawa). \
+Podanie danych osobowych jest dobrowolne. %s Osobom, których dane są zbierane, przysługuje prawo dostępu do treści \
+swoich danych oraz ich poprawiania. Więcej informacji w <a href="https://nowoczesnapolska.org.pl/prywatnosc/">\
+polityce prywatności</a>.''' % middle_text)
+
+
+class ReminderForm(ContactForm):
+    form_tag = 'nie-przegap-2018'
+    form_title = u'Rejestracja. Nie przegap terminu!'
+    email = forms.EmailField(label=u'Adres e-mail', max_length=128)
+    data_processing = make_data_processing(
+        u'Dane są przetwarzane w zakresie niezbędnym do wysłania powiadomienia odbiorcom.')
+    submit_label = u'Wyślij'
 
 
 class WTEMStudentForm(forms.Form):

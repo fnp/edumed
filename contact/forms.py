@@ -41,6 +41,7 @@ class ContactForm(forms.Form):
 
     required_css_class = 'required'
     contact = NotImplemented
+    data_processing = None
 
     def save(self, request, formsets=None):
         from .models import Attachment, Contact

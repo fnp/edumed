@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 {% load textile_pl from fnp_markup %}
+{% load chunk from chunks %}
 
 {% block title %}{{ flatpage.title }}{% endblock %}
 
 {% block body %}
+<section id="main-promobox">
+  {% chunk "promobox" %}
+</section>
+
 <div id="main-bar" class="flatpage">
 {{ flatpage.content|textile_pl }}
 </div>

@@ -20,11 +20,6 @@ $px: .0625em;
     width: 220*$px - 3 * 20*$px;
     float: left;
 
-    &:first-of-type {
-      padding-top: 0;
-      border-top-right-radius: 0;
-      border-top-left-radius: 0;
-    }
     &:last-of-type {
       margin-bottom: 0;
     }

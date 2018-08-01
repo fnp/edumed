@@ -10,10 +10,6 @@
     margin-bottom: 1em;
     width: 10em;
     float: left; }
-    #main-promobox a:first-of-type {
-      padding-top: 0;
-      border-top-right-radius: 0;
-      border-top-left-radius: 0; }
     #main-promobox a:last-of-type {
       margin-bottom: 0; }
   #main-promobox h1 {
@@ -171,3 +167,5 @@
       margin: 1.1em 0 0 0;
       font-size: .9em;
       line-height: 1.15em; }
+
+/*# sourceMappingURL=main.css.map */
