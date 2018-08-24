@@ -39,7 +39,7 @@ polityce prywatności</a>.''' % middle_text)
 class ReminderForm(ContactForm):
     form_tag = 'nie-przegap-2018'
     form_title = u'Rejestracja. Nie przegap terminu!'
-    email = forms.EmailField(label=u'Adres e-mail', max_length=128)
+    contact = forms.EmailField(label=u'Adres e-mail', max_length=128)
     data_processing = make_data_processing(
         u'Dane są przetwarzane w zakresie niezbędnym do wysłania powiadomienia odbiorcom.')
     submit_label = u'Wyślij'
