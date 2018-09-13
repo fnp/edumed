@@ -6,6 +6,8 @@ from django.utils.safestring import mark_safe
 from contact.forms import ContactForm
 from django.utils.translation import ugettext_lazy as _
 
+from wtem.models import TeacherConfirmation, Confirmation
+
 WOJEWODZTWA = (
     u'dolnośląskie',
     u'kujawsko-pomorskie',
@@ -51,6 +53,12 @@ class WTEMStudentForm(forms.Form):
     email = forms.EmailField(label=u'Adres e-mail', max_length=128)
     form_tag = "student"
 
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if Confirmation.objects.filter(email=email):
+            raise forms.ValidationError(u'Uczeń z tym adresem już został zgłoszony.')
+        return email
+
 
 class NonEmptyBaseFormSet(BaseFormSet):
     """
@@ -63,13 +71,31 @@ class NonEmptyBaseFormSet(BaseFormSet):
         forms.ValidationError(u"Proszę podać dane przynajmniej jednej osoby.")
 
 
+class StudentFormset(forms.formsets.formset_factory(WTEMStudentForm, formset=NonEmptyBaseFormSet)):
+    def clean(self):
+        from django.forms.util import ErrorList
+        super(StudentFormset, self).clean()
+
+        emails = set()
+        for form in self.forms:
+            if not form.is_valid():
+                continue
+            if form.cleaned_data:
+                email = form.cleaned_data['email']
+                if email in emails:
+                    errors = form._errors.setdefault('email', ErrorList())
+                    errors.append(u'Każdy zgłoszony uczeń powinien mieć własny adres email')
+                else:
+                    emails.add(email)
+
+
 class CommissionForm(forms.Form):
     name = forms.CharField(label=u'Imię i nazwisko Członka Komisji', max_length=128)
     form_tag = "commission"
 
 
 class OlimpiadaForm(ContactForm):
-    ends_on = (2017, 11, 17, 0, 5)
+    ends_on = (2018, 11, 17, 0, 5)
     disabled_template = 'wtem/disabled_contact_form.html'
     form_tag = "olimpiada"
     old_form_tags = ["olimpiada-2016"]
@@ -77,13 +103,16 @@ class OlimpiadaForm(ContactForm):
     submit_label = u"Wyślij zgłoszenie"
     admin_list = ['nazwisko', 'school']
     form_formsets = {
-        'student': forms.formsets.formset_factory(WTEMStudentForm, formset=NonEmptyBaseFormSet),
+        'student': StudentFormset,
         'commission': forms.formsets.formset_factory(CommissionForm),
     }
     mailing_field = 'zgoda_newsletter'
 
     contact = forms.EmailField(label=u'Adres e-mail Przewodniczącego/Przewodniczącej', max_length=128)
     przewodniczacy = forms.CharField(label=u'Imię i nazwisko Przewodniczącego/Przewodniczącej', max_length=128)
+    przewodniczacy_phone = forms.CharField(
+        label=u'Numer telefonu Przewodniczącego/Przewodniczącej', max_length=128, required=False,
+        help_text=u'Zadzwonimy tylko w przypadku problemów ze zgłoszeniem.')
     school = forms.CharField(label=u'Nazwa szkoły', max_length=255)
     school_address = forms.CharField(label=u'Adres szkoły', widget=forms.Textarea, max_length=1000)
     school_wojewodztwo = forms.ChoiceField(label=u'Województwo', choices=WOJEWODZTWO_CHOICES)
@@ -137,6 +166,16 @@ class OlimpiadaForm(ContactForm):
                     toret.append(current)
                 current = {}
         return toret
+
+    def get_dictionary(self, contact):
+        dictionary = super(OlimpiadaForm, self).get_dictionary(contact)
+        conf = TeacherConfirmation.objects.filter(contact=contact)
+        if conf:
+            confirmation = conf.get()
+        else:
+            confirmation = TeacherConfirmation.create(contact=contact)
+        dictionary['confirmation'] = confirmation
+        return dictionary
 
     def save(self, request, formsets=None):
         from wtem.models import Confirmation

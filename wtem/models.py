@@ -265,13 +265,32 @@ class Assignment(models.Model):
         return self.user.username + ': ' + ','.join(map(str, self.exercises))
 
 
-class Confirmation(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100, unique=True)
+class AbstractConfirmation(models.Model):
     contact = models.ForeignKey(Contact, null=True)
     key = models.CharField(max_length=30)
     confirmed = models.BooleanField(default=False)
+
+    class Meta:
+        abstract = True
+
+    def readable_contact(self):
+        return '%s <%s>' % (self.contact.body.get('przewodniczacy'), self.contact.contact)
+
+    def school_phone(self):
+        return '%s, tel. %s' % (self.contact.body.get('school'), self.contact.body.get('school_phone'))
+
+    def age(self):
+        return timezone.now() - self.contact.created_at
+
+    def readable_age(self):
+        td = self.age()
+        return '%s dni, %s godzin' % (td.days, td.seconds/3600)
+
+
+class Confirmation(AbstractConfirmation):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100, unique=True)
 
     class Meta:
         ordering = ['contact__contact']
@@ -292,19 +311,6 @@ class Confirmation(models.Model):
     def absolute_url(self):
         return reverse('student_confirmation', args=(self.id, self.key))
 
-    def readable_contact(self):
-        return '%s <%s>' % (self.contact.body.get('przewodniczacy'), self.contact.contact)
-
-    def school_phone(self):
-        return '%s, tel. %s' % (self.contact.body.get('school'), self.contact.body.get('school_phone'))
-
-    def age(self):
-        return timezone.now() - self.contact.created_at
-
-    def readable_age(self):
-        td = self.age()
-        return '%s dni, %s godzin' % (td.days, td.seconds/3600)
-
     def send_mail(self):
         mail_subject = render_to_string('contact/olimpiada/student_mail_subject.html').strip()
         mail_body = render_to_string(
@@ -316,6 +322,24 @@ class Confirmation(models.Model):
         else:
             send_mail(mail_subject, mail_body, 'olimpiada@nowoczesnapolska.org.pl', [self.email],
                       fail_silently=True)
+
+
+class TeacherConfirmation(AbstractConfirmation):
+
+    class Meta:
+        ordering = ['contact__contact']
+
+    @classmethod
+    def create(cls, contact=None, key=None):
+        confirmation = cls(
+            contact=contact,
+            key=key if key else make_key(30),
+        )
+        confirmation.save()
+        return confirmation
+
+    def absolute_url(self):
+        return reverse('teacher_confirmation', args=(self.id, self.key))
 
 
 def exercise_checked_manually(exercise):

@@ -1,0 +1,15 @@
+{% extends 'base_super.html' %}
+
+{% block title %}Potwierdzenie{% endblock %}
+
+{% block body %}
+    <h1>{% include "wtem/title.html" %}</h1>
+    <h2>Potwierdzono zgłoszenie</h2>
+
+    {% if was_confirmed %}
+        <p>Zgłoszenie do Olimpiady Cyfrowej zostało już wcześniej potwierdzone.</p>
+    {% else %}
+        <p>Dziękujemy za potwierdzenie zgłoszenia w Olimpiadzie Cyfrowej!</p>
+    {% endif %}
+
+{% endblock %}

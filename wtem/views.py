@@ -14,7 +14,7 @@ from django.utils.cache import patch_cache_control, add_never_cache_headers
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
-from wtem.models import Confirmation
+from wtem.models import Confirmation, TeacherConfirmation
 from .forms import WTEMForm, WTEMSingleForm
 from .models import Submission, DEBUG_KEY, exercises, CompetitionState
 
@@ -163,3 +163,12 @@ def confirmation(request, id, key):
         conf.confirmed = True
         conf.save()
     return render(request, 'wtem/confirmed.html', {'confirmation': conf, 'was_confirmed': was_confirmed})
+
+
+def teacher_confirmation(request, id, key):
+    conf = get_object_or_404(TeacherConfirmation, id=id, key=key)
+    was_confirmed = conf.confirmed
+    if not was_confirmed:
+        conf.confirmed = True
+        conf.save()
+    return render(request, 'wtem/teacher_confirmed.html', {'confirmation': conf, 'was_confirmed': was_confirmed})

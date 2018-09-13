@@ -43,6 +43,15 @@ class ContactForm(forms.Form):
     contact = NotImplemented
     data_processing = None
 
+    def get_dictionary(self, contact):
+        site = Site.objects.get_current()
+        return {
+            'form_tag': self.form_tag,
+            'site_name': getattr(self, 'site_name', site.name),
+            'site_domain': getattr(self, 'site_domain', site.domain),
+            'contact': contact,
+        }
+
     def save(self, request, formsets=None):
         from .models import Attachment, Contact
         body = {}
@@ -71,12 +80,7 @@ class ContactForm(forms.Form):
                 attachment.save()
 
         site = Site.objects.get_current()
-        dictionary = {
-            'form_tag': self.form_tag,
-            'site_name': getattr(self, 'site_name', site.name),
-            'site_domain': getattr(self, 'site_domain', site.domain),
-            'contact': contact,
-        }
+        dictionary = self.get_dictionary(contact)
         context = RequestContext(request)
         mail_managers_subject = render_to_string([
                 'contact/%s/mail_managers_subject.txt' % self.form_tag,

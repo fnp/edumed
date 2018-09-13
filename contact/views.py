@@ -49,7 +49,7 @@ def form(request, form_tag, force_enabled=False):
 
     return render(
         request, ['contact/%s/form.html' % form_tag, 'contact/form.html'],
-        {'form': form, 'formsets': formsets}
+        {'form': form, 'formsets': formsets, 'formset_errors': any(formset.errors for formset in formsets.values())}
     )
 
 

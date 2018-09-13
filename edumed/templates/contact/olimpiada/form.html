@@ -20,6 +20,9 @@
     </div>
 
     <form method="POST" action="." enctype="multipart/form-data" class="submit-form">
+    {% if form.errors or formset_errors %}
+        <div class="errorlist">Przy wysyłaniu formularza wystąpił problem. Prosimy o poprawienie błędów poniżej.</div>
+    {% endif %}
     {% csrf_token %}
     {% render_honeypot_field %}
     <h3>Dane Przewodniczącego Komisji Szkolnej i szkoły zgłaszającej Uczestników:</h3>
