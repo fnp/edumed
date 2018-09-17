@@ -6,12 +6,13 @@ Prosimy o kliknięcie poniższego linku aby potwierdzić, że wiadomość dotar�
 https://olimpiadacyfrowa.pl{{ confirmation.absolute_url }}
 
 Każdy zgłoszony uczeń powinien otrzymać wiadomość z potwierdzeniem
-rejestracji. Prosimy upewnić się, czy potwierdzenie dotarło do każdego
-ze zgłoszonych uczniów. W ten sposób zweryfikujemy, czy podane adresy
-są prawidłowe.
+rejestracji i linkiem ją aktywującym. Prosimy upewnić się, czy
+potwierdzenie dotarło do każdego ze zgłoszonych uczniów i każdy
+kliknął w link potwierdzając swoje zgłoszenie. W ten sposób zweryfikujemy,
+czy podane adresy są prawidłowe.
 
 Pierwszy etap Olimpiady (test on-line) odbędzie się
-23 listopada 2017 r. godz. 10:00 i potrwa 60 minut.
+20 listopada 2018 r. godz. 10:00 i potrwa 60 minut.
 
 Wszystkie ogłoszenia związane z Olimpiadą będą publikowane na stronie https://olimpiadacyfrowa.pl.
 W razie pytań lub wątpliwości można kontaktować się z nami, pisząc na adres: olimpiada@nowoczesnapolska.org.pl.
