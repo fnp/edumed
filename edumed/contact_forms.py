@@ -111,7 +111,7 @@ class OlimpiadaForm(ContactForm):
     contact = forms.EmailField(label=u'Adres e-mail Przewodniczącego/Przewodniczącej', max_length=128)
     przewodniczacy = forms.CharField(label=u'Imię i nazwisko Przewodniczącego/Przewodniczącej', max_length=128)
     przewodniczacy_phone = forms.CharField(
-        label=u'Numer telefonu Przewodniczącego/Przewodniczącej', max_length=128, required=False,
+        label=u'Numer telefonu Przewodniczącego/Przewodniczącej', max_length=128,
         help_text=u'Zadzwonimy tylko w przypadku problemów ze zgłoszeniem.')
     school = forms.CharField(label=u'Nazwa szkoły', max_length=255)
     school_address = forms.CharField(label=u'Adres szkoły', widget=forms.Textarea, max_length=1000)
