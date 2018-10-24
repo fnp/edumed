@@ -60,6 +60,11 @@ class WTEMStudentForm(forms.Form):
         return email
 
 
+class WTEMStudentUpdateForm(WTEMStudentForm):
+    def clean_email(self):
+        return self.cleaned_data['email']
+
+
 class NonEmptyBaseFormSet(BaseFormSet):
     """
     Won't allow formset_factory to be submitted with no forms
@@ -71,10 +76,9 @@ class NonEmptyBaseFormSet(BaseFormSet):
         forms.ValidationError(u"Proszę podać dane przynajmniej jednej osoby.")
 
 
-class StudentFormset(forms.formsets.formset_factory(WTEMStudentForm, formset=NonEmptyBaseFormSet)):
-    def clean(self):
+class StudentBaseFormSet(NonEmptyBaseFormSet):
+    def check_unique_emails(self):
         from django.forms.util import ErrorList
-        super(StudentFormset, self).clean()
 
         emails = set()
         for form in self.forms:
@@ -82,11 +86,32 @@ class StudentFormset(forms.formsets.formset_factory(WTEMStudentForm, formset=Non
                 continue
             if form.cleaned_data:
                 email = form.cleaned_data['email']
+                instance = getattr(self, 'instance', None)
                 if email in emails:
                     errors = form._errors.setdefault('email', ErrorList())
                     errors.append(u'Każdy zgłoszony uczeń powinien mieć własny adres email')
+                elif instance and Confirmation.objects.exclude(contact=instance).filter(email=email).exists():
+                    errors = form._errors.setdefault('email', ErrorList())
+                    errors.append(u'Uczeń z tym adresem już został zgłoszony w innym formularzu.')
                 else:
                     emails.add(email)
+
+    def clean(self):
+        super(StudentBaseFormSet, self).clean()
+        self.check_unique_emails()
+
+
+class StudentUpdateFormSet(StudentBaseFormSet):
+    takes_instance = True
+
+    def __init__(self, *args, **kwargs):
+        instance = kwargs.pop('instance', None)
+        super(StudentUpdateFormSet, self).__init__(*args, **kwargs)
+        self.instance = instance
+
+    def clean(self):
+        super(StudentUpdateFormSet, self).clean()
+        self.check_unique_emails()
 
 
 class CommissionForm(forms.Form):
@@ -95,18 +120,19 @@ class CommissionForm(forms.Form):
 
 
 class OlimpiadaForm(ContactForm):
-    ends_on = (2018, 11, 14, 0, 5)
+    ends_on = (2018, 11, 1, 0, 5)
     disabled_template = 'wtem/disabled_contact_form.html'
     form_tag = "olimpiada"
-    old_form_tags = ["olimpiada-2016"]
+    old_form_tags = ["olimpiada-2016", "olimpiada-2017"]
     form_title = u"Olimpiada Cyfrowa - Elektroniczny System Zgłoszeń"
     submit_label = u"Wyślij zgłoszenie"
     admin_list = ['nazwisko', 'school']
     form_formsets = {
-        'student': StudentFormset,
+        'student': forms.formsets.formset_factory(WTEMStudentForm, formset=StudentBaseFormSet),
         'commission': forms.formsets.formset_factory(CommissionForm),
     }
     mailing_field = 'zgoda_newsletter'
+    confirmation_class = TeacherConfirmation
 
     contact = forms.EmailField(label=u'Adres e-mail Przewodniczącego/Przewodniczącej', max_length=128)
     przewodniczacy = forms.CharField(label=u'Imię i nazwisko Przewodniczącego/Przewodniczącej', max_length=128)
@@ -187,7 +213,7 @@ class OlimpiadaForm(ContactForm):
                     email = f.cleaned_data.get('email', None)
                     if email:
                         try:
-                            Confirmation.objects.get(email=email)
+                            confirmation = Confirmation.objects.get(email=email)
                         except Confirmation.DoesNotExist:
                             first_name = f.cleaned_data.get('first_name', None)
                             last_name = f.cleaned_data.get('last_name', None)
@@ -195,4 +221,16 @@ class OlimpiadaForm(ContactForm):
                                 confirmation = Confirmation.create(
                                     first_name=first_name, last_name=last_name, email=email, contact=contact)
                                 confirmation.send_mail()
+                        else:
+                            confirmation.first_name = f.cleaned_data.get('first_name', None)
+                            confirmation.last_name = f.cleaned_data.get('last_name', None)
+                            confirmation.save()
         return contact
+
+
+class OlimpiadaUpdateForm(OlimpiadaForm):
+    form_type = 'update'
+    form_formsets = {
+        'student': forms.formsets.formset_factory(WTEMStudentUpdateForm, formset=StudentUpdateFormSet),
+        'commission': forms.formsets.formset_factory(CommissionForm),
+    }

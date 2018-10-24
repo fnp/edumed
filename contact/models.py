@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.utils.encoding import smart_unicode
+from django.db.models import permalink
 from django.utils.translation import ugettext_lazy as _
 from jsonfield import JSONField
 from . import app_settings
@@ -30,6 +30,13 @@ class Contact(models.Model):
 
     def __unicode__(self):
         return unicode(self.created_at)
+
+    @permalink
+    def update_url(self):
+        from contact.forms import update_forms, contact_forms
+        form_class = update_forms.get(self.form_tag, contact_forms.get(self.form_tag))
+        confirmation = form_class.confirmation_class.objects.get(contact=self)
+        return 'edit_form', [], {'form_tag': self.form_tag, 'contact_id': self.id, 'key': confirmation.key}
 
 
 class Attachment(models.Model):

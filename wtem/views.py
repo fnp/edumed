@@ -171,4 +171,11 @@ def teacher_confirmation(request, id, key):
     if not was_confirmed:
         conf.confirmed = True
         conf.save()
-    return render(request, 'wtem/teacher_confirmed.html', {'confirmation': conf, 'was_confirmed': was_confirmed})
+    from contact.forms import contact_forms
+    form_class = contact_forms['olimpiada']
+    if not form_class.is_disabled():
+        pass
+    return render(request, 'wtem/teacher_confirmed.html', {
+        'confirmation': conf,
+        'was_confirmed': was_confirmed,
+    })
