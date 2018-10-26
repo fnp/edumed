@@ -120,7 +120,7 @@ class CommissionForm(forms.Form):
 
 
 class OlimpiadaForm(ContactForm):
-    ends_on = (2018, 11, 1, 0, 5)
+    ends_on = (2018, 11, 10, 0, 5)
     disabled_template = 'wtem/disabled_contact_form.html'
     form_tag = "olimpiada"
     old_form_tags = ["olimpiada-2016", "olimpiada-2017"]
