@@ -9,6 +9,9 @@ from wtem.management.commands import send_mail
 from wtem.models import Confirmation
 
 
+THRESHOLD = 3
+
+
 class Command(BaseCommand):
     def handle(self, *args, **options):
         sent = 0
@@ -19,16 +22,20 @@ class Command(BaseCommand):
         message_template = 'wtem/' + template_name + '.txt'
         subject = render_to_string('wtem/' + template_name + '_subject.txt')
 
-        threshold = timezone.now() - timedelta(4)
+        threshold = timezone.now() - timedelta(THRESHOLD)
 
         for contact in query:
             unconfirmed = []
-            for similar_contact in Contact.objects.filter(contact=contact.contact):
-                unconfirmed += list(Confirmation.objects.filter(
-                    contact=similar_contact, confirmed=False))  # contact__created_at__lt=threshold))
+            contacts = []
+            for similar_contact in Contact.objects.filter(contact=contact.contact, form_tag=contact.form_tag):
+                new_unconfirmed = list(Confirmation.objects.filter(
+                    contact=similar_contact, confirmed=False, contact__created_at__lt=threshold))
+                unconfirmed += new_unconfirmed
+                if new_unconfirmed:
+                    contacts.append(similar_contact)
             if not unconfirmed:
                 continue
-            message = render_to_string(message_template, {'unconfirmed': unconfirmed})
+            message = render_to_string(message_template, {'unconfirmed': unconfirmed, 'contacts': contacts})
             try:
                 self.send_message(message, subject, contact.contact)
             except Exception as e:

@@ -1,13 +1,23 @@
 Dzień dobry,
 Dziękujemy za zarejestrowanie uczniów do udziału w Olimpiadzie Cyfrowej.
-
-Sprawdziliśmy, że nie mamy potwierdzenia rejestracji od kilku Pani/Pana uczniów (tzn. nie kliknęli w link, który otrzymali na maila):
+Sprawdziliśmy, że nie mamy potwierdzenia rejestracji od kilku Pani/Pana uczniów (tzn. nie kliknęli oni w link, który otrzymali na maila). Problem dotyczy następujących osób:
 {% for confirmation in unconfirmed %}
 {{ confirmation.first_name }} {{ confirmation.last_name}} – {{ confirmation.email }}{% endfor %}
 
-Może to oznaczać, że podczas rejestracji zostały podane nieprawidłowe adresy, albo że mail od nas wpadł uczniom do spamu. Prosimy o sprawdzenie tego i przypomnienie uczniom o konieczności kliknięcia w link z maila.
+Może to oznaczać, że podczas rejestracji zostały podane nieprawidłowe adresy e-mail, albo
+że mail od nas wpadł uczniom do spamu. Prosimy o sprawdzenie tego i przypomnienie
+uczniom o konieczności kliknięcia w link z maila.
+W razie, gdyby okazało się, że przy rejestracji podany został nieprawidłowy adres e-mail
+ucznia, mogą Państwo samodzielnie go poprawić edytując zgłoszenie.
+Aby to wykonać, należy kliknąć w poniższe linki (każdy link odpowiada jednemu zgłoszeniu):
+{% for contact in contacts %}{% if contact.update_url %}
+https://olimpiadacyfrowa.pl{{ contact.update_url }}{% endif %}{% endfor %}
+
+Formularz edycji wygląda tak samo jak samo jak zgłoszeniowy.
+Ponieważ rejestracja do Olimpiady Cyfrowej została przedłużona do 9 listopada, edycja
+Państwa zgłoszeń będzie możliwa do tego dnia – do godz. 23.59.
+Prosimy o zadbanie o to, by wszyscy uczniowie potwierdzili zgłoszenia.
 
 Pozdrawiamy,
-
 zespół Olimpiady Cyfrowej
 fundacja Nowoczesna Polska
