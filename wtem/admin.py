@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 
-from wtem.models import Confirmation, CompetitionState
+from wtem.models import Confirmation, CompetitionState, TeacherConfirmation
 from .middleware import get_current_request
 from .models import Submission, Assignment, Attachment, exercises
 
@@ -253,7 +253,17 @@ class ConfirmationAdmin(admin.ModelAdmin):
 
     actions = [resend_mail]
 
+
+class TeacherConfirmationAdmin(admin.ModelAdmin):
+    list_display = ('readable_contact', 'school_phone', 'readable_age', 'confirmed')
+    readonly_fields = ('contact', 'readable_contact', 'readable_age', 'school_phone', 'key', 'confirmed')
+    list_filter = ('confirmed',)
+    list_select_related = ('contact',)
+    search_fields = ('contact__contact',)
+
+
 admin.site.register(Submission, SubmissionAdmin)
 admin.site.register(Assignment)
 admin.site.register(Confirmation, ConfirmationAdmin)
+admin.site.register(TeacherConfirmation, TeacherConfirmationAdmin)
 admin.site.register(CompetitionState)
