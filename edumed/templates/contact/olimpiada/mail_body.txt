@@ -5,6 +5,8 @@ Do udziału w Olimpiadzie zostały zgłoszone następujące osoby:
 Prosimy o kliknięcie poniższego linku aby potwierdzić, że wiadomość dotarła:
 https://olimpiadacyfrowa.pl{{ confirmation.absolute_url }}
 
+Pod tym linkiem można także edytować zgłoszenie, poprawiając dane w przypadku zajścia pomyłki lub dopisując kolejnych uczestników. Edycja formularza zgłoszeń będzie aktywna do dnia 9 listopada do godz. 23.59.
+
 Każdy zgłoszony uczeń powinien otrzymać wiadomość z potwierdzeniem
 rejestracji i linkiem ją aktywującym. Prosimy upewnić się, czy
 potwierdzenie dotarło do każdego ze zgłoszonych uczniów i każdy
