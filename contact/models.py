@@ -31,12 +31,46 @@ class Contact(models.Model):
     def __unicode__(self):
         return unicode(self.created_at)
 
+    def get_form_class(self):
+        from contact.forms import contact_forms
+        return contact_forms.get(self.form_tag)
+
+    def get_update_form_class(self):
+        from contact.forms import update_forms
+        return update_forms.get(self.form_tag, self.get_form_class())
+
     @permalink
     def update_url(self):
-        from contact.forms import update_forms, contact_forms
-        form_class = update_forms.get(self.form_tag, contact_forms.get(self.form_tag))
+        form_class = self.get_update_form_class()
         confirmation = form_class.confirmation_class.objects.get(contact=self)
         return 'edit_form', [], {'form_tag': self.form_tag, 'contact_id': self.id, 'key': confirmation.key}
+
+    def send_confirmation(self, context=None, form=None):
+        from django.template.loader import render_to_string
+        from django.core.mail import send_mail
+        from django.contrib.sites.models import Site
+        if not form:
+            form_class = self.get_form_class()
+            form = form_class()
+        dictionary = form.get_dictionary(self)
+        mail_subject = render_to_string([
+            'contact/%s/mail_subject.txt' % self.form_tag,
+            'contact/mail_subject.txt',
+        ], dictionary, context).strip()
+        if form.result_page:
+            mail_body = render_to_string(
+                'contact/%s/results_email.txt' % self.form_tag,
+                {
+                    'contact': self,
+                    'results': form.results(self),
+                }, context)
+        else:
+            mail_body = render_to_string([
+                'contact/%s/mail_body.txt' % self.form_tag,
+                'contact/mail_body.txt',
+            ], dictionary, context)
+        site = Site.objects.get_current()
+        send_mail(mail_subject, mail_body, 'no-reply@%s' % site.domain, [self.contact], fail_silently=True)
 
 
 class Attachment(models.Model):

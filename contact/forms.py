@@ -4,7 +4,7 @@ from datetime import datetime
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import UploadedFile
-from django.core.mail import send_mail, mail_managers
+from django.core.mail import mail_managers
 from django.core.validators import validate_email
 from django import forms
 from django.template.loader import render_to_string
@@ -141,7 +141,6 @@ class ContactForm(forms.Form):
                 attachment.file.save(value.name, value)
                 attachment.save()
 
-        site = Site.objects.get_current()
         dictionary = self.get_dictionary(contact)
         context = RequestContext(request)
         mail_managers_subject = render_to_string([
@@ -160,23 +159,7 @@ class ContactForm(forms.Form):
             pass
         else:
             if not self.instance:
-                mail_subject = render_to_string([
-                        'contact/%s/mail_subject.txt' % self.form_tag,
-                        'contact/mail_subject.txt',
-                    ], dictionary, context).strip()
-                if self.result_page:
-                    mail_body = render_to_string(
-                        'contact/%s/results_email.txt' % contact.form_tag,
-                        {
-                            'contact': contact,
-                            'results': self.results(contact),
-                        }, context)
-                else:
-                    mail_body = render_to_string([
-                            'contact/%s/mail_body.txt' % self.form_tag,
-                            'contact/mail_body.txt',
-                        ], dictionary, context)
-                send_mail(mail_subject, mail_body, 'no-reply@%s' % site.domain, [contact.contact], fail_silently=True)
+                contact.send_confirmation(context=context, form=self)
             if email_changed and self.mailing_field and self.cleaned_data[self.mailing_field]:
                 mailing.subscribe(contact.contact)
 
