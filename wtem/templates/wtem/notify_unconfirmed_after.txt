@@ -1,0 +1,13 @@
+Dzień dobry,
+Dziękujemy za zarejestrowanie uczniów do udziału w Olimpiadzie Cyfrowej.
+
+Sprawdziliśmy, że nie mamy potwierdzenia rejestracji od kilku Pani/Pana uczniów (tzn. nie kliknęli w link, który otrzymali na maila):
+{% for confirmation in unconfirmed %}
+{{ confirmation.first_name }} {{ confirmation.last_name}} – {{ confirmation.email }}{% endfor %}
+
+Może to oznaczać, że podczas rejestracji zostały podane nieprawidłowe adresy, albo że mail od nas wpadł uczniom do spamu. Prosimy o sprawdzenie tego i przypomnienie uczniom o konieczności kliknięcia w link z maila. W przypadku podania nieprawidłowego adresu prosimy o przysłanie nam poprawnego na adres olimpiada@nowoczesnapolska.org.pl.
+
+Pozdrawiamy,
+
+zespół Olimpiady Cyfrowej
+fundacja Nowoczesna Polska

@@ -9,7 +9,9 @@ from wtem.management.commands import send_mail
 from wtem.models import Confirmation
 
 
-THRESHOLD = 3
+THRESHOLD = 0
+
+AFTER_DEADLINE = True
 
 
 class Command(BaseCommand):
@@ -19,7 +21,7 @@ class Command(BaseCommand):
 
         query = Contact.objects.filter(form_tag='olimpiada').order_by('contact').distinct('contact')
         template_name = 'notify_unconfirmed'
-        message_template = 'wtem/' + template_name + '.txt'
+        message_template = 'wtem/' + template_name + ('_after' if AFTER_DEADLINE else '') + '.txt'
         subject = render_to_string('wtem/' + template_name + '_subject.txt')
 
         threshold = timezone.now() - timedelta(THRESHOLD)
@@ -28,8 +30,10 @@ class Command(BaseCommand):
             unconfirmed = []
             contacts = []
             for similar_contact in Contact.objects.filter(contact=contact.contact, form_tag=contact.form_tag):
+                contact_emails = [s['email'] for s in similar_contact.body.get('student', [])]
                 new_unconfirmed = list(Confirmation.objects.filter(
-                    contact=similar_contact, confirmed=False, contact__created_at__lt=threshold))
+                    contact=similar_contact, confirmed=False, contact__created_at__lt=threshold,
+                    email__in=contact_emails))
                 unconfirmed += new_unconfirmed
                 if new_unconfirmed:
                     contacts.append(similar_contact)
