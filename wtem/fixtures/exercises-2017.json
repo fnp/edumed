@@ -1,0 +1,769 @@
+[
+{
+    "id": 1,
+    "type": "edumed_wybor",
+    "description": ["Tagowanie, czyli kategoryzowanie treści cyfrowych, określamy również jako:"],
+    "options": [
+        {"id": 1, "text": "społeczne indeksowanie,"},
+        {"id": 2, "text": "gromadzenie indeksowe,"},
+        {"id": 3, "text": "społeczne klasyfikowanie,"},
+        {"id": 4, "text": "społeczne komunikowanie,"},
+        {"id": 5, "text": "folksonomie,"},
+        {"id": 6, "text": "żadne z powyższych."}
+    ],
+    "answer": [1, 3, 5],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 2,
+    "type": "edumed_wybor",
+    "description": ["Google Scholar…"],
+    "options": [
+        {"id": 1, "text": "…to specjalistyczna wyszukiwarka Google dedykowana materiałom naukowym,"},
+        {"id": 2, "text": "…to narzędzie pozwalające na ustalenie, kto cytował daną publikację,"},
+        {"id": 3, "text": "…to biblioteka cyfrowa oferująca jedynie pełne teksty publikacji,"},
+        {"id": 4, "text": "pozwala na znajdowanie informacji patentowych."}
+    ],
+    "answer": [1, 2, 4],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 3,
+    "type": "edumed_wybor",
+    "description": ["W Otwartym Dostępie (ang. <em>Open Access</em>) znajdziesz:"],
+    "options": [
+        {"id": 1, "text": "publikacje, do których przez pierwszy miesiąc masz dostęp, potem musisz wykupić subskrypcje,"},
+        {"id": 2, "text": "publikacje, które możesz czytać, kopiować, drukować,"},
+        {"id": 3, "text": "publikacje, których autorzy zrzekli się swoich praw autorskich,"},
+        {"id": 4, "text": "publikacje, do których masz wolny dostęp tylko jeśli uczysz się lub studiujesz,"},
+        {"id": 5, "text": "żadne z powyższych."}
+    ],
+    "answer": [2],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 4,
+    "type": "edumed_wybor",
+    "description": ["Chcesz wyszukać w wyszukiwarce internetowej <a href=\"https://google.com\">Google.com</a> informacje na temat wizyty prezydenta Trumpa w Warszawie w 2017 r. Która z poniższych instrukcji wyszukiwania NIE jest prawidłowa?"],
+    "options": [
+        {"id": 1, "text": "Trump OR prezydent USA AND (Warszawa OR 2017)"},
+        {"id": 2, "text": "(Trump  OR Donald) AND Warszawa AND 2017"},
+        {"id": 3, "text": "„Donald Trump” AND Warszawa AND 2017"},
+        {"id": 4, "text": "Trump AND Warszawa AND 2017"},
+        {"id": 5, "text": "Trump AND Warszawa OR 2017"}
+    ],
+    "answer": [1, 2, 5],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 5,
+    "type": "edumed_wybor",
+    "description": ["Publikacja komentarzy pod artykułem w internecie i wysyłanie wiadomości mających na celu wywołanie jedynie bezcelowej dyskusji, to:"],
+    "options": [
+        {"id": 1, "text": "trollowanie,"},
+        {"id": 2, "text": "hotlinkowanie,"},
+        {"id": 3, "text": "phishing,"},
+        {"id": 4, "text": "cyberbullying."}
+    ],
+    "answer": [1],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 6,
+    "type": "edumed_wybor",
+    "description": ["Twój starszy kuzyn wraz z kolegami założyli zespół rockowy. Ich piosenki opublikowane w sieci stały się dość popularne. Kuzyn w rozmowie z Tobą mówi, że w przyszłym roku zespół chce wydać pierwszą płytę, pozyskując środki finansowe na zasadzie finansowania społecznościowego. Jak nazywamy tego typu internetowe pozyskiwanie środków na realizację projektu od dużej liczby osób wpłacających małe kwoty?"],
+    "options": [
+        {"id": 1, "text": "crowdsourcing,"},
+        {"id": 2, "text": "crowdfunding,"},
+        {"id": 3, "text": "outsourcing,"},
+        {"id": 4, "text": "żadne z powyższych."}
+    ],
+    "answer": [2],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 7,
+    "type": "edumed_wybor",
+    "description": ["Do mediów społecznościowych zaliczamy:"],
+    "options": [
+        {"id": 1, "text": "blogi,"},
+        {"id": 2, "text": "portale społecznościowe,"},
+        {"id": 3, "text": "fora,"},
+        {"id": 4, "text": "czaty,"},
+        {"id": 5, "text": "społecznościowe gry sieciowe,"},
+        {"id": 6, "text": "serwisy crowdfundingowe."}
+    ],
+    "answer": [1, 2, 3, 4, 5, 6],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 8,
+    "type": "edumed_wybor",
+    "description": ["Wskaż cechy opowieści transmedialnej:"],
+    "options": [
+        {"id": 1, "text": "jest wielowątkowa,"},
+        {"id": 2, "text": "dzieje się na jednej platformie medialnej,"},
+        {"id": 3, "text": "cechuje ją zjawisko przenikania wielu mediów,"},
+        {"id": 4, "text": "jest intertekstualna,"},
+        {"id": 5, "text": "nie istnieje."}
+    ],
+    "answer": [1, 3, 4],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 9,
+    "type": "edumed_wybor",
+    "description": ["Wpływ na kompozycję kadru filmowego ma:"],
+    "options": [
+        {"id": 1, "text": "praca aktora,"},
+        {"id": 2, "text": "oświetlenie,"},
+        {"id": 3, "text": "montaż,"},
+        {"id": 4, "text": "kadrowanie,"},
+        {"id": 5, "text": "ostrość,"},
+        {"id": 6, "text": "scenopis."}
+    ],
+    "answer": [2, 4, 5],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 10,
+    "type": "edumed_wybor",
+    "description": ["Product placement:"],
+    "options": [
+        {"id": 1, "text": "jest narzędziem marketingowym,"},
+        {"id": 2, "text": "odwołuje się do świadomości i podświadomości widza,"},
+        {"id": 3, "text": "jest przekazem, który w Polsce i w całej Unii musi być odpowiednio oznaczony,"},
+        {"id": 4, "text": "jest przekazem, który w Polsce nie musi być oznaczony,"},
+        {"id": 5, "text": "jest przekazem, który poza Unią musi być oznaczony,"},
+        {"id": 6, "text": "nie jest żadnym przekazem."}
+    ],
+    "answer": [1, 2, 3],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 11,
+    "type": "edumed_wybor",
+    "description": ["Termin leksja ma związek z:"],
+    "options": [
+        {"id": 1, "text": "hipertekstem,"},
+        {"id": 2, "text": "ze środkami masowego przekazu,"},
+        {"id": 3, "text": "z gatunkiem infotainment,"},
+        {"id": 4, "text": "z istotą edukacji przez zabawę (edutainment),"},
+        {"id": 5, "text": "z interfejsem graficznym,"},
+        {"id": 6, "text": "z żadnym z powyższych."}
+    ],
+    "answer": [1],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 12,
+    "type": "edumed_wybor",
+    "description": ["Częsta manipulacja stosowana w wykresach i infografikach, która sugeruje znacznie większe różnice w danych niż w rzeczywistości polega na:"],
+    "options": [
+        {"id": 1, "text": "zastosowaniu skali nie od zera,"},
+        {"id": 2, "text": "zastosowaniu wykresu skumulowanego,"},
+        {"id": 3, "text": "unikaniu stosowania perspektywy 3D w wykresie,"},
+        {"id": 4, "text": "zastosowaniu skali od zera."}
+    ],
+    "answer": [1],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 13,
+    "type": "edumed_wybor",
+    "description": ["Tytuł artykułu prasowego brzmiący „Lewandowscy znowu to zrobili” lub „Nie uwierzysz, co znana piosenkarka miała pod sukienką…” to przykłady tzw.:"],
+    "options": [
+        {"id": 1, "text": "ghostingu,"},
+        {"id": 2, "text": "clickbaitu,"},
+        {"id": 3, "text": "fake news,"},
+        {"id": 4, "text": "storytellingu."}
+    ],
+    "answer": [2],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 14,
+    "type": "edumed_wybor",
+    "description": ["Osoba śledząca forum internetowe, ale nie biorąca udziału w dyskusjach to:"],
+    "options": [
+        {"id": 1, "text": "sub,"},
+        {"id": 2, "text": "troll,"},
+        {"id": 3, "text": "lurker,"},
+        {"id": 4, "text": "stalker."}
+    ],
+    "answer": [3],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 15,
+    "type": "edumed_wybor",
+    "description": ["TLS ma związek z:"],
+    "options": [
+        {"id": 1, "text": "szyfrowaniem asymetrycznym,"},
+        {"id": 2, "text": "szyfrowaniem symetrycznym,"},
+        {"id": 3, "text": "SSL Record,"},
+        {"id": 4, "text": "poufnością transmisji danych,"},
+        {"id": 5, "text": "uwierzytelnieniem serwera,"},
+        {"id": 6, "text": "żadnym z powyższych."}
+    ],
+    "answer": [1, 4, 5],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 16,
+    "type": "edumed_wybor",
+    "description": ["Aplikacja Facebook zainstalowana na smartfonie domyślnie ma dostęp do:"],
+    "options": [
+        {"id": 1, "text": "odczytywania wiadomości tekstowych (SMS-ów, MMS-ów),"},
+        {"id": 2, "text": "odczytywania rejestru połączeń,"},
+        {"id": 3, "text": "pobierania plików bez powiadomienia,"},
+        {"id": 4, "text": "zmieniania ustawień dźwięków,"},
+        {"id": 5, "text": "renderowania na innych aplikacjach,"},
+        {"id": 6, "text": "żadne z powyższych."}
+    ],
+    "answer": [1, 2, 3, 4, 5],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 17,
+    "type": "edumed_wybor",
+    "description": ["Skuteczna anonimizacja danych na zdjęciu to:"],
+    "options": [
+        {"id": 1, "text": "rozpikselowanie,"},
+        {"id": 2, "text": "użycie filtru Gaussa,"},
+        {"id": 3, "text": "zasłonięcie ich blokiem jednolitego koloru w bitmapie,"},
+        {"id": 4, "text": "zasłonięcie ich i zapis w pliku wektorowym."}
+    ],
+    "answer": [3],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 18,
+    "type": "edumed_wybor",
+    "description": ["W jaki sposób aplikacje fotograficzne mogą ujawnić Twoją lokalizację?"],
+    "options": [
+        {"id": 1, "text": "przez dostęp do danych z żyroskopu i akcelerometru,"},
+        {"id": 2, "text": "przez dostęp do danych kontaktowych,"},
+        {"id": 3, "text": "przez dostęp do lokalizacji na bazie GPS,"},
+        {"id": 4, "text": "przez dostęp do lokalizacji na bazie WiFi i 3G/LTE,"},
+        {"id": 5, "text": "przez zapisanie danych w pliku EXIF zdjęcia."}
+    ],
+    "answer": [3, 4, 5],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 19,
+    "type": "edumed_wybor",
+    "description": ["Grupa zainfekowanych złośliwym oprogramowaniem komputerów, która służy m.in. do dalszego rozsyłania złośliwego oprogramowania lub prowadzenia ataków na strony, to:"],
+    "options": [
+        {"id": 1, "text": "DDOS,"},
+        {"id": 2, "text": "ransomware,"},
+        {"id": 3, "text": "Bitlocker,"},
+        {"id": 4, "text": "botnet."}
+    ],
+    "answer": [4],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 20,
+    "type": "edumed_wybor",
+    "description": ["Według najnowszych przepisów dot. ochrony danych osobowych w Unii Europejskiej, zgoda na przetwarzanie danych osobowych musi być:"],
+    "options": [
+        {"id": 1, "text": "podpisana cyfrowo,"},
+        {"id": 2, "text": "dobrowolna,"},
+        {"id": 3, "text": "jednoznaczna,"},
+        {"id": 4, "text": "na konkretny cel,"},
+        {"id": 5, "text": "wyraźnie wyodrębniona,"},
+        {"id": 6, "text": "dosłowna."}
+    ],
+    "answer": [2, 3, 4, 5],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 21,
+    "type": "edumed_wybor",
+    "description": ["Jedna z metod śledzenia aktywności użytkowników w sieci (np. otwieranie reklam zamieszczanych w newsletterze), która działa w oparciu o pobieranie miniaturowego obrazka, to:"],
+    "options": [
+        {"id": 1, "text": "cookies (ciasteczka),"},
+        {"id": 2, "text": "pixel tracking (śledzący piksel),"},
+        {"id": 3, "text": "Do Not Track,"},
+        {"id": 4, "text": "browser fingerprinting (odcisk palca przeglądarki)."}
+    ],
+    "answer": [2],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 22,
+    "type": "edumed_wybor",
+    "description": ["Wolnością słowa nazywamy prawo do publicznego wyrażania swojego zdania, poglądów, opinii. Które z poniższych zdań są prawdziwe?"],
+    "options": [
+        {"id": 1, "text": "W Polsce wolność słowa nie jest w żaden sposób ograniczona."},
+        {"id": 2, "text": "W Polsce wolność słowa ograniczona jest w wielu przypadkach, takich jak m.in. publikacja rysunków przedstawiających seks z osobami nieletnimi czy publiczne zaprzeczanie, że w Katyniu doszło do zbrodni na polskich oficerach."},
+        {"id": 3, "text": "Większość krajów na świecie nie ogranicza wolności słowa w żaden sposób."},
+        {"id": 4, "text": "Większość krajów na świecie w różnym stopniu ogranicza wolność słowa."},
+        {"id": 5, "text": "Istnieją takie treści, które są niedozwolone w każdym kraju na świecie."},
+        {"id": 6, "text": "Nie ma treści nielegalnych na całym świecie, zawsze w jakimś kraju dozwolona będzie ich publikacja."}
+    ],
+    "answer": [2, 4, 6],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 23,
+    "type": "edumed_wybor",
+    "description": ["„Każdy ma trzy życia: publiczne, prywatne i sekretne” – powiedział Gabriel Garcia Márquez. Zaznacz te formy aktywności, które z całą pewnością należą do sfery publicznej:"],
+    "options": [
+        {"id": 1, "text": "rozmowa z dziennikarzem w telewizji publicznej,"},
+        {"id": 2, "text": "rozmowa z dziennikarzem w telewizji prywatnej,"},
+        {"id": 3, "text": "rozmowa z lekarzem w przychodni,"},
+        {"id": 4, "text": "rozmowa z przyjaciółmi w domu,"},
+        {"id": 5, "text": "rozmowa z przyjaciółmi w klubie,"},
+        {"id": 6, "text": "rozmowa z wyborcami na spotkaniu wyborczym."}
+    ],
+    "answer": [1, 2, 6],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 24,
+    "type": "edumed_wybor",
+    "description": ["Nie zawsze precyzyjnie rozróżniamy, co jest prywatne od tego, co jest publiczne. Zaznacz te formy komunikacji, które nie zapewniają prywatności naszych rozmów:"],
+    "options": [
+        {"id": 1, "text": "rozmowa przez telefon komórkowy,"},
+        {"id": 2, "text": "komentarz do wpisu w serwisie społecznościowym,"},
+        {"id": 3, "text": "wiadomość wysłana do konkretnego użytkownika poprzez serwis społecznościowy,"},
+        {"id": 4, "text": "nieszyfrowany email,"},
+        {"id": 5, "text": "szyfrowany email,"},
+        {"id": 6, "text": "rozmowa „twarzą w twarz”."}
+    ],
+    "answer": [1, 2, 3, 4],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 25,
+    "type": "edumed_wybor",
+    "description": ["W odniesieniu do internetu tak zwane prawo do zapomnienia to:"],
+    "options": [
+        {"id": 1, "text": "prawo niewysłania w Unii Europejskiej e-maila z potwierdzeniem udziału bez podania przyczyny,"},
+        {"id": 2, "text": "prawo niewysłania w Unii Europejskiej e-maila z potwierdzeniem udziału z podaniem zapomnienia jako przyczyny,"},
+        {"id": 3, "text": "prawo każdego obywatela Unii Europejskiej do zażądania usunięcia jego imienia i nazwiska z wyszukiwarki internetowej,"},
+        {"id": 4, "text": "prawo każdego obywatela Unii Europejskiej do założenia konta w serwisie społecznościowym,"},
+        {"id": 5, "text": "prawo każdego obywatela Unii Europejskiej do zapomnienia adresu wyszukiwarki internetowej albo serwisu społecznościowego,"},
+        {"id": 6, "text": "żadne z powyższych."}
+    ],
+    "answer": [3],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 26,
+    "type": "edumed_wybor",
+    "description": ["Osoba X otrzymała wezwanie do zapłaty za udostępnianie w internecie pewnego utworu. Policja przekazała wzywającemu adres IP komputera osoby X, z którego miał być udostępniany utwór. Sam adres IP:"],
+    "options": [
+        {"id": 1, "text": "jest wystarczającym dowodem, aby skazać kogokolwiek – niekonieczne jest udowodnienie, że to osoba X dokonała na danym komputerze konkretnej operacji,"},
+        {"id": 2, "text": "nie jest wystarczającym dowodem, aby skazać kogokolwiek – konieczne jest udowodnienie, że to osoba X dokonała na danym komputerze konkretnej operacji,"},
+        {"id": 3, "text": "jest dowodem złych zamiarów,"},
+        {"id": 4, "text": "jest anonimowy,"},
+        {"id": 5, "text": "żadne z powyższych."}
+    ],
+    "answer": [2],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 27,
+    "type": "edumed_wybor",
+    "description": ["Patenty przyznawane są na okres:"],
+    "options": [
+        {"id": 1, "text": "5 lat,"},
+        {"id": 2, "text": "10 lat,"},
+        {"id": 3, "text": "20 lat,"},
+        {"id": 4, "text": "50 lat,"},
+        {"id": 5, "text": "70 lat,"},
+        {"id": 6, "text": "bezterminowo."}
+    ],
+    "answer": [3],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 28,
+    "type": "edumed_wybor",
+    "description": ["Ochroną praw obywateli zajmuje się wiele instytucji państwowych. Są to między innymi:"],
+    "options": [
+        {"id": 1, "text": "Rzecznik Praw Obywatelskich,"},
+        {"id": 2, "text": "Rzecznik Praw Dziecka,"},
+        {"id": 3, "text": "Krajowy Rejestr Sądowy,"},
+        {"id": 4, "text": "Główny Inspektor Ochrony Danych Osobowych,"},
+        {"id": 5, "text": "Urząd Ochrony Konkurencji i Konsumenta,"},
+        {"id": 6, "text": "Helsińska Fundacja Praw Człowieka."}
+    ],
+    "answer": [1, 2, 4, 5],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 29,
+    "type": "edumed_wybor",
+    "description": ["Umowy ustne są w Polsce:"],
+    "options": [
+        {"id": 1, "text": "ważne, choć często przed sądem trudno udowodnić, że faktycznie zostały zawarte,"},
+        {"id": 2, "text": "ważne, ale pod warunkiem, że zostały zawarte przy świadkach,"},
+        {"id": 3, "text": "ważne, ale pod warunkiem, że zostały zawarte w obecności notariusza,"},
+        {"id": 4, "text": "ważne, choć w niektórych przypadkach wymagana jest forma pisemna,"},
+        {"id": 5, "text": "nieważne, umowy muszą być zawsze w formie pisemnej,"},
+        {"id": 6, "text": "nieważne, umowy muszą być zawsze w formie pisemnej i potwierdzone przez notariusza."}
+
+    ],
+    "answer": [1, 4],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 30,
+    "type": "edumed_wybor",
+    "description": ["Prowadzisz popularnego wideobloga. Zwraca się do ciebie firma kosmetyczna z korzystną propozycją: góra pieniędzy w zamian za nagranie odcinka, w którym smarujesz się ich kremem. Stawiają jednak warunek: nikt nie może się dowiedzieć, że odcinek jest sponsorowany. Taka propozycja jest:"],
+    "options": [
+        {"id": 1, "text": "legalna i etyczna,"},
+        {"id": 2, "text": "nielegalna i etyczna,"},
+        {"id": 3, "text": "legalna i nieetyczna,"},
+        {"id": 4, "text": "nielegalna i nieetyczna,"},
+        {"id": 5, "text": "prawo nie rozstrzyga tej kwestii."}
+    ],
+    "answer": [4],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 31,
+    "type": "edumed_wybor",
+    "description": ["Autorskie prawa osobiste chronią twórców utworów bezterminowo i bezwarunkowo. Zaliczamy do nich:"],
+    "options": [
+        {"id": 1, "text": "prawo do oznaczania utworu imieniem i nazwiskiem twórcy,"},
+        {"id": 2, "text": "zakaz parodiowania utworu bez zgody twórcy,"},
+        {"id": 3, "text": "prawo do zachowania integralności utworu (czyli np. obowiązek wiernego cytowania),"},
+        {"id": 4, "text": "prawo do wycofania utworu z obiegu,"},
+        {"id": 5, "text": "prawo do decyzji o pierwszym rozpowszechnieniu utworu,"},
+        {"id": 6, "text": "zakaz kopiowania utworu bez zgody twórcy."}
+
+    ],
+    "answer": [1, 3, 5],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 32,
+    "type": "edumed_wybor",
+    "description": ["Wikipedia utrzymuje się z:"],
+    "options": [
+        {"id": 1, "text": "reklam,"},
+        {"id": 2, "text": "darowizn,"},
+        {"id": 3, "text": "opłat za umieszczenie artykułu,"},
+        {"id": 4, "text": "żadne z powyższych."}
+    ],
+    "answer": [2],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 33,
+    "type": "edumed_wybor",
+    "description": ["Facebook jest dostępny za darmo, ponieważ:"],
+    "options": [
+        {"id": 1, "text": "zarabia na reklamach, które wyświetlają się wszystkim użytkownikom,"},
+        {"id": 2, "text": "zarabia na profilowaniu swoich użytkowników i zbieraniu ich danych na potrzeby indywidualnych kampanii reklamowych,"},
+        {"id": 3, "text": "zarabia na opłatach za docieranie z treściami wydawców (takich jak internetowe czasopisma, gazety, itp.),"},
+        {"id": 4, "text": "istnieje, aby służyć ludzkości pro bono,"},
+        {"id": 5, "text": "utrzymuje się z darowizn od osób prywatnych,"},
+        {"id": 6, "text": "utrzymuje się ze sponsoringu fundacji."}
+    ],
+    "answer": [1, 2, 3],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 34,
+    "type": "edumed_wybor",
+    "description": ["Projekty open source, takie jak WordPress.org, czy Linux:"],
+    "options": [
+        {"id": 1, "text": "co do zasady są całkowicie niedochodowe,"},
+        {"id": 2, "text": "zarabiają na sprzedaży licencji,"},
+        {"id": 3, "text": "zarabiają na usługach wdrożeniowych i obsłudze (np. utrzymanie serwisu, instalacja),"},
+        {"id": 4, "text": "utrzymują się z reklam."}
+    ],
+    "answer": [3],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 35,
+    "type": "edumed_wybor",
+    "description": ["Przygotowałeś/aś cover piosenki ulubionego wykonawcy. Zamierzasz opublikować ją w serwisie społecznościowym. Potrzebujesz:"],
+    "options": [
+        {"id": 1, "text": "pisemnej zgody rodziców, jeśli nie jesteś pełnoletni/a,"},
+        {"id": 2, "text": "oświadczenia przesłanego do serwisu, że nie będziesz wykorzystywać swojej wersji piosenki do celów komercyjnych,"},
+        {"id": 3, "text": "zgody piosenkarza/piosenkarki, którego/której utwór wykonujesz,"},
+        {"id": 4, "text": "zgody właścicieli majątkowych praw autorskich do wykonywanego utworu,"},
+        {"id": 5, "text": "oznaczenia opublikowanego utworu odpowiednim zestawem hashtagów,"},
+        {"id": 6, "text": "dodania informacji, kto jest autorem piosenki."}
+    ],
+    "answer": [4, 6],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 36,
+    "type": "edumed_wybor",
+    "description": ["<img src=\"/static/wtem/img/monalisa.jpg\"/>", "Czy powyższe zdjęcie:"],
+    "options": [
+        {"id": 1, "text": "jest przykładem niedozwolonych treści w internecie,"},
+        {"id": 2, "text": "jest przykładem sztuki nieetycznej,"},
+        {"id": 3, "text": "jest przykładem remiksu,"},
+        {"id": 4, "text": "przedstawia graffiti,"},
+        {"id": 5, "text": "jest przykładem sztuki ulicznej,"},
+        {"id": 6, "text": "żadnym z powyższych."}
+    ],
+    "answer": [3, 4, 5],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 37,
+    "type": "edumed_wybor",
+    "description": ["Dostałeś zadanie umieszczenia hasła o swojej ulicy w Wikipedii. Chcesz je przygotować jak najpełniej. W tym celu:"],
+    "options": [
+        {"id": 1, "text": "sięgasz tylko po informacje zawarte w internecie, bo w Wikipedii trzeba podać linki,"},
+        {"id": 2, "text": "sięgasz po informacje zawarte w internecie i w innych źródłach, np. książkach i gazetach, mapach, przewodnikach,"},
+        {"id": 3, "text": "nie sięgasz po żadne inne informacje niż te, które już znasz, bo inni zawsze mogą uzupełnić wpis,"},
+        {"id": 4, "text": "nie sięgasz po informacje zawarte w gazetach, bo są przestarzałe,"},
+        {"id": 5, "text": "nie sięgasz po informacje zawarte w internecie, bo może je pisać każdy, a encyklopedia musi opierać się na informacjach od ekspertów,"},
+        {"id": 6, "text": "żadne z powyższych."}
+    ],
+    "answer": [2],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 38,
+    "type": "edumed_wybor",
+    "description": ["Z podanych poniżej stwierdzeń wybierz wszystkie, które w sposób prawdziwy określają tzw. „szary internet”:"],
+    "options": [
+        {"id": 1, "text": "„szary internet” to strony www, zawierające nielegalne treści,"},
+        {"id": 2, "text": "„szary internet” to strony www, zawierające bazy danych i książki elektroniczne,"},
+        {"id": 3, "text": "„szary internet” to strony www, zawierające dane osobowe użytkowników na zasadzie książki telefonicznej,"},
+        {"id": 4, "text": "zasoby „szarego internetu” można przeszukiwać korzystając ze specjalistycznych dedykowanych serwisów np. Europeana,"},
+        {"id": 5, "text": "zasoby „szarego internetu” nie są jeszcze dostępne w języku polskim,"},
+        {"id": 6, "text": "zasoby „szarego internetu” można przeszukiwać korzystając jedynie z wyszukiwarki Google."}
+    ],
+    "answer": [2, 4],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 39,
+    "type": "edumed_wybor",
+    "description": ["Na tworzenie zjawiska „bańki informacyjnej” wpływają:"],
+    "options": [
+        {"id": 1, "text": "przepustowość domowego łącza internetowego,"},
+        {"id": 2, "text": "przyzwyczajenie użytkownika do przeglądania tych samych portali np. informacyjnych,"},
+        {"id": 3, "text": "mechanizmy działania wyszukiwarek internetowych,"},
+        {"id": 4, "text": "dominujące linie redakcyjne np. gazet, portali,"},
+        {"id": 5, "text": "folksonomie,"},
+        {"id": 6, "text": "żadne z powyższych."}
+    ],
+    "answer": [2, 3, 4],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 40,
+    "type": "edumed_wybor",
+    "description": ["Aby wspólna praca nad dokumentem tekstowym lub prezentacją była jak najbardziej bezpieczna i efektywna, warto:"],
+    "options": [
+        {"id": 1, "text": "udostępnić link do pliku z możliwością anonimowej edycji przez wszystkich zainteresowanych.,"},
+        {"id": 2, "text": "ustalić tryb pracy, plan działania i podzielić się zadaniami w zespole,"},
+        {"id": 3, "text": "zdecydować, kto jest liderem zespołu i ma możliwość ostatecznego zatwierdzania zmian,"},
+        {"id": 4, "text": "udostępnić plik określonym osobom, wysyłając zaproszenie na podane wcześniej adresy e-mail,"},
+        {"id": 5, "text": "wybrać wspólny kanał komunikowania do omawiania dyskusyjnych kwestii,"},
+        {"id": 6, "text": "żadne z powyższych."}
+
+    ],
+    "answer": [2, 4, 5],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 41,
+    "type": "edumed_wybor",
+    "description": ["Podczas wakacji wykonałeś ciekawe zdjęcie wschodu słońca. Chciałbyś opublikować je w sieci, korzystając z licencji Creative Commons. Zakładasz, że może ono być dowolnie modyfikowane i rozpowszechniane, ale chciałbyś, aby zawsze oznaczano, że to Ty jesteś autorem pierwowzoru. Która z poniższych licencji na to pozwoli:"],
+    "options": [
+        {"id": 1, "text": "<img src=\"/static/wtem/img/cc-by-nd.png\"/>"},
+        {"id": 2, "text": "<img src=\"/static/wtem/img/cc-by-nc-nd.png\"/>"},
+        {"id": 3, "text": "<img src=\"/static/wtem/img/cc-by-nc.png\"/>"},
+        {"id": 4, "text": "<img src=\"/static/wtem/img/cc-by.png\"/>"}
+    ],
+    "answer": [4],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 42,
+    "type": "edumed_wybor",
+    "description": ["Kupiłeś/aś sobie czytnik e-booków, a następnie kupiłeś/aś licencję na książkę cyfrową <cite>Rok 1984<cite> George’a Orwella. Po jakimś czasie sklep zdalnie skasował książkę z dysku twojego urządzenia oraz zwrócił wydane przez ciebie pieniądze. To działanie jest:"],
+    "options": [
+        {"id": 1, "text": "legalne, bo sklep wypowiedział licencję, ale też zwrócił ci pieniądze, a więc nie poniosłeś żadnej straty,"},
+        {"id": 2, "text": "nielegalne, bo sklep ingerował w działanie twojego urządzenia bez twojej zgody,"},
+        {"id": 3, "text": "etyczne, bo sklep wypowiedział licencję, ale też zwrócił ci pieniądze, a więc nie poniosłeś żadnej straty,"},
+        {"id": 4, "text": "nieetyczne, bo sklep ingerował w działanie twojego urządzenia bez twojej zgody."}
+    ],
+    "answer": [1, 4],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 43,
+    "type": "edumed_wybor",
+    "description": ["Zauważyłeś/aś rażący błąd w treści artykułu w Wikipedii, który przez Wikipedystów określany jest jako wandalizm. W jaki sposób możesz zareagować, by pomóc kolejnym czytelnikom Wikipedii uniknąć lektury artykułu zawierającego błąd?"],
+    "options": [
+        {"id": 1, "text": "nie możesz pomóc w takiej sytuacji, ponieważ nie jesteś Wikipedystą,"},
+        {"id": 2, "text": "piszesz o błędzie w serwisie społecznościowym, żartując z niskiej jakości internetowej encyklopedii,"},
+        {"id": 3, "text": "edytujesz błąd i bierzesz udział w dyskusji z autorem błędu uzasadniając swoją zmianę,"},
+        {"id": 4, "text": "próbujesz utworzyć nowy artykuł."}
+    ],
+    "answer": [3],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 44,
+    "type": "edumed_wybor",
+    "description": ["Peer-to-peer (P2P) to taki model komunikacji w sieci komputerowej, który:"],
+    "options": [
+        {"id": 1, "text": "umożliwia współdzielenie plików w internecie,"},
+        {"id": 2, "text": "charakteryzuje się tym, że każdy węzeł pełni rolę klienta i serwera,"},
+        {"id": 3, "text": "daje różnym hostom różne uprawnienia,"},
+        {"id": 4, "text": "charakteryzuje się zmiennością liczby węzłów,"},
+        {"id": 5, "text": "pracuje się na nim wydajniej niż z użyciem innych modeli komunikacji,"},
+        {"id": 6, "text": "charakteryzuje się stałą liczbą węzłów."}
+    ],
+    "answer": [1, 2, 4],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 45,
+    "type": "edumed_wybor",
+    "description": ["W których z poniższych sytuacji możemy wykorzystać kompetencje cyfrowe?"],
+    "options": [
+        {"id": 1, "text": "robiąc zakupy,"},
+        {"id": 2, "text": "umawiając się na spotkanie towarzyskie,"},
+        {"id": 3, "text": "ucząc się,"},
+        {"id": 4, "text": "w pracy zawodowej,"},
+        {"id": 5, "text": "płacąc rachunki,"},
+        {"id": 6, "text": "rozwijając pasję, zainteresowania."}
+    ],
+    "answer": [1, 2, 3, 4, 5, 6],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 46,
+    "type": "edumed_wybor",
+    "description": ["Wskaż wszystkie poprawne sformułowania. WCAG to:"],
+    "options": [
+        {"id": 1, "text": "zbiór dokumentów zawierających wytyczne dotyczące ułatwień w dostępie do treści publikowanych w internecie,"},
+        {"id": 2, "text": "wytyczne zawierające wskazówki na temat tego, jak budować serwisy internetowe dostępne dla wszystkich,"},
+        {"id": 3, "text": "skrót od nazwy instytucji zajmującej się badaniem poziomu kompetencji cyfrowych wśród Europejczyków,"},
+        {"id": 4, "text": "skrót od nazwy badania – diagnozy kompetencji cyfrowych wśród Europejczyków,"},
+        {"id": 5, "text": "„przewodnik” dotyczący poziomu dostępności informacji znajdujących się w przestrzeni cyfrowej dla osób z niepełnosprawnościami."}
+    ],
+    "answer": [1, 2, 5],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 47,
+    "type": "edumed_wybor",
+    "description": ["Językiem programowania nie jest:"],
+    "options": [
+        {"id": 1, "text": "Java,"},
+        {"id": 2, "text": "Kompilator,"},
+        {"id": 3, "text": "Python,"},
+        {"id": 4, "text": "Scratch,"},
+        {"id": 5, "text": "C++,"},
+        {"id": 6, "text": "JavaScript."}
+
+    ],
+    "answer": [2],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 48,
+    "type": "edumed_wybor",
+    "description": ["Zaznacz poprawne stwierdzenia:"],
+    "options": [
+        {"id": 1, "text": "aplikacje mobilne nie mogą działać bez połączenia internetowego,"},
+        {"id": 2, "text": "aplikacje mobilne instalowane są na urządzeniach mobilnych typu tablet, smartfon, smartwatch,"},
+        {"id": 3, "text": "wszystkie aplikacje mobilne są płatne,"},
+        {"id": 4, "text": "zakup aplikacji mobilnych w specjalnie do tego przeznaczonych sklepach internetowych zawsze wymaga od użytkownika podania danych karty kredytowej,"},
+        {"id": 5, "text": "aplikacje mobilne zawsze żądają dostępu do kontaktów użytkownika."}
+    ],
+    "answer": [2],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 49,
+    "type": "edumed_wybor",
+    "description": ["Cyfrowy ślad to:"],
+    "options": [
+        {"id": 1, "text": "podpis elektroniczny,"},
+        {"id": 2, "text": "informacje o miejscu, w którym znajduje się urządzenie, z którego korzystamy z internetu,"},
+        {"id": 3, "text": "informacje o parametrach urządzenia zalogowanego do sieci,"},
+        {"id": 4, "text": "baza danych wszystkich użytkowników Internetu,"},
+        {"id": 5, "text": "faksymile,"},
+        {"id": 6, "text": "informacje dotyczące ruchów użytkownika w cyberprzestrzeni."}
+    ],
+    "answer": [2, 3, 6],
+    "answer_mode": "multi",
+    "points": 1
+},
+{
+    "id": 50,
+    "type": "edumed_wybor",
+    "description": ["Z okazji Dnia Nauczyciela chcecie z grupą koleżanek i kolegów z klasy przygotować zabawną prezentację o nauczycielach uczących w Waszej szkole. W tym celu zapraszacie nauczycieli na sesję fotograficzną, a zrobione na niej zdjęcia chcecie wykorzystać do przygotowania memów. O co należy zadbać przed przystąpieniem do tworzenia prezentacji?"],
+    "options": [
+        {"id": 1, "text": "o uzyskanie zgody od nauczycieli na wykorzystanie ich wizerunku w prezentacji,"},
+        {"id": 2, "text": "o wyjaśnienie nauczycielom, czym jest mem i jaka jest jego specyfika,"},
+        {"id": 3, "text": "o nie obrażanie w memach osób, które stały się ich tematem,"},
+        {"id": 4, "text": "o wniesienie do ZAIKS opłaty za korzystanie z praw autorskich do zdjęć wykorzystanych w prezentacji,"},
+        {"id": 5, "text": "o podanie autorstwa utworu pierwotnego, na bazie którego tworzony jest mem oraz podpisanie się pod powstałą pracą."}
+    ],
+    "answer": [1, 2, 3, 5],
+    "answer_mode": "multi",
+    "points": 1
+}
+]

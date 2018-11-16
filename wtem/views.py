@@ -46,6 +46,8 @@ def form(request, submission_id, key):
     state = CompetitionState.get_state()
     if state == CompetitionState.DURING:
         state = 'single'
+    if request.META['REMOTE_ADDR'] in getattr(settings, 'WTEM_CONTEST_IP_ALLOW', []):
+        state = 'single'
     return globals()['form_' + state](request, submission_id, key)
 
 

@@ -19,11 +19,24 @@ from django.utils import timezone
 from django.utils.translation import ugettext as _
 from jsonfield import JSONField
 
-from contact.models import Contact
 
-f = file(os.path.dirname(__file__) + '/fixtures/exercises.json')
-exercises = json.loads(f.read())
-f.close()
+def prepare_exercises():
+    f = file(os.path.dirname(__file__) + '/fixtures/exercises.json')
+    exercises = json.loads(f.read())
+    for i, exercise in enumerate(exercises, 1):
+        exercise['id'] = i
+        if exercise['type'] == 'edumed_wybor' and exercise['answer_mode'] == 'multi':
+            answer = []
+            for j, option in enumerate(exercise['options'], 1):
+                option['id'] = j
+                if option['answer']:
+                    answer.append(j)
+            exercise['answer'] = answer
+    f.close()
+    return exercises
+
+
+exercises = prepare_exercises()
 
 DEBUG_KEY = 'smerfetka159'
 
@@ -72,7 +85,7 @@ class CompetitionState(models.Model):
 
 
 class Submission(models.Model):
-    contact = models.ForeignKey(Contact, null=True)
+    contact = models.ForeignKey('contact.Contact', null=True)
     key = models.CharField(max_length=30, unique=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -266,7 +279,7 @@ class Assignment(models.Model):
 
 
 class AbstractConfirmation(models.Model):
-    contact = models.ForeignKey(Contact, null=True)
+    contact = models.ForeignKey('contact.Contact', null=True)
     key = models.CharField(max_length=30)
     confirmed = models.BooleanField(default=False)
 
