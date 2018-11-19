@@ -6,6 +6,11 @@ $(function() {
         //e.preventDefault();
         to_submit = {};
         spinner.show();
+        // TODO blokada guzika
+        $('input[type=submit]').attr('disabled', true);
+        setTimeout(function () {
+            $('input[type=submit]').attr('disabled', false);
+        }, 5000);
 
         $('.exercise-wtem').each(function() {
             var el = $(this);
