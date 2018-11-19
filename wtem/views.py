@@ -132,9 +132,11 @@ def form_single(request, submission_id, key):
             except ValueError as e:
                 if e.message == 'wrong exercise id':
                     messages.error(request, u'Próba wysłania odpowiedzi ponownie lub poza kolejnością')
+                elif e.message == 'no answer':
+                    messages.error(request, u'Wybierz przynajmniej jedną odpowiedź')
             return HttpResponseRedirect(reverse('wtem_form', kwargs={'submission_id': submission_id, 'key': key}))
         else:
-            raise Exception
+            raise Exception(u'Błędna wartość w formularzu')
 
 
 @cache_until_start

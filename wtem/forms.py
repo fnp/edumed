@@ -61,6 +61,8 @@ class WTEMSingleForm(forms.ModelForm):
         if exercise_id != str(exercise['id']):
             raise ValueError('wrong exercise id')
         for answer in posted_answers.values():
+            if not answer.get('closed_part', True):
+                raise ValueError('no answer')
             answers[exercise_id] = answer
         submission.answers = json.dumps(answers)
         submission.save()
