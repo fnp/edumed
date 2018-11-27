@@ -70,9 +70,8 @@ def form_after(request, submission_id, key):
 @csrf_exempt
 def form_during(request, key):
 
-    if CompetitionState.get_state() != CompetitionState.DURING:
-        if request.META['REMOTE_ADDR'] not in getattr(settings, 'WTEM_CONTEST_IP_ALLOW', []):
-            return HttpResponseForbidden('Not allowed')
+    if request.META['REMOTE_ADDR'] not in getattr(settings, 'WTEM_CONTEST_IP_ALLOW', []):
+        return HttpResponseForbidden('Not allowed')
 
     try:
         submission = Submission.objects.get(key=key)
@@ -94,7 +93,11 @@ def form_during(request, key):
             for field in exercise['fields']:
                 field['saved_answer'] = field_answers.get(field['id'], '')
     if request.method == 'GET':
-        return render(request, 'wtem/main.html', {'exercises': exercises_with_answers, 'end_time': submission.end_time})
+        return render(request, 'wtem/main.html', {
+            'exercises': exercises_with_answers,
+            'end_time': submission.end_time,
+            'show_answers': True,
+        })
     elif request.method == 'POST':
         form = WTEMForm(request.POST, request.FILES, instance=submission)
         if form.is_valid():

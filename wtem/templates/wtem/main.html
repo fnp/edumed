@@ -42,6 +42,7 @@
 </style>
 
 <h1>{% include "wtem/title.html" %}</h1>
+{% comment %}
 <div class="wtem-fixed-info">Rozwiązania można wysyłać do godziny {{end_time|default:"11:30"}}. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
 
 <p>Witamy w I etapie Olimpiady Cyfrowej. Na rozwiązanie zadań masz czas do godz. {{end_time|default:"11:30"}}. Test składa się z 30 pytań.</p>
@@ -50,7 +51,7 @@
 
 <p>Powodzenia!<br/>
 Zespół Olimpiady Cyfrowej, fundacja Nowoczesna Polska</p>
-
+{% endcomment %}
 <form method="post" enctype="multipart/form-data">
 
 {% cache 30 wtem %}
@@ -62,6 +63,7 @@ Zespół Olimpiady Cyfrowej, fundacja Nowoczesna Polska</p>
 {% endcache %}
 
 
+{% comment %}
 <hr/>
 <input type="hidden" name="answers" value=""/>
 
@@ -76,7 +78,7 @@ Zespół Olimpiady Cyfrowej, fundacja Nowoczesna Polska</p>
 </p>
 
 <div class="wtem-fixed-info" style="margin-top:15px;">Rozwiązania można wysyłać do godziny {{end_time|default:"11:30"}}. <strong>Nie czekaj na ostatnią chwilę!</strong></div>
-
+{% endcomment %}
 </form>
 
 {% endblock %}
