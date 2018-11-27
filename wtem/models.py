@@ -169,6 +169,8 @@ class Submission(models.Model):
 
     def get_final_exercise_mark(self, exercise_id):
         exercise = get_exercise_by_id(exercise_id)
+        if exercise.get('excluded'):
+            return 0
         if exercise_checked_manually(exercise):
             marks_by_examiner = self.get_exercise_marks_by_examiner(exercise_id)
             if len(marks_by_examiner):
