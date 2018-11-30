@@ -1,16 +1,17 @@
 {% load l10n %}Dzień dobry,
+Informujemy, że wszystkie testy rozwiązane w ramach zawodów I stopnia III edycji Olimpiady Cyfrowej zostały ocenione, a nazwiska osób, które awansowały do II etapu, są już znane.
 
-Informujemy, że wszystkie testy rozwiązane w ramach zawodów I stopnia II edycji Olimpiady Cyfrowej zostały ocenione, a nazwiska osób, które awansowały do II etapu, są już znane.
+W I etapie Olimpiady Cyfrowej do testu przystąpiło 2 585 osób z 300 szkół z całej Polski. Ten sukces Olimpiady ogromnie nas cieszy. Zgodnie z punktem 4.4.11. Regulaminu Olimpiady –do II etapu zostało przyjętych 290 osób, które otrzymały co najmniej 67,33 pkt. Tym samym próg procentowy wyniósł 68,7%.
 
-W I etapie Olimpiady Cyfrowej do testu przystąpiło 2 346 osób z 242 szkół z całej Polski. Ten sukces Olimpiady ogromnie nas cieszy. Ze względu na tak dużą liczbę Uczestników i Uczestniczek oraz wysoki poziom współzawodnictwa Komitet Główny postanowił – zgodnie z punktem 4.4.11. Regulaminu Olimpiady – przyjąć do II etapu 299 osób, które otrzymały co najmniej 63,07 pkt.
+Komitet Główny Olimpiady zdecydował nie oceniać jednego z pytań ze względu na błąd, który się w nim pojawił. Pytanie, które zostało anulowane, dotyczyło danych (biometrycznych i innych), które mogą zbierać współczesne smartfony np. w celu zabezpieczenia dostępu do urządzenia. Jedna z odpowiedzi brzmiała: „skan siatkówki oka”. Komitet uznał, że odpowiedź ta wprowadzała uczestników w błąd, ponieważ smartfony mogą skanować tęczówkę, a nie siatkówkę.
 
-Jednocześnie informujemy, że łączna liczba punktów do zdobycia wyniosła 100. Za każde zadanie można było otrzymać maksymalnie 2 punkty.
+Decyzja Komitetu oznacza, że pod uwagę brane było 49 pytań. Łączna liczba punktów do zdobycia wyniosła 98. Za każde zadanie można było otrzymać maksymalnie 2 punkty.
 
 Liczba punktów zdobytych przez Ciebie w teście to {% localize on %}{{final_result}}{% endlocalize %}.
 
 Wynik ten uprawnia Cię do wzięcia udziału w zawodach II stopnia Olimpiady Cyfrowej. Gratulujemy!
 
-Temat projektu do realizacji w zawodach II stopnia oraz dodatkowe wytyczne zostaną podane do wiadomości zakwalifikowanych Uczestników i Uczestniczek w wiadomościach mailowych i na stronie Olimpiady Cyfrowej dn. 2 stycznia 2018 r.
+Uczestnicy i Uczestniczki, którzy zakwalifikowali się do II etapu Olimpiady Cyfrowej otrzymają droga mailową temat projektu do realizacji oraz dodatkowe wytyczne w dn. 7 stycznia 2019 roku. Wszelkie informacje zostaną także opublikowane na stronie Olimpiady wraz z rozpoczęciem II etapu.
 
 W razie pytań prosimy o kontakt.
 

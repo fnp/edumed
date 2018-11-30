@@ -14,7 +14,8 @@ from wtem.models import Submission
 def get_submissions():
     return sorted(Submission.objects.exclude(answers=None), key=lambda s: -s.final_result)
 
-minimum = 63.06
+
+minimum = 67.33
 
 
 class Command(BaseCommand):
