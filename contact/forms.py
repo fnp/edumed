@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import UploadedFile
@@ -141,7 +143,9 @@ class ContactForm(forms.Form):
             email_changed = True
         for name, value in self.cleaned_data.items():
             if isinstance(value, UploadedFile):
-                Attachment.objects.filter(contact=contact, tag=name).delete()  # delete files?
+                for attachment in Attachment.objects.filter(contact=contact, tag=name):
+                    os.remove(attachment.file.path)
+                    attachment.delete()
                 attachment = Attachment(contact=contact, tag=name)
                 attachment.file.save(value.name, value)
                 attachment.save()
