@@ -4,34 +4,46 @@ from urllib import unquote
 from django.contrib.auth.decorators import permission_required
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.cache import never_cache
 from fnpdjango.utils.views import serve_file
 from honeypot.decorators import check_honeypot
 
-from .forms import contact_forms
+from .forms import contact_forms, update_forms
 from .models import Attachment, Contact
 
 
 @check_honeypot
-def form(request, form_tag, force_enabled=False):
+@never_cache
+def form(request, form_tag, force_enabled=False, contact_id=None, key=None):
+    update = bool(contact_id and key)
     try:
-        form_class = contact_forms[form_tag]
+        if update and form_tag in update_forms:
+            form_class = update_forms[form_tag]
+        else:
+            form_class = contact_forms[form_tag]
     except KeyError:
         raise Http404
-    if (getattr(form_class, 'disabled', False) and
-            not (force_enabled and request.user.is_superuser)):
-        template = getattr(form_class, 'disabled_template', None)
-        if template:
-            return render(request, template, {'title': form_class.form_title})
-        raise Http404
-    if request.method == 'POST':
-        form = form_class(request.POST, request.FILES)
+    if not (force_enabled and request.user.is_superuser):
+        disabled = getattr(form_class, 'disabled', False)
+        if disabled:
+            template = getattr(form_class, 'disabled_template', None)
+            if template:
+                return render(request, template, {'title': form_class.form_title})
+            raise Http404
+    if contact_id:
+        contact = get_object_or_404(Contact, id=contact_id, form_tag=form_tag)
+        if form_tag != 'olimpiada':
+            raise Http404
+        if key != contact.key:
+            raise Http404
     else:
-        form = form_class(initial=request.GET)
-    formset_classes = getattr(form, 'form_formsets', {})
+        contact = None
     if request.method == 'POST':
-        formsets = {
-            prefix: formset_class(request.POST, request.FILES, prefix=prefix)
-            for prefix, formset_class in formset_classes.iteritems()}
+        form = form_class(request.POST, request.FILES, instance=contact)
+    else:
+        form = form_class(initial=request.GET, instance=contact)
+    if request.method == 'POST':
+        formsets = form.get_formsets(request)
         if form.is_valid() and all(formset.is_valid() for formset in formsets.itervalues()):
             contact = form.save(request, formsets.values())
             if form.result_page:
@@ -39,11 +51,11 @@ def form(request, form_tag, force_enabled=False):
             else:
                 return redirect('contact_thanks', form_tag)
     else:
-        formsets = {prefix: formset_class(prefix=prefix) for prefix, formset_class in formset_classes.iteritems()}
+        formsets = form.get_formsets()
 
     return render(
         request, ['contact/%s/form.html' % form_tag, 'contact/form.html'],
-        {'form': form, 'formsets': formsets}
+        {'form': form, 'formsets': formsets, 'formset_errors': any(formset.errors for formset in formsets.values())}
     )
 
 

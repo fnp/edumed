@@ -3,6 +3,7 @@ import yaml
 from hashlib import sha1
 from django.db import models
 from django.utils.encoding import smart_unicode, force_str
+from django.db.models import permalink
 from django.utils.translation import ugettext_lazy as _
 from jsonfield import JSONField
 from . import app_settings
@@ -36,6 +37,13 @@ class Contact(models.Model):
         data = '%s%s%s%s%s' % (self.id, self.contact, serialized_body, self.ip, self.form_tag)
         data = force_str(data)
         return sha1(data).hexdigest()
+
+    @permalink
+    def update_url(self):
+        from contact.forms import update_forms, contact_forms
+        form_class = update_forms.get(self.form_tag, contact_forms.get(self.form_tag))
+        confirmation = form_class.confirmation_class.objects.get(contact=self)
+        return 'edit_form', [], {'form_tag': self.form_tag, 'contact_id': self.id, 'key': confirmation.key}
 
 
 class Attachment(models.Model):
