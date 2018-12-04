@@ -24,15 +24,14 @@ def form(request, form_tag, force_enabled=False, contact_id=None, key=None):
     except KeyError:
         raise Http404
     if not (force_enabled and request.user.is_superuser):
-        disabled = getattr(form_class, 'disabled', False)
-        if disabled:
-            template = getattr(form_class, 'disabled_template', None)
+        if form_class.is_disabled():
+            template = form_class.disabled_template
             if template:
                 return render(request, template, {'title': form_class.form_title})
             raise Http404
     if contact_id:
         contact = get_object_or_404(Contact, id=contact_id, form_tag=form_tag)
-        if form_tag != 'olimpiada':
+        if not form_class.updatable:
             raise Http404
         if key != contact.key:
             raise Http404
@@ -90,6 +89,15 @@ def results(request, contact_id, digest):
 
 @permission_required('contact.change_attachment')
 def attachment(request, contact_id, tag):
+    attachment = get_object_or_404(Attachment, contact_id=contact_id, tag=tag)
+    attachment_url = unquote(attachment.file.url)
+    return serve_file(attachment_url)
+
+
+def attachment_key(request, contact_id, tag, key):
+    contact = Contact.objects.get(id=contact_id)
+    if key != contact.key:
+        raise Http404
     attachment = get_object_or_404(Attachment, contact_id=contact_id, tag=tag)
     attachment_url = unquote(attachment.file.url)
     return serve_file(attachment_url)

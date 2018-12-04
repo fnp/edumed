@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import yaml
 from hashlib import sha1
+import random
+import string
 from django.db import models
 from django.utils.encoding import smart_unicode, force_str
 from django.db.models import permalink
@@ -9,12 +11,29 @@ from jsonfield import JSONField
 from . import app_settings
 
 
+KEY_SIZE = 30
+
+
+def make_key(length):
+    return ''.join(
+        random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits)
+        for i in range(length))
+
+
 class Contact(models.Model):
     created_at = models.DateTimeField(_('submission date'), auto_now_add=True)
     ip = models.IPAddressField(_('IP address'))
     contact = models.CharField(_('contact'), max_length=128)
     form_tag = models.CharField(_('form'), max_length=32, db_index=True)
     body = JSONField(_('body'))
+    key = models.CharField(max_length=KEY_SIZE)
+
+    @classmethod
+    def generate_key(cls):
+        key = ''
+        while not key or cls.objects.filter(key=key).exists():
+            key = make_key(KEY_SIZE)
+        return key
 
     @staticmethod
     def pretty_print(value, for_html=False):
@@ -40,10 +59,7 @@ class Contact(models.Model):
 
     @permalink
     def update_url(self):
-        from contact.forms import update_forms, contact_forms
-        form_class = update_forms.get(self.form_tag, contact_forms.get(self.form_tag))
-        confirmation = form_class.confirmation_class.objects.get(contact=self)
-        return 'edit_form', [], {'form_tag': self.form_tag, 'contact_id': self.id, 'key': confirmation.key}
+        return 'edit_form', [], {'form_tag': self.form_tag, 'contact_id': self.id, 'key': self.key}
 
 
 class Attachment(models.Model):
@@ -54,6 +70,14 @@ class Attachment(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return 'contact_attachment', [self.contact_id, self.tag]
+
+    @property
+    @models.permalink
+    def url(self):
+        return 'contact_attachment_key', [self.contact_id, self.tag, self.contact.key]
+
+    def __unicode__(self):
+        return self.file.name.rsplit('/', 1)[-1]
 
 
 __import__(app_settings.FORMS_MODULE)
