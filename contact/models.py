@@ -28,12 +28,12 @@ class Contact(models.Model):
     body = JSONField(_('body'))
     key = models.CharField(max_length=KEY_SIZE)
 
-    @classmethod
-    def generate_key(cls):
+    def generate_key(self):
         key = ''
-        while not key or cls.objects.filter(key=key).exists():
+        while not key or Contact.objects.filter(key=key).exists():
             key = make_key(KEY_SIZE)
-        return key
+        self.key = key
+        self.save()
 
     @staticmethod
     def pretty_print(value, for_html=False):

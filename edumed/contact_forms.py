@@ -833,3 +833,39 @@ class ESEMWarszawaForm(ContactForm):
 
 class ESEMGdanskForm(ESEMWarszawaForm):
     form_tag = 'emels-gdansk'
+
+
+class MisjaCybernautowForm(ContactForm):
+    form_tag = 'misja-cybernautow'
+    form_title = u"Misja Cybernautów"
+    submit_label = u'Zapisz'
+    updatable = True
+    contact = forms.EmailField(label=u'Adres e-mail', max_length=128)
+    szkola = forms.CharField(label=u'Szkoła, do której chodzicie', max_length=255)
+    zespol = forms.CharField(label=u'Nazwa zespołu', max_length=255)
+    zdjecie_warszawa = forms.FileField(
+        label=u'Dołączcie zdjęcie pokazujące, że jesteście dziś w Warszawie', required=False)
+    zdjecie_planetarium = forms.FileField(
+        label=u'Dołączcie zdjęcie grupy na scenie przy planetarium', required=False)
+    zdjecie_zasady = forms.FileField(
+        label=u'Dołączcie zdjęcie napisanych przez Was zasad bezpiecznego korzystania z internetu', required=False)
+    zdjecie_piasek = forms.FileField(
+        label=u'Dołączcie zdjęcie zdjęcie notatki zrobionej na piasku', required=False)
+    sonda = forms.CharField(
+        widget=forms.Textarea, max_length=1000, required=False,
+        label=u'Jaki macie wnioski z sondy zrobionej w BUW-ie?')
+    fasada = forms.FileField(
+        label=u'Dołączcie zdjęcie kodu programu umieszczonego na fasadzie BUW-u', required=False)
+    ochrona = forms.CharField(
+        label=u'Jakie są Wasze pomysły na ochronę przed zagrożeniami na podstawie filmiku z kanału '
+              u'„To już jutro” na YouTube',
+        widget=forms.Textarea, max_length=1000, required=False)
+    obraz = forms.CharField(
+        label=u'Który obraz z Galerii Sztuki Polskiej wybraliście? Załączcie link', required=False, max_length=255)
+    haslo = forms.CharField(
+        label=mark_safe(u'Jaka jest Wasza propozycja mocne hasło, które stworzyliście i sprawdziliście na stronie '
+                        u'<a href="https://howsecureismypassword.net" target="_blank">'
+                        u'https://howsecureismypassword.net</a>?'),
+        required=False, max_length=255)
+    mem = forms.FileField(label=u'Dołączcie stworzony mem', required=False)
+    gif = forms.FileField(label=u'Dołączcie stworzony gif', required=False)

@@ -68,6 +68,7 @@ class ContactForm(forms.Form):
         super(ContactForm, self).__init__(data, files, *args, **kwargs)
         if not self.is_bound and self.instance:
             self.fields['contact'].initial = self.instance.contact
+            self.fields['contact'].widget = forms.HiddenInput()
             body = self.instance.body
             for field, value in body.iteritems():
                 if field in self.fields:
@@ -139,7 +140,6 @@ class ContactForm(forms.Form):
                 contact=self.cleaned_data['contact'],
                 form_tag=self.form_tag)
             contact.generate_key()
-            contact.save()
             email_changed = True
         for name, value in self.cleaned_data.items():
             if isinstance(value, UploadedFile):

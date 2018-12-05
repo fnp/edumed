@@ -1,0 +1,9 @@
+Treść maila potwierdzającego rejestrację zespołu.
+
+Link do formularza edycji: https://{{ site_domain }}{{ contact.update_url }}
+
+W razie jakichkolwiek wątpliwości prosimy o kontakt:
+http://edukacjamedialna.edu.pl/info/kontakt/
+
+--
+Wiadomość wysłana automatycznie. Prosimy na nią nie odpowiadać.
