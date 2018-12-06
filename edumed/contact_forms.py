@@ -867,5 +867,7 @@ class MisjaCybernautowForm(ContactForm):
                         u'<a href="https://howsecureismypassword.net" target="_blank">'
                         u'https://howsecureismypassword.net</a>?'),
         required=False, max_length=255)
+    syrenka = forms.FileField(
+        label=u'Dołaczcie zdjęcie pomysłu podpisu na pomniku Syrenki', required=False)
     mem = forms.FileField(label=u'Dołączcie stworzony mem', required=False)
     gif = forms.FileField(label=u'Dołączcie stworzony gif', required=False)
