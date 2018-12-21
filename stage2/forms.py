@@ -2,7 +2,7 @@
 from decimal import Decimal
 
 from django import forms
-from django.conf import settings
+from django.core import validators
 from django.template.defaultfilters import filesizeformat
 from django.utils.safestring import mark_safe
 
@@ -16,23 +16,27 @@ class AttachmentForm(forms.ModelForm):
         model = Attachment
         fields = ['file']
 
-    def __init__(self, assignment, file_no, label, extensions=None, *args, **kwargs):
+    def __init__(self, assignment, file_no, label, options, *args, **kwargs):
         prefix = 'att%s-%s' % (assignment.id, file_no)
         super(AttachmentForm, self).__init__(*args, prefix=prefix, **kwargs)
         self.fields['assignment_id'].initial = assignment.id
-        self.fields['file'].label = label
+        extensions = options.get('ext')
+        max_mb = options.get('max', 20)
+        self.max_upload_size = max_mb * 1024 * 1024
+        self.fields['file'].widget.attrs['data-max'] = max_mb
+        self.fields['file'].label = label + u' (maks. %s MB)' % max_mb
         if extensions:
-            self.fields['file'].widget.attrs = {'data-ext': '|'.join(extensions)}
+            self.fields['file'].widget.attrs['data-ext'] = '|'.join(extensions)
         self.extensions = extensions
 
     def clean_file(self):
         file = self.cleaned_data['file']
-        if file.size > settings.MAX_UPLOAD_SIZE:
+        if file.size > self.max_upload_size:
             raise forms.ValidationError(
-                'Please keep filesize under %s. Current filesize: %s' % (
-                    filesizeformat(settings.MAX_UPLOAD_SIZE), filesizeformat(file.size)))
+                u'Prosimy o wysłanie pliku o rozmiarze najwyżej %s. Aktualny rozmiar pliku: %s' % (
+                    filesizeformat(self.max_upload_size), filesizeformat(file.size)))
         if self.extensions and ('.' not in file.name or file.name.rsplit('.', 1)[1].lower() not in self.extensions):
-            raise forms.ValidationError('Incorrect extension, should be one of: %s' % ', '.join(self.extensions))
+            raise forms.ValidationError(u'Niepoprawne rozszerzenie, powinno być jedno z: %s' % ', '.join(self.extensions))
         return file
 
 
@@ -48,12 +52,18 @@ class AssignmentFieldForm(forms.Form):
         self.fields['value'].label = label
         self.type = options['type']
         self.fields['assignment_id'].initial = answer.assignment.id
+        max_length = options.get('max_length')
+        if max_length:
+            self.fields['value'].validators.append(validators.MaxLengthValidator(int(max_length)))
+            self.fields['value'].label += u' (maks. %s znaków)' % max_length
+        if options.get('widget') == 'area':
+            self.fields['value'].widget = forms.Textarea(attrs={'cols': 80, 'rows': 25})
         if self.type == 'options':
             option_set = FieldOptionSet.objects.get(name=options['option_set'])
             self.fields['value'].widget = forms.Select(choices=option_set.choices(answer))
-            options = answer.fieldoption_set.all()
-            if options:
-                self.fields['value'].initial = options.get().id
+            value_options = answer.fieldoption_set.all()
+            if value_options:
+                self.fields['value'].initial = value_options.get().id
         else:
             value = answer.field_values.get(label)
             self.fields['value'].initial = value or ''

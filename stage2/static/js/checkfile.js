@@ -19,9 +19,10 @@ $(function() {
                     ok = false;
                 }
             }
+            var max_size = this.getAttribute('data-max') || 20;
             var size = this.files[0].size;
-            if (size > 20 * 1024 * 1024) {
-                alert('Rozmiar pliku nie może przekraczać 20 MB!');
+            if (size > max_size * 1024 * 1024) {
+                alert('Rozmiar pliku nie może przekraczać ' + max_size + ' MB!');
                 ok = false;
             }
             if (!ok) {

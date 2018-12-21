@@ -23,15 +23,16 @@ def all_assignments(participant, sent_forms):
         assignment.answer, created = Answer.objects.get_or_create(participant=participant, assignment=assignment)
         if assignment == sent_assignment:
             assignment.field_forms = field_forms
-            assignment.attachment_forms = attachment_forms
         else:
             assignment.field_forms = [
                 AssignmentFieldForm(label=label, field_no=i, options=options, answer=assignment.answer)
                 for i, (label, options) in enumerate(assignment.field_descriptions, 1)]
-            assignment.attachment_forms = [
-                (AttachmentForm(assignment=assignment, file_no=i, label=label, extensions=ext),
-                 assignment.answer.attachment_set.filter(file_no=i).first() if assignment.answer else None)
-                for i, (label, ext) in enumerate(assignment.file_descriptions, 1)]
+        # in theory, if assignment == sent_assignment, it should be copied like field_forms,
+        # but somehow it doesn't work as expected
+        assignment.attachment_forms = [
+            (AttachmentForm(assignment=assignment, file_no=i, label=label, options=options),
+             assignment.answer.attachment_set.filter(file_no=i).first() if assignment.answer else None)
+            for i, (label, options) in enumerate(assignment.file_descriptions, 1)]
     return assignments
 
 
@@ -54,7 +55,11 @@ def participant_view(request, participant_id, key):
             return HttpResponseForbidden('Not Allowed')
         attachments_valid, attachment_forms = get_attachment_forms(assignment, participant, request)
         fields_valid, field_forms = get_field_forms(assignment, participant, request)
-        if attachments_valid and fields_valid:
+        # tutaj w zasadzie powinno być też sprawdzenie attachments_valid, ale to powoduje,
+        # że jeśli jakiś plik nie został wysłany, to traktujemy to jako błąd, a tego nie chcemy.
+        # trzeba by znaleźć sensowny sposób odrózniania błędnego pliku od braku pliku.
+        # na szczęście pliki walidujemy też javascriptem, więc jakoś ujdzie
+        if fields_valid:
             return HttpResponseRedirect(reverse('stage2_participant', args=(participant_id, key)))
         else:
             sent_forms = (assignment, field_forms, attachment_forms)
@@ -71,12 +76,12 @@ def participant_view(request, participant_id, key):
 def get_attachment_forms(assignment, participant, request):
     all_valid = True
     attachment_forms = []
-    for i, (label, ext) in enumerate(assignment.file_descriptions, 1):
+    for i, (label, options) in enumerate(assignment.file_descriptions, 1):
         answer, created = Answer.objects.get_or_create(participant=participant, assignment=assignment)
         attachment, created = Attachment.objects.get_or_create(answer=answer, file_no=i)
         form = AttachmentForm(
             data=request.POST, files=request.FILES,
-            assignment=assignment, file_no=i, label=label, instance=attachment, extensions=ext)
+            assignment=assignment, file_no=i, label=label, instance=attachment, options=options)
         if form.is_valid():
             form.save()
         else:

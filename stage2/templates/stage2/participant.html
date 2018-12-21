@@ -14,14 +14,6 @@
     <a href="{{ assignment.content_url }}"><strong>Zobacz treść zadania</strong></a>
     <form method="POST" action="" enctype="multipart/form-data">
       {% csrf_token %}
-      {% for form in assignment.field_forms %}
-        {{ form.assignment_id }}
-        <p><strong>{{ form.value.label }}:</strong></p>
-        {{ form.value.errors }}
-        <p>
-          {% if assignment.is_active %}{{ form.value }}{% else %}{{ form.value.value }}{% endif %}
-        </p>
-      {% endfor %}
       {% for form, attachment in assignment.attachment_forms %}
         {{ form.assignment_id }}
         <p><strong>{{ form.file.label }}:</strong></p>
@@ -33,6 +25,14 @@
           {% else %}
             (nie wysłano pliku)
           {% endif %}
+        </p>
+      {% endfor %}
+      {% for form in assignment.field_forms %}
+        {{ form.assignment_id }}
+        <p><strong>{{ form.value.label }}:</strong></p>
+        {{ form.value.errors }}
+        <p>
+          {% if assignment.is_active %}{{ form.value }}{% else %}{{ form.value.value }}{% endif %}
         </p>
       {% endfor %}
       {% if assignment.is_active %}<input type="submit" value="Wyślij"/>{% endif %}
