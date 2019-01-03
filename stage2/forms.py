@@ -24,7 +24,10 @@ class AttachmentForm(forms.ModelForm):
         max_mb = options.get('max', 20)
         self.max_upload_size = max_mb * 1024 * 1024
         self.fields['file'].widget.attrs['data-max'] = max_mb
-        self.fields['file'].label = label + u' (maks. %s MB)' % max_mb
+        label_extra = ['maks. %s MB' % max_mb]
+        if extensions:
+            label_extra.append('format: %s' % ', '.join(extensions))
+        self.fields['file'].label = label + u' (%s)' % '; '.join(label_extra)
         if extensions:
             self.fields['file'].widget.attrs['data-ext'] = '|'.join(extensions)
         self.extensions = extensions
