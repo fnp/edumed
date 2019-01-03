@@ -56,11 +56,12 @@ class AssignmentFieldForm(forms.Form):
         self.type = options['type']
         self.fields['assignment_id'].initial = answer.assignment.id
         max_length = options.get('max_length')
+        if options.get('widget') == 'area':
+            self.fields['value'].widget = forms.Textarea(attrs={'cols': 80, 'rows': 25})
         if max_length:
             self.fields['value'].validators.append(validators.MaxLengthValidator(int(max_length)))
             self.fields['value'].label += u' (maks. %s znaków)' % max_length
-        if options.get('widget') == 'area':
-            self.fields['value'].widget = forms.Textarea(attrs={'cols': 80, 'rows': 25})
+            self.fields['value'].widget.attrs['data-max-length'] = max_length
         if self.type == 'options':
             option_set = FieldOptionSet.objects.get(name=options['option_set'])
             self.fields['value'].widget = forms.Select(choices=option_set.choices(answer))

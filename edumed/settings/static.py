@@ -42,6 +42,7 @@ PIPELINE_JS = {
             'js/formset.js',
             'fnpdjango/annoy/annoy.js',
             'js/checkfile.js',
+            'js/checktext.js',
         ),
         'output_filename': 'compressed/base.js',
     },

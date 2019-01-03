@@ -14,7 +14,7 @@
       <h2>{{ assignment.title }} (do {{ assignment.deadline }})</h2>
     {% endif %}
     <a href="{{ assignment.content_url }}"><strong>Zobacz treść zadania</strong></a>
-    <form method="POST" action="" enctype="multipart/form-data">
+    <form method="POST" action="" enctype="multipart/form-data" class="submit-form">
       {% csrf_token %}
       {% for form, attachment in assignment.attachment_forms %}
         {{ form.assignment_id }}
