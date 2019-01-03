@@ -107,3 +107,21 @@ msgstr ""
 #: templates/pybb/_need_to_login_message.html:2
 msgid "to create to post a reply"
 msgstr ""
+
+#: core/validators.py:220
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+"Upewnij się, że ta wartość ma najwyżej %(limit_value)d znak (obecnie ma "
+"%(show_value)d)."
+msgstr[1] ""
+"Upewnij się, że ta wartość ma najwyżej %(limit_value)d znaki (obecnie ma "
+"%(show_value)d)."
+msgstr[2] ""
+"Upewnij się, że ta wartość ma najwyżej %(limit_value)d znaków (obecnie "
+"ma %(show_value)d)."
