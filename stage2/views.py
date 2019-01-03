@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import Http404
@@ -60,6 +61,7 @@ def participant_view(request, participant_id, key):
         # trzeba by znaleźć sensowny sposób odrózniania błędnego pliku od braku pliku.
         # na szczęście pliki walidujemy też javascriptem, więc jakoś ujdzie
         if fields_valid:
+            messages.info(request, u'Dane zostały poprawnie zapisane na serwerze')
             return HttpResponseRedirect(reverse('stage2_participant', args=(participant_id, key)))
         else:
             sent_forms = (assignment, field_forms, attachment_forms)

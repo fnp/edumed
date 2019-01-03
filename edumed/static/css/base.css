@@ -220,15 +220,19 @@ footer.main {
 ul.messages {
   list-style: none; }
 
-.messages .error {
+.messages li {
   top: 20px;
   left: 20px;
-  border: 1px solid black;
-  background: red;
   border-radius: 0.938em;
   padding: 5px 2px;
   color: white;
   text-align: center;
   font-weight: bold; }
+  .messages li.error {
+    background: red;
+    border: 1px solid black; }
+  .messages li.info {
+    background: #ed7831;
+    border: none; }
 
 /*# sourceMappingURL=base.css.map */
