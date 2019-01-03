@@ -13,7 +13,9 @@
     {% if assignment.title %}
       <h2>{{ assignment.title }} (do {{ assignment.deadline }})</h2>
     {% endif %}
-    <a href="{{ assignment.content_url }}"><strong>Zobacz treść zadania</strong></a>
+    <p class="box-button" style="max-width: 15em;">
+      <a href="{{ assignment.content_url }}" target="_blank" class="nice-button"><strong>Zobacz treść zadania</strong></a>
+    </p>
     <form method="POST" action="" enctype="multipart/form-data" class="submit-form">
       {% csrf_token %}
       {% for form, attachment in assignment.attachment_forms %}
