@@ -59,7 +59,7 @@ class Participant(models.Model):
 
 
 class Assignment(models.Model):
-    title = models.CharField(_('title'), max_length=128)
+    title = models.CharField(_('title'), max_length=128, blank=True)
     content = models.TextField(_('content'))
     content_url = models.URLField(_('URL'))
     deadline = models.DateTimeField(_('deadline'))
