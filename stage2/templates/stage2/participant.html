@@ -2,15 +2,17 @@
 {% load textile_pl from fnp_markup %}
 {% load chunks %}
 
-{% block title %}Drugi etap{% endblock %}
+{% block title %}II etap{% endblock %}
 
 {% block body %}
-  <h1>Drugi etap Olimpiady Cyfrowej</h1>
+  <h1>II etap Olimpiady Cyfrowej</h1>
 
   {% chunk 'stage2_header' %}
 
   {% for assignment in assignments %}
-    <h2>{{ assignment.title }} (do {{ assignment.deadline }})</h2>
+    {% if assignment.title %}
+      <h2>{{ assignment.title }} (do {{ assignment.deadline }})</h2>
+    {% endif %}
     <a href="{{ assignment.content_url }}"><strong>Zobacz treść zadania</strong></a>
     <form method="POST" action="" enctype="multipart/form-data">
       {% csrf_token %}
@@ -35,7 +37,7 @@
           {% if assignment.is_active %}{{ form.value }}{% else %}{{ form.value.value }}{% endif %}
         </p>
       {% endfor %}
-      {% if assignment.is_active %}<input type="submit" value="Wyślij"/>{% endif %}
+      {% if assignment.is_active %}<input type="submit" value="Zapisz"/>{% endif %}
     </form>
   {% endfor %}
 

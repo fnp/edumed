@@ -1,16 +1,16 @@
 Dzień dobry, 
 
-Gratulujemy awansu do drugiego etapu Olimpiady Cyfrowej. Zgodnie z regulaminem w ciągu najbliższych sześciu tygodni będziesz pracować nad indywidualnym projektem. Twoje  zadanie, to przygotowanie projektu zbiórki funduszy na określony przez Ciebie cel w formie kampanii internetowej. Ze szczegółową treścią zadania i kryteriami oceny możesz zapoznać się tutaj: http://olimpiadacyfrowa.pl/zadania-drugi-etap2019/
+Gratulujemy awansu do II etapu Olimpiady Cyfrowej. Zgodnie z regulaminem w ciągu najbliższych sześciu tygodni będziesz pracować nad indywidualnym projektem. Twoje zadanie to przygotowanie projektu zbiórki funduszy na określony przez Ciebie cel w formie kampanii internetowej. Ze szczegółową treścią zadania i kryteriami oceny możesz zapoznać się tutaj: https://olimpiadacyfrowa.pl/zadania-drugi-etap2019/
 
-Poniżej znajduje się wygenerowany specjalnie dla Ciebie link, pod którym będziesz mógł/mogła przesłać rozwiązania zadań II etapu Olimpiady Cyfrowej:
+Poniżej znajduje się wygenerowany specjalnie dla Ciebie link, który umożliwi Ci przesłanie prac w II etapie Olimpiady Cyfrowej:
 
 https://olimpiadacyfrowa.pl{% url 'stage2_participant' participant_id=participant.id key=participant.key %}
 
 Pamiętaj, że opracowane przez Ciebie zadanie musisz przesłać najpóźniej do 18 lutego 2019 roku, do godz. 23:59:59.
 
-Termin nadsyłania zadań jest nieprzekraczalny. Niedotrzymanie terminu oznacza automatyczną dyskwalifikację. Zmiana terminu jest możliwa wyłącznie w przypadku problemów technicznych.
+Termin nadsyłania zadań jest nieprzekraczalny. Niedotrzymanie terminu oznacza automatyczną dyskwalifikację. Zmiana terminu jest możliwa wyłącznie w przypadku problemów technicznych po stronie organizatora.
 
-Przed upłynięciem terminu przesłania zadań możesz je wielokrotnie zmieniać i uzupełniać.
+Przed upłynięciem terminu przesłania zadania możesz je wielokrotnie zmieniać i uzupełniać.
 
 W razie dodatkowych pytań możesz kontaktować się z nami pod adresem olimpiada@nowoczesnapolska.org.pl.
 
