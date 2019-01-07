@@ -12,7 +12,8 @@ class Command(BaseCommand):
         sent = 0
         failed = 0
 
-        contacts = Contact.objects.filter(form_tag='olimpiada').order_by('contact').distinct('contact')
+        contacts = Contact.objects.filter(form_tag='olimpiada').exclude(contact=None).order_by('contact')\
+            .distinct('contact')
         template_name = args[0]
         emails = args[1:]
         if emails:

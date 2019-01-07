@@ -12,7 +12,7 @@ class Command(BaseCommand):
         sent = 0
         failed = 0
 
-        query = Participant.objects.order_by('contact__contact').distinct('contact__contact')\
+        query = Participant.objects.exclude(contact=None).order_by('contact__contact').distinct('contact__contact')\
             .values_list('contact__contact', flat=True)
         template_name = args[0]
         message = render_to_string('stage2/' + template_name + '.txt')
