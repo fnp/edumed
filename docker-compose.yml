@@ -6,4 +6,5 @@ services:
       context: .
       target: dev
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./media:/app/media

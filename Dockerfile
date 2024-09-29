@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-WORKDIR /app
+WORKDIR /app/src
 
 
 FROM base AS dev
@@ -23,4 +23,4 @@ FROM base AS prod
 
 RUN pip install --no-cache-dir gunicorn psycopg2-binary
 
-COPY . /app
+COPY src /app/src/
