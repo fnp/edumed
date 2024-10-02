@@ -16,6 +16,7 @@ MANAGERS = [
     if adm
 ]
 
+DEBUG = False
 
 if 'DB_NAME' in os.environ:
     DATABASES = {
