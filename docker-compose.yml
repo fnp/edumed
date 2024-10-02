@@ -7,4 +7,4 @@ services:
       target: dev
     volumes:
       - ./src:/app/src
-      - ./media:/app/media
+      - ./var:/app/var

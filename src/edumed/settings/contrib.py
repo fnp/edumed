@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-CAS_SERVER_URL = 'http://logowanie.nowoczesnapolska.org.pl/cas/'
+CAS_SERVER_URL = 'https://logowanie.nowoczesnapolska.org.pl/cas/'
 CAS_VERSION = '3'
+
+HONEYPOT_FIELD_NAME='miut'
 
 SPONSORS_THUMB_WIDTH = 100
 SPONSORS_THUMB_HEIGHT = 56

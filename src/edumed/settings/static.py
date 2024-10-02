@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-import os.path
 
-from .paths import PROJECT_DIR
-
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media/')
+MEDIA_ROOT = '/app/var/media/'
 MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static/')
+STATIC_ROOT = '/app/var/static/'
 STATIC_URL = '/static/'
 
 STATICFILES_FINDERS = (

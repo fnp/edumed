@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from .paths import *
 from .basic import *
 from .apps import *
 from .locale import *
