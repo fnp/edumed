@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+import os
 
-CAS_SERVER_URL = 'https://logowanie.nowoczesnapolska.org.pl/cas/'
+CAS_SERVER_URL = os.environ.get('CAS_SERVER_URL')
 CAS_VERSION = '3'
 
 HONEYPOT_FIELD_NAME='miut'
