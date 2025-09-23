@@ -1,4 +1,4 @@
-FROM python:2.7 AS base
+FROM turicas/python:2.7-slim-bookworm AS base
 
 RUN apt-get update && apt-get install -y \
     libxslt-dev libxml2-dev build-essential \

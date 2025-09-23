@@ -1,3 +1,4 @@
+/.env
 localsettings.py
 exercises.json
 dev.sqlite

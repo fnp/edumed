@@ -1,10 +1,9 @@
-version: '3'
-
 services:
   dev:
     build:
       context: .
       target: dev
+    env_file: .env
     volumes:
       - ./src:/app/src
       - ./var:/app/var
